@@ -37,7 +37,7 @@ gitment:
   secret: cffc577b0f7dc8d888341f2dbfc8c410d02c3be2 
 
 # 主题设置，自动激活某个标签
-active: 技术
+active: 代码
 
 # 首页除了最新文章外显示分类
 cates: 
