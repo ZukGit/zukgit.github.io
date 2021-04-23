@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 安卓HwServiceManager进程启动分析
-category:系统
+category: 系统
 tags: Android AOSP
 keywords: 
 typora-root-url: ..\..\..\
