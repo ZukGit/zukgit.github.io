@@ -4,8 +4,8 @@ title: AndroidStudio快捷使用操作
 category: 工具
 tags: AndroidStudio 
 keywords: AndroidStudio 
-typora-root-url:..\..\
-typora-copy-images-to:..\..\public\zimage
+typora-root-url: ..\..\
+typora-copy-images-to: ..\..\public\zimage
 ---
 
 ## 简介

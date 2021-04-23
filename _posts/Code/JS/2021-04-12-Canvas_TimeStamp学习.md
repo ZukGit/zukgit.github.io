@@ -4,8 +4,8 @@ title: JS_Canvas绘制学习
 category: 代码
 tags: JS
 keywords: 
-typora-root-url:..\..\..\
-typora-copy-images-to:..\..\..\public\zimage
+typora-root-url: ..\..\..\
+typora-copy-images-to: ..\..\..\public\zimage
 ---
 
 ## 简介

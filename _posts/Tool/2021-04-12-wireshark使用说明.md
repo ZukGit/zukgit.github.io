@@ -4,8 +4,8 @@ title: Wireshark抓包工具
 category: 工具
 tags: Tool Wifi
 keywords: Wifi Tool 
-typora-root-url:..\..\
-typora-copy-images-to:..\..\public\zimage
+typora-root-url: ..\..\
+typora-copy-images-to: ..\..\public\zimage
 ---
 
 ## 简介

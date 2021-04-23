@@ -4,8 +4,8 @@ title: 安卓Gerrit_Review网站
 category: 网站
 tags: Website AOSP
 keywords: 
-typora-root-url:..\..\
-typora-copy-images-to:..\..\public\zimage
+typora-root-url: ..\..\
+typora-copy-images-to: ..\..\public\zimage
 ---
 
 ## 简介

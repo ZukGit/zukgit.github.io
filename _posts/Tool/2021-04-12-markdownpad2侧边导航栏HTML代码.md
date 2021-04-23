@@ -4,8 +4,8 @@ title: markdownpad2侧边导航栏HTML代码
 category: 工具
 tags: Tool
 keywords: markdownpad2 
-typora-root-url:..\..\
-typora-copy-images-to:..\..\public\zimage
+typora-root-url: ..\..\
+typora-copy-images-to: ..\..\public\zimage
 ---
 
 ## 简介

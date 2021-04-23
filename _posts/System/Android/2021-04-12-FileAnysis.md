@@ -4,8 +4,8 @@ title: FileExplorer源码分析
 category: 系统
 tags: Android Analysis
 keywords: 分析 文件 Android
-typora-root-url:..\..\..\
-typora-copy-images-to:..\..\..\public\zimage
+typora-root-url: ..\..\..\
+typora-copy-images-to: ..\..\..\public\zimage
 ---
 
 ## 简介

@@ -4,8 +4,8 @@ title: 安卓官网仓库分支Branch与标记Tag
 category: 网站
 tags: AOSP Website
 keywords: 
-typora-root-url:..\..\
-typora-copy-images-to:..\..\public\zimage
+typora-root-url: ..\..\
+typora-copy-images-to: ..\..\public\zimage
 ---
 
 ## 简介

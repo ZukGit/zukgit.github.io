@@ -4,8 +4,8 @@ title: githubrank排名
 category: 网站
 tags: Git Website
 keywords: 
-typora-root-url:..\..\
-typora-copy-images-to:..\..\public\zimage
+typora-root-url: ..\..\
+typora-copy-images-to: ..\..\public\zimage
 ---
 
 ## 简介

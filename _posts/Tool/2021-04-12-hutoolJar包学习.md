@@ -4,8 +4,8 @@ title: hutool-jar包学习
 category:工具居
 tags: Jar Java
 keywords: 
-typora-root-url:..\..\
-typora-copy-images-to:..\..\public\zimage
+typora-root-url: ..\..\
+typora-copy-images-to: ..\..\public\zimage
 ---
 
 ## 简介

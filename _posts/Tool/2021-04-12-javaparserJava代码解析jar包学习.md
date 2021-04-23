@@ -4,8 +4,8 @@ title: javaparser_java代码解析jar包学习
 category: 工具
 tags: Jar Java
 keywords: 
-typora-root-url:..\..\
-typora-copy-images-to:..\..\public\zimage
+typora-root-url: ..\..\
+typora-copy-images-to: ..\..\public\zimage
 ---
 
 ## 简介
