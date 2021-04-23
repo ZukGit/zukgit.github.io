@@ -1,0 +1,138 @@
+---
+layout: base
+---
+
+<div class="row">
+
+
+  <div class="col-md-12 aside3-title">
+    <text id="#identifier">{{ page.title }}</text>
+    {{ page.date | date:"%Y年%m月%d日" }}
+	  <!-- HTML elements for search -->
+<br>
+<input type="text" id="search-input" placeholder=">|.^.._____..^.|<" style="padding:inherit;border-radius:30px;color:black; width:250px;outline: none;text-align: center"> </input>
+<ul id="results-container"></ul>
+  </div>
+  <div class="col-md-12 aside3-content">
+    <hr>
+    <div id="content">
+      {{ content }}
+    </div>
+    <hr>
+    <!--   gitalk      
+        <div class="comment">
+        <div id="gitalk-container"></div>
+        
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+ 
+        <script>
+        var gitalk = new Gitalk({
+            id: '{{ page.title }}',
+            clientID: '4dda062aa10411a78469',
+            clientSecret: 'cffc577b0f7dc8d888341f2dbfc8c410d02c3be2',
+            repo: 'zukgit.github.io',
+            owner: 'zukgit',
+            admin: ['zukgit'], 
+            labels: ['Gitalk'],
+        })
+        gitalk.render('gitalk-container')
+        </script> 
+    </div> -->
+	
+  </div>
+  <!-- 目录 -->
+  <div id="content_table" style="position:fixed;right:20px;top:120px;display:none;">
+    <div class="panel panel-success">
+      <div class="panel-body" id="nav" style="overflow: auto;height: 80vh;position: inherit;"></div>
+    </div>
+  </div>
+</div>
+
+<script src="/public/js/simple-jekyll-search.min.js"></script>
+
+<!-- Configuration -->
+<script>
+SimpleJekyllSearch({
+  searchInput: document.getElementById('search-input'),
+  resultsContainer: document.getElementById('results-container'),
+  json: '/public/search.json',
+  searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a> &nbsp;<span>{date}</span></li>',
+  noResultsText: '没有搜索到文章',
+  fuzzy: false
+})
+</script>
+
+<script>
+var text_picture_arr = ["＼(＠＾０＾＠)/", "(๑¯◡¯๑)", "(⁄ ⁄•⁄ω⁄•⁄ ⁄)", "゜゜(´Ｏ`) ゜゜", "(●'◡'●)ﾉ♥", "♡-(๑˙ー˙๑)-♡", "ฅ( ఠൠఠ )ฅ", "(๑╹ヮ╹๑)", "╮(﹀_﹀”)╭", "ฅ( ̳• ◡ • ̳)ฅ", "ꉂ (๑¯ਊ¯)σ", "(￣(●●)￣)", "(●￣(ｴ)￣●)", "ʅ（´◔౪◔）ʃ", "(っ╥╯﹏╰╥c)", "(๑╹ヮ╹๑)", "▄︻┻┳═一", "一┳═┻︻▄", "୧(๑•̀⌄•́๑)૭✧", "┌( ಠ_ಠ)┘", "Ψ( •ω• )Ψ", "ʕ•ᴥ•ʔ", "o(*￣▽￣*)o", "<(*ΦωΦ*)>", "(งʘ͡ ʖ͜ ʘ͡ )ง", "╭∩╮-.-╭∩╮", "(◍ ´꒳` ◍)", "(๑￣ ̫ ￣๑)", "(╥╯^╰╥)", "╮(๑•́ ₃•̀๑)╭", "ლ(°Д°ლ) ", "ᕙ(⇀‸↼)ᕗ", "๑乛◡乛๑", "╰(✿´⌣`✿)╯", "(づ ●─● )づ", "(,,•∀•)ノ", "✧⁺(●˙▾˙●)⁺✧", "∑(っ°Д°;)っ ", "ლ(゜д゜ლ)", "‼(•'╻'• )", " (●´ϖ`●) ", "╭∩╮(︶︿︶)╭∩╮", "╭( ′• o •′ )╭", "┣▇▇▇▇═─", "▄█▔▉●", "┑(￣Д ￣)┍", "( •̀⊿•́)ง110", "~( ´•︵•` )~", "๑乛◡乛๑", "(｡◕ˇ﹏ˇ◕｡ )", "ლ(´ڡ`ლ)", ">|.^.._____..^.|<"];
+
+var random_index=Math.floor(Math.random()*text_picture_arr.length);
+document.getElementById("search-input").setAttribute("placeholder",text_picture_arr[random_index]);
+</script>
+
+
+<script>
+
+ var codeblocks = document.getElementsByTagName("pre")
+//循环每个pre代码块，并添加 复制代码
+
+for (var i = 0; i < codeblocks.length; i++) {
+    //显示 复制代码 按钮
+    currentCode = codeblocks[i]
+    currentCode.style = "position: relative;"
+    var copy = document.createElement("div")
+    copy.style = "position: absolute;right: 4px;\
+    top: 4px;background-color: rgba(204, 174, 2, 0.77);padding: 2px 8px;\
+    margin: 8px;border-radius: 4px;cursor: pointer;\
+    z-index: 9999;\
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.05);"
+    copy.innerHTML = "复制BB"
+    currentCode.appendChild(copy)
+    //让所有 "复制"按钮 全部隐藏
+    copy.style.visibility = "hidden"
+}
+// alert("codeblocks.length2 ="+codeblocks.length)
+
+
+
+for (var i = 0; i < codeblocks.length; i++) {
+
+
+    !function (i) {
+        //鼠标移到代码块，就显示按钮
+        codeblocks[i].onmouseover = function () {
+            codeblocks[i].childNodes[1].style.visibility = "visible";
+        }
+
+        //执行 复制代码 功能
+        function copyArticle(event) {
+            const range = document.createRange();
+
+            //范围是 code，不包括刚才创建的div
+            range.selectNode(codeblocks[i].childNodes[0]);
+
+            const selection = window.getSelection();
+            if (selection.rangeCount > 0) selection.removeAllRanges();
+            selection.addRange(range);
+            document.execCommand('copy');
+
+            codeblocks[i].childNodes[1].innerHTML = "复制成功"
+            setTimeout(function () {
+                codeblocks[i].childNodes[1].innerHTML = "复制";
+            }, 1000);
+            //清除选择区
+            if (selection.rangeCount > 0) selection.removeAllRanges(); 
+        }
+        codeblocks[i].childNodes[1].addEventListener('click', copyArticle, false);
+
+    }(i);
+
+    !function (i) {
+        //鼠标从代码块移开 则不显示复制代码按钮
+        codeblocks[i].onmouseout = function () {
+            codeblocks[i].childNodes[1].style.visibility = "hidden"
+        }
+    }(i);
+}
+
+</script>

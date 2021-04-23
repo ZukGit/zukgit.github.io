@@ -1,0 +1,59 @@
+permalink: /:year/:month/:day/:title.html
+paginate: 10
+# markdown: rdiscount
+markdown: kramdown
+
+# 作者信息
+author: 
+  name: zukgit
+  email: zukgit@foxmail.com
+  link: 
+  weibo: 
+  github: http://zukgit.github.io
+
+# 站点信息
+title: zukgit's blog
+description: zukgit's blog
+url: http://zukgit.github.io
+rss_url: 
+
+# gavatar头像及Favicon
+gavatar: /public/zimage/head.jpg
+favicon: /public/zimage/icon.png
+
+# google analytics 设置
+google_analytics_tracking_id: UA-108442533-1
+ga:
+  id: UA-108442533-1
+  url: 
+
+# disqus 设置
+disqus:
+  shortname: zukgit
+
+# gitment
+gitment:
+  id: 4dda062aa10411a78469
+  secret: cffc577b0f7dc8d888341f2dbfc8c410d02c3be2 
+
+# 主题设置，自动激活某个标签
+active: 技术
+
+# 首页除了最新文章外显示分类
+cates: 
+  - Wifi
+  - Java
+  - Linux
+  - Android
+  - C
+  - Tool
+  
+# 中文本地化
+locals:
+  tags: 标签
+  about: 关于
+  newest: 最新文章
+
+    
+plugins:
+- jekyll-paginate

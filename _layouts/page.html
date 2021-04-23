@@ -1,0 +1,32 @@
+---
+layout: base
+---
+<div class="row">
+  <div class="col-md-12 aside3-title">
+    <text id="#identifier">{{ page.title }}</text>
+	<br>
+<input type="text" id="search-input" placeholder=">|.^.._____..^.|<" style="border-radius:30px;color:black; width:250px;padding-left:20px;outline: none"> </input>
+<ul id="results-container"></ul>
+
+  </div>
+  <div class="col-md-12 aside3-content">
+    <div id="page-content">
+      {{ content }}
+    </div>
+    <hr>
+  </div>
+</div>
+
+<script src="/public/js/simple-jekyll-search.min.js"></script>
+
+<!-- Configuration -->
+<script>
+SimpleJekyllSearch({
+  searchInput: document.getElementById('search-input'),
+  resultsContainer: document.getElementById('results-container'),
+  json: '/public/search.json',
+  searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a> &nbsp;<span>{date}</span></li>',
+  noResultsText: '没有搜索到文章',
+  fuzzy: false
+})
+</script>
