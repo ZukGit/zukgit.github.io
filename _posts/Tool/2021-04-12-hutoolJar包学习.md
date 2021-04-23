@@ -1,7 +1,7 @@
 ---
 layout: post
-title: hutool-jar包学习
-category:工具居
+title: hutool_jar包学习
+category:工具
 tags: Jar Java
 keywords: 
 typora-root-url: ..\..\
@@ -11,6 +11,7 @@ typora-copy-images-to: ..\..\public\zimage
 ## 简介
  * TOC
  {:toc}
+ 
 ## hutool工具网站
 ```
 
