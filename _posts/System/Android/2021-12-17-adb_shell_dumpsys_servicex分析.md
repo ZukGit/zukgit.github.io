@@ -2422,46 +2422,6 @@ Package manager dump options:
 
 
 
-### Log层次
-
-#### Database versions:
-#### Verifiers:
-#### Intent Filter Verifier:
-#### Libraries:
-#### Features:
-#### Activity Resolver Table:
-#### Receiver Resolver Table:
-#### Service Resolver Table:
-#### Provider Resolver Table:
-#### Preferred Activities User 0:
-#### App verification status:
-#### App linkages for user 0:
-#### Permissions:
-#### AppOp Permissions:
-#### Registered ContentProviders:
-#### ContentProvider Authorities:
-#### Key Set Manager:
-#### Packages:
-#### Queries:
-#### Shared users:
-#### Package Changes:
-#### Frozen packages:
-#### Loaded volumes:
-#### Service permissions:
-#### Dexopt state:
-#### Compiler stats:
-#### Settings parse messages:
-#### Active install sessions:
-#### Finalized install sessions:
-#### Historical install sessions:
-#### Legacy install sessions:
-#### APEX session state:
-#### Active APEX packages:
-#### Inactive APEX packages:
-#### Factory APEX packages:
-
-
-
 
 ### 辅助类
 
