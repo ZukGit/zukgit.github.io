@@ -3861,3 +3861,13 @@ radiotap.channel.freq == 4980            // 【196 】 4980 MHz
 ```
 
 
+
+## 过滤器语法
+
+### EAP帧过滤
+```
+
+eapol.version == 1 
+
+```
+
