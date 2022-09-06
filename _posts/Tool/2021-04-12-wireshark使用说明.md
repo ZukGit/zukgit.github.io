@@ -473,6 +473,7 @@ Edit 》Preference 》Appearaance 》Columns 》+ 》 dropdownSelect 下拉框
 | Clear to Send CTS 准予发送帧           |  控制帧  wlan.fc.type == 1        |   wlan.fc.subtype == 0x1C  |        |
 |ACK  数据帧确认接收帧                   |  控制帧  wlan.fc.type == 1         |   wlan.fc.subtype == 0x1D  |        |
 |Content free period end 无竞争结束帧    |  控制帧  wlan.fc.type == 1         |   wlan.fc.subtype == 0x1E  |       |
+| EAPOL握手帧                            |  数据帧  wlan.fc.type == 2         |   wlan.fc.subtype == 0x08 |        |
 | 携带data数据帧                         |  数据帧  wlan.fc.type == 2         |   wlan.fc.subtype == 0x20 |        |
 |NULL data空数据帧                       |  数据帧  wlan.fc.type == 2         |   wlan.fc.subtype == 0x24  |       |
 |Qos data  Qos服务质量数据帧             |  数据帧  wlan.fc.type == 2         |   wlan.fc.subtype == 0x28  |       |
