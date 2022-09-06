@@ -480,6 +480,20 @@ Edit 》Preference 》Appearaance 》Columns 》+ 》 dropdownSelect 下拉框
 |Null Qos data  空Qos服务质量数据帧      |  数据帧  wlan.fc.type == 2         |   wlan.fc.subtype == 0x2C  |       |
 
 
+```
+802.11X eap 认证中 区分出 eap 认证中的 第 1|2|3|4 次握手包 
+
+wlan_rsna_eapol.keydes.key_info.secure == 0 && wlan_rsna_eapol.keydes.key_info.key_ack == 1    (eap1)
+
+wlan_rsna_eapol.keydes.key_info.secure == 0 && wlan_rsna_eapol.keydes.key_info.key_ack == 0    (eap2)
+
+wlan_rsna_eapol.keydes.key_info.secure == 1 && wlan_rsna_eapol.keydes.key_info.key_ack == 1    (eap3)
+
+wlan_rsna_eapol.keydes.key_info.secure == 1 && wlan_rsna_eapol.keydes.key_info.key_ack == 0    (eap4)
+
+```
+
+
 ### 所有可能帧组合
 
 ```
