@@ -455,28 +455,28 @@ Edit 》Preference 》Appearaance 》Columns 》+ 》 dropdownSelect 下拉框
 | ManagementFrame管理帧                  |  管理帧 wlan.fc.type == 0         | wlan.fc.type == 0   |       |
 | ControlFrame控制帧                     |  控制帧  wlan.fc.type == 1        |  wlan.fc.type == 1  |       |
 | Data数据帧                             |  数据帧  wlan.fc.type == 2        |  wlan.fc.type == 2  |       |
-| Association Request 关联请求帧         |  管理帧 wlan.fc.type == 0         |   wlan.fc.type_subtype == 0x00  |       |
-| Association Response 关联响应帧        |  管理帧 wlan.fc.type == 0         |   wlan.fc.type_subtype == 0x01  |       |
-| ReAssociation Request 重关联请求帧     |  管理帧 wlan.fc.type == 0         |   wlan.fc.type_subtype == 0x02  |       |
-| ReAssociation Response 重关联响应帧    |  管理帧 wlan.fc.type == 0         |   wlan.fc.type_subtype == 0x03  |       |
-|Probe Request 探测周围无线网络的探测帧   |  管理帧 wlan.fc.type == 0         |   wlan.fc.type_subtype == 0x04  |       |
-|Probe Response 无线网络响应的探测回复帧  |  管理帧 wlan.fc.type == 0         |   wlan.fc.type_subtype == 0x05  |       |
-| Beacon 无线网络持续发送的HeatBeat心跳帧 |  管理帧 wlan.fc.type == 0         |   wlan.fc.type_subtype == 0x08  |       |
-| Disassociate 取消关联帧                |  管理帧 wlan.fc.type == 0         |   wlan.fc.type_subtype == 0x0A  |       |
-| Authentication 认证帧                  |  管理帧 wlan.fc.type == 0         |   wlan.fc.type_subtype == 0x0B  |       |
-| Deauthentication 取消认证帧            |  管理帧 wlan.fc.type == 0         |   wlan.fc.type_subtype == 0x0C  |      |
-| Action Frame 触发测量动作帧            |  管理帧 wlan.fc.type == 0         |   wlan.fc.type_subtype == 0x0D  |        |
-| Block ACK Request 块确认请求帧         |  控制帧  wlan.fc.type == 1        |   wlan.fc.type_subtype == 0x18  |        |
-| Block ACK  块确认响应帧                |  控制帧  wlan.fc.type == 1        |   wlan.fc.type_subtype == 0x19  |       |
-| Power save poll 省电轮询帧             |  控制帧  wlan.fc.type == 1        |   wlan.fc.type_subtype == 0x1A  |        |
-| Request to Send RTS 请求发送帧         |  控制帧  wlan.fc.type == 1        |   wlan.fc.type_subtype == 0x1B  |          |
-| Clear to Send CTS 准予发送帧           |  控制帧  wlan.fc.type == 1        |   wlan.fc.type_subtype == 0x1C  |        |
-|ACK  数据帧确认接收帧                   |  控制帧  wlan.fc.type == 1         |   wlan.fc.type_subtype == 0x1D  |        |
-|Content free period end 无竞争结束帧    |  控制帧  wlan.fc.type == 1         |   wlan.fc.type_subtype == 0x1E  |       |
-| 携带data数据帧                         |  数据帧  wlan.fc.type == 2         |   wlan.fc.type_subtype == 0x20 |        |
-|NULL data空数据帧                       |  数据帧  wlan.fc.type == 2         |   wlan.fc.type_subtype == 0x24  |       |
-|Qos data  Qos服务质量数据帧             |  数据帧  wlan.fc.type == 2         |   wlan.fc.type_subtype == 0x28  |       |
-|Null Qos data  空Qos服务质量数据帧      |  数据帧  wlan.fc.type == 2         |   wlan.fc.type_subtype == 0x2C  |       |
+| Association Request 关联请求帧         |  管理帧 wlan.fc.type == 0         |   wlan.fc.subtype == 0x00  |       |
+| Association Response 关联响应帧        |  管理帧 wlan.fc.type == 0         |   wlan.fc.subtype == 0x01  |       |
+| ReAssociation Request 重关联请求帧     |  管理帧 wlan.fc.type == 0         |   wlan.fc.subtype == 0x02  |       |
+| ReAssociation Response 重关联响应帧    |  管理帧 wlan.fc.type == 0         |   wlan.fc.subtype == 0x03  |       |
+|Probe Request 探测周围无线网络的探测帧   |  管理帧 wlan.fc.type == 0         |   wlan.fc.subtype == 0x04  |       |
+|Probe Response 无线网络响应的探测回复帧  |  管理帧 wlan.fc.type == 0         |   wlan.fc.subtype == 0x05  |       |
+| Beacon 无线网络持续发送的HeatBeat心跳帧 |  管理帧 wlan.fc.type == 0         |   wlan.fc.subtype == 0x08  |       |
+| Disassociate 取消关联帧                |  管理帧 wlan.fc.type == 0         |   wlan.fc.subtype == 0x0A  |       |
+| Authentication 认证帧                  |  管理帧 wlan.fc.type == 0         |   wlan.fc.subtype == 0x0B  |       |
+| Deauthentication 取消认证帧            |  管理帧 wlan.fc.type == 0         |   wlan.fc.subtype == 0x0C  |      |
+| Action Frame 触发测量动作帧            |  管理帧 wlan.fc.type == 0         |   wlan.fc.subtype == 0x0D  |        |
+| Block ACK Request 块确认请求帧         |  控制帧  wlan.fc.type == 1        |   wlan.fc.subtype == 0x18  |        |
+| Block ACK  块确认响应帧                |  控制帧  wlan.fc.type == 1        |   wlan.fc.subtype == 0x19  |       |
+| Power save poll 省电轮询帧             |  控制帧  wlan.fc.type == 1        |   wlan.fc.subtype == 0x1A  |        |
+| Request to Send RTS 请求发送帧         |  控制帧  wlan.fc.type == 1        |   wlan.fc.subtype == 0x1B  |          |
+| Clear to Send CTS 准予发送帧           |  控制帧  wlan.fc.type == 1        |   wlan.fc.subtype == 0x1C  |        |
+|ACK  数据帧确认接收帧                   |  控制帧  wlan.fc.type == 1         |   wlan.fc.subtype == 0x1D  |        |
+|Content free period end 无竞争结束帧    |  控制帧  wlan.fc.type == 1         |   wlan.fc.subtype == 0x1E  |       |
+| 携带data数据帧                         |  数据帧  wlan.fc.type == 2         |   wlan.fc.subtype == 0x20 |        |
+|NULL data空数据帧                       |  数据帧  wlan.fc.type == 2         |   wlan.fc.subtype == 0x24  |       |
+|Qos data  Qos服务质量数据帧             |  数据帧  wlan.fc.type == 2         |   wlan.fc.subtype == 0x28  |       |
+|Null Qos data  空Qos服务质量数据帧      |  数据帧  wlan.fc.type == 2         |   wlan.fc.subtype == 0x2C  |       |
 
 
 ### 所有可能帧组合
@@ -484,22 +484,22 @@ Edit 》Preference 》Appearaance 》Columns 》+ 》 dropdownSelect 下拉框
 ```
  2位比特 决定帧分类  00管理帧   01控制帧   10数据帧   11扩展帧
 管理帧  wlan.fc.type == 0 
- wlan.fc.type_subtype == 0x00_____【Association Request】
- wlan.fc.type_subtype == 0x01_____【Association Response】
- wlan.fc.type_subtype == 0x02_____【Reassociation Request】
- wlan.fc.type_subtype == 0x03_____【Reassociation Response】
- wlan.fc.type_subtype == 0x04_____【Probe Request】
- wlan.fc.type_subtype == 0x05_____【Probe Response】
- wlan.fc.type_subtype == 0x06_____
- wlan.fc.type_subtype == 0x07_____
- wlan.fc.type_subtype == 0x08_____【Beacon】
- wlan.fc.type_subtype == 0x09_____【ATIM 通知传输指示消息】
- wlan.fc.type_subtype == 0x0A_____【Disassociate】
- wlan.fc.type_subtype == 0x0B_____【Authentication】
- wlan.fc.type_subtype == 0x0C_____【Deauthentication】
- wlan.fc.type_subtype == 0x0D_____【Action Frame 】
- wlan.fc.type_subtype == 0x0E_____
- wlan.fc.type_subtype == 0x0F_____【★ Malformed Packet】
+ wlan.fc.subtype == 0x00_____【Association Request】
+ wlan.fc.subtype == 0x01_____【Association Response】
+ wlan.fc.subtype == 0x02_____【Reassociation Request】
+ wlan.fc.subtype == 0x03_____【Reassociation Response】
+ wlan.fc.subtype == 0x04_____【Probe Request】
+ wlan.fc.subtype == 0x05_____【Probe Response】
+ wlan.fc.subtype == 0x06_____
+ wlan.fc.subtype == 0x07_____
+ wlan.fc.subtype == 0x08_____【Beacon】
+ wlan.fc.subtype == 0x09_____【ATIM 通知传输指示消息】
+ wlan.fc.subtype == 0x0A_____【Disassociate】
+ wlan.fc.subtype == 0x0B_____【Authentication】
+ wlan.fc.subtype == 0x0C_____【Deauthentication】
+ wlan.fc.subtype == 0x0D_____【Action Frame 】
+ wlan.fc.subtype == 0x0E_____
+ wlan.fc.subtype == 0x0F_____【★ Malformed Packet】
 
 
 ATIM:announcement traffic indication message【通知传输指示消息】 IBSS中没有接入点，无法依赖接入点缓存帧， 
@@ -512,22 +512,22 @@ Beacon:  Beacon 可携带通知sleep状态的STA有数据缓存在AP的相关信
 
 
 控制帧 wlan.fc.type == 1 
- wlan.fc.type_subtype == 0x10_____
- wlan.fc.type_subtype == 0x11_____
- wlan.fc.type_subtype == 0x12_____
- wlan.fc.type_subtype == 0x13_____
- wlan.fc.type_subtype == 0x14_____
- wlan.fc.type_subtype == 0x15_____
- wlan.fc.type_subtype == 0x16_____
- wlan.fc.type_subtype == 0x17_____
- wlan.fc.type_subtype == 0x18_____【Block ACK Request】 
- wlan.fc.type_subtype == 0x19_____【Block ACK Response】 
- wlan.fc.type_subtype == 0x1A_____【Power save poll】
- wlan.fc.type_subtype == 0x1B_____【 RTS 】
- wlan.fc.type_subtype == 0x1C_____【 CTS 】
- wlan.fc.type_subtype == 0x1D_____【 ACK 】
- wlan.fc.type_subtype == 0x1E_____【Content free period end CF-End】
- wlan.fc.type_subtype == 0x1F_____【CF-End + CF-ACK】
+ wlan.fc.subtype == 0x10_____
+ wlan.fc.subtype == 0x11_____
+ wlan.fc.subtype == 0x12_____
+ wlan.fc.subtype == 0x13_____
+ wlan.fc.subtype == 0x14_____
+ wlan.fc.subtype == 0x15_____
+ wlan.fc.subtype == 0x16_____
+ wlan.fc.subtype == 0x17_____
+ wlan.fc.subtype == 0x18_____【Block ACK Request】 
+ wlan.fc.subtype == 0x19_____【Block ACK Response】 
+ wlan.fc.subtype == 0x1A_____【Power save poll】
+ wlan.fc.subtype == 0x1B_____【 RTS 】
+ wlan.fc.subtype == 0x1C_____【 CTS 】
+ wlan.fc.subtype == 0x1D_____【 ACK 】
+ wlan.fc.subtype == 0x1E_____【Content free period end CF-End】
+ wlan.fc.subtype == 0x1F_____【CF-End + CF-ACK】
 
 
 Power save poll: 省电轮询-由从休眠状态醒来的STA发出
@@ -537,42 +537,42 @@ CF-ACK:  无竞争周期确认
 
 
 数据帧   wlan.fc.type == 2 
- wlan.fc.type_subtype == 0x20_____【 Data 】
- wlan.fc.type_subtype == 0x21_____【 Data + CF-ACK 】
- wlan.fc.type_subtype == 0x22_____【 Data + CF-Poll 】
- wlan.fc.type_subtype == 0x23_____【 Data + CF-ACK + CF-Poll 】
- wlan.fc.type_subtype == 0x24_____【NULL data 未传输数据】
- wlan.fc.type_subtype == 0x25_____【CF-ACK 未传送数据】
- wlan.fc.type_subtype == 0x26_____【CF-Poll 未传送数据】
- wlan.fc.type_subtype == 0x27_____【 Data + CF-ACK + CF-Poll 】
- wlan.fc.type_subtype == 0x28_____【Qos data 】【EAPOP-Key1234】
- wlan.fc.type_subtype == 0x29_____【Qos data + CF-ACK】
- wlan.fc.type_subtype == 0x2A_____【Qos data + CF-Poll】
- wlan.fc.type_subtype == 0x2B_____【 QosData + CF-ACK + CF-Poll 】
- wlan.fc.type_subtype == 0x2C_____【Null Qos data 未传输数据】
- wlan.fc.type_subtype == 0x2D_____【 Qos CF-ACK 未传输数据】
- wlan.fc.type_subtype == 0x2E_____【 Qos CF-Poll 未传输数据】
- wlan.fc.type_subtype == 0x2F_____【 Qos CF-ACK CF-Poll 未传输数据】
+ wlan.fc.subtype == 0x20_____【 Data 】
+ wlan.fc.subtype == 0x21_____【 Data + CF-ACK 】
+ wlan.fc.subtype == 0x22_____【 Data + CF-Poll 】
+ wlan.fc.subtype == 0x23_____【 Data + CF-ACK + CF-Poll 】
+ wlan.fc.subtype == 0x24_____【NULL data 未传输数据】
+ wlan.fc.subtype == 0x25_____【CF-ACK 未传送数据】
+ wlan.fc.subtype == 0x26_____【CF-Poll 未传送数据】
+ wlan.fc.subtype == 0x27_____【 Data + CF-ACK + CF-Poll 】
+ wlan.fc.subtype == 0x28_____【Qos data 】【EAPOP-Key1234】
+ wlan.fc.subtype == 0x29_____【Qos data + CF-ACK】
+ wlan.fc.subtype == 0x2A_____【Qos data + CF-Poll】
+ wlan.fc.subtype == 0x2B_____【 QosData + CF-ACK + CF-Poll 】
+ wlan.fc.subtype == 0x2C_____【Null Qos data 未传输数据】
+ wlan.fc.subtype == 0x2D_____【 Qos CF-ACK 未传输数据】
+ wlan.fc.subtype == 0x2E_____【 Qos CF-Poll 未传输数据】
+ wlan.fc.subtype == 0x2F_____【 Qos CF-ACK CF-Poll 未传输数据】
 
 
 未知扩展帧
 数据帧   wlan.fc.type == 3
- wlan.fc.type_subtype == 0x30
- wlan.fc.type_subtype == 0x31
- wlan.fc.type_subtype == 0x32
- wlan.fc.type_subtype == 0x33
- wlan.fc.type_subtype == 0x34
- wlan.fc.type_subtype == 0x35
- wlan.fc.type_subtype == 0x36
- wlan.fc.type_subtype == 0x37
- wlan.fc.type_subtype == 0x38
- wlan.fc.type_subtype == 0x39
- wlan.fc.type_subtype == 0x3A
- wlan.fc.type_subtype == 0x3B
- wlan.fc.type_subtype == 0x3C
- wlan.fc.type_subtype == 0x3D
- wlan.fc.type_subtype == 0x3E
- wlan.fc.type_subtype == 0x3F
+ wlan.fc.subtype == 0x30
+ wlan.fc.subtype == 0x31
+ wlan.fc.subtype == 0x32
+ wlan.fc.subtype == 0x33
+ wlan.fc.subtype == 0x34
+ wlan.fc.subtype == 0x35
+ wlan.fc.subtype == 0x36
+ wlan.fc.subtype == 0x37
+ wlan.fc.subtype == 0x38
+ wlan.fc.subtype == 0x39
+ wlan.fc.subtype == 0x3A
+ wlan.fc.subtype == 0x3B
+ wlan.fc.subtype == 0x3C
+ wlan.fc.subtype == 0x3D
+ wlan.fc.subtype == 0x3E
+ wlan.fc.subtype == 0x3F
 
 
 ```
