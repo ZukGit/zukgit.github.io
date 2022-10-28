@@ -167,6 +167,85 @@ and it should output gps
 ```
 
 
+### QCC来下载XTRA辅助定位数_移除限制
+
+#### 老平台移除XTRA
+```
+拉取  /system/vendor/etc/gps.conf 文件 然后设置 XTRA_TEST_ENABLED = 1 和 XTRA_THROTTLE_ENABLED = 0 到文件 
+重新导入覆盖源文件就可以移除xtra下载限制
+
+adb root
+adb remount
+adb pull system/vendor/etc/gps.conf .
+
+
+
+open gps.conf and add two configs at the end of file:
+XTRA_TEST_ENABLED = 1
+XTRA_THROTTLE_ENABLED = 0
+
+
+
+adb push gps.conf system/vendor/etc/gps.conf
+adb reboot
+
+
+
+
+```
+
+####  8450_8475新近平台移除XTRA
+```
+
+导入本地的 test_cfg.xml 文件到  /data/user_de/0/com.qualcomm.qti.qdma/files/ 文件夹下重启生效
+
+adb root
+adb remount
+adb push test_cfg.xml /data/user_de/0/com.qualcomm.qti.qdma/files/
+adb reboot
+
+
+```
+
+##### test_cfg.xml
+```
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Copyright (c) 2017 Qualcomm Technologies, Inc.
+   All rights reserved.
+   Confidential and Proprietary - Qualcomm Technologies, Inc.
+ -->
+
+<!--
+ NOTE:
+Put this file in /data/data/com.qualcomm.qti.qdma/files/ folder
+(adb push test_cfg.xml /data/data/com.qualcomm.qti.qdma/files/test_cfg.xml), 
+and reboot device. 
+This file will be removed after loaded.
+
+If throttling enable=false, throttling mechanism will be disabled.
+-->
+
+<qdma_test_config>
+<throttling
+enable="false"
+duration_seconds="2"
+allowed_bytes="6291456"
+immediate_request="100000"
+periodic_request="10000"
+integrity_duration_seconds="100"
+integrity_request="3000"
+/>
+<property_vendor.qti.qdma.enabled
+value="1"/>
+</qdma_test_config>
+
+
+
+
+```
+
+
 
 
 ### Xtra下载失效恢复Tip
