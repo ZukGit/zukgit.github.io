@@ -152,6 +152,19 @@ adb shell su 0 settings get secure location_providers_allowed
 and it should output gps
 ```
 
+### NVram值查看
+
+```
+1.手机处于 Fastboot 模式 下的 Qcom 启动方式 重启
+
+2. 打开 Qcom_QXDM  => Option => Communication => Dialg 标签 选中 List 中的 item =>点击ok 
+
+3. 连接成功 后点击 View-> Common ->  Nv Broswer  打开 NV浏览器
+
+4. 在 Nv Broswer 输入 Search ID (5596)  后点击  Read 就能显示出当前 NVItem 值 ( 5596 :高通GPS DPO 动态功率选择功能的开关) 
+
+
+```
 
 
 
