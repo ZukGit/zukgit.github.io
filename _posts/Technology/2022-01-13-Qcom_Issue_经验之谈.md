@@ -404,3 +404,30 @@ much appreciated
 
 ```
 
+
+### Selinux检查开启关闭
+
+```
+FastBoot 模式下
+fastboot oem config cmdl androidboot.selinux=enforcing       【开启SeLinux】
+fastboot oem config cmdl androidboot.selinux=permissive      【关闭SeLinux】
+
+adb shell getenforce   【permissive__表示关闭】 【enforcing__表示开启】
+
+```
+
+
+
+### 查看SAR打印Log 
+
+
+```
+
+adb shell setprop persist.radio.ctbk_log 5
+adb root && adb disable-verity && adb reboot bootloader
+fastboot oem config cmdl androidboot.selinux=permissive 
+fastboot reboot 
+adb logcat | grep "SARCTRL"
+
+```
+
