@@ -431,3 +431,71 @@ adb logcat | grep "SARCTRL"
 
 ```
 
+
+### 更换regdb.bin文件
+
+```
+
+导入命令:
+adb root && adb remount && adb shell "mount -o rw,remount /vendor/firmware_mnt" && adb push .\regdb.bin  /vendor/firmware_mnt/image/ && adb reboot
+
+
+检测 regdb.bin的加载
+adb logcat -b all | grep regdb.bin
+
+11:48:33.532  1535  1597 I cnss-daemon: wlfw_send_bdf_download_req: BDF file : regdb.bin
+11:48:33.532     0     0 W cnss-daemon: wlfw_send_bdf_download_req: BDF file : regdb.bin
+
+```
+
+### iw设置WIFI国家码
+```
+adb shell
+cmd wifi force-country-code enabled GT                // 设置成GT 危地马拉
+
+iw reg get     // 查看 国家码设置
+______________________________________________________________________
+global
+country 00: DFS-UNSET
+        (2402 - 2472 @ 40), (6, 20), (N/A)
+        (2457 - 2482 @ 20), (6, 20), (N/A), AUTO-BW, PASSIVE-SCAN
+        (2474 - 2494 @ 20), (6, 20), (N/A), NO-OFDM, PASSIVE-SCAN
+        (5170 - 5250 @ 80), (6, 20), (N/A), AUTO-BW, PASSIVE-SCAN
+        (5250 - 5330 @ 80), (6, 20), (0 ms), DFS, AUTO-BW, PASSIVE-SCAN
+        (5490 - 5730 @ 160), (6, 20), (0 ms), DFS, PASSIVE-SCAN
+        (5735 - 5835 @ 80), (6, 20), (N/A), PASSIVE-SCAN
+        (57240 - 63720 @ 2160), (N/A, 0), (N/A)
+
+
+
+phy#0 (self-managed)
+country GT: DFS-FCC
+        (2402 - 2482 @ 40), (N/A, 30), (N/A), AUTO-BW
+        (5170 - 5250 @ 80), (N/A, 30), (N/A), AUTO-BW
+        (5250 - 5330 @ 80), (N/A, 24), (0 ms), DFS, AUTO-BW
+        (5490 - 5730 @ 160), (N/A, 24), (0 ms), DFS, AUTO-BW
+        (5735 - 5875 @ 80), (N/A, 30), (N/A), AUTO-BW
+______________________________________________________________________
+
+
+
+iw dev                     // 查看热点频段信息
+______________________________________________________________________
+phy#0
+        Interface p2p0
+                ifindex 23
+                wdev 0x2
+                addr 66:11:a4:cc:ce:13
+                type P2P-device
+        Interface wlan0
+                ifindex 22
+                wdev 0x1
+                addr 3e:33:32:dc:74:81
+                ssid   30XXX 
+                type AP
+                channel 157 (5785 MHz), width: 80 MHz, center1: 5775 MH
+______________________________________________________________________
+
+
+```
+
