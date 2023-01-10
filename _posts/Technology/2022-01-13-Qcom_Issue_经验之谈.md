@@ -431,6 +431,32 @@ adb logcat | grep -e "SARCTRL" -e "MDMCTBK" -e "QCSDK"
 
 ```
 
+Qcom-Sar 相关adb 命令
+```
+Qcom-Sar 相关adb 命令
+
+adb root
+adb disable-verity
+adb reboot
+adb wait-for-device
+adb root
+adb remount
+adb shell setprop persist.radio.ctbk_log 5
+adb shell setprop persist.vendor.radio.ctbk_log 5
+adb push libmdmcutback.lib.so /vendor/lib/libmdmcutback.so
+adb push libmdmcutback.lib64.so /vendor/lib64/libmdmcutback.so
+adb pull /vendor/lib/libmdmcutback.so libmdmcutback.lib.so 
+adb pull /vendor/lib64/libmdmcutback.so  libmdmcutback.lib64.so
+adb push ctbk_cfg.xml /vendor/etc/motorola/mdmctbk/ctbk_cfg.xml
+adb reboot
+
+ adb root && adb remount && adb shell setprop persist.radio.ctbk_log 5 && adb shell setprop persist.vendor.radio.ctbk_log 5 && adb reboot
+
+
+
+```
+
+
 
 ### 更换regdb.bin文件
 
