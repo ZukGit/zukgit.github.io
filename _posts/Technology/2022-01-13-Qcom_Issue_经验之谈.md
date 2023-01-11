@@ -423,13 +423,39 @@ adb shell getenforce   【permissive__表示关闭】 【enforcing__表示开启
 
 ```
 
-adb shell setprop persist.radio.ctbk_log 5
+adb shell setprop persist.radio.ctbk_log 5  &&  adb shell setprop log.tag.QCSDK D
 adb root && adb disable-verity && adb reboot bootloader
 fastboot oem config cmdl androidboot.selinux=permissive 
 fastboot reboot 
-adb logcat | grep "SARCTRL"
+adb logcat | grep -e "SARCTRL" -e "MDMCTBK" -e "QCSDK"
 
 ```
+
+Qcom-Sar 相关adb 命令
+```
+Qcom-Sar 相关adb 命令
+
+adb root
+adb disable-verity
+adb reboot
+adb wait-for-device
+adb root
+adb remount
+adb shell setprop persist.radio.ctbk_log 5
+adb shell setprop persist.vendor.radio.ctbk_log 5
+adb push libmdmcutback.lib.so /vendor/lib/libmdmcutback.so
+adb push libmdmcutback.lib64.so /vendor/lib64/libmdmcutback.so
+adb pull /vendor/lib/libmdmcutback.so libmdmcutback.lib.so 
+adb pull /vendor/lib64/libmdmcutback.so  libmdmcutback.lib64.so
+adb push ctbk_cfg.xml /vendor/etc/motorola/mdmctbk/ctbk_cfg.xml
+adb reboot
+
+ adb root && adb remount && adb shell setprop persist.radio.ctbk_log 5 && adb shell setprop persist.vendor.radio.ctbk_log 5 && adb reboot
+
+
+
+```
+
 
 
 ### 更换regdb.bin文件
@@ -499,3 +525,58 @@ ______________________________________________________________________
 
 ```
 
+
+### 查看高通 Build_ID
+
+```
+1.在 项目的 AOSP/vendor/qcom/nonhlos  目录会生成高通的 Non-HLOS  在改目录编译完成时会产出 Ver_Info.txt 
+文件  该 Ver_Info.txt  标注了 高通项目的 Build_ID  , 该文件是由 nonhlos 目录中的X子目录中的 build.py生成
+
+## 
+cd ./vendor/qcom/nonhlos  && zfilesearch_D6.sh  Ver_Info    
+
+================      Begin================
+ 【index : 000001】   【 MD5(32):  c18537f8601ee408c751b58ffd3b85e9 】 Size[        1605] AOSP/Vendor_Part/vendor/qcom/nonhlos/XXXSubXXX/common/build/Ver_Info.txt
+================      End================
+
+╤╤╤╤╤╤╤╤╤╤Ver_Info.txt╤╤╤╤╤╤╤╤╤╤╤╤ 
+
+{
+    "Image_Build_IDs": {
+        "adsp": "ADSP.HT.5.7-01095.2-WAIPIO-2", 
+        "aop": "AOP.HO.4.0-00482-WAIPIO_E-1", 
+        "apps_LE": "LE.UM.5.3.1.r1-13600-genericarmv8-64.0-1", 
+        "apps_kernel": "KERNEL.PLATFORM.1.0.r1-12400-kernel.0-1", 
+        "apps_qssi12": "LA.QSSI.12.0.r1-09300-qssi.0-1", 
+        "apps_qssi13": "LA.QSSI.13.0.r1-07600.03-qssi.0-1", 
+        "apps_vendor": "LA.VENDOR.1.0.r1-18400-WAIPIO.QSSI13.0-1", 
+        "boot": "BOOT.MXF.2.0-00925-WAIPIO-1", 
+        "btfm_CHK": "BTFM.CHE.2.1.6-00066-QCACHROMZ-1", 
+        "btfm_che": "BTFM.CHE.3.2.1-00269-QCACHROMZ-2", 
+        "btfm_msl": "BTFW.MOSELLE.1.1.1-00185-MSL_PATCHZ-1", 
+        "camera": "CAMERA.LA.2.0.r1-08100-WAIPIO.0-1", 
+        "cdsp": "CDSP.HT.2.8.1-00057-NETRANI-1", 
+        "common": "Netrani.LA.1.0.r1-00280-STD.PROD-1", 
+        "cpucp": "CPUCP.FW.1.0-00105-WAIPIO.EXT-1", 
+        "cpuss_vm": "CPUSS.CPUSYS.VM.1.0-00024-WAIPIO.EXT-1", 
+        "display": "DISPLAY.LA.2.0.r1-08700-WAIPIO.0-1", 
+        "glue": "GLUE.NETRANI_LA.1.0-00130-NOOP_TEST-1", 
+        "modem": "MPSS.DE.2.1-00247.19-NETRANI_GEN_PACK-1", 
+        "tz": "TZ.XF.5.18-00293-SPF.WAIPIO-2", 
+        "tz_apps": "TZ.APPS.1.18-00297-SPF.WAIPIO-1", 
+        "video": "VIDEO.LA.2.0.r1-06500-WAIPIO.0-1", 
+        "wlan_hl": "WLAN.HL.3.4.3-00199.1-QCAHLSWMTPLZ-1", 
+        "wlan_msl": "WLAN.MSL.2.0-00587.10-QCAMSLSWPLZ-1"
+    }, 
+    "Metabuild_Info": {
+        "Meta_Build_ID": "Netrani.LA.1.0.r1-00280-STD.PROD-1", 
+        "Product_Flavor": "['asic']", 
+        "Time_Stamp": "2022-12-06 12:16:34"
+    }, 
+    "Version": "1.0"
+}
+
+
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+
+```
