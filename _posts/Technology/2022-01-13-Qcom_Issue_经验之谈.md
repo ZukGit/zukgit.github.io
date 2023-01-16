@@ -423,7 +423,7 @@ adb shell getenforce   【permissive__表示关闭】 【enforcing__表示开启
 
 ```
 
-adb shell setprop persist.radio.ctbk_log 5  &&  adb shell setprop log.tag.QCSDK D
+adb root && adb remount && adb shell setprop persist.radio.ctbk_log 5  && adb shell setprop persist.vendor.radio.ctbk_log 5   &&  adb shell setprop log.tag.QCSDK D
 adb root && adb disable-verity && adb reboot bootloader
 fastboot oem config cmdl androidboot.selinux=permissive 
 fastboot reboot 
