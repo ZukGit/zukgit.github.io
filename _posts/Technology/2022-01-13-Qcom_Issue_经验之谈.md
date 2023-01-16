@@ -202,6 +202,7 @@ adb reboot
 adb root
 adb remount
 adb push test_cfg.xml /data/user_de/0/com.qualcomm.qti.qdma/files/
+adb push test_cfg.xml /data/user_de/0/com.qti.qcc/files/
 adb reboot
 
 
@@ -218,8 +219,9 @@ adb reboot
 
 <!--
  NOTE:
-Put this file in /data/data/com.qualcomm.qti.qdma/files/ folder
+Put this file in /data/data/com.qualcomm.qti.qdma/files/ folder and  /data/user_de/0/com.qti.qcc/files/ folder
 (adb push test_cfg.xml /data/data/com.qualcomm.qti.qdma/files/test_cfg.xml), 
+(adb push test_cfg.xml /data/data/com.qti.qcc/files/test_cfg.xml), 
 and reboot device. 
 This file will be removed after loaded.
 
