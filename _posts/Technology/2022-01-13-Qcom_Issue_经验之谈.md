@@ -164,6 +164,30 @@ and it should output gps
 4. 在 Nv Broswer 输入 Search ID (5596)  后点击  Read 就能显示出当前 NVItem 值 ( 5596 :高通GPS DPO 动态功率选择功能的开关) 
 
 
+
+DPO 之前查看的是 NV值NV5596 的值是 1 就确保 开启了 
+DPO有要求要6颗还是8颗卫星信号稳定在28db以上 持续10分钟
+Qcom-> GPS MeatureMent(Fastoot_Qcom_Module) 中的 表头为C的字段(TRK SRCH DPO)
+GPS的功耗模式是 cold start(全功耗)->tracking->LPM->DPO      
+
+
+
+
+```
+
+#### NV值列表
+
+```
+[ NvItem Id          - 5596 ]
+[ NvItem Description - CGPS Dynamic Power Optimization Control ] DPO功耗设置
+
+
+[ NvItem Id          - 74137 ]
+[ NvItem Description - GNSS Forced Multiband Engagement Config ]
+
+
+
+
 ```
 
 
