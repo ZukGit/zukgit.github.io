@@ -606,3 +606,24 @@ cd ./vendor/qcom/nonhlos  && zfilesearch_D6.sh  Ver_Info
 ╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
 
 ```
+
+
+### Qcom_kernel-panic之提供.elf文件
+
+```
+1. 在 artifactory 中对应版本的 fastboot_xxx_intcfg-test-keys_global_US 解压版本文件中
+
+mbm-ci\DEBUG\hypvm.elf
+mbm-ci\DEBUG\mon.elf
+mbm-ci\DEBUG\qsee.elf
+等 其他 elf 文件 提交给 Qcom
+
+2. 在 对应版本的 ReleaseNoteXXXX.html 中找到 Modem Release Notes
+SM6450 de21.01 Release DE2.1-6450-01.57 就是 对应的 Modem  版本 
+Build Artifacs:中  m6450n/binaries/DExxxx_m6450n_binaries.tar.gz   对应的 二进制文档
+DExxxx_m6450n_binaries.tar.gz 有对应的 Modem Release 编译版本  里面有 modem_proc 信息  
+提供　DExxxx_m6450n_binaries.tar.gz 给Qcom
+
+
+
+``` 
