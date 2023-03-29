@@ -611,7 +611,7 @@ cd ./vendor/qcom/nonhlos  && zfilesearch_D6.sh  Ver_Info
 ### Qcom_kernel-panic之提供.elf文件
 
 ```
-1. 在 artifactory 中对应版本的 fastboot_xxx_intcfg-test-keys_global_US 解压版本文件中
+1. 在 artifactory 中对应版本的  33.60-23/10dc7-0f770 大版本数字小版本数字都对应的 fastboot_xxx_intcfg-test-keys_global_US 解压版本文件中
 
 mbm-ci\DEBUG\hypvm.elf
 mbm-ci\DEBUG\mon.elf
@@ -624,6 +624,16 @@ Build Artifacs:中  m6450n/binaries/DExxxx_m6450n_binaries.tar.gz   对应的 �
 DExxxx_m6450n_binaries.tar.gz 有对应的 Modem Release 编译版本  里面有 modem_proc 信息  
 提供　DExxxx_m6450n_binaries.tar.gz 给Qcom
 
+3. 下载对应的  ReleaseNoteXXXX.html 中的 Vendor 代码部分  只更新一个仓库去拿最新的 about.html 
+
+repo init -u xxxxxx
+repo sync vendor/qcom/nonhlos/Netrani.XXX/common      ##     只拉取 一个 git 分支
 
 
+4.在 XXX-ramdump.zip 文件夹中存在  summary.txt 里面包含了 版本的信息
+
+ ro.build.fingerprint    : XXXXXX60-23/10dc7-0f770:userdebug
+ ro.build.version.qcom   : XXXX.XXX.1.0.R1.11.00.00.816.199
+ version-baseband        : M6450N_DE21_34.290.01.57R 
+ 
 ``` 
