@@ -637,3 +637,15 @@ repo sync vendor/qcom/nonhlos/Netrani.XXX/common      ##     只拉取 一个 gi
  version-baseband        : M6450N_DE21_34.290.01.57R 
  
 ``` 
+
+
+### user 版本转 debug版本
+
+```
+在fastboot模式下 执行 刷入 debug-boot.img 的 操作 就可以把 user 版本转为 debug 版本
+
+
+fastboot flash boot debug-boot.img
+
+
+```
