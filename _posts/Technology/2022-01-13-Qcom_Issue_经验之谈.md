@@ -660,7 +660,9 @@ fastboot flash vendor_boot vendor_boot-debug.img
 
 adb shell cmd wifi force-country-code enabled US       【设置国家码 US 】
 
+
 adb shell cmd wifi force-country-code enabled CN       【设置国家码 CN 】
+
 
 adb shell wpa_cli get_capability freq   【查看当前国家码对应的频段信息】
 
@@ -891,11 +893,31 @@ commands:
 
 ```
 
+#### 查看当前手机国家码
 
-#### CN国家码频段
+```
+
+adb shell cmd wifi get-country-code     // 打印当前国家码
+Wifi Country Code = CN      //  命令输出
+adb shell wpa_cli get_capability freq    // 查看当前 CN的频段
+
+
+adb shell cmd wifi force-country-code enabled US  // 设置当前国家码
+
+
+adb shell cmd wifi get-country-code  // 打印当前国家码
+Wifi Country Code = US    //  命令输出
+
+adb shell wpa_cli get_capability freq    // 查看当前 US的频段
+
+```
+
+
+#### 设置CN国家码频段
 adb shell cmd wifi force-country-code enabled US       
 
 adb shell cmd wifi force-country-code enabled CN  【设置国家码 US 】
+
 adb shell wpa_cli get_capability freq   【CN国家码对应的频段信息】
 
 ```
@@ -919,7 +941,7 @@ Mode[G] Channels:    Mode[A] Channels:        Mode[A] Channels:           Mode[B
 
 ```
 
-#### US国家码频段
+#### 设置US国家码频段
 adb shell cmd wifi force-country-code enabled US       
 adb shell wpa_cli get_capability freq   【US国家码对应的频段信息】
 
