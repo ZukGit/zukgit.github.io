@@ -642,11 +642,16 @@ repo sync vendor/qcom/nonhlos/Netrani.XXX/common      ##     只拉取 一个 gi
 ### user 版本转 debug版本
 
 ```
-在fastboot模式下 执行 刷入 debug-boot.img 的 操作 就可以把 user 版本转为 debug 版本
-
+在fastboot模式下 执行 刷入 boot 分区 debug-boot.img 的 操作 就可以把 user 版本转为 debug 版本
 
 fastboot flash boot debug-boot.img
 
+
+
+
+在fastboot模式下 执行 刷入vendor_boot 分区 debug-boot.img 的 操作 就可以把 挂载 /vendor/firmware/ 目录
+
+fastboot flash vendor_boot vendor_boot-debug.img
 
 ```
 
