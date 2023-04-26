@@ -897,6 +897,8 @@ commands:
 
 ```
 
+adb shell cmd wifi get-country-code &&  adb shell wpa_cli get_capability freq
+
 adb shell cmd wifi get-country-code     // 打印当前国家码
 Wifi Country Code = CN      //  命令输出
 adb shell wpa_cli get_capability freq    // 查看当前 CN的频段
@@ -920,8 +922,14 @@ adb shell cmd wifi force-country-code enabled CN  【设置国家码 US 】
 
 adb shell wpa_cli get_capability freq   【CN国家码对应的频段信息】
 
+adb shell cmd wifi get-country-code   【查看设置的国家码】
+
 ```
 # wpa_cli get_capability freq
+
+adb shell cmd wifi get-country-code
+Wifi Country Code = CN
+
 
 Using interface 'wlan0'
 Mode[G] Channels:    Mode[A] Channels:        Mode[A] Channels:           Mode[B] Channels:
@@ -948,6 +956,10 @@ adb shell wpa_cli get_capability freq   【US国家码对应的频段信息】
 
 
 ```
+adb shell cmd wifi get-country-code &&  adb shell wpa_cli get_capability freq
+
+adb shell cmd wifi get-country-code
+Wifi Country Code = US
 
  # wpa_cli get_capability freq
 Using interface 'wlan0'
@@ -1019,6 +1031,93 @@ Mode[G] Channels:   Mode[A] Channels:         Mode[A] Channels:      Mode[B] Cha
 
 
 
+
+
+
+
+```
+
+
+
+#### 设置BR巴西国家码频段
+adb shell cmd wifi force-country-code enabled BR       
+adb shell wpa_cli get_capability freq   【BR巴西国家码对应的频段信息】
+adb shell cmd wifi get-country-code
+
+
+```
+adb shell cmd wifi force-country-code enabled BR && adb shell cmd wifi get-country-code &&  adb shell wpa_cli get_capability freq
+
+adb shell cmd wifi get-country-code &&  adb shell wpa_cli get_capability freq
+
+adb shell cmd wifi get-country-code
+Wifi Country Code = BR
+
+
+
+# adb shell wpa_cli get_capability freq
+Using interface 'wlan0'
+
+Mode[G] Channels:   Mode[A] Channels:         Mode[A] Channels:      Mode[B] Channels:
+ 1 = 2412 MHz        36 = 5180 MHz             1  = 5955 MHz           1 = 2412 MHz       
+ 2 = 2417 MHz        40 = 5200 MHz             5  = 5975 MHz           2 = 2417 MHz
+ 3 = 2422 MHz        44 = 5220 MHz             9  = 5995 MHz           3 = 2422 MHz
+ 4 = 2427 MHz        48 = 5240 MHz             13 = 6015 MHz           4 = 2427 MHz
+ 5 = 2432 MHz        52 = 5260 MHz (DFS)       17 = 6035 MHz           5 = 2432 MHz 
+ 6 = 2437 MHz        56 = 5280 MHz (DFS)       21 = 6055 MHz           6 = 2437 MHz 
+ 7 = 2442 MHz        60 = 5300 MHz (DFS)       25 = 6075 MH            7 = 2442 MHz
+ 8 = 2447 MHz        64 = 5320 MHz (DFS)       29 = 6095 MHz           8 = 2447 MHz 
+ 9 = 2452 MHz       100 = 5500 MHz (DFS)       33 = 6115 MHz           9 = 2452 MHz 
+10 = 2457 MHz       104 = 5520 MHz (DFS)       37 = 6135 MHz          10 = 2457 MHz 
+11 = 2462 MHz       108 = 5540 MHz (DFS)       41 = 6155 MHz          11 = 2462 MHz 
+                    112 = 5560 MHz (DFS)       45 = 6175 MHz              
+                    116 = 5580 MHz (DFS)       49 = 6195 MHz              
+                    120 = 5600 MHz (DFS)       53 = 6215 MHz              
+                    124 = 5620 MHz (DFS)       57 = 6235 MHz              
+                    128 = 5640 MHz (DFS)       61 = 6255 MHz              
+                    132 = 5660 MHz (DFS)       65 = 6275 MHz              
+                    136 = 5680 MHz (DFS)       69 = 6295 MHz              
+                    140 = 5700 MHz (DFS)       73 = 6315 MHz
+                    144 = 5720 MHz (DFS)       77 = 6335 MHz
+                    149 = 5745 MHz             81 = 6355 MHz
+                    153 = 5765 MHz             85 = 6375 MHz
+                    157 = 5785 MHz             89 = 6395 MHz
+                    161 = 5805 MHz             93 = 6415 MHz
+                    165 = 5825 MHz             97 = 6435 MHz
+                                              101 = 6455 MHz
+                                              105 = 6475 MHz
+                                              109 = 6495 MHz
+                                              113 = 6515 MHz
+                                              117 = 6535 MHz
+                                              121 = 6555 MHz
+                                              125 = 6575 MHz
+                                              129 = 6595 MHz
+                                              133 = 6615 MHz
+                                              137 = 6635 MHz
+                                              141 = 6655 MHz
+                                              145 = 6675 MHz
+                                              149 = 6695 MHz
+                                              153 = 6715 MHz
+                                              157 = 6735 MHz
+                                              161 = 6755 MHz
+                                              165 = 6775 MHz
+                                              169 = 6795 MHz
+                                              173 = 6815 MHz
+                                              177 = 6835 MHz
+                                              181 = 6855 MHz
+                                              185 = 6875 MHz
+                                              189 = 6895 MHz
+                                              193 = 6915 MHz
+                                              197 = 6935 MHz
+                                              201 = 6955 MHz
+                                              205 = 6975 MHz
+                                              209 = 6995 MHz
+                                              213 = 7015 MHz
+                                              217 = 7035 MHz
+                                              221 = 7055 MHz
+                                              225 = 7075 MHz
+                                              229 = 7095 MHz
+                                              233 = 7115 MHz
 
 
 
