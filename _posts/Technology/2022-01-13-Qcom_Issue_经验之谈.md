@@ -629,6 +629,15 @@ DExxxx_m6450n_binaries.tar.gz 有对应的 Modem Release 编译版本  里面有
 repo init -u xxxxxx
 repo sync vendor/qcom/nonhlos/Netrani.XXX/common      ##     只拉取 一个 git 分支
 
+tip: 存在 正确 about.html 文件的目录中 存在如下唯一的 Ver_Info.txt 文件
+【 cd ./vendor/qcom/nonhlos/ && find . -name "*Ver_Info*" && find . -name "*about.html*" 】
+./AAA/common/build/Ver_Info.txt
+./111/common/build/about.html
+./AAA/common/build/about.html  【与 Ver_Info同目录 是正确的 about.html   repo sync 此目录】
+./222/common/build/about.html
+
+
+vendor/qcom/nonhlos/Netrani.XXX/common/build/Ver_Info.txt
 
 4.在 XXX-ramdump.zip 文件夹中存在  summary.txt 里面包含了 版本的信息
 
