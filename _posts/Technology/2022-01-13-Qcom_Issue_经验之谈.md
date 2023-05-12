@@ -699,6 +699,61 @@ static const char *reason_table[] = {
 
 ```
 
+
+### 查看安卓Msi和Vendor版本
+
+```
+
+adb shell getprop | grep first_api
+adb shell getprop | grep api
+
+[ro.board.api_level]: [31]
+[ro.board.first_api_level]: [31]    ——————————————【 Vendor 底层版本 31=Android 12】
+
+[ro.product.first_api_level]: [33]  ——————————————【 MSI 上层版本    33=Android 13】
+[ro.vendor.api_level]: [31]
+
+T+S 配置 MSI=T Vendor=S 配置
+
+U     API34： Android 14 (Developer Preview)
+T     API33： Android 13 
+S     API32： Android 12
+S     API31： Android 12
+R     API30： Android 11
+Q     API29： Android 10.0 Android Q
+P     API28： Android 9.0
+      API27： Android 8.1 
+O     API26： Android 8.0 O
+      API25： Android 7.1 N 
+N     API24： Android 7.0 N 
+M     API23： Android 6.0 M
+      API22： Android 5.1.1 L 
+L     API21： Android 5.0.1 L 
+      API20： Andrroid 4.4W.2
+K     API19： Android 4.4 KitKat 
+J     API18： Android 4.3 Jelly Bean 
+      API17： Android 4.2 Jelly Bean 
+      API16： Android 4.1 Jelly Bean 
+      API15： Android 4.0.3 - 4.0.4 Ice Cream Sandwich 
+      API14： Android 4.0 - 4.0.2 Ice Cream Sandwich 
+      API13： Android 3.2 Honeycomb 
+      API12： Android 3.1 Honeycomb 
+      API11： Android 3.0 Honeycomb 
+      API10： Android 2.3.3-2.3.7 Gingerbread 
+      API9：  Android 2.3 - 2.3.2 Gingerbread 
+      API8：  Android 2.2 - 2.2.3 Froyo 
+      API7：  Android 2.1 Éclair 
+      API6：  Android 2.0.1 Éclair 
+      API5：  Android 2.0 Éclair 
+      API4：  Android 1.6 Donut 
+      API3：  Android 1.5 Cupcake 
+      API2：  Android 1.1 Petit Four 
+	  API1：  Android 1.0 SDK API level 1
+
+
+```
+
+
 ### user 版本转 debug版本
 
 ```
