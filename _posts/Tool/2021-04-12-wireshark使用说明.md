@@ -27,6 +27,19 @@ typora-copy-images-to: ..\..\public\zimage
 把当前的选中帧 作为起始帧 时间点 ， 该帧以下的帧 以这个帧为起点 重新显示 相对时间
 
 
+#### Edit Resolved Name
+把当前的 一些 Mac地址  IP地址 端口号 设置别名 方便查看 
+
+在 Wireshark的安装目录存在 一个 manuf 名称的文件 里面定义了 常用的一些Mac 厂商信息  可以在这个文件末尾 追加 自定义的 Mac 别名信息 , 重启后就可以看到地址解析
+/Applications/Wireshark.app/Contents/Resources/share/wireshark/manuf
+
+例如:
+2e:4f:64:bc:85:28  测试Mac地址
+
+<img src="/public/zimage/tool/wireshark/wireshark_resolved_custom_name.jpg">
+
+
+
 
 ### 帧详情邮件菜单
 <img src="/public/zimage/tool/wireshark/wireshark_right_menu.jpg">
