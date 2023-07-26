@@ -480,6 +480,21 @@ adb reboot
 
 
 
+
+```
+
+```
+
+adb push ./ctbk_cfg.xml /vendor/etc/motorola/mdmctbk/
+adb push ./ctbk_cfg.xml /etc/motorola/mdmctbk/
+adb push ./ctbk_cfg.xml /system/etc/motorola/mdmctbk/
+adb push ./rowe_ctbk_cfg.xml /system/etc/motorola/mdmctbk/
+
+cat /vendor/etc/motorola/mdmctbk/ctbk_cfg.xml
+cat /etc/motorola/mdmctbk/ctbk_cfg.xml
+cat /system/etc/motorola/mdmctbk/ctbk_cfg.xml
+cat /system/etc/motorola/mdmctbk/rowe_ctbk_cfg.xml
+
 ```
 
 
