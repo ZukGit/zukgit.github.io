@@ -495,7 +495,23 @@ cat /etc/motorola/mdmctbk/ctbk_cfg.xml
 cat /system/etc/motorola/mdmctbk/ctbk_cfg.xml
 cat /system/etc/motorola/mdmctbk/rowe_ctbk_cfg.xml
 
+
+
 ```
+
+
+查看生效的sar配置文件
+```
+adb logcat | grep "SARCTRL : targetFilepath"
+
+
+: /system/etc/motorola/mdmctbk/rowe_ctbk_cfg.xml
+Stream-m.txt:16202:07-25 18:10:32.238  2364  2364 D SARCTRL : targetFilepath: /system/etc/motorola/mdmctbk/rowe_ctbk_cfg.xml
+
+```
+
+
+
 
 
 
