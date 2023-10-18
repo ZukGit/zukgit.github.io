@@ -517,9 +517,9 @@ Stream-m.txt:16202:07-25 18:10:32.238  2364  2364 D SARCTRL : targetFilepath: /s
 
               band_index   channel     frequency    middle_freq_range  band_name
 5G band1      band1        36~48       5150~5250    5180~5240          U-NII-1
-5G band2      band2        52~64       5250~5350	5260~5320          U-NII-2A
-5G band3      band3        100~144     5470~5725	5500~5700          U-NII-2C
-5G band4      band4        149~165     5745~5850	5745~5825          U-NII-3
+5G band2      band2        52~64       5250~5350    5260~5320          U-NII-2A
+5G band3      band3        100~144     5470~5725    5500~5700          U-NII-2C
+5G band4      band4        149~165     5745~5850    5745~5825          U-NII-3
 ```
 
 
