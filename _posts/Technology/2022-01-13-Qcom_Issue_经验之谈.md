@@ -522,6 +522,21 @@ Stream-m.txt:16202:07-25 18:10:32.238  2364  2364 D SARCTRL : targetFilepath: /s
 5G band4      band4        149~165     5745~5850    5745~5825          U-NII-3
 ```
 
+```
+
+fcc wifi tx pwr 5g split band  在测试Feature 时
+1. 5GHZ At Head     只在  ModemDebug 中的 table = 4   ## State4_5GHZ 5G && At head && WLAN only 状态下生效
+2. 5GHZ BodyWorn    只在  ModemDebug 中的 table = 6   ## State6 5GHZ 5G && BodyWorn && WLAN only 状态下生效
+3. 5GHZ Hand Held   只在  ModemDebug 中的 table = 9   ## State9_5GHZ 5G && Hand-Held && WLAN only 状态下生效
+4. 5GHZ At Head     只在  ModemDebug 中的 table = 10  ##State10_5GHZ 5G && USB Connected && WLAN only 状态下生效
+
+
+
+
+
+
+
+```
 
 
 ### 更换regdb.bin文件
