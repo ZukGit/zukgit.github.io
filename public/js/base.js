@@ -89,6 +89,15 @@ function contentEffects(){
   if($("#nav").length > 0){
 	var h2_tag_index = 0;
 	var h3_tag_index = 0;
+	var titlesort_boolvalue = $("meta[name='titlesort']").attr("content"); //描述   <meta name="titlesort" content="xxx">
+	var keywords_strvalue = $("meta[name='keywords']").attr("content"); // 描述  <meta name="keywords" content="xxx">
+	var false_tag = "false";
+	var title_sorted = true;
+	
+	if(false_tag === titlesort_boolvalue){
+		title_sorted = false;
+	}
+	console.log('keywords_strvalue ='+keywords_strvalue+'  || titlesorted_boolvalue = '+ titlesorted_boolvalue+"  || title_sorted="+title_sorted);
     $("#content > h2,#content > h3,#content > h4,#content > h5,#content > h6").each(function(i) {
         var current = $(this);
         current.attr("id", "title" + i);
@@ -105,7 +114,13 @@ function contentEffects(){
 			h3_tag_index = h3_tag_index + 1;
 			tag_h3_tip = h2_tag_index+"."+h3_tag_index+" ";
 		}
-        $("#nav").append("<div style='margin-left:"+25*(tag-1)+"px'><a id='link" + i + "' href='#title" +i + "'>" + tag_h2_tip +""+tag_h3_tip+""+ current.html() + "</a></div>");
+		if(title_sorted){
+			  $("#nav").append("<div style='margin-left:"+25*(tag-1)+"px'><a id='link" + i + "' href='#title" +i + "'>" + tag_h2_tip +""+tag_h3_tip+""+ current.html() + "</a></div>");
+
+		} else {
+			//不排序了
+			  $("#nav").append("<div style='margin-left:"+25*(tag-1)+"px'><a id='link" + i + "' href='#title" +i + "'>" + current.html() + "</a></div>");
+		}
     }); 
     $("pre").addClass("prettyprint");
     prettyPrint(); 
