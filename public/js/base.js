@@ -87,11 +87,17 @@ function contentEffects(){
   //remove the asidebar
   $('.row-offcanvas').removeClass('active');
   if($("#nav").length > 0){
+	var h2_tag_index = 1;
     $("#content > h2,#content > h3,#content > h4,#content > h5,#content > h6").each(function(i) {
         var current = $(this);
         current.attr("id", "title" + i);
-        tag = current.prop('tagName').substr(-1);
-        $("#nav").append("<div style='margin-left:"+15*(tag-1)+"px'><a id='link" + i + "' href='#title" +i + "'>" + current.html() + "</a></div>");
+        tag = current.prop('tagName').substr(-1);  //<h2>----tag=2   <h3>-----tag=3
+		var tag_h2_tip = "";
+		if(tag == 2){
+		    tag_h2_tip = h2_tag_index+".";
+			h2_tag_index = h2_tag_index + 1;
+		}
+        $("#nav").append("<div style='margin-left:"+25*(tag-1)+"px'><a id='link" + i + "' href='#title" +i + "'>" h2_tag_index + current.html() + "</a></div>");
     }); 
     $("pre").addClass("prettyprint");
     prettyPrint(); 

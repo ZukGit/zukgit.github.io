@@ -1,5 +1,6 @@
 _site/
 _drafts/
-.DS_Store
+*.DS_Store
 .vscode/
 .jekyll-cache
+*.swp
