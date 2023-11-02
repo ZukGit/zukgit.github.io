@@ -97,7 +97,7 @@ function contentEffects(){
 	if(false_tag === titlesort_boolvalue){
 		title_sorted = false;
 	}
-	console.log('keywords_strvalue ='+keywords_strvalue+'  || titlesorted_boolvalue = '+ titlesorted_boolvalue+"  || title_sorted="+title_sorted);
+	console.log('keywords_strvalue ='+keywords_strvalue+'  || titlesort_boolvalue = '+ titlesort_boolvalue+"  || title_sorted="+title_sorted);
     $("#content > h2,#content > h3,#content > h4,#content > h5,#content > h6").each(function(i) {
         var current = $(this);
         current.attr("id", "title" + i);
