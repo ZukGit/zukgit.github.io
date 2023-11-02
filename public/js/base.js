@@ -97,7 +97,7 @@ function contentEffects(){
 		    tag_h2_tip = h2_tag_index+".";
 			h2_tag_index = h2_tag_index + 1;
 		}
-        $("#nav").append("<div style='margin-left:"+25*(tag-1)+"px'><a id='link" + i + "' href='#title" +i + "'>" + h2_tag_index +""+ current.html() + "</a></div>");
+        $("#nav").append("<div style='margin-left:"+25*(tag-1)+"px'><a id='link" + i + "' href='#title" +i + "'>" + tag_h2_tip +""+ current.html() + "</a></div>");
     }); 
     $("pre").addClass("prettyprint");
     prettyPrint(); 
