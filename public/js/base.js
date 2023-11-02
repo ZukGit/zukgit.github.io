@@ -97,7 +97,7 @@ function contentEffects(){
 		if(tag == 2){
 			h2_tag_index = h2_tag_index + 1;
 		    tag_h2_tip = h2_tag_index+".";
-			h3_tag_index = 1;
+			h3_tag_index = 0;
 		}
 		
 		var tag_h3_tip = "";
