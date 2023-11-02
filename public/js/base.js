@@ -119,7 +119,7 @@ function contentEffects(){
 
 		} else {
 			//不排序了
-			  $("#nav").append("<div style='margin-left:"+25*(tag-1)+"px'><a id='link" + i + "' href='#title" +i + "'>" + current.html() + "</a></div>");
+		    //  $("#nav").append("<div style='margin-left:"+25*(tag-1)+"px'><a id='link" + i + "' href='#title" +i + "'>" + current.html() + "</a></div>");
 		}
     }); 
     $("pre").addClass("prettyprint");
