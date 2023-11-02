@@ -102,7 +102,7 @@ function contentEffects(){
 		
 		var tag_h3_tip = "";
 		if(tag == 3){
-			tag_h3_tip = tag_h2_tip+h3_tag_index+" ";
+			tag_h3_tip = h2_tag_index+"."+h3_tag_index+" ";
 			h3_tag_index = h3_tag_index + 1;
 		}
         $("#nav").append("<div style='margin-left:"+25*(tag-1)+"px'><a id='link" + i + "' href='#title" +i + "'>" + tag_h2_tip +""+tag_h3_tip+""+ current.html() + "</a></div>");
