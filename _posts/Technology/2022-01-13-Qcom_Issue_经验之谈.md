@@ -444,7 +444,7 @@ adb shell getenforce   【permissive__表示关闭】 【enforcing__表示开启
 
 
 
-### 查看SAR打印Log 
+### Qcom查看SAR打印Log 
 
 
 ```
@@ -538,8 +538,30 @@ fcc wifi tx pwr 5g split band  在测试Feature 时
 
 ```
 
+### MTK SarContrl Log 开关
 
-### 更换regdb.bin文件
+```
+
+adb root && adb remount && adb shell setprop persist.radio.ctbk_log 5  && adb shell setprop persist.vendor.radio.ctbk_log 5   &&  adb shell setprop log.tag.QCSDK D
+adb root && adb disable-verity && adb reboot bootloader
+fastboot oem config cmdl androidboot.selinux=permissive 
+fastboot reboot 
+adb logcat | grep -e "SARCTRL" -e "MDMCTBK" -e "QCSDK"
+
+
+```
+
+#### MTK txpowerctrl 配置文件 路径
+```
+adb root && adb remount 
+adb  pull  /vendor/firmware/txpowerctrl.cfg
+adb push ./txpowerctrl.cfg   /vendor/firmware/
+
+
+```
+
+
+### Qcom更换regdb.bin文件
 
 ```
 
