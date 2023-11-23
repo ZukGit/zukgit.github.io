@@ -442,6 +442,39 @@ adb shell getenforce   【permissive__表示关闭】 【enforcing__表示开启
 
 ```
 
+###  Settings.apk导入命令
+
+```
+Settings.apk导入命令
+
+adb root && adb remount && adb shell settings put global wifi_verbose_logging_enabled 1 && adb push Settings.apk /system_ext/priv-app/Settings/
+
+
+```
+
+```
+Settings.apk 全局搜索命令
+
+adb root
+adb  shell
+su
+find  -name "*Settings.apk"
+【  ./system_ext/priv-app/Settings/Settings.apk  】
+
+```
+
+
+### 打开 Wifi_Verbose详情开关
+
+```
+
+【WIFI详情开关描述】
+Settings >System > About phone > tap "Build number" 4 times >Developer options
+Setting > System > Advanced > Developer options >Enable WiFi Verbose Logging  [toogle open]
+
+
+```
+
 
 
 ### Qcom查看SAR打印Log 
