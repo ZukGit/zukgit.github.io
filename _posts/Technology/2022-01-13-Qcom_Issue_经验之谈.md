@@ -583,6 +583,27 @@ adb logcat | grep -e "SARCTRL" -e "MDMCTBK" -e "QCSDK"
 
 
 ```
+#### MTK平台查看 SarWifi服务接口
+
+```
+MTK 平台 Sar 服务正常进程查询
+
+adb root && adb remount && adb shell cat  /vendor/bin/hw/motorola.hardware.sarwifi-srv
+有打印乱码  有对应文件  /vendor/bin/hw/motorola.hardware.sarwifi-srv
+
+
+adb shell service list  | grep sar 
+有打印服务   xxxx.hardware.sarwifi.IxxxWifi/default: [xxxx.hardware.sarwifi.IxxxWifi]
+
+
+adb shell ps  -ATMf | grep sar
+打印 两个进程 一个客户端 一个服务端
+system          1060  1060     1    1 2024-01-04 15:16:22 ?        00:00:00 xxxx.hardware.sarwifi-srv
+u0_a127         2394  2394   964   17 2024-01-04 15:16:31 ?        00:00:00 com.xxxx.sarxcontrol
+
+```
+
+
 
 #### MTK txpowerctrl 配置文件 路径
 ```
