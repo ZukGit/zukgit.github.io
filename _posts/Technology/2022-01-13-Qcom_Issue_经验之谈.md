@@ -272,6 +272,59 @@ value="1"/>
 ```
 
 
+##### Qcom 检测是否移除Xtra下载限制
+
+```
+1. 连接网络
+2. 在该网络下设置代理proxy 为    xxxxx.pac  保证能连接上外网 youtube
+3. 安装 Gps_test.apk 
+4. 一直执行 Clear assist data 后 查看手机打印如下 
+ 【within limit  : 高通xtra数据在下载限制内 可以继续下载xtra数据】
+ 【out of limit  : 高通xtra数据下载达到限制一天三次 禁止下载】
+
+adb logcat | grep "check XTRA server request rate limit"
+01-12 05:16:07.043  2830  2842 D LocSvc_xtra2: onRequestXtraData:42] check XTRA server request rate limit. within limit. execute request.
+01-12 05:16:18.610  2830  2842 D LocSvc_xtra2: onRequestXtraData:42] check XTRA server request rate limit. within limit. execute request.   【xtra下载无限制】
+
+
+01-12 05:16:18.610  2830  2842 D LocSvc_xtra2: onRequestXtraData:42] check XTRA server request rate limit. out of limit.    【xtra下载次数存在限制】
+
+
+
+```
+
+
+##### Qcom Xtra GPS辅助数据下载成功检查
+```
+
+adb logcat | grep -e "check XTRA server request rate limit" -e "XTRA download request"  -e "QUERY_XTRA_INFO_REQ" -e "doProcessXtraData" -e "XTRA server:" -e "successfully download file, size:"
+【正确打印1】
+01-12 05:50:29.723  2830  2849 I LocSvc_ApiV02: <--- globalEventCb line 233 QMI_LOC_EVENT_QUERY_XTRA_INFO_REQ_IND_V02    【请求Xtra数据】
+01-12 05:50:29.723  2830  2849 V LocSvc_LBSApiV02: eventCb:58] client = 0xb40000793be71f00, event id = 214, event name = QMI_LOC_EVENT_QUERY_XTRA_INFO_REQ_IND_V02 payload = 0x79365edd08
+01-12 05:50:29.723  2830  2849 V LocSvc_IzatApiV02:  eventCb:211]: Got an QMI_LOC_EVENT_QUERY_XTRA_INFO_REQ_IND_V02
+01-12 05:50:29.723  2830  2849 D LocSvc_IzatApiV02: eventCb:155]: XTRA download request
+01-12 05:50:29.723  2830  2842 W LocSvc_xtra2: updateXtraServers:437] XTRA server: https://path3.xtracloud.net/xtra3Mgrbej.bin https://path1.xtracloud.net/xtra3Mgrbej.bin https://path2.xtracloud.net/xtra3Mgrbej.bin
+01-12 05:50:29.723  2830  2842 D LocSvc_xtra2: onRequestXtraData:42] check XTRA server request rate limit. within limit. execute request.
+01-12 05:50:30.478  2830  2842 D LocSvc_xtra2: doProcessXtraData:206] successfully download file, size: 37367
+01-12 05:50:30.478  2830  2842 D LocSvc_xtra2: doProcessXtraData:218] XTRA data file version number:3
+01-12 05:50:30.481  2830  2842 D LocSvc_xtra2: doProcessXtraData:239] Send Periodic Txn
+【正确打印2】
+01-12 05:52:44.465  2830  2849 I LocSvc_ApiV02: <--- globalEventCb line 233 QMI_LOC_EVENT_QUERY_XTRA_INFO_REQ_IND_V02
+01-12 05:52:44.465  2830  2849 V LocSvc_LBSApiV02: eventCb:58] client = 0xb40000793be71f00, event id = 214, event name = QMI_LOC_EVENT_QUERY_XTRA_INFO_REQ_IND_V02 payload = 0x79365edd08
+01-12 05:52:44.465  2830  2849 V LocSvc_IzatApiV02:  eventCb:211]: Got an QMI_LOC_EVENT_QUERY_XTRA_INFO_REQ_IND_V02
+01-12 05:52:44.465  2830  2849 D LocSvc_IzatApiV02: eventCb:155]: XTRA download request
+01-12 05:52:44.466  2830  2842 W LocSvc_xtra2: updateXtraServers:437] XTRA server: https://path1.xtracloud.net/xtra3Mgrbej.bin https://path2.xtracloud.net/xtra3Mgrbej.bin https://path3.xtracloud.net/xtra3Mgrbej.bin
+01-12 05:52:44.466  2830  2842 D LocSvc_xtra2: onRequestXtraData:42] check XTRA server request rate limit. within limit. execute request.
+01-12 05:52:45.423  2830  2842 D LocSvc_xtra2: doProcessXtraData:206] successfully download file, size: 37367
+01-12 05:52:45.423  2830  2842 D LocSvc_xtra2: doProcessXtraData:218] XTRA data file version number:3
+01-12 05:52:45.426  2830  2842 D LocSvc_xtra2: doProcessXtraData:239] Send Periodic Txn
+
+
+adb logcat | grep -e "check XTRA server request rate limit" -e "XTRA download request"  -e "QUERY_XTRA_INFO_REQ" -e "doProcessXtraData" -e "XTRA server:" -e "successfully download file, size:"
+【失败Log】 并不打印 QUERY_XTRA_INFO_REQ 相关Log  
+
+```
+
 
 
 ### Xtra下载失效恢复Tip
