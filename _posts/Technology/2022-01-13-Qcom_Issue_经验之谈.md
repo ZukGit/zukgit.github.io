@@ -297,7 +297,7 @@ adb logcat | grep "check XTRA server request rate limit"
 ##### Qcom Xtra GPS辅助数据下载成功检查
 ```
 
-adb logcat | grep -e "check XTRA server request rate limit" -e "XTRA download request"  -e "QUERY_XTRA_INFO_REQ" -e "doProcessXtraData" -e "XTRA server:" -e "successfully download file, size:"
+adb logcat | grep -e "check XTRA server request rate limit" -e "XTRA download request"  -e "QUERY_XTRA_INFO_REQ" -e "doProcessXtraData" -e "XTRA server:" -e "successfully download file, size:" -e "injectXtraData success"  -e "locAPIGnssDeleteAidingData" -e "Used In Fix:"  -e "GnssManager: GNSS" 
 【正确打印1】
 01-12 05:50:29.723  2830  2849 I LocSvc_ApiV02: <--- globalEventCb line 233 QMI_LOC_EVENT_QUERY_XTRA_INFO_REQ_IND_V02    【请求Xtra数据】
 01-12 05:50:29.723  2830  2849 V LocSvc_LBSApiV02: eventCb:58] client = 0xb40000793be71f00, event id = 214, event name = QMI_LOC_EVENT_QUERY_XTRA_INFO_REQ_IND_V02 payload = 0x79365edd08
@@ -320,7 +320,7 @@ adb logcat | grep -e "check XTRA server request rate limit" -e "XTRA download re
 01-12 05:52:45.426  2830  2842 D LocSvc_xtra2: doProcessXtraData:239] Send Periodic Txn
 
 
-adb logcat | grep -e "check XTRA server request rate limit" -e "XTRA download request"  -e "QUERY_XTRA_INFO_REQ" -e "doProcessXtraData" -e "XTRA server:" -e "successfully download file, size:"
+adb logcat | grep -e "check XTRA server request rate limit" -e "XTRA download request"  -e "QUERY_XTRA_INFO_REQ" -e "doProcessXtraData" -e "XTRA server:" -e "successfully download file, size:" -e "injectXtraData success"  -e "locAPIGnssDeleteAidingData" -e "Used In Fix:"  -e "GnssManager: GNSS" 
 【失败Log】 并不打印 QUERY_XTRA_INFO_REQ 相关Log  
 
 ```
