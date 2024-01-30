@@ -632,7 +632,7 @@ adb root && adb remount && adb shell setprop persist.radio.ctbk_log 5  && adb sh
 adb root && adb disable-verity && adb reboot bootloader
 fastboot oem config cmdl androidboot.selinux=permissive 
 fastboot reboot 
-adb logcat | grep -e "SARCTRL" -e "MDMCTBK" -e "QCSDK"
+adb logcat | grep -e "SARCTRL" -e "MDMCTBK" -e "QCSDK" -e "setBtTxPower"
 
 
 ```
