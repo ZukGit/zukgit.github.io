@@ -636,6 +636,17 @@ adb logcat | grep -e "SARCTRL" -e "MDMCTBK" -e "QCSDK" -e "setBtTxPower"
 
 
 ```
+
+#### MTK平台打开BtSar开关
+```
+编译开关  
+
+# MTK BT SAR
+MSSI_MTK_BT_SAR_SUPPORT = yes
+
+```
+
+
 #### MTK平台查看 SarWifi服务接口
 
 ```
