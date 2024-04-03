@@ -11,24 +11,444 @@ typora-copy-images-to: ..\..\public\zimage
 ## 简介
  * TOC
  {:toc}
-## A
 
-### 打开搜索菜单以及动作的搜索框
+## 功能设置说明  
+
+
+###  添加系统framework.jar 
+
+#### 引入framework.jar 
+
+```
+通过在AOSP中使用命令 make javac-check-framework 编译 framework
+一般来说，使用 Android 源码全编译之后，
+会生成 out/target/common/obj/JAVA_LIBRARIES/framework_intermediates/classes.jar
+将改 classes.jar 改为 framework.jar 之后导入 AndroidStudio 
+
+ make javac-check-framework
+
+```
+
+  <img src="/public/zimage/tool/androidstudio/2024-04-01_173408.jpg">
+
+
+#### 确保自动生成 *.iml 按钮开关打开
+
+
+File->Setting-> Gradle 界面 确保 自动生成 .iml文件按钮被选中(如下图) 
+Generate x.iml files for modules imported from Gradle  所描述按钮需要被选中
+
+
+ <img src="/public/zimage/tool/androidstudio/2024-04-01_180737.jpg">
+
+
+
+
+#### 项目Module的app/build.gradle末尾添加如下代码
+```
+println("____________________ env info begin ____________________ ");
+Map<String,String> envMap = System.getenv();
+if(envMap != null ){
+    Set<String> keySet = envMap.keySet();
+    int keyIndex = 0 ;
+    int keySetSize = keySet.size();
+    for(String keyItem:keySet){
+        String valueItem = envMap.get(keyItem);
+        println(" Gradle_EnvMap["+keyIndex+"_"+keySetSize+"]    key["+keyItem+"]  value["+valueItem+"]");
+        keyIndex++;
+    }
+}
+println("____________________ env info end ____________________ ")
+println()
+
+println("____________________ project info begin ____________________ ");
+println("project.rootDir = "+ project.rootDir);
+println("project.buildDir = "+ project.buildDir);
+println("project.buildFile = "+ project.buildFile);
+println("projectDir = "+ projectDir);
+println("rootDirName = "+ project.rootDir.getName());
+File mainImlFile = new File(project.rootDir.getAbsolutePath()+File.separator+".idea/modules/app/"+project.rootDir.getName()+".app.main.iml");
+println("mainImlFile = "+ mainImlFile.getAbsolutePath() +"  isExist:["+mainImlFile.exists()+"]");
+println("____________________ project.getProperties() ");
+Set<String> projectPropSet = project.getProperties().keySet();
+int projectPropIndex = 0 ;
+int projectPropSetSize = projectPropSet.size();
+for(String keyItem:projectPropSet){
+    String valueItem = project.getProperties().get(keyItem);
+    println(" Project_Prop["+projectPropIndex+"_"+projectPropSetSize+"]    key["+keyItem+"]  value["+valueItem+"]");
+    projectPropIndex++;
+}
+println();
+println("____________________ project info end ____________________ ");
+println()
+
+println("____________________ android info begin ____________________ ");
+
+println("android.properties.toString() "+ android.properties.toString())
+
+Set<String> mAndroidKeySet = android.properties.keySet();
+if( mAndroidKeySet != null && mAndroidKeySet.size() > 0){
+    int mAndroidKeyIndex = 0 ;
+    int mAndroidKeySetSize = mAndroidKeySet.size();
+    for(String mKeyItem:mAndroidKeySet){
+        String mValueItem = android.properties.get(mKeyItem);
+        println(" AndroidProp["+mAndroidKeyIndex+"_"+mAndroidKeySetSize+"]    key["+mKeyItem+"]  value["+mValueItem+"]");
+        mAndroidKeyIndex++;
+    }
+}
+println("____________________ android info end ____________________ ");
+
+
+println("____________________ components info begin ____________________ ");
+
+components.toString()
+ext.toString()
+allprojects.toString()
+dependencies.toString()
+preBuild.toString()
+gradle.toString()
+println("components.toString()="+components.getNames().toString());
+println("ext.toString()="+ext.getProperties().toString());
+println("allprojects.toString()="+allprojects.properties.toString());
+println("dependencies.toString()="+dependencies.getProperties().toString());
+println("preBuild.toString()="+preBuild.toString());
+println("gradle.toString()="+gradle.toString());
+
+println("____________________ components info end ____________________ ");
+
+
+println("____________________ local.properties info begin ____________________ ");
+Properties localProps = new Properties()
+localProps.load(new FileInputStream(project.rootProject.file("local.properties")))
+Set<String> propKeySet = localProps.keySet();
+if( propKeySet != null && propKeySet.size() > 0){
+    int propKeyIndex = 0 ;
+    int propKeySetSize = propKeySet.size();
+    for(String propKeyItem:propKeySet){
+        String propValueItem = localProps.getProperty(propKeyItem);
+        println(" LocalProp["+propKeyIndex+"_"+propKeySetSize+"]    key["+propKeyItem+"]  value["+propValueItem+"]");
+        propKeyIndex++;
+    }
+}
+println("____________________ local.properties info end ____________________ ");
+println()
+
+
+preBuild {
+    doLast {
+        // 注意：iml的路径要根据自己的实际情况来写 mainImlFile 
+		//make ( jdkType="Android SDK") at end of orderEntry list at  ./idea/modules/app/**.app.main.iml
+      def imlFile = file(mainImlFile.getAbsolutePath())
+        try {
+            def parsedXml = (new XmlParser()).parse(imlFile)
+
+            int orderEntry_jdk_indx = -1 ;
+            for (int i = 0 ;i <= 10 ; i ++){
+                def jdkNode = parsedXml.component[i].orderEntry.find { it.'@type' == 'jdk' }
+                if(jdkNode != null){
+                    orderEntry_jdk_indx = i;
+                    break;
+                }
+            }
+            if(orderEntry_jdk_indx == -1){
+                println("error!   not find the jdk in"+ mainImlFile.absolutePath+" !  orderEntry_jdk_indx = "+ orderEntry_jdk_indx)
+            } else {
+
+
+                def jdkNode = parsedXml.component[orderEntry_jdk_indx].orderEntry.find { it.'@type' == 'jdk' }
+                println("parsedXml.component["+orderEntry_jdk_indx+"] = "+ parsedXml.component[orderEntry_jdk_indx])
+
+
+                println("jdkNodne = "+ jdkNode)
+                println("jdkName = "+ jdkNode.attributes().get('jdkName'))
+
+                parsedXml.component[orderEntry_jdk_indx].remove(jdkNode)
+
+                def sdkString = jdkNode.attributes().get('jdkName');
+
+                new groovy.util.Node(parsedXml.component[orderEntry_jdk_indx], 'orderEntry', ['type': 'jdk', 'jdkName': sdkString, 'jdkType': 'Android SDK'])
+                groovy.xml.XmlUtil.serialize(parsedXml, new FileOutputStream(imlFile))
+
+            }
+
+
+
+        } catch (FileNotFoundException e) {
+
+            println(" e = "+ e)
+        }
+        println(" _________________ finish !!! __________________ ")
+    }
+
+}
+
+
+
+
+
+```
+
+
+#### 检查 app/build.gradle 对 framework.jar的依赖配置
+
+```
+选中SarControlService/app/build.gradle  检查 dependencies {} 配置项中 
+存在 compileOnly files('libs\\framework.jar') 配置项,  
+如果存在 implementation files('libs\\framework.jar') 那么需要修改为 
+
+implementation files('libs\\framework.jar')    改为
+compileOnly files('libs\\framework.jar') 
+
+
+之后执行Gradle Run命令将正常引入 framework.jar 文件  
+
+```
+
+
+  <img src="/public/zimage/tool/androidstudio/2024-04-01_182331.jpg">
+
+####   选中 File->Invalid Cache 后重启生效framework.jar 
+
+
+  <img src="/public/zimage/tool/androidstudio/2024-04-01_173536.jpg">
+
+
+### 添加Exterl Tool命令
+
+```
+选中 File->Setting-> Tool -> External Tool -> + 按钮 -> 弹出 EditTool 窗口 
+配置如下信息：　 
+ 
+Name:  ndk-build_jni (可自定义) 
+ 
+Program: C:\Users\xxxx\AppData\Local\Android\Sdk\ndk\26.2.11394342\build\ndk-build.cmd 【依赖PC本地环境自行配置】 
+ 
+Arguments:  NDK_LIBS_OUT=$ProjectFileDir$\app\src\main\libs   【固定】 
+ 
+Working Directory: D:\jira_work\AOSP\APP\app\src\main\jni 【项目jni路径 依赖PC环境 自行配置】         
+ 
+点击OK 按钮后配置成功JNI 编译命令  在 Working Directory 右键 External Tool 就可以执行
+
+```
+
+
+  <img src="/public/zimage/tool/androidstudio/2024-04-01_175638.jpg">
+  <img src="/public/zimage/tool/androidstudio/2024-04-01_175906.jpg">
+
+
+### 设置Gradle国内镜像
+
+#### gradle/wrapper/gradle-wrapper.properties 修改
+
+Gradle下载的默认路径:
+
+C:\Users\xxxUserNamexxxx\.gradle\wrapper\dists 路径下
+
+
+ <img src="/public/zimage/tool/androidstudio/2024-04-03_141202.jpg">
+
+##### 腾讯 gradle镜像
+需要设置两种镜像:
+
+Gradle镜像:  Gradle文件本身
+Gradle依赖镜像: Gradle 能work 它自己所依赖文件的镜像
+
+```
+# 原始 gradle-wrapper.properties 下载速度极慢 需要更改 distributionUrl  
+distributionBase=GRADLE_USER_HOME
+distributionPath=wrapper/dists
+distributionUrl=https\://services.gradle.org/distributions/gradle-8.0-all.zip
+zipStoreBase=GRADLE_USER_HOME
+zipStorePath=wrapper/dists
+
+
+
+```
+
+distributionUrl=https\://services.gradle.org/distributions/gradle-8.0-all.zip
+
+变更为 
+
+distributionUrl=https\://mirrors.cloud.tencent.com/gradle/gradle-8.1.1-all.zip
+
+
+```
+distributionBase=GRADLE_USER_HOME
+distributionPath=wrapper/dists
+# Gradle镜像  一般需要下载 all的镜像 和 bin 的镜像
+#distributionUrl=https\://services.gradle.org/distributions/gradle-8.0-all.zip
+#distributionUrl=https\://mirrors.cloud.tencent.com/gradle/gradle-8.2.1-all.zip
+distributionUrl=https\://mirrors.cloud.tencent.com/gradle/gradle-8.1.1-all.zip
+zipStoreBase=GRADLE_USER_HOME
+zipStorePath=wrapper/dists
+
+
+```
+
+
+#### 设置(Gradle依赖镜像)
+
+C:\Users\xxxUserNamexxxx\.gradle\wrapper\dists\xxx当前gradle目录\init.d\
+
+新建 init.d 目录下文件 init.gradle
+C:\Users\xxx\.gradle\wrapper\dists\gradle-6.5-all\2oz4ud9k3tuxjg84bbf55q0tn\gradle-6.5\init.d\init.gradle
+之后 就设置了 Gradle依赖镜像 
+
+```
+
+// 新建目录 C:\Users\xxx\.gradle\wrapper\dists\gradle-6.5-all\2oz4ud9k3tuxjg84bbf55q0tn\gradle-6.5\init.d\init.gradle
+
+ allprojects{
+  repositories {
+   def ALIYUN_REPOSITORY_URL = 'https://maven.aliyun.com/repository/public/'
+   def ALIYUN_JCENTER_URL = 'https://maven.aliyun.com/repository/jcenter/'
+   def ALIYUN_GOOGLE_URL = 'https://maven.aliyun.com/repository/google/'
+   def ALIYUN_GRADLE_PLUGIN_URL = 'https://maven.aliyun.com/repository/gradle-plugin/'
+   all { ArtifactRepository repo ->
+    if(repo instanceof MavenArtifactRepository){
+     def url = repo.url.toString()
+     if (url.startsWith('https://repo1.maven.org/maven2/')) {
+      project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_REPOSITORY_URL."
+      remove repo
+     }
+     if (url.startsWith('https://jcenter.bintray.com/')) {
+      project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_JCENTER_URL."
+      remove repo
+     }
+     if (url.startsWith('https://dl.google.com/dl/android/maven2/')) {
+      project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_GOOGLE_URL."
+      remove repo
+     }
+     if (url.startsWith('https://plugins.gradle.org/m2/')) {
+      project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_GRADLE_PLUGIN_URL."
+      remove repo
+     }
+    }
+   }
+   maven { url ALIYUN_REPOSITORY_URL }
+   maven { url ALIYUN_JCENTER_URL }
+   maven { url ALIYUN_GOOGLE_URL }
+   maven { url ALIYUN_GRADLE_PLUGIN_URL }
+  }
+ }
+ 
+
+
+```
+
+gradle-6.5\init.d\init.gradle 的另一种配置方式
+
+```
+## 参考  https://blog.csdn.net/sunboylife/article/details/129065316
+
+allprojects {
+    repositories {
+        mavenLocal()
+        maven { name "Alibaba" ; url "https://maven.aliyun.com/repository/public" } 
+        maven { name "Bstek" ; url "https://nexus.bsdn.org/content/groups/public/" } 
+        mavenCentral()
+    }
+    
+    buildscript {
+        repositories {
+            maven { name "Alibaba" ; url 'https://maven.aliyun.com/repository/public' } 
+            maven { name "Bstek" ; url 'https://nexus.bsdn.org/content/groups/public/' } 
+            maven { name "M2" ; url 'https://plugins.gradle.org/m2/' }
+        }
+    }
+}
+
+```
+
+
+#### 查看AGP(AndroidStuido自身 Gradle Plugin)插件
+
+在项目根目录的 build.gradle 指明了 AGP的版本
+1.AGP版本 
+2.Gradle版本  
+3.java版本
+4.AndroidStudio版本
+
+不配套版本会存在兼容性问题导致无法编译
+
+```
+      classpath 'com.android.tools.build:gradle:4.1.1'
+	  
+```
+
+
+https://developer.android.google.cn/build/releases/gradle-plugin?hl=zh-cn#updating-plugin
+
+
+| AGP插件版本 | 所需的最低Gradle版本 |
+| ---- | ---- |
+| 8.4 | 8.6-rc-1 |
+| 8.3 | 8.4 |
+| 8.2 | 8.2 |
+| 8.1 | 8.0 |
+| 8.0 | 8.0 |
+| 7.4 | 7.5 |
+| 7.3 | 7.4 |
+| 7.2 | 7.3.3 |
+| 7.1 | 7.2 |
+| 7.0 | 7.0 |
+| 4.2.0+ | 6.7.1 |
+| 4.1.0+ | 6.5+ |
+| 4.0.0+ | 6.1.1+ |
+| 3.6.0-3.6.4 | 5.6.4+ |
+| 3.5.0-3.5.4 | 5.4.1+ |
+| 3.4.0-3.4.3 | 5.1.1+ |
+| 3.3.0-3.3.3 | 4.10.1+ |
+| 3.2.0-3.2.1 | 4.6+ |
+| 3.1.0+ | 4.4+ |
+| 3.0.0+ | 4.1+ |
+| 2.3.0+ | 3.3+ |
+| 2.1.3-2.2.3 | 2.14.1-3.5 |
+| 2.0.0-2.1.2 | 2.10-2.13 |
+| 1.5.0 | 2.2.1-2.13 |
+| 1.2.0-1.3.1 | 2.2.1-2.9 |
+| 1.0.0-1.1.3 | 2.2.1-2.3 |
+
+
+|AS代号| Android_Studio版本	|所需的 AGP 版本|
+| ---- | ---- |---- |
+| 水母        | 2023.3.1	    |3.2-8.4  |
+| Iguana      | 2023.2.1  	    |3.2-8.3  |
+| Hedgehog    | 2023.1.1	    |3.2-8.2  |
+| Giraffe     | 2022.3.1	    |3.2-8.1  |
+| Flamingo    | 2022.2.1	    |3.2-8.0  |
+| Electric Eel| 2022.1.1        |3.2-7.4  |
+| Dolphin     | 2021.3.1        |3.2-7.3  |
+| Chipmunk    | 2021.2.1        |3.2-7.2  |
+| Bumblebee   | 2021.1.1        |3.2-7.1  |
+| Arctic Fox  | 2020.3.1        |3.1-7.0  |
+
+
+### 设置代理
+
+
+
+
+
+## 快捷按钮操作说明
+
+### A
+
+####     打开搜索菜单以及动作的搜索框
 
 
 
 ```
  Mac：  ？？
 
- windows:   Ctrl + Shift +  A       // 搜索菜单以及动作
+ windows:   Ctrl + N     // 搜索菜单以及动作
 
 ```
 
 
-## 1
-  <img src="/public/zimage/tool/androidstudio/24.jpg">
+  <img src="/public/zimage/tool/androidstudio/2024-04-03_113613.jpg">
 
-### 添加关键文件到 Favorite 方便查找
+####     添加关键文件到 Favorite 方便查找
 
 ```
  Favorite的标签在窗口左下角，用于放置当前用户比较关注的文件以及书签 F11 ， Shift+F11查看
@@ -46,7 +466,7 @@ typora-copy-images-to: ..\..\public\zimage
 
 
 
-### 打开Message Logcat Version-Contrl的快捷键
+####     打开Message Logcat Version-Contrl的快捷键
  Alt + 数字    【界面有显示对应的数字】
 ```
  Mac:
@@ -70,9 +490,9 @@ typora-copy-images-to: ..\..\public\zimage
  <img src="/public/zimage/tool/androidstudio/40.jpg">
  <img src="/public/zimage/tool/androidstudio/35.jpg">
 
-## B
+### B
 
-### tab文件窗口前一个文件 和 后一个文件
+####     tab文件窗口前一个文件 和 后一个文件
  与浏览器的前进与回退相似的功能，查看之前浏览Tab切换位置（回退）
 ```
 
@@ -89,8 +509,8 @@ typora-copy-images-to: ..\..\public\zimage
  <img src="/public/zimage/tool/androidstudio/36.jpg">
  <img src="/public/zimage/tool/androidstudio/37.jpg">
 
-## C
-### 跳转到大括号{ 对应的}括号地方
+### C
+####     跳转到大括号{ 对应的}括号地方
 ```
 
  Windows :   Ctrl + [   和  Ctrl + ]    //跳转到大括号{ 对应的}括号地方 括号区域查询
@@ -99,7 +519,7 @@ typora-copy-images-to: ..\..\public\zimage
 
  <img src="/public/zimage/tool/androidstudio/14.jpg">
 
-### 选中大括号{ 对应的}括号地方
+####     选中大括号{ 对应的}括号地方
 ```
 
  Windows:   Ctrl + Shift +  [  和 Ctrl + Shift +  ]    
@@ -107,7 +527,7 @@ typora-copy-images-to: ..\..\public\zimage
  <img src="/public/zimage/tool/androidstudio/22.jpg">
 
  <img src="/public/zimage/tool/androidstudio/23.jpg">
-### 注释选中的代码
+####     注释选中的代码
 ```
  注释| 反注释 选中的代码
  Mac :   command + /       // 两个斜杆的注释   单行注释
@@ -129,10 +549,10 @@ typora-copy-images-to: ..\..\public\zimage
  <img src="/public/zimage/tool/androidstudio/19.jpg">
 
 
-## D
-## E
+### D
+### E
 
-### 显示最近打开的窗口列表和文件列表 Ctrl + E
+####     显示最近打开的窗口列表和文件列表 Ctrl + E
 ```
  最近打开的文件以及窗口 Recent File
  Mac：   command + E
@@ -140,8 +560,8 @@ typora-copy-images-to: ..\..\public\zimage
   Ctrl + E    
 ```
  <img src="/public/zimage/tool/androidstudio/45.jpg">
-## F
-### 当前代码页面查找 Ctrl +F 搜索
+### F
+####     当前代码页面查找 Ctrl +F 搜索
 ```
  Mac:   command + F //   当前页面内查找
 
@@ -150,7 +570,7 @@ typora-copy-images-to: ..\..\public\zimage
  <img src="/public/zimage/tool/androidstudio/8.jpg">
 
 
-### 全局工程搜索 Shift + Ctrl + F 搜索
+####     全局工程搜索 Shift + Ctrl + F 搜索
 ```
  Mac:  Shift + command + F //   全工程页面内查找
 
@@ -159,7 +579,7 @@ typora-copy-images-to: ..\..\public\zimage
  <img src="/public/zimage/tool/androidstudio/9.jpg">
 
 
-### 全局搜索变量以及方法名
+####     全局搜索变量以及方法名
 ```
  Mac: ？？
  Windows:   Ctrl + Shift + Alt + N
@@ -167,7 +587,7 @@ typora-copy-images-to: ..\..\public\zimage
  <img src="/public/zimage/tool/androidstudio/46.jpg">
  <img src="/public/zimage/tool/androidstudio/47.jpg">
 
-### 在关键代码出增加标签 bookmark
+####     在关键代码出增加标签 bookmark
 
 ```
 
@@ -181,7 +601,7 @@ typora-copy-images-to: ..\..\public\zimage
  <img src="/public/zimage/tool/androidstudio/32.jpg">
 
 
-### 对Add Frarorite 增加快捷按键  F7  默认为 Ctrl+Shift+F
+####     对Add Frarorite 增加快捷按键  F7  默认为 Ctrl+Shift+F
 ```
  1. 打开设置窗口  Ctrl + Alt + S   选中 keymap
  2. 在keymap中搜索 add Favorites
@@ -192,11 +612,11 @@ typora-copy-images-to: ..\..\public\zimage
 
 ```
 
-## G
+### G
 
 
 
-### (git)Update Prjrct
+####     (git)Update Prjrct
 ```
  Mac:
  command + T   =>  Update Prjrct
@@ -210,7 +630,7 @@ typora-copy-images-to: ..\..\public\zimage
 
 
 
-### (git)Branch信息
+####     (git)Branch信息
 ```
  在IDE的右下方是 当前代码的分支信息。
 
@@ -233,7 +653,7 @@ typora-copy-images-to: ..\..\public\zimage
 
 
 
-### (git)Commit Changes
+####     (git)Commit Changes
 
 ```
  Mac:
@@ -253,7 +673,7 @@ typora-copy-images-to: ..\..\public\zimage
 
 
 
-### (git)Push Commits
+####     (git)Push Commits
 ```
  Mac:
  command + Shift + K   =>  Push Commits
@@ -266,8 +686,8 @@ typora-copy-images-to: ..\..\public\zimage
 ```
  <img src="/public/zimage/tool/androidstudio/4.jpg">
 
-## H
-### 查看当前类的继承关系  Ctrl + H
+### H
+####     查看当前类的继承关系  Ctrl + H
 ```
 
  Mac:   Ctrl + H 
@@ -275,10 +695,10 @@ typora-copy-images-to: ..\..\public\zimage
  Windows:   Ctrl + H 
 ```
  <img src="/public/zimage/tool/androidstudio/12.jpg">
-## I
-## J
-## K
-### keyMap 当前AS快捷键模式使用的类型
+### I
+### J
+### K
+####     keyMap 当前AS快捷键模式使用的类型
 ```
  keyMap 当前AS快捷键模式使用的类型, 默认Default  Mac类型   Windows类型  Eclipse类型 Visual类型 等， 可依据习惯自由切换
 
@@ -290,7 +710,7 @@ typora-copy-images-to: ..\..\public\zimage
  <img src="/public/zimage/tool/androidstudio/41.jpg">
 
 
-### keyboard shortcut 为Action增加快捷按键
+####     keyboard shortcut 为Action增加快捷按键
 ```
  有些实用的功能默认没有配置快捷按钮，可自定义设置快捷按键
 
@@ -302,8 +722,8 @@ typora-copy-images-to: ..\..\public\zimage
 
 ```
  <img src="/public/zimage/tool/androidstudio/42.jpg">
-## L
-### 整理代码格式
+### L
+####     整理代码格式
 ```
  Mac:   command + Alt + L 
 
@@ -312,10 +732,10 @@ typora-copy-images-to: ..\..\public\zimage
 ```
  <img src="/public/zimage/tool/androidstudio/26.jpg">
  <img src="/public/zimage/tool/androidstudio/27.jpg">
-## M
-## N
+### M
+### N
 
-### 全局搜索代码类的名字
+####     全局搜索代码类的名字
 ```
  Mac ： command + O
 
@@ -323,7 +743,7 @@ typora-copy-images-to: ..\..\public\zimage
 ```
  <img src="/public/zimage/tool/androidstudio/15.jpg">
 
-### 全局工程搜索文件名
+####     全局工程搜索文件名
 ```
  Mac: ?? //   全工程页面内查找文件名
 
@@ -332,26 +752,26 @@ typora-copy-images-to: ..\..\public\zimage
  <img src="/public/zimage/tool/androidstudio/10.jpg">
 
 
-## O
-### 显示当前类可以重写override和实现implements的所有父类方法
+### O
+####     显示当前类可以重写override和实现implements的所有父类方法
 ```
  Mac ： ？？ 
 
  Windows:  Ctrl + O     // 显示当前类可以重写和实现的方法列表
 ```
  <img src="/public/zimage/tool/androidstudio/11.jpg">
-## P
-## Q
-## R
-## S
-### Setings设置页面快捷键  Preferebce
+### P
+### Q
+### R
+### S
+####     Setings设置页面快捷键  Preferebce
 ```
  Mac：  command + ，     // command+逗号键   打开设置界面
 
  Windows:  Ctrl + Alt + S     // 打开设置界面
 ```
  <img src="/public/zimage/tool/androidstudio/6.jpg">
-### Setings( Module ) 打开模块工程界面  Project Structure
+####     Setings( Module ) 打开模块工程界面  Project Structure
 ```
  Mac：  command + ；     // command+分号   打开工程模块界面
 
@@ -360,8 +780,8 @@ typora-copy-images-to: ..\..\public\zimage
 ```
  <img src="/public/zimage/tool/androidstudio/7.jpg">
 
-## T
-### 打开终端 Terimal
+### T
+####     打开终端 Terimal
 ```
  Mac  ：  Alt + Fn + F12  //  打开终端
  Windows:   Alt + F12   //  打开终端
@@ -370,20 +790,20 @@ typora-copy-images-to: ..\..\public\zimage
 ```
  <img src="/public/zimage/tool/androidstudio/25.jpg">
 
-## U
-### 把选中的代码，全部大写|小写转换
+### U
+####     把选中的代码，全部大写|小写转换
 ```
  Mac :   ??
  windows:   Ctrl + Shift + U
 ```
  <img src="/public/zimage/tool/androidstudio/20.jpg">
  <img src="/public/zimage/tool/androidstudio/21.jpg">
-## V
-## W
-## X
-## Y
-## Z
-### 撤销之前的代码输入
+### V
+### W
+### X
+### Y
+### Z
+####     撤销之前的代码输入
 ```
  Mac:  command + Z   或者  command + Alt + Z   
 
@@ -393,9 +813,9 @@ typora-copy-images-to: ..\..\public\zimage
  <img src="/public/zimage/tool/androidstudio/28.jpg">
  <img src="/public/zimage/tool/androidstudio/29.jpg">
 
-## 快捷输入操作
+### 快捷输入操作
 
-###  对代码块进行整体的上下移动
+####      对代码块进行整体的上下移动
 ```
 
  Windows:
