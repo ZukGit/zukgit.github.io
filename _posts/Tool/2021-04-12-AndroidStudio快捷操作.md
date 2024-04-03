@@ -252,9 +252,8 @@ C:\Users\xxxUserNamexxxx\.gradle\wrapper\dists 路径下
 
 Gradle镜像:  Gradle文件本身
 Gradle依赖镜像: Gradle 能work 它自己所依赖文件的镜像
-
+原始 gradle-wrapper.properties 下载速度极慢 需要更改 distributionUrl  
 ```
-# 原始 gradle-wrapper.properties 下载速度极慢 需要更改 distributionUrl  
 distributionBase=GRADLE_USER_HOME
 distributionPath=wrapper/dists
 distributionUrl=https\://services.gradle.org/distributions/gradle-8.0-all.zip
@@ -294,9 +293,11 @@ C:\Users\xxxUserNamexxxx\.gradle\wrapper\dists\xxx当前gradle目录\init.d\
 C:\Users\xxx\.gradle\wrapper\dists\gradle-6.5-all\2oz4ud9k3tuxjg84bbf55q0tn\gradle-6.5\init.d\init.gradle
 之后 就设置了 Gradle依赖镜像 
 
+新建目录 C:\Users\xxx\.gradle\wrapper\dists\gradle-6.5-all\2oz4ud9k3tuxjg84bbf55q0tn\gradle-6.5\init.d\init.gradle
+
+init.gradle
 ```
 
-// 新建目录 C:\Users\xxx\.gradle\wrapper\dists\gradle-6.5-all\2oz4ud9k3tuxjg84bbf55q0tn\gradle-6.5\init.d\init.gradle
 
  allprojects{
   repositories {
@@ -335,11 +336,12 @@ C:\Users\xxx\.gradle\wrapper\dists\gradle-6.5-all\2oz4ud9k3tuxjg84bbf55q0tn\grad
 
 
 ```
+参考  https://blog.csdn.net/sunboylife/article/details/129065316
 
 gradle-6.5\init.d\init.gradle 的另一种配置方式
+init.gradle
 
 ```
-## 参考  https://blog.csdn.net/sunboylife/article/details/129065316
 
 allprojects {
     repositories {
