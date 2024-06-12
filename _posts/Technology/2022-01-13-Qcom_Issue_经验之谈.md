@@ -1450,3 +1450,98 @@ Mode[G] Channels:   Mode[A] Channels:         Mode[A] Channels:      Mode[B] Cha
 
 
 ```
+
+
+
+
+### Linux_Kill_Signal  终止信号
+
+```
+kill送出一个特定的信号 （signal）给行程id为pid的行程根据该信号而做特定的动作，若没有指定，预设是送出终止 （TERM）的信号
+
+-s （signal）: 其中常用的讯号有 HUP （1）,KILL （9）,TERM （15）,分别代表着重跑，砍掉,结束; 详细的信号可以用 kill -l （见下结果，可用数字带入）
+
+-p : 印出pid，并不送出信号
+-l （signal）: 列出所有可用的信号名称
+
+```
+
+
+
+
+```
+这个就是kill -l的查询结果：
+
+1. 所有的名称都是以SIG开头的；
+2. 每个信号名称前面有1个数字，用半边括号包围；
+3. 没有32和33号信号。
+4. 34号信号名为SIGRTMIN，接下来的15个信号分别为SIGRTMIN+1~SIGRTMIN+15，64号信号名为SIGRTMAX，它之前的14个信号分别为SIGRTMAX-14~SIGRTMAX-1；
+
+5.信号的命名和值和历史原因有关，这个在man手册上写了，在不同的标准中加入了不同的信号，
+基本上每个信号都有对应的事件，但是这些信号个问题，就是不支持排队，
+也就是说如果同时出现好几个信号，那么只有1个信号能处理，其他的信号会丢失。如果修改这个机制的话，可能会导致天下大乱，
+然后大神们就想出一种办法，增加了信号的类型，新增的信号类型与旧的信号类型有所区别，那就是新增的信号类型支持排队，
+它们即使同时来好几个也不会丢失，那么顺理成章的，旧的信号就成了不可靠信号，新的信号就是可靠信号（在手册中的说法是普通信号和实时信号，
+只不过按照我的理解我更倾向于叫它们不可靠信号和可靠信号）。
+
+6.新增的这些信号并没有对应任何一个实际的事件，它们根据实际情况来使用（手册上是这么写的），
+因此就不好给它们取名字了，索性就把新增的这些信号划分到一个范围里，
+最小的值叫做 SIGRTMIN，最大的值叫 SIGRTMAX，其中RT就是Real-Time，然后用SIGRTMIN+n和SIGRTMAX-n的方法来表示它们
+
+
+1) SIGHUP          2) SIGINT            3) SIGQUIT            4) SIGILL
+5) SIGTRAP         6) SIGABRT           7) SIGBUS             8) SIGFPE
+9) SIGKILL         10) SIGUSR1          11) SIGSEGV           12) SIGUSR2
+13) SIGPIPE        14) SIGALRM          15) SIGTERM           16) SIGSTKFLT
+17) SIGCHLD        18) SIGCONT          19) SIGSTOP           20) SIGTSTP
+21) SIGTTIN        22) SIGTTOU          23) SIGURG            24) SIGXCPU
+25) SIGXFSZ        26) SIGVTALRM        27) SIGPROF           28) SIGWINCH
+29) SIGIO          30) SIGPWR           31) SIGSYS            34) SIGRTMIN
+35) SIGRTMIN+1     36) SIGRTMIN+2       37) SIGRTMIN+3        38) SIGRTMIN+4
+39) SIGRTMIN+5     40) SIGRTMIN+6       41) SIGRTMIN+7        42) SIGRTMIN+8
+43) SIGRTMIN+9     44) SIGRTMIN+10      45) SIGRTMIN+11       46) SIGRTMIN+12
+47) SIGRTMIN+13    48) SIGRTMIN+14      49) SIGRTMIN+15       50) SIGRTMAX-14
+51) SIGRTMAX-13    52) SIGRTMAX-12      53) SIGRTMAX-11       54) SIGRTMAX-10
+55) SIGRTMAX-9     56) SIGRTMAX-8       57) SIGRTMAX-7        58) SIGRTMAX-6
+59) SIGRTMAX-5     60) SIGRTMAX-4       61) SIGRTMAX-3        62) SIGRTMAX-2
+63) SIGRTMAX-1     64) SIGRTMAX        
+
+```
+
+
+| 信号 | 值 | 默认动作 | 含义 |
+| ---- | ---- | ---- | ---- |
+| SIGHUP | 1 | 终止 | 终端挂起或者控制进程终止。该信号在用户终端连接（正常或非正常）退出时发出，通常是在终端的控制进程结束时通知同一会话内的各个作业与控制终端不再关联。 |
+| SIGINT | 2 | 终止 | 来自键盘的中断信号，如Ctrl+C，或者break键被按下，但是笔记本上可能没有break键。 |
+| SIGQUIT | 3 | 终止，并进行Core_dump | （后面解释什么是Core_dump）来自键盘的退出信号，与SIGINT类似，但是由 |
+| SIGILL | 4 | 终止，并进行Core_dump | 非法指令（可执行文件本身发生错误，或者试图执行数据段，或堆栈溢出时发出） |
+| SIGTRAP | 5 | 终止，并进行Core_dump | 由断点指令或其它陷阱（trap）指令产生. |
+| SIGABRT | 6 | 终止，并进行Core_dump | 由abort(3)发出的终止指令（这个括号带个3指的是可以用man |
+| SIGBUS | 7 | 终止，并进行Core_dump | 总线错误（错误的内存访问，包括内存地址对齐(alignment)出错。比如访问一个四个字长的整数, |
+| SIGFPE | 8 | 终止，并进行Core_dump | 浮点异常。在发生致命的算术运算错误时发出。不仅包括浮点运算错误, |
+| SIGKILL | 9 | 终止 | kill信号。【该信号不能被忽略、阻塞以及自定义处理方法】，如果发现某个进程结束不了可以用这个信号将其杀死 |
+| SIGUSR1 | 10 | 终止 | 给用户使用的信号1 |
+| SIGSEGV | 11 | 终止，并进行Core_dump | 无效的内存参考，当程序访问没有访问权限的内存区域，或者访问非可读的内存区域时，产生该信号，如数组越界。它与SIGBUS的区别是，SIGSEGV是对合法地址的非法访问，而SIGBUS访问的本身就是非法的地址。 |
+| SIGUSR2 | 12 | 终止 | 给用户使用的信号2 |
+| SIGPIPE | 13 | 终止 | 管道破裂：往管道写数据的时候读端已经关闭，或者在socket通信的时候，写数据的时候读端已经关闭 |
+| SIGALRM | 14 | 终止 | 来自alarm(2)的定时器信号 |
+| SIGTERM | 15 | 终止 | 终止信号。kill命令的默认方式，与SIGKILL不同的是，该信号可以被阻塞或者自定义处理方式 |
+| SIGSTKFLT | 16 | 终止 | 协处理器上的堆栈故障（未使用） |
+| SIGCHLD | 17 | 忽略 | 子进程停止(stopped)或者终止 |
+| SIGCONT | 18 | 继续运行 | 让一个停止(stopped)的进程继续执行。本信号不能被阻塞 |
+| SIGSTOP | 19 | 暂停运行 | 暂停进程。该信号不能被忽略、阻塞以及自定义处理方法。 |
+| SIGTSTP | 20 | 暂停运行 | 由tty发出的停止（stopped）信号，如Ctrl+Z |
+| SIGTTIN | 21 | 暂停运行 | tty输入用于后台进程。其实就是指后台进程试图从终端读取数据，比如从stdin读数据。 |
+| SIGTTOU | 22 | 暂停运行 | tty输出用于后台进程。其实就是指后台进程试图向终端读写数据，比如向stdout写数据。 |
+| SIGURG | 23 | 忽略 | 有”紧急”数据或带外数据out-of-band到达socket时产生。带外数据是socket编程的知识点。 |
+| SIGXCPU | 24 | 终止，并进行Core_dump | 超过CPU时间资源限制。这个限制可以由getrlimit/setrlimit来读取/改变。 |
+| SIGXFSZ | 25 | 终止，并进行Core_dump | 文件大小超出限制。 |
+| SIGVTALRM | 26 | 终止 | 虚拟闹钟。 |
+| SIGPROF | 27 | 终止 | Profiling定时器到 |
+| SIGWINCH | 28 | 忽略 | 窗口大小改变 |
+| SIGIO | 29 | 终止 | I/O准备就绪 |
+| SIGPWR | 30 | 终止 | Power failure（电源失败？） |
+| SIGSYS | 31 | 终止，并进行Core_dump | Bad argument to routine 非法的系统调用 |
+
+
+
