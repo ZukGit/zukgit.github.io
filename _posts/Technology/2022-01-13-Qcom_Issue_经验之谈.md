@@ -624,6 +624,50 @@ fcc wifi tx pwr 5g split band  在测试Feature 时
 
 ```
 
+
+### wifi_tx0_sensor_config配置
+
+```
+ <wifi_tx0_sensor_config>24 </wifi_tx0_sensor_config>
+ 01001000===72   S4 S7   最小的是1开始数    tx0_sensor : S4         tx0_sensor : S7
+ 00011000===24   S4 S5 
+ 【8_7_6_5_4_3_2_1】  S4==第4== SarSensor index="4"    <sensor index="4">
+ 【8_7_6_5_4_3_2_1】  S5==第5== SarSensor index="5"	   <sensor index="5">
+
+
+
+                      【8_7_6_5_4_3_2_1】 
+                       00011000===24
+  <sensor index="1">
+  <sensor index="2">
+  <sensor index="3">
+  <sensor index="4">     √(S4)
+  <sensor index="5">     √(S5)
+  <sensor index="6">
+  <sensor index="7">     
+  <sensor index="8">
+  
+  
+                      【8_7_6_5_4_3_2_1】 
+                       01001000===72
+  <sensor index="1">
+  <sensor index="2">
+  <sensor index="3">
+  <sensor index="4">     √(S4)
+  <sensor index="5">
+  <sensor index="6">
+  <sensor index="7">     √(S7)
+  <sensor index="8">
+  
+  
+  
+  
+
+  
+```
+
+
+
 ### MTK SarContrl Log 开关
 
 ```
