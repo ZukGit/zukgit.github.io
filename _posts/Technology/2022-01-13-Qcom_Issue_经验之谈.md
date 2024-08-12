@@ -630,12 +630,12 @@ fcc wifi tx pwr 5g split band  在测试Feature 时
 ```
 
         <!--from back view-->    BackView 为启始
-        <sensor type="cap_bottom_right"         index="2">CapSense Ch0</sensor> <!--ANT0, CS0-->    【  000001 】
-        <sensor type="cap_bottom_left"          index="3">CapSense Ch1</sensor> <!--ANT1, CS4-->    【  000010 】
-        <sensor type="cap_top_left"             index="4">CapSense Ch4</sensor> <!--ANT6&7, CS5-->  【  000100 】
-        <sensor type="cap_top_right"            index="5">CapSense Ch2</sensor> <!--ANT3&4, CS6-->  【  001000 】
-        <sensor type="cap_top_middle"           index="6">CapSense Ch3</sensor> <!--ANT5, CS7-->    【  010000 】
-        <sensor type="xxxxx"                      index="7">CapSense ChXXX</sensor> <!--ANT5, CS7-->【  100000 】
+        <sensor type="cap_bottom_right"         index="2">CapSense Ch0</sensor> <!--ANT0, CS0-->    【  000001 】1
+        <sensor type="cap_bottom_left"          index="3">CapSense Ch1</sensor> <!--ANT1, CS4-->    【  000010 】2
+        <sensor type="cap_top_left"             index="4">CapSense Ch4</sensor> <!--ANT6&7, CS5-->  【  000100 】4
+        <sensor type="cap_top_right"            index="5">CapSense Ch2</sensor> <!--ANT3&4, CS6-->  【  001000 】8
+        <sensor type="cap_top_middle"           index="6">CapSense Ch3</sensor> <!--ANT5, CS7-->    【  010000 】16
+        <sensor type="xxxxx"                      index="7">CapSense ChXXX</sensor> <!--ANT5, CS7-->【  100000 】32
 
 (cap_top_middle|cap_top_left)
  <wifi_tx0_sensor_config>20</wifi_tx0_sensor_config>
