@@ -628,6 +628,28 @@ fcc wifi tx pwr 5g split band  在测试Feature 时
 ### wifi_tx0_sensor_config配置
 
 ```
+
+        <!--from back view-->    BackView 为启始
+        <sensor type="cap_bottom_right"         index="2">CapSense Ch0</sensor> <!--ANT0, CS0-->    【  000001 】
+        <sensor type="cap_bottom_left"          index="3">CapSense Ch1</sensor> <!--ANT1, CS4-->    【  000010 】
+        <sensor type="cap_top_left"             index="4">CapSense Ch4</sensor> <!--ANT6&7, CS5-->  【  000100 】
+        <sensor type="cap_top_right"            index="5">CapSense Ch2</sensor> <!--ANT3&4, CS6-->  【  001000 】
+        <sensor type="cap_top_middle"           index="6">CapSense Ch3</sensor> <!--ANT5, CS7-->    【  010000 】
+        <sensor type="xxxxx"                      index="7">CapSense ChXXX</sensor> <!--ANT5, CS7-->【  100000 】
+
+(cap_top_middle|cap_top_left)
+ <wifi_tx0_sensor_config>20</wifi_tx0_sensor_config>
+ 
+ 
+ 
+ 
+cap_top_middle (CapSense Ch3)(ANT5, CS7)    === 【  010000 】 === 16
+cap_top_left   (CapSense Ch4)(ANT6&7, CS5)  === 【  000100 】 === 4
+
+16 | 4 == 20 
+
+
+
  <wifi_tx0_sensor_config>24 </wifi_tx0_sensor_config>
  01001000===72   S4 S7   最小的是1开始数    tx0_sensor : S4         tx0_sensor : S7
  00011000===24   S4 S5 
@@ -638,18 +660,19 @@ fcc wifi tx pwr 5g split band  在测试Feature 时
 
                       【8_7_6_5_4_3_2_1】 
                        00011000===24
-  <sensor index="1">
+ <!--from back view-->                  从backview 开始算第一个 , 所以顶一个的index 不一定为1 可能为2 
   <sensor index="2">
   <sensor index="3">
-  <sensor index="4">     √(S4)
-  <sensor index="5">     √(S5)
-  <sensor index="6">
-  <sensor index="7">     
-  <sensor index="8">
+  <sensor index="4">
+  <sensor index="5">     √(S4)
+  <sensor index="6">     √(S5)
+  <sensor index="7">
+  <sensor index="8">     
+  <sensor index="9">
   
   
                       【8_7_6_5_4_3_2_1】 
-                       01001000===72
+                       01001000===72               从backview 开始算第一个
   <sensor index="1">
   <sensor index="2">
   <sensor index="3">
