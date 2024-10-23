@@ -517,6 +517,232 @@ find  -name "*Settings.apk"
 ```
 
 
+
+### Android.mk 文件编辑记录
+
+Android.mk 离 存在 if else 等相关的逻辑判断流程,用于控制编译流程,但缺点是编译复杂 编译速度慢
+
+```
+
+打印相关Log 
+
+$(warning 'zukgit-begin')
+$(warning 'zukgit-end')
+$(warning "zukgit LOCALPATH is $(LOCAL_PATH)")
+$(warning "zukgit TARGET_PRODUCT is $(TARGET_PRODUCT) ")
+
+$(warning " prebuilt_stdcxx_path is $(prebuilt_stdcxx_path)")
+$(warning " uvc_util_src_files is $(uvc_util_src_files)")
+$(warning " LOCAL_C_INCLUDES is $(LOCAL_C_INCLUDES)")
+$(warning " LOCAL_SRC_FILES is $(LOCAL_SRC_FILES)")
+$(warning " LOCAL_LDFLAGS is $(LOCAL_LDFLAGS)")
+$(warning " LOCAL_SHARED_LIBRARIES is $(LOCAL_SHARED_LIBRARIES)")
+$(warning " LOCAL_STATIC_LIBRARIES is $(LOCAL_STATIC_LIBRARIES)")
+
+
+
+```
+
+
+
+```
+
+ifeq ($(findstring  applex, $(strip $(TARGET_PRODUCT))), applex)        // 如果当前项目名称是applex  那么  执行
+        LOCAL_INIT_RC=hidl/$(HIDL_INTERFACE_VERSION)/AAAAAA.rc
+        $(warning "Supplicant [A] LOCAL_INIT_RC is $(LOCAL_INIT_RC) TARGET_PRODUCT is $(TARGET_PRODUCT) ")
+else    // 当前项目名称非 applex 的情况
+        LOCAL_INIT_RC=hidl/$(HIDL_INTERFACE_VERSION)/BBBBBB.rc
+        $(warning "Supplicant [B] LOCAL_INIT_RC is $(LOCAL_INIT_RC) TARGET_PRODUCT is $(TARGET_PRODUCT) ")
+endif
+
+```
+
+
+```
+
+// 如果当前的 项目名称  $(TARGET_PRODUCT)  不是 skyline【ifneq】    那么就执行 ifneq 语句  ,  如果是 skyline 那么跳过ifneq 语句
+
+ifneq ($(findstring  skyline, $(strip $(TARGET_PRODUCT))), skyline)
+DEVICE_MANIFEST_TXAS_FILES += \
+    device/xxxx/xxxx/xxxxx.xml
+endif
+
+```
+
+
+
+
+### Android.bp 文件编辑记录
+
+https://blog.csdn.net/FranzKafka95/article/details/136002469
+
+
+
+1. Android.bp 文件不存在 if else 相关的编译流程, 当该文件是 json 类型的子集,有点是 编译速度快 高度快...
+
+
+2. Android.bp 不存在 if else  流程控制  , 但中设计了一个 soong_config_module_type{} 的 模块对象 , 用来匹配在 .mk 文件中定义的宏开关 来 动态 
+控制代码的编译宏的开关 。
+ soong_config_module_type 定义了结构体的数据类型 
+ xxxx_hal_cc_defaults  定义了当前需要配置的数据 的具体的值 
+
+3. Android.bp 文件的 xxxx_hal_cc_defaults 会去 Soong 配置编译系统中去匹配 , 如果有定义这个宏 那么该宏对应的本地结构体设置为 true(1)
+   这个  true(1) 标识 当前编译系统存在这个 编译开关 , 当前 ifdef 只关心当前编译开关是否存在,而不关心该开关是是true还是false
+   在代码中宏预编译的部分  , 【ifdef 在代码中 用于判断是否存在这个编译宏开关而不关心这个编译开关是true还是false..】
+
+
+
+```
+  !!! 注意  当前 BoardConfig.mk 中定义  编译开关   
+【3.1】TEST_A_FEATURE_SUPPORT := false           ## 定义这个宏开关为 false 
+和   
+【3.2】#TEST_A_FEATURE_SUPPORT := false          ##  不定义 这个宏开关  
+和   
+【3.3】TEST_A_FEATURE_SUPPORT := true            ## 定义这个宏开关为 false 
+  
+  
+三种情况下 ， 对于 Soong 系统而言  , 【3.1__(定义这个宏开关为 false )】  和  【3.2__不定义 这个宏开关 】 有本质的区别
+
+
+在 代码中宏预编译的部分  , 【ifdef 在代码中 用于判断是否存在这个编译宏开关而不关心这个编译开关是true还是false..】
+
+#ifdef  defined(TEST_A_FEATURE_SUPPORT)          
+    #pragma message("___1111111___zukgit")        //  在 预编译中打印信息
+#elif defined(WIFI_HIDL_FEATURE_DUAL_INTERFACE)
+
+```
+
+
+
+
+```
+
+Android.bp  
+
+
+
+#声明一个soong编译配置模块
+#name表明该模块的名称
+#config_namespace表名该编译配置模块所属的命名空间，用于在Makefile中使用
+#modlue_type用于表明该编译配置模块所附属的编译配置
+#variables，bool_variables，value_variables表明该编译配置模块所支持的选项类型
+#bool_variables用于定义一个表征bool类型的配置项
+#value_variables 用于定义一个可传递的配置项，通过%s进行获取
+#properties用于表明该编译配置模块最终影响的可选项，其来自于moudle_type中的可选项
+
+soong_config_module_type {
+    name: "wifi_hal_cc_defaults",
+    module_type: "cc_defaults",
+    config_namespace: "wifi",   // 用于标识 在 .MK 文件 定义的前缀 
+	
+	variables: [              //  固定值字符串 数字 的宏开关
+        "hidl_product_name", // WIFI_HIDL_PRODUCT_NAME
+        "hidl_product_version", // WIFI_HIDL_PRODUCT_VERSION
+    ],
+    bool_variables: [           //  bool值的宏开关
+        "hidl_feature_aware", // WIFI_HIDL_FEATURE_AWARE
+        "hidl_feature_dual_interface", // WIFI_HIDL_FEATURE_DUAL_INTERFACE
+        "hidl_feature_disable_ap", // WIFI_HIDL_FEATURE_DISABLE_AP
+    ],
+    value_variables: [       // 用于定义一个可传递的配置项的宏，通过%s进行获取
+        "hal_interface_combinations", // WIFI_HAL_INTERFACE_COMBINATIONS
+    ],
+    properties: [
+        "cppflags",
+    ],
+}
+
+
+
+
+wifi_hal_cc_defaults {
+    name: "xxxxxxx-cppflags-defaults",
+    soong_config_variables: {   // 在 soong 编译配置系统中匹配 , 如果有定义 那么就在当前设置编译开关
+        hidl_feature_aware: {       // 如果发现当前 WIFI_HIDL_FEATURE_AWARE 这个开关有定义【！ 注意是有定义】 那么 就打开当前项目的编译开关 -DWIFI_HIDL_FEATURE_AWARE
+            cppflags: ["-DWIFI_HIDL_FEATURE_AWARE"],
+        },
+        hidl_feature_dual_interface: {    //  如果在 Soong 发现了该编译开关【不管配置为true , 还是 false】都在当前项目上 添加编译选项  "-DWIFI_HIDL_FEATURE_DUAL_INTERFACE"
+            cppflags: ["-DWIFI_HIDL_FEATURE_DUAL_INTERFACE"],
+        },
+        hidl_feature_disable_ap: {
+            cppflags: ["-DWIFI_HIDL_FEATURE_DISABLE_AP"],
+        },
+        hal_interface_combinations: {
+            cppflags: ["-DWIFI_HAL_INTERFACE_COMBINATIONS=%s"],
+        },
+    },
+}
+
+
+
+```
+
+
+#### 预编译Log的打印 
+
+#pragma message("___1___zukgit")   用于打印当前地址的预编译Log
+
+
+```
+
+
+// 先在需要打印的编译宏开关 定义 预编译的打印宏  PRINT_MARCO
+#define __PRINT_MACRO(x) #x
+#define PRINT_MARCO(x) #x"=" __PRINT_MACRO(x)   
+  
+
+
+// 在当前位置打印 Log  
+#pragma message("___1___zukgit")
+#pragma message("___2___zukgit")
+
+
+// 打印示例: 
+// hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp:80:13: warning: ___2___zukgit [-W#pragma-messages]
+//  80 |     #pragma message("___2___zukgit")
+
+
+
+//  打印当前编译匹配到Soong配置的宏开关【匹配到定义,无关是否是false 还是 true】
+ #pragma message(PRINT_MARCO(WIFI_HIDL_FEATURE_DUAL_INTERFACE))
+ 
+// 打印示例:   标识当前存在 WIFI_HIDL_FEATURE_DUAL_INTERFACE=1 这个编译开关宏 
+// wifi_feature_flags.cpp:161:15: warning: WIFI_HIDL_FEATURE_DUAL_INTERFACE=1 [-W#pragma-messages]
+
+
+// 打印示例:  标识当前不存在 WIFI_HIDL_FEATURE_DUAL_INTERFACE  这个开关宏 
+// wifi_feature_flags.cpp:161:15: warning: WIFI_HIDL_FEATURE_DUAL_INTERFACE=WIFI_HIDL_FEATURE_DUAL_INTERFACE [-W#pragma-messages]
+
+
+
+```
+
+当前存在的一些无法打印宏的编译错误
+```
+
+当前存在的一些无法打印宏的编译错误 , 可能是当前宏定义的是多个 空格组成的 没有引号包裹的宏定义
+
+hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp:167:17: error: pragma message requires parenthesized string
+  167 | #pragma message(PRINT_MARCO(WIFI_HAL_INTERFACE_COMBINATIONS))
+
+      |                              ^
+hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp:167:61: error: expected unqualified-id
+  167 | #pragma message(PRINT_MARCO(WIFI_HAL_INTERFACE_COMBINATIONS))
+      |                                                             ^
+hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp:168:29: error: too many arguments provided to function-like macro invocation
+  168 | #pragma message(PRINT_MARCO(WIFI_HAL_INTERFACE_COMBINATIONS_AP))
+  
+
+
+
+```
+
+
+
+
+
+
+
 ### 打开 Wifi_Verbose详情开关
 
 ```
