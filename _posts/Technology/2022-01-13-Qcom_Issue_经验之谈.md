@@ -746,6 +746,17 @@ adb push ./txpowerctrl.cfg   /vendor/firmware/
 ```
 
 
+###  Qcom抓取SniffLog
+
+```
+ 高通项目的 IPLog Tool 已经能抓取sniffLog 了 , MTK 平台还不行, 需要抓取建议使用Qcom设备
+
+```
+
+<img src="/public/zimage/qocm_issue/sniffLog_1.jpg"/>
+
+
+
 ### Qcom更换regdb.bin文件
 
 ```
@@ -907,7 +918,7 @@ vendor/qcom/nonhlos/Netrani.XXX/common/build/Ver_Info.txt
  ro.build.version.qcom   : XXXX.XXX.1.0.R1.11.00.00.816.199
  version-baseband        : M6450N_DE21_34.290.01.57R 
  
-``` 
+```
 
 ### wifi断连reason列表
 
