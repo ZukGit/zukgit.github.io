@@ -572,7 +572,7 @@ endif
 
 
 
-### Android.bp 文件编辑记录
+### Android.bp 文件说明
 
 https://blog.csdn.net/FranzKafka95/article/details/136002469
 
@@ -583,36 +583,15 @@ https://blog.csdn.net/FranzKafka95/article/details/136002469
 
 2. Android.bp 不存在 if else  流程控制  , 但中设计了一个 soong_config_module_type{} 的 模块对象 , 用来匹配在 .mk 文件中定义的宏开关 来 动态 
 控制代码的编译宏的开关 。
- soong_config_module_type 定义了结构体的数据类型 
- xxxx_hal_cc_defaults  定义了当前需要配置的数据 的具体的值 
+soong_config_module_type{} 定义了结构体的数据类型 
+soong_config_string_variable{ }  // 定义在 soong_config_module_type 中定义的 variables menu 字符串(非纯数字字符串)变量的 可选值
+xxxx_hal_cc_defaults{}  定义了当前需要配置的数据 的具体的值 
+
+
 
 3. Android.bp 文件的 xxxx_hal_cc_defaults 会去 Soong 配置编译系统中去匹配 , 如果有定义这个宏 那么该宏对应的本地结构体设置为 true(1)
    这个  true(1) 标识 当前编译系统存在这个 编译开关 , 当前 ifdef 只关心当前编译开关是否存在,而不关心该开关是是true还是false
    在代码中宏预编译的部分  , 【ifdef 在代码中 用于判断是否存在这个编译宏开关而不关心这个编译开关是true还是false..】
-
-
-
-```
-  !!! 注意  当前 BoardConfig.mk 中定义  编译开关   
-【3.1】TEST_A_FEATURE_SUPPORT := false           ## 定义这个宏开关为 false 
-和   
-【3.2】#TEST_A_FEATURE_SUPPORT := false          ##  不定义 这个宏开关  
-和   
-【3.3】TEST_A_FEATURE_SUPPORT := true            ## 定义这个宏开关为 false 
-  
-  
-三种情况下 ， 对于 Soong 系统而言  , 【3.1__(定义这个宏开关为 false )】  和  【3.2__不定义 这个宏开关 】 有本质的区别
-
-
-在 代码中宏预编译的部分  , 【ifdef 在代码中 用于判断是否存在这个编译宏开关而不关心这个编译开关是true还是false..】
-
-#ifdef  defined(TEST_A_FEATURE_SUPPORT)          
-    #pragma message("___1111111___zukgit")        //  在 预编译中打印信息
-#elif defined(WIFI_HIDL_FEATURE_DUAL_INTERFACE)
-
-```
-
-
 
 
 ```
@@ -635,8 +614,7 @@ soong_config_module_type {
     module_type: "cc_defaults",
     config_namespace: "wifi",   // 用于标识 在 .MK 文件 定义的前缀 
 	
-	variables: [              //  固定值字符串 数字 的宏开关
-        "hidl_product_name", // WIFI_HIDL_PRODUCT_NAME
+	variables: [              //  枚举字符串 值  需要在结构体 soong_config_string_variable 定义可选范围
         "hidl_product_version", // WIFI_HIDL_PRODUCT_VERSION
     ],
     bool_variables: [           //  bool值的宏开关
@@ -651,6 +629,13 @@ soong_config_module_type {
         "cppflags",
     ],
 }
+
+
+soong_config_string_variable {
+    name: "hidl_product_version",
+    values: ["v3" , "v2" ,"v1"] ,
+}
+
 
 
 
@@ -678,6 +663,262 @@ wifi_hal_cc_defaults {
 ```
 
 
+
+#### Android.bp 本地编辑编译记录
+
+##### wlan.mk定义编译开关宏_1
+/device/qcom/wlan/taro/wlan.mk
+
+```
+1.在 .mk 文件中定义了 编译开关宏的值 并传输给了 Soong 编译配置 如下
+/device/qcom/wlan/taro/wlan.mk  中 定义了配置开关
+
+WIFI_TEST1_FALSE_BOOL := false                       //  Bool宏_false    bool_variables
+WIFI_TEST2_TRUE_BOOL := true                         //  Bool宏_true     bool_variables
+WIFI_TEST3_VALUE_VARIABLES_STRING := HELLO WORLD { A B C}   //  动态传递字符串的宏  (包含 数字字符串)   value_variables
+WIFI_TEST4_VALUE_VARIABLES_NUMBER := 100                          //   Menu宏_{v3,v2,v1}  (在Soong 该项不能是纯数字) variables , 在Android.bp 可以定义 menu 可选值范围
+WIFI_TEST5_VARIABLES := v2
+
+
+
+```
+
+##### board_config_wifi.mk定义了需要传输到Soong配置的mk编译宏_2
+/build/make/core/board_config_wifi.mk
+
+```
+/build/make/core/board_config_wifi.mk     .mk文件中定义了 需要传递给 soong 配置信息的变量 
+
+
+ifdef WIFI_TEST1_FALSE_BOOL
+   // 使用 soong_config_set 定义namespace 是 wifi 的 字面变量 test_a_feature_support的值是 true 在 Soong配置系统中
+   // 也可以定义为false  定义为flase 那么 Soong 就不会主动匹配  Android.bp 中匹配的项就不会被定义 ,最终 #if def 就为 false, 不执行
+    $(call soong_config_set,wifi,test1_false_bool,false【这里定义fasle 就不会发送到Android.bp和 Soong】)   
+    $(warning " zukgit WIFI_TEST1_FALSE_BOOL is $(WIFI_TEST1_FALSE_BOOL)")
+
+endif
+
+ifdef WIFI_TEST2_TRUE_BOOL
+    $(call soong_config_set,wifi,test2_true_bool,true)   //  .mk 编译 和 Soong 编译配置 关联处   传输到 Android.bp
+    $(warning " zukgit  WIFI_TEST2_TRUE_BOOL is $(WIFI_TEST2_TRUE_BOOL)")
+endif
+
+
+ifdef WIFI_TEST3_VALUE_VARIABLES_STRING
+    $(call soong_config_set,wifi,test3_value_variables_string,$(WIFI_TEST3_VALUE_VARIABLES_STRING))  //  传输变量值
+    $(warning " zukgit_1024 WIFI_TEST3_VALUE_VARIABLES_STRING is $(WIFI_TEST3_VALUE_VARIABLES_STRING)")
+endif
+
+ifdef WIFI_TEST4_VALUE_VARIABLES_NUMBER
+    $(call soong_config_set,wifi,test4_value_variables_number,$(WIFI_TEST4_VALUE_VARIABLES_NUMBER))  //  传输变量值
+    $(warning " zukgit_1024 WIFI_TEST4_VALUE_VARIABLES_NUMBER is $(WIFI_TEST4_VALUE_VARIABLES_NUMBER)")
+endif
+
+ifdef WIFI_TEST5_VARIABLES
+    $(call soong_config_set,wifi,test5_variables,$(WIFI_TEST5_VARIABLES))     //  传输变量值
+    $(warning " zukgit_1024 WIFI_TEST5_VARIABLES is $(WIFI_TEST5_VARIABLES)")
+endif
+
+
+//打印的输出值:
+//build/make/core/board_config_wifi.mk:106: warning: " zukgit_1024 WIFI_TEST1_FALSE_BOOL is false"
+//build/make/core/board_config_wifi.mk:111: warning: " zukgit_1024 WIFI_TEST2_TRUE_BOOL is true"
+//build/make/core/board_config_wifi.mk:117: warning: " zukgit_1024 WIFI_TEST3_VALUE_VARIABLES_STRING is HELLO { A B C }"
+//build/make/core/board_config_wifi.mk:123: warning: " zukgit_1024 WIFI_TEST4_VALUE_VARIABLES_NUMBER is 100"
+//build/make/core/board_config_wifi.mk:129: warning: " zukgit_1024 WIFI_TEST5_VARIABLES is v2"
+
+```
+
+#### Android.bp配置对应的Soong编译类型结构体_3
+
+hardware/interfaces/wifi/aidl/default/Android.bp
+
+
+分别对下面三个结构体进行配置 使得Android.bp 能接受来自 Soong配置编译系统的变量
+1.soong_config_module_type{} 定义了结构体的数据类型 
+2.soong_config_string_variable{ }  // 定义在 soong_config_module_type 中定义的 variables menu 字符串(非纯数字字符串)变量的 可选值
+3.xxxx_hal_cc_defaults{}  定义了当前需要配置的数据 的具体的值 
+
+1. soong_config_module_type 定义了结构体的数据类型
+
+```
+
+
+soong_config_module_type {
+    name: "wifi_hal_cc_defaults",
+    module_type: "cc_defaults",
+    config_namespace: "wifi",  // 【这里定义了 来自 .mk 的宏命名空间 前缀是 WIFI 】
+    bool_variables: [     // 【 这里定义 Bool值 变量】
+        "test1_false_bool", // WIFI_TEST1_FALSE_BOOL
+        "test2_true_bool", // WIFI_TEST2_TRUE_BOOL
+    ],
+    value_variables: [   // 【这里定义从.mk传递过来的字符串 】
+        "test3_value_variables_string", // WIFI_TEST3_VALUE_VARIABLES_STRING
+        "test4_value_variables_number", // WIFI_TEST4_VALUE_VARIABLES_NUMBER
+    ],
+    
+    variables: [    //【这里定义 字符串 枚举值 (必须非纯数字字符串)】
+        "test5_variables", // WIFI_TEST5_VARIABLES
+    ],
+    properties: [
+        "cppflags",
+    ],
+}
+
+
+```
+
+
+
+2.soong_config_string_variable{ }  
+// 定义在 soong_config_module_type 中定义的 variables menu 字符串(非纯数字字符串)变量的 可选值
+
+```
+
+soong_config_string_variable {
+    name: "test5_variables",
+    values: ["v3" , "v2" ,"v1"] ,
+}
+
+
+
+```
+
+3.xxxx_hal_cc_defaults{}  定义了当前需要配置的数据 的具体的值 
+
+```
+
+wifi_hal_cc_defaults {
+    name: "android.hardware.wifi-service-cppflags-defaults",
+    soong_config_variables: {
+    
+         test1_false_bool: {   // bool 值进行 匹配 , 只有为 true 时 才定义当前Android.bp的 Flag --> WIFI_TEST1_FALSE_BOOL
+            cppflags: ["-DWIFI_TEST1_FALSE_BOOL"],
+        },
+        
+        test2_true_bool: {
+            cppflags: ["-DWIFI_TEST2_TRUE_BOOL"],
+        },
+        
+        test3_value_variables_string: {  // 字符串值 进行 匹配 %s 用于从mk和soong传递字符串到 Android.bp 
+            cppflags: ["-DWIFI_TEST3_VALUE_VARIABLES_STRING=%s"],
+        },   
+        test4_value_variables_number: {  // 字符串值(纯数字字符串) 匹配 %s 用于从mk和soong传递字符串到 Android.bp 
+            cppflags: ["-DWIFI_TEST4_VALUE_VARIABLES_NUMBER=%s"],
+        },
+    
+    
+    // menu 枚举值 , 必须是非数字字符串 ，如果在mk定义的在Android.bp soong_config_string_variable 范围之外会编译报错
+    // 例如: mk中定义 WIFI_TEST5_VARIABLES=v100 , 报错 error: <input>: Soong config property "test5_variables" must be one of [v3 v2 v1], found "v100"
+
+        test5_variables: {  
+            v3 :{
+                cppflags: ["-DWIFI_TEST5_VARIABLES=v3"],
+            },
+             v2 :{
+                cppflags: ["-DWIFI_TEST5_VARIABLES=v2"],
+            },
+             v1 :{
+                cppflags: ["-DWWIFI_TEST5_VARIABLES=v1"],
+            },
+            conditions_default:{
+                cppflags: ["-DWIFI_TEST5_VARIABLES=v1"],
+            }
+        },
+
+    },
+}
+
+
+
+
+```
+
+
+
+#### wifi_feature_flags.cpp文件中宏定义中打印宏信息_4
+
+hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp
+
+
+注意: 每个宏需要自己创建新的【Z_宏】 去打印这个 【Z_宏】 会省去很多编译麻烦
+
+```
+
+
+
+#define __PRINT_MACRO(x) #x
+#define PRINT_MARCO(x) #x"=" __PRINT_MACRO(x)
+
+
+#define Z_WIFI_TEST1_FALSE_BOOL (WIFI_TEST1_FALSE_BOOL)
+#define Z_WIFI_TEST2_TRUE_BOOL (WIFI_TEST2_TRUE_BOOL)
+#define Z_WIFI_TEST3_VALUE_VARIABLES_STRING (WIFI_TEST3_VALUE_VARIABLES_STRING)
+#define Z_WIFI_TEST4_VALUE_VARIABLES_NUMBER (WIFI_TEST4_VALUE_VARIABLES_NUMBER)
+#define Z_WIFI_TEST5_VARIABLES (WIFI_TEST5_VARIABLES)
+
+# pragma message ("________zukgit_1_____")
+# pragma message (PRINT_MARCO(Z_WIFI_TEST1_FALSE_BOOL))
+# pragma message (PRINT_MARCO(Z_WIFI_TEST2_TRUE_BOOL))
+# pragma message (PRINT_MARCO(Z_WIFI_TEST3_VALUE_VARIABLES_STRING))
+# pragma message (PRINT_MARCO(Z_WIFI_TEST4_VALUE_VARIABLES_NUMBER))
+# pragma message (PRINT_MARCO(Z_WIFI_TEST5_VARIABLES))
+# pragma message ("________zukgit_2_____")
+
+
+
+```
+
+
+#### 编译对应模块查看预编译打印信息_5
+
+```
+
+lunch xxxx && mmm hardware/interfaces/wifi/aidl/default/
+
+
+
+打印Log如下:
+
+
+hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp:134:10: warning: ________zukgit_1_____ [-W#pragma-messages]
+  134 | # pragma message ("________zukgit_1_____")
+      |          ^
+  //     $(call soong_config_set,wifi,test1_false_bool,!!!false!!!【这里定义fasle 就不会发送到Android.bp和 Soong】)   
+  // WIFI_TEST1_FALSE_BOOL 没有打印出来是因为 在 mk传给soong时设置为false 
+hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp:135:10: warning: Z_WIFI_TEST1_FALSE_BOOL=(WIFI_TEST1_FALSE_BOOL) [-W#pragma-messages]
+  135 | # pragma message (PRINT_MARCO(Z_WIFI_TEST1_FALSE_BOOL))  
+
+      |          ^
+hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp:136:10: warning: Z_WIFI_TEST2_TRUE_BOOL=(1) [-W#pragma-messages]
+  136 | # pragma message (PRINT_MARCO(Z_WIFI_TEST2_TRUE_BOOL))
+      |          ^
+hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp:137:10: warning: Z_WIFI_TEST3_VALUE_VARIABLES_STRING=(HELLO { A B C }) [-W#pragma-messages]
+  137 | # pragma message (PRINT_MARCO(Z_WIFI_TEST3_VALUE_VARIABLES_STRING))
+      |          ^
+hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp:138:10: warning: Z_WIFI_TEST4_VALUE_VARIABLES_NUMBER=(100) [-W#pragma-messages]
+  138 | # pragma message (PRINT_MARCO(Z_WIFI_TEST4_VALUE_VARIABLES_NUMBER))
+      |          ^
+hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp:139:10: warning: Z_WIFI_TEST5_VARIABLES=(v2) [-W#pragma-messages]
+  139 | # pragma message (PRINT_MARCO(Z_WIFI_TEST5_VARIABLES))
+      |          ^
+hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp:140:10: warning: ________zukgit_2_____ [-W#pragma-messages]
+  140 | # pragma message ("________zukgit_2_____")
+      |          ^
+7 warnings generated.
+
+
+
+
+```
+
+
+
+
+
+
+
+
 #### 预编译Log的打印 
 
 #pragma message("___1___zukgit")   用于打印当前地址的预编译Log
@@ -685,60 +926,46 @@ wifi_hal_cc_defaults {
 
 ```
 
-
-// 先在需要打印的编译宏开关 定义 预编译的打印宏  PRINT_MARCO
-#define __PRINT_MACRO(x) #x
-#define PRINT_MARCO(x) #x"=" __PRINT_MACRO(x)   
+  // define Z_旧宏  (旧宏)  只打印 Z_旧宏的数据
+  // 新定义一个Z_宏 来输出这个宏 避免编译报错   
+  //   error: pragma message requires parenthesized string  【血泪史_得到的方法..新定义一个宏】
+  //   error: too many arguments provided to function-like macro invocation
+  // : error: use of undeclared identifier 'legacyToChipConcurrencyComboList'
   
+  
+#define __PRINT_MACRO(x) #x
+#define PRINT_MARCO(x) #x"=" __PRINT_MACRO(x)
 
 
-// 在当前位置打印 Log  
-#pragma message("___1___zukgit")
-#pragma message("___2___zukgit")
+#define Z_WIFI_TEST1_FALSE_BOOL (WIFI_TEST1_FALSE_BOOL)   // define Z_旧宏  (旧宏) 
+#define Z_WIFI_TEST2_TRUE_BOOL (WIFI_TEST2_TRUE_BOOL)
+#define Z_WIFI_TEST3_VALUE_VARIABLES_STRING (WIFI_TEST3_VALUE_VARIABLES_STRING)
+#define Z_WIFI_TEST4_VALUE_VARIABLES_NUMBER (WIFI_TEST4_VALUE_VARIABLES_NUMBER)
+#define Z_WIFI_TEST5_VARIABLES (WIFI_TEST5_VARIABLES)
+
+# pragma message ("________zukgit_1_____")
+# pragma message (PRINT_MARCO(Z_WIFI_TEST1_FALSE_BOOL))
+# pragma message (PRINT_MARCO(Z_WIFI_TEST2_TRUE_BOOL))
+# pragma message (PRINT_MARCO(Z_WIFI_TEST3_VALUE_VARIABLES_STRING))
+# pragma message (PRINT_MARCO(Z_WIFI_TEST4_VALUE_VARIABLES_NUMBER))
+# pragma message (PRINT_MARCO(Z_WIFI_TEST5_VARIABLES))
+# pragma message ("________zukgit_2_____")
+
 
 
 // 打印示例: 
-// hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp:80:13: warning: ___2___zukgit [-W#pragma-messages]
-//  80 |     #pragma message("___2___zukgit")
-
-
-
-//  打印当前编译匹配到Soong配置的宏开关【匹配到定义,无关是否是false 还是 true】
- #pragma message(PRINT_MARCO(WIFI_HIDL_FEATURE_DUAL_INTERFACE))
+// hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp:134:10: warning: ________zukgit_1_____ [-W#pragma-messages]
+// hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp:135:10: warning: Z_WIFI_TEST1_FALSE_BOOL=(WIFI_TEST1_FALSE_BOOL) [-W#pragma-messages]
+// hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp:136:10: warning: Z_WIFI_TEST2_TRUE_BOOL=(1) [-W#pragma-messages]
+// hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp:137:10: warning: Z_WIFI_TEST3_VALUE_VARIABLES_STRING=(HELLO { A B C }) [-W#pragma-messages]
+// hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp:138:10: warning: Z_WIFI_TEST4_VALUE_VARIABLES_NUMBER=(100) [-W#pragma-messages]
+// hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp:139:10: warning: Z_WIFI_TEST5_VARIABLES=(v2) [-W#pragma-messages]
+// hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp:140:10: warning: ________zukgit_2_____ [-W#pragma-messages]
  
-// 打印示例:   标识当前存在 WIFI_HIDL_FEATURE_DUAL_INTERFACE=1 这个编译开关宏 
-// wifi_feature_flags.cpp:161:15: warning: WIFI_HIDL_FEATURE_DUAL_INTERFACE=1 [-W#pragma-messages]
-
-
-// 打印示例:  标识当前不存在 WIFI_HIDL_FEATURE_DUAL_INTERFACE  这个开关宏 
-// wifi_feature_flags.cpp:161:15: warning: WIFI_HIDL_FEATURE_DUAL_INTERFACE=WIFI_HIDL_FEATURE_DUAL_INTERFACE [-W#pragma-messages]
-
+ 
 
 
 ```
-
-当前存在的一些无法打印宏的编译错误
-```
-
-当前存在的一些无法打印宏的编译错误 , 可能是当前宏定义的是多个 空格组成的 没有引号包裹的宏定义
-
-hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp:167:17: error: pragma message requires parenthesized string
-  167 | #pragma message(PRINT_MARCO(WIFI_HAL_INTERFACE_COMBINATIONS))
-
-      |                              ^
-hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp:167:61: error: expected unqualified-id
-  167 | #pragma message(PRINT_MARCO(WIFI_HAL_INTERFACE_COMBINATIONS))
-      |                                                             ^
-hardware/interfaces/wifi/aidl/default/wifi_feature_flags.cpp:168:29: error: too many arguments provided to function-like macro invocation
-  168 | #pragma message(PRINT_MARCO(WIFI_HAL_INTERFACE_COMBINATIONS_AP))
-  
-
-
-
-```
-
-
-
 
 
 
