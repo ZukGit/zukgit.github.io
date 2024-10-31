@@ -2433,6 +2433,614 @@ q_Reserved = { 117440512, 0 }
 ```
 
 
+### LOG [ GNSS GPS Measurement Report ]
+```
+
+16:44:04.830089	[0x1477]	GNSS GPS Measurement Report
+Version = 0
+V0 {
+   F Count = 54807286
+   GPS Week Number = 2338
+   GPS Milliseconds = 60262429
+   Time Bias = 0.018348
+   ClkTimeUncMs = 2.16663e-005
+   Clock Frequency Bias = -2.005613
+   Clock Frequency Uncertainty = 2.83922
+   Number Of SVs = 9
+   SV[0] {
+      SV =   2
+      ObsState =      TRK
+      Tot = 190
+      Gd = 190
+      PrtyEM = 0x0000
+      FiltN = 1
+      CNo = 32.2
+      Latency = -20
+      Pre = 20
+      Post = 47
+      Ms =  60262349
+      SubMs = 0.46073633
+      TUnc = 0.000102
+      Speed = -158.14
+      SpdUnc = 0.3
+      MeasStat {
+         MeasStat = 0x082400FF
+      }
+      MiscStat {
+         MpVal = 0
+         DirVal = 1
+      }
+      MP =   0
+      AziDeg =  301.9
+      ElvDeg =   24.2
+      CarrPhase =           0.000000
+      FnSpd = -158.030
+      FnSpdU = 0.0375
+      CSlip = 42
+   }
+   SV[1] {
+      SV =  10
+      ObsState =      TRK
+      Tot = 181
+      Gd = 181
+      PrtyEM = 0x0000
+      FiltN = 1
+      CNo = 34.2
+      Latency = -30
+      Pre = 20
+      Post = 47
+      Ms =  60262359
+      SubMs = 0.53514260
+      TUnc = 0.000077
+      Speed =  319.36
+      SpdUnc = 0.3
+      MeasStat {
+         MeasStat = 0x0824007F
+      }
+      MiscStat {
+         MpVal = 0
+         DirVal = 1
+      }
+      MP =   0
+      AziDeg =  137.0
+      ElvDeg =   60.6
+      CarrPhase =           0.000000
+      FnSpd =  319.485
+      FnSpdU = 0.0509
+      CSlip = 248
+   }
+   SV[2] {
+      SV =  12
+      ObsState =      TRK
+      Tot = 173
+      Gd = 173
+      PrtyEM = 0x0000
+      FiltN = 1
+      CNo = 34.0
+      Latency = -19
+      Pre = 20
+      Post = 47
+      Ms =  60262350
+      SubMs = 0.34758475
+      TUnc = 0.000077
+      Speed =  120.58
+      SpdUnc = 0.3
+      MeasStat {
+         MeasStat = 0x0824007F
+      }
+      MiscStat {
+         MpVal = 0
+         DirVal = 1
+      }
+      MP =   0
+      AziDeg =   58.6
+      ElvDeg =   21.0
+      CarrPhase =           0.000000
+      FnSpd =  120.555
+      FnSpdU = 0.0344
+      CSlip = 216
+   }
+   SV[3] {
+      SV =  21
+      ObsState =      TRK
+      Tot = 40
+      Gd =  40
+      PrtyEM = 0x0000
+      FiltN = 1
+      CNo = 28.4
+      Latency = -18
+      Pre = 20
+      Post = 47
+      Ms =  60262351
+      SubMs = 0.06402376
+      TUnc = 0.000156
+      Speed =   75.22
+      SpdUnc = 0.4
+      MeasStat {
+         MeasStat = 0x0824007F
+      }
+      MiscStat {
+         MpVal = 0
+         DirVal = 1
+      }
+      MP =   0
+      AziDeg =  282.2
+      ElvDeg =   31.0
+      CarrPhase =           0.000000
+      FnSpd =   75.028
+      FnSpdU = 0.0428
+      CSlip = 2
+   }
+   SV[4] {
+      SV =  23
+      ObsState =      TRK
+      Tot = 108
+      Gd = 108
+      PrtyEM = 0x0000
+      FiltN = 1
+      CNo = 33.1
+      Latency = -19
+      Pre = 20
+      Post = 47
+      Ms =  60262350
+      SubMs = 0.23050952
+      TUnc = 0.000088
+      Speed =  678.58
+      SpdUnc = 0.3
+      MeasStat {
+         MeasStat = 0x082400BF
+      }
+      MiscStat {
+         MpVal = 0
+         DirVal = 1
+      }
+      MP =   0
+      AziDeg =  136.6
+      ElvDeg =   18.9
+      CarrPhase =           0.000000
+      FnSpd =  678.846
+      FnSpdU = 0.0352
+      CSlip = 46
+   }
+   SV[5] {
+      SV =  25
+      ObsState =      TRK
+      Tot = 69
+      Gd =  69
+      PrtyEM = 0x0000
+      FiltN = 1
+      CNo = 29.9
+      Latency = -14
+      Pre = 20
+      Post = 47
+      Ms =  60262355
+      SubMs = 0.28551623
+      TUnc = 0.000136
+      Speed = -266.27
+      SpdUnc = 0.4
+      MeasStat {
+         MeasStat = 0x0824007F
+      }
+      MiscStat {
+         MpVal = 0
+         DirVal = 1
+      }
+      MP =   0
+      AziDeg =  101.3
+      ElvDeg =   33.2
+      CarrPhase =           0.000000
+      FnSpd = -266.289
+      FnSpdU = 0.0354
+      CSlip = 102
+   }
+   SV[6] {
+      SV =  28
+      ObsState =      TRK
+      Tot = 181
+      Gd = 181
+      PrtyEM = 0x0000
+      FiltN = 1
+      CNo = 30.0
+      Latency = -10
+      Pre = 20
+      Post = 47
+      Ms =  60262359
+      SubMs = 0.55989397
+      TUnc = 0.000136
+      Speed = -327.36
+      SpdUnc = 0.4
+      MeasStat {
+         MeasStat = 0x0824007F
+      }
+      MiscStat {
+         MpVal = 0
+         DirVal = 1
+      }
+      MP =   0
+      AziDeg =  210.9
+      ElvDeg =   63.3
+      CarrPhase =           0.000000
+      FnSpd = -327.275
+      FnSpdU = 0.0245
+      CSlip = 85
+   }
+   SV[7] {
+      SV =  31
+      ObsState =      TRK
+      Tot = 180
+      Gd = 180
+      PrtyEM = 0x0000
+      FiltN = 1
+      CNo = 37.5
+      Latency = -17
+      Pre = 20
+      Post = 47
+      Ms =  60262352
+      SubMs = 0.93225902
+      TUnc = 0.000044
+      Speed = -687.26
+      SpdUnc = 0.2
+      MeasStat {
+         MeasStat = 0x082400FF
+      }
+      MiscStat {
+         MpVal = 0
+         DirVal = 1
+      }
+      MP =   0
+      AziDeg =  216.5
+      ElvDeg =   27.6
+      CarrPhase =           0.000000
+      FnSpd = -687.258
+      FnSpdU = 0.0297
+      CSlip = 35
+   }
+   SV[8] {
+      SV =  32
+      ObsState =      TRK
+      Tot = 167
+      Gd = 167
+      PrtyEM = 0x0001
+      FiltN = 1
+      CNo = 30.2
+      Latency = -30
+      Pre = 20
+      Post = 47
+      Ms =  60262359
+      SubMs = 0.55589926
+      TUnc = 0.000136
+      Speed =   47.67
+      SpdUnc = 0.4
+      MeasStat {
+         MeasStat = 0x082400BF
+      }
+      MiscStat {
+         MpVal = 0
+         DirVal = 1
+      }
+      MP =   0
+      AziDeg =   16.7
+      ElvDeg =   71.0
+      CarrPhase =           0.000000
+      FnSpd =   47.909
+      FnSpdU = 0.0545
+      CSlip = 142
+   }
+}
+
+
+```
+
+
+
+### LOG [ GNSS Glonass Measurement Report ]
+
+```
+16:44:04.830218	[0x1480]	GNSS Glonass Measurement Report
+Version = 0
+V0 {
+   F Count = 54807286
+   GLONASS Cycle Number 4 Years = 8
+   GLONASS Number Of Days In 4 Year = 301
+   GLONASS Milliseconds = 71044429
+   Time Bias = 0.022154
+   ClkTimeUncMs = 2.28654e-005
+   Clock Frequency Bias = -2.005613
+   Clock Frequency Uncertainty = 2.83922
+   Number Of SVs = 9
+   SV[0] {
+      SV =  66
+      FrqIdx = -4
+      ObsState =         TRK
+      Tot = 181
+      Gd = 181
+      HammEM = 0x00
+      FiltN = 1
+      CNo = 28.9
+      Latency = -27
+      Pre = 20
+      Post = 47
+      Ms =  71044362
+      SubMs = 0.51569736
+      TUnc = 0.000156
+      Speed =  104.39
+      SpdUnc = 0.4
+      MeasStat {
+         MeasStat = 0x082700FF
+      }
+      MiscStat {
+         MpVal = 0
+         DirVal = 1
+      }
+      MP =   0
+      AziDeg =   44.4
+      ElvDeg =   57.9
+      CarrPhase =           0.000000
+      FnSpd =  104.430
+      FnSpdU = 0.0561
+      CSlip = 138
+   }
+   SV[1] {
+      SV =  82
+      FrqIdx = -3
+      ObsState =         TRK
+      Tot = 167
+      Gd = 167
+      HammEM = 0x00
+      FiltN = 1
+      CNo = 27.4
+      Latency = -14
+      Pre = 20
+      Post = 47
+      Ms =  71044355
+      SubMs = 0.55050749
+      TUnc = 0.000180
+      Speed =  354.87
+      SpdUnc = 0.5
+      MeasStat {
+         MeasStat = 0x082700FF
+      }
+      MiscStat {
+         MpVal = 0
+         DirVal = 1
+      }
+      MP =   0
+      AziDeg =  274.2
+      ElvDeg =   26.7
+      CarrPhase =           0.000000
+      FnSpd =  355.231
+      FnSpdU = 0.6083
+      CSlip = 55
+   }
+   SV[2] {
+      SV =  77
+      FrqIdx = -2
+      ObsState =         TRK
+      Tot = 95
+      Gd =  94
+      HammEM = 0x00
+      FiltN = 1
+      CNo = 26.9
+      Latency = -10
+      Pre = 20
+      Post = 47
+      Ms =  71044359
+      SubMs = 0.21609499
+      TUnc = 0.000208
+      Speed = -651.41
+      SpdUnc = 0.5
+      MeasStat {
+         MeasStat = 0x0827007F
+      }
+      MiscStat {
+         MpVal = 0
+         DirVal = 1
+      }
+      MP =   0
+      AziDeg =  158.6
+      ElvDeg =   39.6
+      CarrPhase =           0.000000
+      FnSpd = -651.716
+      FnSpdU = 0.0584
+      CSlip = 65
+   }
+   SV[3] {
+      SV =  76
+      FrqIdx = -1
+      ObsState =         TRK
+      Tot = 181
+      Gd = 181
+      HammEM = 0x00
+      FiltN = 1
+      CNo = 32.9
+      Latency = -27
+      Pre = 20
+      Post = 47
+      Ms =  71044362
+      SubMs = 0.24932428
+      TUnc = 0.000088
+      Speed =   -4.33
+      SpdUnc = 0.3
+      MeasStat {
+         MeasStat = 0x082700FF
+      }
+      MiscStat {
+         MpVal = 0
+         DirVal = 1
+      }
+      MP =   0
+      AziDeg =   84.7
+      ElvDeg =   55.4
+      CarrPhase =           0.000000
+      FnSpd =   -4.182
+      FnSpdU = 0.0479
+      CSlip = 191
+   }
+   SV[4] {
+      SV =  75
+      FrqIdx = 0
+      ObsState =         TRK
+      Tot = 169
+      Gd = 169
+      HammEM = 0x00
+      FiltN = 1
+      CNo = 36.1
+      Latency = -18
+      Pre = 20
+      Post = 47
+      Ms =  71044351
+      SubMs = 0.59172118
+      TUnc = 0.000050
+      Speed =  697.68
+      SpdUnc = 0.2
+      MeasStat {
+         MeasStat = 0x0827007F
+      }
+      MiscStat {
+         MpVal = 0
+         DirVal = 1
+      }
+      MP =   0
+      AziDeg =   27.6
+      ElvDeg =   14.9
+      CarrPhase =           0.000000
+      FnSpd =  697.651
+      FnSpdU = 0.0316
+      CSlip = 38
+   }
+   SV[5] {
+      SV =  65
+      FrqIdx = 1
+      ObsState =         TRK
+      Tot = 108
+      Gd = 108
+      HammEM = 0x01
+      FiltN = 1
+      CNo = 18.3
+      Latency = -16
+      Pre = 20
+      Post = 47
+      Ms =  71044353
+      SubMs = 0.53092366
+      TUnc = 0.000647
+      Speed =  540.43
+      SpdUnc = 1.0
+      MeasStat {
+         MeasStat = 0x0823001F
+      }
+      MiscStat {
+         MpVal = 0
+         DirVal = 1
+      }
+      MP =   0
+      AziDeg =   93.7
+      ElvDeg =   20.2
+      CarrPhase =           0.000000
+      FnSpd =    0.000
+      FnSpdU = 0.0000
+      CSlip = 239
+   }
+   SV[6] {
+      SV =  83
+      FrqIdx = 3
+      ObsState =         TRK
+      Tot = 8
+      Gd =   8
+      HammEM = 0x01
+      FiltN = 1
+      CNo = 21.6
+      Latency = -16
+      Pre = 20
+      Post = 47
+      Ms =  71044353
+      SubMs = 0.43387124
+      TUnc = 0.000423
+      Speed = -190.62
+      SpdUnc = 0.8
+      MeasStat {
+         MeasStat = 0x0823001F
+      }
+      MiscStat {
+         MpVal = 0
+         DirVal = 1
+      }
+      MP =   0
+      AziDeg =  319.0
+      ElvDeg =   20.8
+      CarrPhase =           0.000000
+      FnSpd =    0.000
+      FnSpdU = 0.0000
+      CSlip = 96
+   }
+   SV[7] {
+      SV =  81
+      FrqIdx = 4
+      ObsState =         TRK
+      Tot = 170
+      Gd = 170
+      HammEM = 0x00
+      FiltN = 1
+      CNo = 35.3
+      Latency = -19
+      Pre = 20
+      Post = 47
+      Ms =  71044350
+      SubMs = 0.71181178
+      TUnc = 0.000058
+      Speed =  718.84
+      SpdUnc = 0.3
+      MeasStat {
+         MeasStat = 0x0827007F
+      }
+      MiscStat {
+         MpVal = 0
+         DirVal = 1
+      }
+      MP =   0
+      AziDeg =  227.6
+      ElvDeg =   11.3
+      CarrPhase =           0.000000
+      FnSpd =  718.670
+      FnSpdU = 0.0337
+      CSlip = 75
+   }
+   SV[8] {
+      SV =  67
+      FrqIdx = 5
+      ObsState =         TRK
+      Tot = 106
+      Gd = 106
+      HammEM = 0x00
+      FiltN = 1
+      CNo = 32.8
+      Latency = -10
+      Pre = 20
+      Post = 47
+      Ms =  71044359
+      SubMs = 0.10273521
+      TUnc = 0.000088
+      Speed = -450.22
+      SpdUnc = 0.3
+      MeasStat {
+         MeasStat = 0x082700FF
+      }
+      MiscStat {
+         MpVal = 0
+         DirVal = 1
+      }
+      MP =   0
+      AziDeg =  316.4
+      ElvDeg =   39.9
+      CarrPhase =           0.000000
+      FnSpd = -450.195
+      FnSpdU = 0.0224
+      CSlip = 157
+   }
+}
+
+```
+
+
 ### LOG [ GNSS_Position_Report ]
 
 ```
