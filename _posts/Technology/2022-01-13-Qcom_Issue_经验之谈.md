@@ -195,14 +195,14 @@ GPS的功耗模式是 cold start(全功耗)->tracking->LPM->DPO      
 
 #### 老平台移除XTRA
 ```
-拉取  /system/vendor/etc/gps.conf 文件 然后设置 XTRA_TEST_ENABLED = 1 和 XTRA_THROTTLE_ENABLED = 0 到文件 
+拉取  /system/vendor/etc/gps.conf  或者 /vendor/etc/gps.conf  文件 然后设置 XTRA_TEST_ENABLED = 1 和 XTRA_THROTTLE_ENABLED = 0 到文件 
 重新导入覆盖源文件就可以移除xtra下载限制
 
 adb root
 adb remount
-adb pull system/vendor/etc/gps.conf .
+adb pull /system/vendor/etc/gps.conf .
 
-
+adb pull /vendor/etc/gps.conf 
 
 open gps.conf and add two configs at the end of file:
 XTRA_TEST_ENABLED = 1
@@ -210,7 +210,10 @@ XTRA_THROTTLE_ENABLED = 0
 
 
 
-adb push gps.conf system/vendor/etc/gps.conf
+adb push gps.conf /system/vendor/etc/gps.conf
+
+adb push gps.conf /vendor/etc/gps.conf
+
 adb reboot
 
 
