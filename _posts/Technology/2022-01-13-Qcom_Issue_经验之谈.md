@@ -1023,6 +1023,13 @@ adb reboot
 
 
 
+关闭sar服务命令:
+adb root && adb shell setprop persist.vendor.radio.disable_sar  1  && adb reboot
+
+
+打开sar服务命令
+adb root  &&  adb shell setprop persist.vendor.radio.disable_sar  0 && adb reboot
+
 ```
 
 ```
