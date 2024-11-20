@@ -25,6 +25,48 @@ typora-copy-images-to: ..\..\public\zimage
 
 
 
+
+#### match过滤多关键字(无法实时)
+
+
+```
+
+
+1. ctrl + a      // 选中当前所有的item  
+2. 右键菜单选中  match (搜索)
+3. RegEx Engineer 选中为   Perl 
+4. Content to Search 需要选中 Type  Name  Summary 
+5. 在 Search For 输入栏输入 搜索关键字   示例 :    【Initiate XTRA-T session|tm_xtra3】
+
+点击  Match 后就可以查看当前过滤出关键字的 item 列表项 
+
+
+```
+
+![](/public/zimage/qcom_tool/qxdm_search_1.jpg)
+
+![](/public/zimage/qcom_tool/qxdm_search_2.jpg)
+
+#### Find 搜索关键字匹配_item 
+
+```
+
+1. Ctrl+F  // 打开 Find 界面 
+2. 输入匹配的关键字   示例:  Initiate XTRA-T session
+3. 选中 Contents to Search 中的 Name Summary 
+4， 点击 Find 进行查找 
+
+CTRL + N  (下一个匹配match_item)
+
+CTRL + Shift + N  (上一个匹配match_item)
+
+
+```
+
+
+
+
+
 ##  EVENT_GPS
 
 ```
