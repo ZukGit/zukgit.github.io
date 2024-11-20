@@ -67,6 +67,86 @@ CTRL + Shift + N  (上一个匹配match_item)
 
 
 
+
+### 检查xtra的QXDM_match过滤字符串
+
+```
+Initiate XTRA-T session|EVENT_GPSONEXTRA_END_DOWNLOAD|tm_xtra_is_req_blocked|SESSION start request from TM|SESSION stop request from TM|XTRA data/time valid|XTRA data invalid|XTRA3 FileName selected|injecting XTRA3
+```
+
+#### 正常xtra下载打印的Log
+```
+
+Match过滤字符串——————
+Initiate XTRA-T session|EVENT_GPSONEXTRA_END_DOWNLOAD|tm_xtra_is_req_blocked|SESSION start request from TM|SESSION stop request from TM|XTRA data/time valid|XTRA data invalid|XTRA3 FileName selected|injecting XTRA3
+
+
+
+════1═════   XTRA data/time valid 数据有效  跳过下载 
+07:15:11.182631          GPS SM/Medium                                               [           tm_xtra.c   4693] Initiate XTRA-T session.                                                   
+07:15:11.183338          GPS SM/Medium                                               [             lm_tm.c   1465] =LM TASK= Received SESSION start request from TM                           
+07:15:11.183413          GPS SM/High                                                 [           tm_xtra.c   4441] XTRA data/time valid. Ask TLE for Pos Unc for XTRA-T if necessary          
+07:15:15.351235          GPS SM/Medium                                               [             lm_tm.c   1773] =LM TASK= Received SESSION stop request from TM
+
+════2═════   XTRA data/time valid 数据无效  请求下载    tm_xtra_is_req_blocked=FLASE  下载请求未被阻止  (False___不阻止) (True___阻止)
+ // Session 开始
+07:15:15.871405          GPS SM/Medium                                               [           tm_xtra.c   4693] Initiate XTRA-T session.    
+07:15:15.872117          GPS SM/Medium                                               [             lm_tm.c   1465] =LM TASK= Received SESSION start request from TM                           
+// 请求下载数据
+07:15:15.877954          GPS SM/High                                                 [           tm_xtra.c   4183] =TM XTRA= XTRA data invalid/expired at time inject, request data download   
+// 下载请求未被阻止
+07:15:15.877973          GPS SM/Medium                                               [           tm_xtra.c    247] =TM XTRA= tm_xtra_is_req_blocked == FALSE                                  
+07:15:15.878086          GPS SM/Medium                                               [           tm_xtra.c    247] =TM XTRA= tm_xtra_is_req_blocked == FALSE
+// 请求的 xtra数据  以及执行 注入 injecting XTRA3 数据 
+07:15:15.878218          GPS SM/Medium                                               [tm_decode_xtra3_data.c   9874] =TM XTRA= XTRA3 FileName selected = [https://path2.xtracloud.net/xtra3grcej.bin]
+07:15:15.878235          GPS SM/Medium                                               [tm_decode_xtra3_data.c   9874] =TM XTRA= XTRA3 FileName selected = [https://path3.xtracloud.net/xtra3grcej.bin]
+07:15:15.878251          GPS SM/Medium                                               [tm_decode_xtra3_data.c   9874] =TM XTRA= XTRA3 FileName selected = [https://path1.xtracloud.net/xtra3grcej.bin]
+07:15:17.176182          GPS SM/Medium                                               [tm_xtra_data_handler.c    750]  Present XTRA ver=3, injecting XTRA3
+// 下载xtra数据成功并注入成功
+07:15:17.335155          EVENT_GPSONEXTRA_END_DOWNLOAD                               End Reason = Success
+// Session 结束
+07:15:18.102503          GPS SM/Medium                                               [             lm_tm.c   1773] =LM TASK= Received SESSION stop request from TM
+
+
+
+════3═════  XTRA data/time valid 数据有效  跳过下载 
+07:15:18.621791          GPS SM/Medium                                               [           tm_xtra.c   4693] Initiate XTRA-T session.                                                   
+07:15:18.622544          GPS SM/Medium                                               [             lm_tm.c   1465] =LM TASK= Received SESSION start request from TM                           
+07:15:18.622642          GPS SM/High                                                 [           tm_xtra.c   4441] XTRA data/time valid. Ask TLE for Pos Unc for XTRA-T if necessary          
+07:15:20.264567          GPS SM/Medium                                               [             lm_tm.c   1773] =LM TASK= Received SESSION stop request from TM           
+
+
+════4═════  XTRA data/time valid 数据无效  请求下载    tm_xtra_is_req_blocked=FLASE  下载请求未被阻止  (False___不阻止) (True___阻止)
+07:15:24.590178          GPS SM/Medium                                               [           tm_xtra.c   4693] Initiate XTRA-T session.                                                   
+07:15:24.590822          GPS SM/Medium                                               [             lm_tm.c   1465] =LM TASK= Received SESSION start request from TM                           
+07:15:24.598804          GPS SM/High                                                 [           tm_xtra.c   4183] =TM XTRA= XTRA data invalid/expired at time inject, request data download  
+07:15:24.598812          GPS SM/Medium                                               [           tm_xtra.c    247] =TM XTRA= tm_xtra_is_req_blocked == FALSE                                  
+07:15:24.598892          GPS SM/Medium                                               [           tm_xtra.c    247] =TM XTRA= tm_xtra_is_req_blocked == FALSE
+07:15:24.599012          GPS SM/Medium                                               [tm_decode_xtra3_data.c   9874] =TM XTRA= XTRA3 FileName selected = [https://path3.xtracloud.net/xtra3grcej.bin]
+07:15:24.599024          GPS SM/Medium                                               [tm_decode_xtra3_data.c   9874] =TM XTRA= XTRA3 FileName selected = [https://path1.xtracloud.net/xtra3grcej.bin]
+07:15:24.599035          GPS SM/Medium                                               [tm_decode_xtra3_data.c   9874] =TM XTRA= XTRA3 FileName selected = [https://path2.xtracloud.net/xtra3grcej.bin]
+07:15:25.233715          GPS SM/Medium                                               [tm_xtra_data_handler.c    750]  Present XTRA ver=3, injecting XTRA3
+07:15:25.404203          EVENT_GPSONEXTRA_END_DOWNLOAD                               End Reason = Success                                                                                     
+07:15:31.973953          GPS SM/Medium                                               [             lm_tm.c   1773] =LM TASK= Received SESSION stop request from TM                            
+```
+
+
+#### 异常xtra下载打印的Log
+
+```
+
+Match过滤字符串——————
+Initiate XTRA-T session|EVENT_GPSONEXTRA_END_DOWNLOAD|tm_xtra_is_req_blocked|SESSION start request from TM|SESSION stop request from TM|XTRA data/time valid|XTRA data invalid|XTRA3 FileName selected|injecting XTRA3
+
+
+
+
+
+```
+
+
+
+
 ##  EVENT_GPS
 
 ```
