@@ -70,28 +70,51 @@ CTRL + Shift + N  (上一个匹配match_item)
 
 ### 检查xtra的QXDM_match过滤字符串
 
+过滤关键字__精确
 ```
-Initiate XTRA-T session|EVENT_GPSONEXTRA_END_DOWNLOAD|tm_xtra_is_req_blocked|SESSION start request from TM|SESSION stop request from TM|XTRA data/time valid|XTRA data invalid|XTRA3 FileName selected|injecting XTRA3
-```
-
-#### 正常xtra下载打印的Log
+XTRA Download Request Blocked|GPS time is invalid|Time injection|sending time info request|pdsm_xtra_inject_time_info|Initiate XTRA-T session|EVENT_GPSONEXTRA_END_DOWNLOAD|EVENT_GPSONEXTRA_START_DOWNLOAD|tm_xtra_is_req_blocked|SESSION start request from TM|SESSION stop request from TM|XTRA data/time valid|XTRA data invalid|XTRA3 FileName selected|injecting XTRA3
 ```
 
-Match过滤字符串——————
-Initiate XTRA-T session|EVENT_GPSONEXTRA_END_DOWNLOAD|tm_xtra_is_req_blocked|SESSION start request from TM|SESSION stop request from TM|XTRA data/time valid|XTRA data invalid|XTRA3 FileName selected|injecting XTRA3
+过滤关键字__模糊
+```
+xtra|SESSION start request from TM|SESSION stop request from TM
+```
+
+#### 正常xtra下载打印的Log_1
+```
+
+Match过滤字符串1——————
+xtra|SESSION start request from TM|SESSION stop request from TM
+
+Match过滤字符串2——————
+XTRA Download Request Blocked|GPS time is invalid|Time injection|sending time info request|pdsm_xtra_inject_time_info|Initiate XTRA-T session|EVENT_GPSONEXTRA_END_DOWNLOAD|EVENT_GPSONEXTRA_START_DOWNLOAD|tm_xtra_is_req_blocked|SESSION start request from TM|SESSION stop request from TM|XTRA data/time valid|XTRA data invalid|XTRA3 FileName selected|injecting XTRA3
 
 
 
 ════1═════   XTRA data/time valid 数据有效  跳过下载 
 07:15:11.182631          GPS SM/Medium                                               [           tm_xtra.c   4693] Initiate XTRA-T session.                                                   
 07:15:11.183338          GPS SM/Medium                                               [             lm_tm.c   1465] =LM TASK= Received SESSION start request from TM                           
-07:15:11.183413          GPS SM/High                                                 [           tm_xtra.c   4441] XTRA data/time valid. Ask TLE for Pos Unc for XTRA-T if necessary          
+07:15:11.183413          GPS SM/High                                                 [           tm_xtra.c   4441] XTRA data/time valid. Ask TLE for Pos Unc for XTRA-T if necessary   
+07:15:15.283413          GPS SM/Medium                                               [tm_decode_xtra3_data.c   8650] =TM XTRA= tm_xtra3_set_xtra_time_and_validity: GPSWeek=2341 GPSMin=4800 Duration=72h
 07:15:15.351235          GPS SM/Medium                                               [             lm_tm.c   1773] =LM TASK= Received SESSION stop request from TM
 
 ════2═════   XTRA data/time valid 数据无效  请求下载    tm_xtra_is_req_blocked=FLASE  下载请求未被阻止  (False___不阻止) (True___阻止)
  // Session 开始
 07:15:15.871405          GPS SM/Medium                                               [           tm_xtra.c   4693] Initiate XTRA-T session.    
-07:15:15.872117          GPS SM/Medium                                               [             lm_tm.c   1465] =LM TASK= Received SESSION start request from TM                           
+07:15:15.872117          GPS SM/Medium                                               [             lm_tm.c   1465] =LM TASK= Received SESSION start request from TM
+
+// GPS时间无效 请求更新时间
+07:15:15.872118          GPS SM/High                                                 [tm_xtra_data_handler.c    153] =TM XTRA= GPS time is invalid
+07:15:15.872119          GPS SM/High                                                 [           tm_xtra.c   3027] =TM XTRA= Trigger download - sending time info request to client. Force 1
+07:15:15.872120          EVENT_GPSONEXTRA_START_DOWNLOAD                             Trigger Type = DCME
+07:15:15.872129          GPS SM/High                                                 [             pdapi.c   2318] =PDSM= pdsm_xtra_inject_time_info()
+07:15:15.872191          GPS SM/Medium                                               [           tm_xtra.c   2451] =TM XTRA= Time injection: 1416127823405.000(Week: 2341,Msec: 291023405), unc 20.000, utc 1 src 2
+07:15:15.872192          GPS SM/Medium                                               [           tm_xtra.c   2497] =TM XTRA= Time injection to GTS successful
+
+// xtra 更新了GPS 时间
+07:15:15.872194          GPS SM/Medium                                               [tm_decode_xtra3_data.c   8650] =TM XTRA= tm_xtra3_set_xtra_time_and_validity: GPSWeek=2341 GPSMin=4800 Duration=72h
+
+
 // 请求下载数据
 07:15:15.877954          GPS SM/High                                                 [           tm_xtra.c   4183] =TM XTRA= XTRA data invalid/expired at time inject, request data download   
 // 下载请求未被阻止
@@ -103,6 +126,7 @@ Initiate XTRA-T session|EVENT_GPSONEXTRA_END_DOWNLOAD|tm_xtra_is_req_blocked|SES
 07:15:15.878251          GPS SM/Medium                                               [tm_decode_xtra3_data.c   9874] =TM XTRA= XTRA3 FileName selected = [https://path1.xtracloud.net/xtra3grcej.bin]
 07:15:17.176182          GPS SM/Medium                                               [tm_xtra_data_handler.c    750]  Present XTRA ver=3, injecting XTRA3
 // 下载xtra数据成功并注入成功
+07:15:17.335100          EVENT_GPSONEXTRA_START_DOWNLOAD                             Trigger Type = Fix Request
 07:15:17.335155          EVENT_GPSONEXTRA_END_DOWNLOAD                               End Reason = Success
 // Session 结束
 07:15:18.102503          GPS SM/Medium                                               [             lm_tm.c   1773] =LM TASK= Received SESSION stop request from TM
@@ -112,13 +136,21 @@ Initiate XTRA-T session|EVENT_GPSONEXTRA_END_DOWNLOAD|tm_xtra_is_req_blocked|SES
 ════3═════  XTRA data/time valid 数据有效  跳过下载 
 07:15:18.621791          GPS SM/Medium                                               [           tm_xtra.c   4693] Initiate XTRA-T session.                                                   
 07:15:18.622544          GPS SM/Medium                                               [             lm_tm.c   1465] =LM TASK= Received SESSION start request from TM                           
-07:15:18.622642          GPS SM/High                                                 [           tm_xtra.c   4441] XTRA data/time valid. Ask TLE for Pos Unc for XTRA-T if necessary          
+07:15:18.622642          GPS SM/High                                                 [           tm_xtra.c   4441] XTRA data/time valid. Ask TLE for Pos Unc for XTRA-T if necessary  
+07:15:18.922642          GPS SM/Medium                                               [tm_decode_xtra3_data.c   8650] =TM XTRA= tm_xtra3_set_xtra_time_and_validity: GPSWeek=2341 GPSMin=4800 Duration=72h
 07:15:20.264567          GPS SM/Medium                                               [             lm_tm.c   1773] =LM TASK= Received SESSION stop request from TM           
 
 
 ════4═════  XTRA data/time valid 数据无效  请求下载    tm_xtra_is_req_blocked=FLASE  下载请求未被阻止  (False___不阻止) (True___阻止)
 07:15:24.590178          GPS SM/Medium                                               [           tm_xtra.c   4693] Initiate XTRA-T session.                                                   
-07:15:24.590822          GPS SM/Medium                                               [             lm_tm.c   1465] =LM TASK= Received SESSION start request from TM                           
+07:15:24.590822          GPS SM/Medium                                               [             lm_tm.c   1465] =LM TASK= Received SESSION start request from TM
+07:15:15.590832          GPS SM/High                                                 [tm_xtra_data_handler.c    153] =TM XTRA= GPS time is invalid
+07:15:15.590842          GPS SM/High                                                 [           tm_xtra.c   3027] =TM XTRA= Trigger download - sending time info request to client. Force 1
+07:15:15.590852          EVENT_GPSONEXTRA_START_DOWNLOAD                             Trigger Type = DCME
+07:15:15.590862          GPS SM/High                                                 [             pdapi.c   2318] =PDSM= pdsm_xtra_inject_time_info()
+07:15:15.590872          GPS SM/Medium                                               [           tm_xtra.c   2451] =TM XTRA= Time injection: 1416127823405.000(Week: 2341,Msec: 291023405), unc 20.000, utc 1 src 2
+07:15:15.590882          GPS SM/Medium                                               [           tm_xtra.c   2497] =TM XTRA= Time injection to GTS successful
+07:15:15.590885          GPS SM/Medium                                               [tm_decode_xtra3_data.c   8650] =TM XTRA= tm_xtra3_set_xtra_time_and_validity: GPSWeek=2341 GPSMin=4800 Duration=72h
 07:15:24.598804          GPS SM/High                                                 [           tm_xtra.c   4183] =TM XTRA= XTRA data invalid/expired at time inject, request data download  
 07:15:24.598812          GPS SM/Medium                                               [           tm_xtra.c    247] =TM XTRA= tm_xtra_is_req_blocked == FALSE                                  
 07:15:24.598892          GPS SM/Medium                                               [           tm_xtra.c    247] =TM XTRA= tm_xtra_is_req_blocked == FALSE
@@ -126,26 +158,72 @@ Initiate XTRA-T session|EVENT_GPSONEXTRA_END_DOWNLOAD|tm_xtra_is_req_blocked|SES
 07:15:24.599024          GPS SM/Medium                                               [tm_decode_xtra3_data.c   9874] =TM XTRA= XTRA3 FileName selected = [https://path1.xtracloud.net/xtra3grcej.bin]
 07:15:24.599035          GPS SM/Medium                                               [tm_decode_xtra3_data.c   9874] =TM XTRA= XTRA3 FileName selected = [https://path2.xtracloud.net/xtra3grcej.bin]
 07:15:25.233715          GPS SM/Medium                                               [tm_xtra_data_handler.c    750]  Present XTRA ver=3, injecting XTRA3
+07:15:25.404103          EVENT_GPSONEXTRA_START_DOWNLOAD                             Trigger Type = Fix Request 
 07:15:25.404203          EVENT_GPSONEXTRA_END_DOWNLOAD                               End Reason = Success                                                                                     
 07:15:31.973953          GPS SM/Medium                                               [             lm_tm.c   1773] =LM TASK= Received SESSION stop request from TM                            
 ```
 
 
-#### 异常xtra下载打印的Log
+#### 异常xtra下载打印的Log_1
 
 ```
 
-Match过滤字符串——————
-Initiate XTRA-T session|EVENT_GPSONEXTRA_END_DOWNLOAD|tm_xtra_is_req_blocked|SESSION start request from TM|SESSION stop request from TM|XTRA data/time valid|XTRA data invalid|XTRA3 FileName selected|injecting XTRA3
+Match过滤字符串1——————
+xtra|SESSION start request from TM|SESSION stop request from TM
+
+Match过滤字符串2——————
+XTRA Download Request Blocked|GPS time is invalid|Time injection|sending time info request|pdsm_xtra_inject_time_info|Initiate XTRA-T session|EVENT_GPSONEXTRA_END_DOWNLOAD|EVENT_GPSONEXTRA_START_DOWNLOAD|tm_xtra_is_req_blocked|SESSION start request from TM|SESSION stop request from TM|XTRA data/time valid|XTRA data invalid|XTRA3 FileName selected|injecting XTRA3
 
 
+
+════失败下载1═════ GPS time is invalid   GPS时间无效  没有执行注入时间 pdsm_xtra_inject_time_info() 【Time injection】  【inject_time_info】 导致无法下载xtra 数据  (有VPN但仍然无法更新 gps时间)
+08:11:55.825717          GPS SM/Medium                                               [           tm_xtra.c   4693]    Initiate XTRA-T session.                                                                 
+08:11:55.826498          GPS SM/Medium                                               [             lm_tm.c   1465] =  LM TASK= Received SESSION start request from TM                                         
+08:11:55.826509          GPS SM/High                                                 [tm_xtra_data_handler.c    128] =TM XTRA= tm_xtra_data_check_handler entry                                             
+08:11:55.826516          GPS SM/High                                                 [tm_xtra_data_handler.c    153] =TM XTRA= GPS time is invalid                                                          
+08:11:55.826523          GPS SM/High                                                 [           tm_xtra.c   3027] =  TM XTRA= Trigger download - sending time info request to client. Force 1                
+08:11:55.826551          EVENT_GPSONEXTRA_START_DOWNLOAD                             Trigger Type = DCME                                                                                                    
+08:12:04.898135          GPS SM/Medium                                               [             lm_tm.c   1773] =  LM TASK= Received SESSION stop request from TM                                          
+
+
+
+════失败下载2═════   tm_xtra_is_req_blocked=TRUE   xtra下载请求被阻止(一天三次) test_cfg.xml 解除限制
+
+
+07:25:24.590178          GPS SM/Medium                                               [           tm_xtra.c   4693] Initiate XTRA-T session.                                                   
+07:25:24.590822          GPS SM/Medium                                               [             lm_tm.c   1465] =LM TASK= Received SESSION start request from TM
+07:25:15.590832          GPS SM/High                                                 [tm_xtra_data_handler.c    153] =TM XTRA= GPS time is invalid
+07:25:15.590842          GPS SM/High                                                 [           tm_xtra.c   3027] =TM XTRA= Trigger download - sending time info request to client. Force 1
+07:25:15.590852          EVENT_GPSONEXTRA_START_DOWNLOAD                             Trigger Type = DCME
+07:25:15.590862          GPS SM/High                                                 [             pdapi.c   2318] =PDSM= pdsm_xtra_inject_time_info()
+07:25:15.590872          GPS SM/Medium                                               [           tm_xtra.c   2451] =TM XTRA= Time injection: 1416127823405.000(Week: 2341,Msec: 291023405), unc 20.000, utc 1 src 2
+07:25:15.590882          GPS SM/Medium                                               [           tm_xtra.c   2497] =TM XTRA= Time injection to GTS successful
+// xtra GPS 时间 有更新
+07:25:15.590883         GPS SM/Medium                                               [           tm_xtra.c   2451] =TM XTRA= Time injection: 1416127823405.000(Week: 2341,Msec: 291023405), unc 20.000, utc 1 src 2
+07:25:24.598804          GPS SM/High                                                 [           tm_xtra.c   4183] =TM XTRA= XTRA data invalid/expired at time inject, request data download  
+07:25:24.598812          GPS SM/Medium                                               [           tm_xtra.c    247] =TM XTRA= tm_xtra_is_req_blocked == TRUE     【 xtra 下载被阻止】                              
+07:25:24.598892          GPS SM/Medium                                               [           tm_xtra.c    247] =TM XTRA= tm_xtra_is_req_blocked == TRUE     【 xtra 下载被阻止】
+07:25:24.598992          GPS SM/High                                                 [           tm_xtra.c   3828] =TM XTRA= XTRA Download Request Blocked                                                                                 
+07:25:31.973953          GPS SM/Medium                                               [             lm_tm.c   1773] =LM TASK= Received SESSION stop request from TM    
+
+
+
+════失败下载3═════  无VPN网络导致下载xtra数据失败(gps时间无法更新)
+
+03:41:37.072078          GPS SM/Medium                                               [           tm_xtra.c   4693] Initiate XTRA-T session.
+03:41:37.072749          GPS SM/Medium                                               [             lm_tm.c   1465] =LM TASK= Received SESSION start request from TM
+03:41:37.072752          GPS SM/High                                                 [tm_xtra_data_handler.c    128] =TM XTRA= tm_xtra_data_check_handler entry
+03:41:37.072759          GPS SM/High                                                 [tm_xtra_data_handler.c    153] =TM XTRA= GPS time is invalid                         
+03:41:37.072769          GPS SM/High                                                 [           tm_xtra.c   3027] =TM XTRA= Trigger download - sending time info request to client. Force 1
+03:41:37.072800          EVENT_GPSONEXTRA_START_DOWNLOAD                             Trigger Type = DCME                                                                 
+// 将近两分半钟 xtra 时间都无法更新  GPSWeek=0 (由于没有网络导致无法更新GPS时间)
+03:41:38.166435          GPS SM/Medium                                               [tm_decode_xtra3_data.c   8650] =TM XTRA= tm_xtra3_set_xtra_time_and_validity: GPSWeek=0 GPSMin=0 Duration=0h
+03:44:19.166690          GPS SM/Medium                                               [tm_decode_xtra3_data.c   8650] =TM XTRA= tm_xtra3_set_xtra_time_and_validity: GPSWeek=0 GPSMin=0 Duration=0h
+03:44:19.704542          GPS SM/Medium                                               [             lm_tm.c   1773] =LM TASK= Received SESSION stop request from TM
 
 
 
 ```
-
-
-
 
 ##  EVENT_GPS
 
