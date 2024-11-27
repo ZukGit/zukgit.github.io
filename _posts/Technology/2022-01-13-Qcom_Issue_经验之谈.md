@@ -233,6 +233,9 @@ adb push test_cfg.xml /data/user_de/0/com.qti.qcc/files/
 adb reboot
 
 
+adb root && adb remount && adb push test_cfg.xml /data/user_de/0/com.qti.qcc/files/  && adb reboot
+ 
+
 ```
 
 ##### test_cfg.xml
