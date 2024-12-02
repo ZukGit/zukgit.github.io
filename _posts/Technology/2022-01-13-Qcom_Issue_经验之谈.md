@@ -299,6 +299,65 @@ adb logcat | grep "check XTRA server request rate limit"
 
 ```
 
+##### Qcm_GPS正常工作检测
+
+```
+1. 确认  /vendor/bin/xtra-daemon   和 /vendor/bin/lowi-server 进程正常运行
+xtra-daemon    /vendor/bin/xtra-daemon 是 Qcom GPS xtra辅助数据下载的可执行进程
+lowi-server    /vendor/bin/lowi-server 是高通项目把Modem扫描到的WIFI结果 注入到与TE交互的Modem包中的工具
+  【       adb root && adb remount && adb push izat.conf  /vendor/etc/izat.conf   && adb reboot       】
+   如果不正常运行说明可能配置文件可能存在问题 提高通case 更新分支  izat.conf   [/vendor/etc/izat.conf] 查看是否能work 
+
+
+ adb shell ps -A | grep -E "xtra-daemon|lowi-server"
+ 
+gps           2213  2099    2530328   8308 0                   0 S lowi-server
+gps           2214  2099    2502208  11024 0                   0 S xtra-daemon
+
+
+```
+
+
+```
+【gps 相关进程】
+adb shell ps -A | grep -E "gps"
+
+
+ adb shell ps -A | grep -E "gps"
+gps           1487     1    3006868  12868 0                   0 S android.hardware.gnss-aidl-service-qti
+gps           2048     1    2331216   6348 0                   0 S qsap_location
+gps           2094     1    2284712   5616 0                   0 S mlid
+gps           2099     1    2206596   5820 0                   0 S loc_launcher
+gps           2213  2099    2530328   8308 0                   0 S lowi-server
+gps           2214  2099    2502208  11024 0                   0 S xtra-daemon
+gps           6728  2099    2521472   8604 0                   0 S xtwifi-client
+
+
+xtra-daemon    /vendor/bin/xtra-daemon 是 Qcom GPS xtra辅助数据下载的可执行进程
+lowi-server    /vendor/bin/lowi-server 是高通项目把Modem扫描到的WIFI结果 注入到与TE交互的Modem包中的工具
+----------------------
+
+【wifi 相关进程】
+adb shell ps -A | grep -E "wifi"
+
+wifi          1499     1    2292068  15396 0                   0 S android.hardware.wifi-service
+wifi          1988     1    2266020   6444 0                   0 S wificond
+system        1993     1    2323036   6844 0                   0 S wifidisplayhalservice
+gps           6728  2099    2521472   8604 0                   0 S xtwifi-client
+wifi         15038     1    2274900   8548 0                   0 S wpa_supplicant
+
+
+
+【bt 相关进程】
+ adb shell ps -A | grep -E "bluetooth"
+bluetooth     1478     1    2568676   8244 0                   0 S android.hardware.bluetooth@aidl-service-qti
+u0_a397       6823  1374    7791284 102368 0                   0 S com.bluetooth.aptxmode
+bluetooth    30276  1374    8354704 135540 0                   0 S com.android.bluetooth
+
+```
+
+
+
 
 ##### Qcom Xtra GPS辅助数据下载成功检查
 ```

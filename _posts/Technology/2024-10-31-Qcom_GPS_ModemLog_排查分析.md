@@ -225,6 +225,261 @@ XTRA Download Request Blocked|GPS time is invalid|Time injection|sending time in
 
 ```
 
+## AGPS_CP 交互
+
+### Qcom_AGPS_CP_WLAN_AP_Measurement
+
+
+#### TE Log
+
+TE_测试主设备(Spirent_思博伦)_Spirent 8100 移动设备SUPL测试系统_HostLog
+```
+
+18:41:43 TCSTATUS: ## LBS ## Received ProvideLocationInformation from the UE.__NL__    【接受到来自UE手机端发来的 ProvideLocationInformation 位置信息】
+18:41:43 TCSTATUS: ## LBS ## ON_ASPX LppDataReq Transition__NL__
+18:41:43 TCSTATUS: ## LBS ## LbsControlMeasurementReadyInd !!__NL__
+
+18:41:43 TCSTATUS: ## LBS ## ***A final fix is received***__NL__                  【解析 a_gnss_ProvideLocationInformation 错误】
+18:41:43 TCSTATUS: ## LBS ## Error received in Measurement Ready Ind...__NL__
+18:41:43 TCSTATUS: ## LBS ## Error Cause Reported: Pos_NoMeasurement__NL__
+18:41:43 TCSTATUS: ## LBS ## Error Tech Reported: a_gnss_ProvideLocationInformation__NL__
+18:41:43 TCSTATUS: ## LBS ## Error Tech Reported: COMMONIE__NL__
+
+
+18:41:43 TCSTATUS: ## LBS ## Received ProvideLocationInformation from the UE.__NL__
+
+18:41:43 TCSTATUS: ## LBS ## LBS Control Msg sent successfully!__NL__    【 LBS Control Msg 发送出去了】
+18:41:43 TCSTATUS: ## LBS ## Position error reported by lbs server__NL__     【发生定位错误】
+
+
+18:41:43 TCSTATUS: ## LBS ## Size of Simulated APs: 12__NL__    【模拟热点AP有12个】
+18:41:43 TCSTATUS: ## LBS ## ############__NL__## Evaluating 2.4GHz WLAN AP’s reported__NL__############__NL__
+18:41:43 TCSTATUS: ## LBS ##  WLAN 2.4GHz measurement requested and not reported. Test case will FAIL.__NL__   【 2.4G WIFI measurement 没有数据】
+
+
+
+18:41:43 TCSTATUS: ## LBS ## Size of Simulated APs: 6__NL__
+18:41:43 TCSTATUS: ## LBS ## ############__NL__## Evaluating 5GHz WLAN AP&apos;s reported__NL__############__NL__
+18:41:43 TCSTATUS: ## LBS ##  WLAN 5GHz measurement requested and not reported. Test case will FAIL.__NL__ 【 5GHz WIFI measurement 没有数据】
+18:41:43 TCSTATUS: ##  LTE  ## Cell now released    __NL__      【 会话关闭】
+
+
+```
+
+
+#### UE_手机Log
+
+1. Host TE 设备发送 LPP REQUEST_LOCATION_INFORMATION msg  定位请求消息去请求  WLAN AP measurement
+   TE sent LPP REQUEST_LOCATION_INFORMATION msg and requested for WLAN AP measurement
+
+```
+
+2024 Nov  9  06:23:48.463  [5C]  0x1387  CGPS Report Server Rx
+Link Type     = Invalid
+Protocol Type = LPP CP
+Sequence Num  = 6
+Flags         = FIRST_SEGMENT | FINAL_SEGMENT
+Message Length= 24
+
+Interpreted PDU:
+value LPP-Message ::= 
+{
+  transactionID 
+  {
+    initiator locationServer,
+    transactionNumber 4
+  },
+  endTransaction FALSE,
+  sequenceNumber 14,
+  acknowledgement 
+  {
+    ackRequested TRUE
+  },
+  lpp-MessageBody c1 : requestLocationInformation : 
+      {
+        criticalExtensions c1 : requestLocationInformation-r9 : 
+            {
+              commonIEsRequestLocationInformation 
+              {
+                locationInformationType locationMeasurementsRequired,
+                additionalInformation onlyReturnInformationRequested,
+                qos 
+                {
+                  verticalCoordinateRequest FALSE,
+                  responseTime 
+                  {
+                    time 16
+                  },
+                  velocityRequest FALSE
+                }
+              },
+              epdu-RequestLocationInformation 
+              {
+                {
+                  ePDU-Identifier 
+                  {
+                    ePDU-ID 1
+                  },
+                  ePDU-Body '000800840843F8C200101000'H
+                }
+              }
+            }
+      }
+}
+value OMA-LPPe-MessageExtension ::= 
+{
+  lppeCompatibilityLevel 0,
+  lppeVersion 
+  {
+    majorVersion 1,
+    minorVersion 0
+  },
+  lppeMode normal,
+  messageExtensionBody requestLocationInformation :     【请求Location_位置数据】
+    {
+      agnss-RequestLocationInformation     【请求agnss的数据】
+      {
+        positioningInstructions 
+        {
+          highAccuracyMethodRequested TRUE
+        }
+      },
+      wlan-ap-RequestLocationInformation     【请求wlan的数据】
+      {
+        requestedMeasurements { apSSID, apRSSI, apChanFreq, non-serving },
+        additionalRequestedMeasurements {  }
+      }
+    }
+}
+
+
+
+
+```
+
+2. Modem 收到消息后发送 WLAN_AP_Request到 定位应用 层面
+   执行911 定位请求
+
+```
+
+2024 Nov  9  06:23:48.463  [EF]  0x1544  QMI_MCS_QCSI_PKT
+packetVersion = 2
+MsgType = Indication
+Counter = 277
+ServiceId = 16
+MajorRev = 2
+MinorRev = 172
+ConHandle = 0xE23982C0
+MsgId = 0x0000007C
+QmiLength = 4
+Service_LOC {
+   ServiceLOCV2 {
+      qmiLocEventInjectWifiApDataReq {
+         qmiLocEventInjectWifiApDataReqIndTlvs[0] {
+            Type = 0x10
+            Length = 1
+            e911Mode {
+               e911Mode = true   【 911 定位请求】
+            }
+         }
+      }
+   }
+}
+```
+
+
+3. 定位应用 接收到定位的请求Log打印 
+
+定位应用 检测到发生 QMI_LOC_EVENT_INJECT_WIFI_AP_DATA_REQ_IND_V02 事件 执行插入 WLAN_AP measure数据到 定位数据包中
+ LOWI-SERVER 执行这个插入数据的过程,但  LOWI-SERVER 没起来 所以 数据没正常插入
+```
+
+11-09 06:23:48.449  1448  2680 I LocSvc_ApiV02: <--- globalEventCb line 257 QMI_LOC_EVENT_INJECT_WIFI_AP_DATA_REQ_IND_V02
+11-09 06:23:48.449  1448  2680 V LocSvc_LBSApiV02: eventCb:59] client = 0xb400007affa3a7c0, event id = 124, event name = QMI_LOC_EVENT_INJECT_WIFI_AP_DATA_REQ_IND_V02 payload = 0x7ae4d3fc98
+11-09 06:23:48.449  1448  1468 V IzatSvc_FreeWifiScanObserver: Send emergency on demand scan request
+11-09 06:23:48.450  1448  1468 D MessageQ_Client: sendMessage:173] Send normal message to LOWI-SERVER  【 把拿到的数据发送给  LOWI-SERVER 来完成插入数据】
+
+
+11-09 06:24:00.746  2869  5851 D WifiNl80211Manager: Scan result ready event  【在 WIFI 层面 其实已经有扫描结果】
+11-09 06:24:00.746  2869  5851 D WifiNative: Scan result ready event
+
+
+
+```
+
+
+4.反馈给 Host TE 的 PROVIDE_LOCATION_INFORMATION   定位数据包 由于不包含 wifi measure数据导致了测试项失败 
+
+
+```
+
+
+2024 Nov  9  06:24:03.681  [1C]  0x1386  CGPS Report Server Tx
+Link Type     = Invalid
+Protocol Type = LPP CP
+Sequence Num  = 7
+Flags         = FIRST_SEGMENT | FINAL_SEGMENT
+Message Length= 16
+
+Interpreted PDU:
+value LPP-Message ::= 
+{
+  transactionID 
+  {
+    initiator locationServer,
+    transactionNumber 4
+  },
+  endTransaction TRUE,
+  sequenceNumber 2,
+  acknowledgement 
+  {
+    ackRequested TRUE
+  },
+  lpp-MessageBody c1 : provideLocationInformation : 
+      {
+        criticalExtensions c1 : provideLocationInformation-r9 : 
+            {
+              epdu-ProvideLocationInformation 
+              {
+                {
+                  ePDU-Identifier 
+                  {
+                    ePDU-ID 1
+                  },
+                  ePDU-Body '000800A008280000'H
+                }
+              }
+            }
+      }
+}
+value OMA-LPPe-MessageExtension ::= 
+{
+  lppeCompatibilityLevel 0,
+  lppeVersion 
+  {
+    majorVersion 1,
+    minorVersion 0
+  },
+  lppeMode normal,
+  messageExtensionBody provideLocationInformation : 
+    {
+      wlan-ap-ProvideLocationInformastion 
+      {
+        wlan-AP-Error targetDeviceErrorCauses :    【这里由于缺失 WIFI的检测数据  所以导致测试项失败】
+          {
+            cause undefined
+          }
+      }
+    }
+}
+
+
+```
+
+
+
+
+
 ##  EVENT_GPS
 
 ```
