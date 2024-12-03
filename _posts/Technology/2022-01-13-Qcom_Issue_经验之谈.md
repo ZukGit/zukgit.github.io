@@ -476,7 +476,7 @@ adb logcat > Log.txt
 
 
 
-### adb命令描述模型Tip
+### adb命令描述测试Supl使能
 
 ```
 
@@ -485,9 +485,13 @@ adb disable-verity
 adb reboot
 adb root
 adb remount
-adb pull /etc/debug_gps.conf
-Make 【#SUPL_MODE=1】 To 【SUPL_MODE=1】 on local dir 
+adb pull /etc/gps_debug.conf
+adb pull  /system/etc/gps_debug.conf
+adb pull   /vendor/etc/gps_debug.conf
+Make 【#SUPL_MODE=1】 To 【SUPL_MODE=1】 on local dir   【[Mtk]在MccMnc=00101 的情况下 SUPL无法启动时 检查该配置 SUPL_MODE=1 是否打开】
 adb push .\gps_debug.conf  /etc/
+adb push .\gps_debug.conf  /system/etc/
+adb push .\gps_debug.conf  /vendor/etc/
 adb shell 
 ═════════════ in adb shell ═════════════
 cd /etc/
@@ -498,6 +502,79 @@ adb reboot
 
 
 ```
+
+
+#### gps_debug.conf
+
+```
+
+# Sample file for use for on device debug override only
+# Prefer frameworks/base/core/res/res/values/config.xml and
+# frameworks/base/core/res/res/values-mcc*-mnc*/config.xml
+
+################################
+##### AGPS server settings #####
+################################
+# FOR SUPL SUPPORT, set the following
+# SUPL_HOST=supl.google.com or IP
+# SUPL_PORT=7275
+
+# supl version 2.0
+# SUPL_VER=0x20000
+
+#SUPL_MODE is a bit mask set in config.xml per carrier by default.
+#If it is uncommented here, this value will overwrite the value from
+#config.xml.
+#MSA=0X2
+#MSB=0X1
+#SUPL_MODE=1       【在进行SUPL测试时候 MccMnc=00101 时候 需要把该值打开 才能建立起SUPL连接】
+
+# Emergency SUPL, 1=enable, 0=disable
+#SUPL_ES=0
+
+#Choose PDN for Emergency SUPL
+#1 - Use emergency PDN
+#0 - Use regular SUPL PDN for Emergency SUPL
+#USE_EMERGENCY_PDN_FOR_EMERGENCY_SUPL=0
+
+####################################
+#  LTE Positioning Profile Settings
+####################################
+# 0: Enable RRLP on LTE(Default)
+# 1: Enable LPP_User_Plane on LTE
+# 2: Enable LPP_Control_Plane
+# 3: Enable both LPP_User_Plane and LPP_Control_Plane
+#LPP_PROFILE = 2                  【同时使能 LPP_CP  LPP_UP  , LPP_PROFILE = 8 】
+
+##################################################
+# Select Positioning Protocol on A-GLONASS system
+##################################################
+# 0x1: RRC CPlane
+# 0x2: RRLP UPlane
+# 0x4: LLP Uplane
+#A_GLONASS_POS_PROTOCOL_SELECT = 0
+
+# Below bit mask configures how GPS functionalities
+# should be locked when user turns off GPS on Settings
+# Set bit 0x1 if MO GPS functionalities are to be locked
+# Set bit 0x2 if NI GPS functionalities are to be locked
+# default - non is locked for backward compatibility
+#GPS_LOCK = 0
+
+################################
+##### PSDS download settings #####
+################################
+# For wear devices only.
+# Enable periodic PSDS download once a day.
+# true: Enable periodic PSDS download
+# false: Disable periodic PSDS download
+#ENABLE_PSDS_PERIODIC_DOWNLOAD=false
+
+
+
+
+```
+
 
 
 
