@@ -1169,6 +1169,20 @@ adb root && adb shell setprop persist.vendor.radio.disable_sar  1  && adb reboot
 打开sar服务命令
 adb root  &&  adb shell setprop persist.vendor.radio.disable_sar  0 && adb reboot
 
+
+导出 aplogd 
+adb root && adb remount && adb pull /data/vendor/aplogd/
+
+
+
+导出 bug2gp
+adb root && adb remount && adb pull /data/vendor/bug2go/
+
+
+设置蓝牙测试模式
+adb root && adb remount &&  adb  shell   setprop  persist.vendor.radio.btsar_test_mode  true  
+
+ 
 ```
 
 ```
