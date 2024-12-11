@@ -1170,19 +1170,29 @@ adb root && adb shell setprop persist.vendor.radio.disable_sar  1  && adb reboot
 adb root  &&  adb shell setprop persist.vendor.radio.disable_sar  0 && adb reboot
 
 
+删除原有的 aplogd 开机Log
+adb root && adb remount &&  adb shell  "rm -fr /data/vendor/aplogd/*"
+
+
 导出 aplogd 
-adb root && adb remount && adb pull /data/vendor/aplogd/
+adb root && adb remount && adb pull /data/vendor/aplogd
 
 
-
-导出 bug2gp
+导出 bug2go
 adb root && adb remount && adb pull /data/vendor/bug2go/
+
+删除原有的 bug2go Log
+adb root && adb remount &&  adb shell  "rm -fr /data/vendor/bug2go/*"
 
 
 设置蓝牙测试模式
 adb root && adb remount &&  adb  shell   setprop  persist.vendor.radio.btsar_test_mode  true  
 
  
+导入 libmdmcutback.so 
+adb root && adb remount && adb push libmdmcutback.so /vendor/lib64/libmdmcutback.so && adb reboot 
+
+
 ```
 
 ```
@@ -1197,6 +1207,9 @@ cat /etc/motorola/mdmctbk/ctbk_cfg.xml
 cat /system/etc/motorola/mdmctbk/ctbk_cfg.xml
 cat /system/etc/motorola/mdmctbk/rowe_ctbk_cfg.xml
 
+
+
+adb pull  /vendor/etc/motorola/mdmctbk | adb pull /etc/motorola/mdmctbk/ | adb pull /system/etc/motorola/mdmctbk/ 
 
 
 ```
