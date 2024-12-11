@@ -1152,6 +1152,7 @@ adb shell setprop persist.radio.ctbk_log 5
 adb shell setprop persist.vendor.radio.ctbk_log 5
 adb push libmdmcutback.lib.so /vendor/lib/libmdmcutback.so
 adb push libmdmcutback.lib64.so /vendor/lib64/libmdmcutback.so
+adb push libmdmcutback.so /vendor/lib64/libmdmcutback.so       ##  直接libmdmcutback.so 导入 Lib64
 adb pull /vendor/lib/libmdmcutback.so libmdmcutback.lib.so 
 adb pull /vendor/lib64/libmdmcutback.so  libmdmcutback.lib64.so
 adb push ctbk_cfg.xml /vendor/etc/motorola/mdmctbk/ctbk_cfg.xml
