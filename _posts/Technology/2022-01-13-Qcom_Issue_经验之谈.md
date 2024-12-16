@@ -2240,13 +2240,49 @@ message WifiDisconnectReported {
         MESH_CHANNEL_SWITCH_REGULATORY_REQ = 65;
         MESH_CHANNEL_SWITCH_UNSPECIFIED = 66;
 
-        // ClientModeImpl error codes
+        // ClientModeImpl error codes   【frameworks/proto_logging/stats/atoms.proto】
         // Defined in /frameworks/opt/net/wifi/service/java/com/android/server/wifi/WifiMetrics.java
         IFACE_DESTROYED = 10000;
         WIFI_DISABLED = 10001;
         SUPPLICANT_DISCONNECTED = 10002;
         CONNECTING_WATCHDOG_TIMER = 10003;
         ROAM_WATCHDOG_TIMER = 10004;
+
+        // New reasons tracking disconnections initiated by wifi framework
+        DISCONNECT_GENERAL = 10005; // Framework disconnect, generic reason
+        // Disconnecting due to unspecified IP reachability lost.
+        DISCONNECT_NUD_FAILURE_GENERIC = 10006;
+        // Disconnecting due to IP reachability lost from roaming
+        DISCONNECT_NUD_FAILURE_ROAM = 10007;
+        // Disconnecting due to IP reachability lost from the CONFIRM command
+        DISCONNECT_NUD_FAILURE_CONFIRM = 10008;
+        // Disconnecting due to IP reachability lost from kernel check
+        DISCONNECT_NUD_FAILURE_ORGANIC = 10009;
+        // Connectivity no longer wants this network
+        DISCONNECT_UNWANTED_BY_CONNECTIVITY = 10010;
+        // Timeout creating the IP client
+        DISCONNECT_CREATE_IP_CLIENT_TIMEOUT = 10011;
+        DISCONNECT_IP_PROVISIONING_FAILURE = 10012; // IP provisioning failure
+        DISCONNECT_P2P_REQUESTED_DISCONNECT = 10013; // Disconnect by P2P
+        // Network is removed from the WifiConfigManager
+        DISCONNECT_NETWORK_REMOVED = 10014;
+        DISCONNECT_NETWORK_UNTRUSTED = 10015; // Network is marked as untrusted
+        DISCONNECT_NETWORK_METERED = 10016; // Network is marked as metered
+        DISCONNECT_TEMP_DISABLED = 10017; // Network is temporarily disabled
+        DISCONNECT_PERM_DISABLED = 10018; // Network is permanently disabled
+        DISCONNECT_CARRIER_OFFLOAD_DISABLED = 10019;
+        // Disconnecting due to Passpoint terms and conditions page
+        DISCONNECT_PASSPOINT_TAC = 10020;
+        // Disconnecting due to issues with terms and conditions URL
+        DISCONNECT_VNC_REQUEST = 10021;
+        // Connected to a network that is already removed
+        DISCONNECT_UNKNOWN_NETWORK = 10022;
+        // User initiated a new connection
+        DISCONNECT_NEW_CONNECTION_USER = 10023;
+        // New connection triggered by non-user
+        DISCONNECT_NEW_CONNECTION_OTHERS = 10024;
+        // Wi-Fi 7 is enabled or disabled for this network
+        DISCONNECT_NETWORK_WIFI7_TOGGLED = 10025;
     }
 	
 ```
