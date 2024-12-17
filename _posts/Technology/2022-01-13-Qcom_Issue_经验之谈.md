@@ -1550,58 +1550,6 @@ vendor/qcom/nonhlos/Netrani.XXX/common/build/Ver_Info.txt
  
 ```
 
-### wifi断连reason列表
-
-```
-/external/iw/reason.c#7
-
-
-static const char *reason_table[] = {
-	[1] = "Unspecified",
-	[2] = "Previous authentication no longer valid",
-	[3] = "Deauthenticated because sending station is leaving (or has left) the IBSS or ESS",
-	[4] = "Disassociated due to inactivity",
-	[5] = "Disassociated because AP is unable to handle all currently associated STA",
-	[6] = "Class 2 frame received from non-authenticated station",
-	[7] = "Class 3 frame received from non-authenticated station",
-	[8] = "Disassociated because sending station is leaving (or has left) the BSS",
-	[9] = "Station requesting (re)association is not authenticated with responding station",
-	[10] = "Disassociated because the information in the Power Capability element is unacceptable",
-	[11] = "Disassociated because the information in the Supported Channels element is unacceptable",
-	[13] = "Invalid information element",
-	[14] = "MIC failure",
-	[15] = "4-way handshake timeout",
-	[16] = "Group key update timeout",
-	[17] = "Information element in 4-way handshake different from (Re-)associate request/Probe response/Beacon",
-	[18] = "Multicast cipher is not valid",
-	[19] = "Unicast cipher is not valid",
-	[20] = "AKMP is not valid",
-	[21] = "Unsupported RSNE version",
-	[22] = "Invalid RSNE capabilities",
-	[23] = "IEEE 802.1X authentication failed",
-	[24] = "Cipher Suite rejected per security policy",
-	[31] = "TS deleted because QoS AP lacks sufficient bandwidth for this QoS STA due to a change in BSS service characteristics or operational mode",
-	[32] = "Disassociated for unspecified QoS-related reason",
-	[33] = "Disassociated because QAP lacks sufficient bandwidth for this STA",
-	[34] = "Disassociated because of excessive frame losses and/or poor channel conditions",
-	[35] = "Disassociated because QSTA is transmitting outside the limits of its polled TXOPs",
-	[36] = "Requested from peer QSTA as the QSTA is leaving the QBSS (or resetting)",
-	[37] = "Requested from peer QSTA as it does not want to use Traffic Stream",
-	[38] = "Requested from peer QSTA as the QSTA received frames indicated Traffic Stream for which it has not set up",
-	[39] = "Requested from peer QSTA due to time out",
-	[40] = "Requested from peer QSTA as the QSTA is leaving the QBSS (or resetting)",
-	[41] = "Requested from peer QSTA as it does not want to receive frames directly from the QSTA",
-	[42] = "Requested from peer QSTA as the QSTA received DLP frames for which it has not set up",
-	[43] = "Requested from peer QSTA as it does not want to use Block Ack",
-	[44] = "Requested from peer QSTA as the QSTA received frames indicated Block Acknowledgement policy for which it has not set up",
-	[45] = "Peer QSTA does not support the requested cipher suite",
-};
-
-
-
-
-```
-
 
 ### 查看安卓Msi和Vendor版本
 
@@ -2162,6 +2110,59 @@ Mode[G] Channels:   Mode[A] Channels:         Mode[A] Channels:      Mode[B] Cha
 
 
 
+### wifi断连reason列表
+
+```
+/external/iw/reason.c#7
+
+
+static const char *reason_table[] = {
+	[1] = "Unspecified",
+	[2] = "Previous authentication no longer valid",
+	[3] = "Deauthenticated because sending station is leaving (or has left) the IBSS or ESS",
+	[4] = "Disassociated due to inactivity",
+	[5] = "Disassociated because AP is unable to handle all currently associated STA",
+	[6] = "Class 2 frame received from non-authenticated station",
+	[7] = "Class 3 frame received from non-authenticated station",
+	[8] = "Disassociated because sending station is leaving (or has left) the BSS",
+	[9] = "Station requesting (re)association is not authenticated with responding station",
+	[10] = "Disassociated because the information in the Power Capability element is unacceptable",
+	[11] = "Disassociated because the information in the Supported Channels element is unacceptable",
+	[13] = "Invalid information element",
+	[14] = "MIC failure",
+	[15] = "4-way handshake timeout",
+	[16] = "Group key update timeout",
+	[17] = "Information element in 4-way handshake different from (Re-)associate request/Probe response/Beacon",
+	[18] = "Multicast cipher is not valid",
+	[19] = "Unicast cipher is not valid",
+	[20] = "AKMP is not valid",
+	[21] = "Unsupported RSNE version",
+	[22] = "Invalid RSNE capabilities",
+	[23] = "IEEE 802.1X authentication failed",
+	[24] = "Cipher Suite rejected per security policy",
+	[31] = "TS deleted because QoS AP lacks sufficient bandwidth for this QoS STA due to a change in BSS service characteristics or operational mode",
+	[32] = "Disassociated for unspecified QoS-related reason",
+	[33] = "Disassociated because QAP lacks sufficient bandwidth for this STA",
+	[34] = "Disassociated because of excessive frame losses and/or poor channel conditions",
+	[35] = "Disassociated because QSTA is transmitting outside the limits of its polled TXOPs",
+	[36] = "Requested from peer QSTA as the QSTA is leaving the QBSS (or resetting)",
+	[37] = "Requested from peer QSTA as it does not want to use Traffic Stream",
+	[38] = "Requested from peer QSTA as the QSTA received frames indicated Traffic Stream for which it has not set up",
+	[39] = "Requested from peer QSTA due to time out",
+	[40] = "Requested from peer QSTA as the QSTA is leaving the QBSS (or resetting)",
+	[41] = "Requested from peer QSTA as it does not want to receive frames directly from the QSTA",
+	[42] = "Requested from peer QSTA as the QSTA received DLP frames for which it has not set up",
+	[43] = "Requested from peer QSTA as it does not want to use Block Ack",
+	[44] = "Requested from peer QSTA as the QSTA received frames indicated Block Acknowledgement policy for which it has not set up",
+	[45] = "Peer QSTA does not support the requested cipher suite",
+};
+
+
+
+
+```
+
+
 ### Wifi断开 disconnect reason 列表
 
 ```
@@ -2287,6 +2288,118 @@ message WifiDisconnectReported {
 	
 ```
 
+
+###  qca_disconnect_reason_codes Vendor驱动端连接失败原因
+
+```
+
+/external/wpa_supplicant_8/src/common/qca-vendor.h
+
+
+例如:
+// vendor:11 代表 QCA_DISCONNECT_REASON_PEER_XRETRY_FAIL    reason:1 代表         UNSPECIFIED = 1;
+
+76:c5:3e:b4:d5:8b locally-generated disconnect e8:13:6e:74:74:f4 cm_id 0xd000002 source 6 reason:1  vendor:11 QCA_DISCONNECT_REASON_PEER_XRETRY_FAIL    
+
+/**
+ * enum qca_disconnect_reason_codes - Specifies driver disconnect reason codes.
+ * Used when the driver triggers the STA to disconnect from the AP.
+ *
+ * QCA_DISCONNECT_REASON_UNSPECIFIED = 0,
+ * @QCA_DISCONNECT_REASON_UNSPECIFIED: The host driver triggered the
+ * disconnection with the AP due to unspecified reasons.
+ 
+ * @QCA_DISCONNECT_REASON_INTERNAL_ROAM_FAILURE = 1,
+ * @QCA_DISCONNECT_REASON_INTERNAL_ROAM_FAILURE: The host driver triggered the
+ * disconnection with the AP due to a roaming failure. This roaming is triggered
+ * internally (host driver/firmware).
+ 
+ * @QCA_DISCONNECT_REASON_EXTERNAL_ROAM_FAILURE = 2
+ * @QCA_DISCONNECT_REASON_EXTERNAL_ROAM_FAILURE: The driver disconnected from
+ * the AP when the user/external triggered roaming fails.
+ *
+ * @QCA_DISCONNECT_REASON_GATEWAY_REACHABILITY_FAILURE = 3
+ * @QCA_DISCONNECT_REASON_GATEWAY_REACHABILITY_FAILURE: This reason code is used
+ * by the host driver whenever gateway reachability failure is detected and the
+ * driver disconnects with AP.
+ *
+ * @QCA_DISCONNECT_REASON_UNSUPPORTED_CHANNEL_CSA = 4
+ * @QCA_DISCONNECT_REASON_UNSUPPORTED_CHANNEL_CSA: The driver disconnected from
+ * the AP on a channel switch announcement from it with an unsupported channel.
+ *
+ * @QCA_DISCONNECT_REASON_OPER_CHANNEL_DISABLED_INDOOR = 5
+ * @QCA_DISCONNECT_REASON_OPER_CHANNEL_DISABLED_INDOOR: On a concurrent AP start
+ * with indoor channels disabled and if the STA is connected on one of these
+ * disabled channels, the host driver disconnected the STA with this reason
+ * code.
+ *
+ * @QCA_DISCONNECT_REASON_OPER_CHANNEL_USER_DISABLED = 6
+ * @QCA_DISCONNECT_REASON_OPER_CHANNEL_USER_DISABLED: Disconnection due to an
+ * explicit request from the user to disable the current operating channel.
+ *
+ * @QCA_DISCONNECT_REASON_DEVICE_RECOVERY = 7
+ * @QCA_DISCONNECT_REASON_DEVICE_RECOVERY: STA disconnected from the AP due to
+ * the internal host driver/firmware recovery.
+ *
+ * @QCA_DISCONNECT_REASON_KEY_TIMEOUT = 8
+ * @QCA_DISCONNECT_REASON_KEY_TIMEOUT: The driver triggered the disconnection on
+ * a timeout for the key installations from the user space.
+ *
+ * @QCA_DISCONNECT_REASON_OPER_CHANNEL_BAND_CHANGE = 9
+ * @QCA_DISCONNECT_REASON_OPER_CHANNEL_BAND_CHANGE: The dDriver disconnected the
+ * STA on a band change request from the user space to a different band from the
+ * current operation channel/band.
+ *
+ * @QCA_DISCONNECT_REASON_IFACE_DOWN = 10
+ * @QCA_DISCONNECT_REASON_IFACE_DOWN: The STA disconnected from the AP on an
+ * interface down trigger from the user space.
+ *
+ * @QCA_DISCONNECT_REASON_PEER_XRETRY_FAIL = 11
+ * @QCA_DISCONNECT_REASON_PEER_XRETRY_FAIL: The host driver disconnected the
+ * STA on getting continuous transmission failures for multiple Data frames.
+ *
+ * @QCA_DISCONNECT_REASON_PEER_INACTIVITY  = 12
+ * @QCA_DISCONNECT_REASON_PEER_INACTIVITY: The STA does a keep alive
+ * notification to the AP by transmitting NULL/G-ARP frames. This disconnection
+ * represents inactivity from AP on such transmissions.
+ * 
+ * @QCA_DISCONNECT_REASON_SA_QUERY_TIMEOUT  = 13
+ * @QCA_DISCONNECT_REASON_SA_QUERY_TIMEOUT: This reason code is used on
+ * disconnection when SA Query times out (AP does not respond to SA Query).
+ *
+ * @QCA_DISCONNECT_REASON_BEACON_MISS_FAILURE  = 13
+ * @QCA_DISCONNECT_REASON_BEACON_MISS_FAILURE: The host driver disconnected the
+ * STA on missing the beacons continuously from the AP.
+ *
+ * @QCA_DISCONNECT_REASON_CHANNEL_SWITCH_FAILURE  = 13
+ * @QCA_DISCONNECT_REASON_CHANNEL_SWITCH_FAILURE: Disconnection due to STA not
+ * able to move to the channel mentioned by the AP in CSA.
+ *
+ * @QCA_DISCONNECT_REASON_USER_TRIGGERED  = 13
+ * @QCA_DISCONNECT_REASON_USER_TRIGGERED: User triggered disconnection.
+ */
+enum qca_disconnect_reason_codes {
+	QCA_DISCONNECT_REASON_UNSPECIFIED = 0,
+	QCA_DISCONNECT_REASON_INTERNAL_ROAM_FAILURE = 1,
+	QCA_DISCONNECT_REASON_EXTERNAL_ROAM_FAILURE = 2,
+	QCA_DISCONNECT_REASON_GATEWAY_REACHABILITY_FAILURE = 3,
+	QCA_DISCONNECT_REASON_UNSUPPORTED_CHANNEL_CSA = 4,
+	QCA_DISCONNECT_REASON_OPER_CHANNEL_DISABLED_INDOOR = 5,
+	QCA_DISCONNECT_REASON_OPER_CHANNEL_USER_DISABLED = 6,
+	QCA_DISCONNECT_REASON_DEVICE_RECOVERY = 7,
+	QCA_DISCONNECT_REASON_KEY_TIMEOUT = 8,
+	QCA_DISCONNECT_REASON_OPER_CHANNEL_BAND_CHANGE = 9,
+	QCA_DISCONNECT_REASON_IFACE_DOWN = 10,
+	QCA_DISCONNECT_REASON_PEER_XRETRY_FAIL = 11,
+	QCA_DISCONNECT_REASON_PEER_INACTIVITY = 12,
+	QCA_DISCONNECT_REASON_SA_QUERY_TIMEOUT = 13,
+	QCA_DISCONNECT_REASON_BEACON_MISS_FAILURE = 14,
+	QCA_DISCONNECT_REASON_CHANNEL_SWITCH_FAILURE = 15,
+	QCA_DISCONNECT_REASON_USER_TRIGGERED = 16,
+};
+
+
+```
 
 ### Linux_Kill_Signal  终止信号
 
