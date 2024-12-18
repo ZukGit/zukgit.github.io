@@ -241,6 +241,8 @@ EVENT_IMS_SIP_SESSION|CGPS Report Server Rx|CGPS Report Server Tx|User Triggered
 File_Url【 <img src="/public/zimage/technology/qcom_modem_gps/supl_string_1.hdf"> 】
 
 
+File_Url: [supl_string_1.hdf文件示例](/public/zimage/technology/qcom_modem_gps/supl_string_1.hdf)
+
 
 ```
 EVENT_IMS_SIP_SESSION_START      开始打电话
