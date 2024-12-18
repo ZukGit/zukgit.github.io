@@ -225,6 +225,36 @@ XTRA Download Request Blocked|GPS time is invalid|Time injection|sending time in
 
 ```
 
+## QDXM_match 字符串集合收集
+
+
+### SUPL_CP match_字符串搜索
+
+
+```
+EVENT_IMS_SIP_SESSION|CGPS Report Server Rx|CGPS Report Server Tx|User Triggered
+
+```
+
+<img src="/public/zimage/technology/qcom_modem_gps/supl_string_1.jpg">
+
+File_Url【 <img src="/public/zimage/technology/qcom_modem_gps/supl_string_1.hdf"> 】
+
+
+
+```
+EVENT_IMS_SIP_SESSION_START      开始打电话
+EVENT_IMS_SIP_SESSION_RINGING    响铃
+EVENT_IMS_SIP_SESSION_ESTABLISH  接听
+EVENT_IMS_SIP_SESSION_TERMINATED 呼叫结束
+
+```
+
+
+
+
+
+
 ## AGPS_CP 交互
 
 ### Qcom_AGPS_CP_WLAN_AP_Measurement
