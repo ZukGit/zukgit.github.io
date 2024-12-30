@@ -1164,11 +1164,24 @@ adb reboot
 
 
 关闭sar服务命令:
+
+Qcom_关闭sar:
 adb root && adb shell setprop persist.vendor.radio.disable_sar  1  && adb reboot
 
 
-打开sar服务命令
+Qcom_打开sar服务命令
 adb root  &&  adb shell setprop persist.vendor.radio.disable_sar  0 && adb reboot
+
+
+MTK_关闭sar:
+adb root && adb shell setprop persist.radio.disable_sar_ctrl   1  && adb reboot
+
+
+MT_打开sar服务命令
+adb root && adb shell setprop persist.radio.disable_sar_ctrl   0  && adb reboot
+
+
+
 
 
 删除原有的 aplogd 开机Log
