@@ -1124,6 +1124,23 @@ Setting > System > Advanced > Developer options >Enable WiFi Verbose Logging  [t
 ```
 
 
+### 无线adb
+
+```
+// 0. 手机和WIFI 连接同一个 ssid 和 bssid的网络  建议5G( 2.4G有失败经历 )
+// 1.  手机连接USB 执行  CMD执行如下命令 
+adb  tcpip 5555
+
+// 2. 拔掉 移除 USB
+// 3. 检查手机的IP地址  手机WIFI按钮长按进入详情设置 例如: 192.168.1.105
+// 4. CMD 执行 adb connect 【P】:5555 命令
+adb connect 192.168.1.105:5555
+
+// 5.执行 CMD adb shell  完成无线adb 连接 
+adb shell 
+
+```
+
 
 ### Qcom查看SAR打印Log 
 
@@ -1338,7 +1355,7 @@ cap_top_left   (CapSense Ch4)(ANT6&7, CS5)  === 【  000100 】 === 4
 
 ```
 
-adb root && adb remount && adb shell setprop persist.radio.ctbk_log 5  && adb shell setprop persist.vendor.radio.ctbk_log 5   &&  adb shell setprop log.tag.QCSDK D
+adb root && adb remount && adb shell setprop persist.radio.ctbk_log 5  && adb shell setprop persist.vendor.radio.ctbk_log 5   &&  adb shell setprop log.tag.QCSDK D && adb reboot
 adb root && adb disable-verity && adb reboot bootloader
 fastboot oem config cmdl androidboot.selinux=permissive 
 fastboot reboot 
