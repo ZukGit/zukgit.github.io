@@ -3933,10 +3933,147 @@ radiotap.channel.freq == 4980            // 【196 】 4980 MHz
 
 ## 过滤器语法
 
-### EAP帧过滤
+### 过滤语句大全
 ```
 
-eapol.version == 1 
+eapol.version == 1       // eapol 帧过滤
+
+
+
+wlan_radio.phy == 11         // 802.11ax WIFI6标识帧头部   PHY type: 802.11ax (HE) (11)
+
+
+wlan.fc.type == 0           // 管理者 
+wlan.fc.type == 1           // 控制帧
+wlan.fc.type == 2           // Data数据帧
+wlan.fc.type_subtype == 0x0008   //  Beacon 帧  Type/Subtype: Beacon frame (0x0008)  Beacon帧 
+
+
+
+radiotap.channel.freq == 5785   //  信道频率 Channel frequency: 5785 [A 157] 
+
+wlan_radio.channel == 157       //  信道编号   Channel: 157
+
+
+wlan.da == ff:ff:ff:ff:ff:ff     // 目的地址是广播   Destination address: Broadcast (ff:ff:ff:ff:ff:ff)
+
+wlan.sa == d0:4d:c6:cb:6a:b4     //  源地址 是  d0:4d:c6:cb:6a:b4 
+
+
+wlan.fixed.beacon == 100        //  beacon间隔是 100 毫秒
+
+
+wlan.ssid == 54:50:2d:4c:69:6e:6b:5f:46:46:30:30     // ssid 是 SSID: "TP-Link_FF00" 
+
+wlan.bssid == 4c:36:be:16:ff:fb     // bssid , 是 BSS Id: 4c:36:be:16:ff:fb (4c:36:be:16:ff:fb)
+
+
+wlan.rsn.akms.type == 2      //  需要输入密码PSK的 WPA2的机密方式   Auth Key Management (AKM) type: PSK (2)
+
+
+wlan.rsn.akms.type == 1     //  需要输入密码PSK的 WPA的机密方式  Auth Key Management (AKM) type: WPA (1)
+
+
+wlan.fc.retry == True    //  重传帧    .... 1... = Retry: Frame is being retransmitted
+
+
+eapol              // eopl 帧交互信息  EAPOL	181	Key (Message 4 of 4)
+
+
+
+
+radiotap.he.data_3.ul_dl == 0x0000  // QAM  .... .... 0... .... = UL/DL: 0x0     Wifi6 下行
+radiotap.he.data_3.ul_dl == 0x0001  // QAM  .... .... 1... .... = UL/DL: 0x0     Wifi6 上行
+
+radiotap.he.data_3.data_mcs == 0x000b     //  QAM 的大小 .... 1011 .... .... = data MCS: 0xb
+
+
+
+radiotap.he.data_3.data_mcs == 0x000b   &&    radiotap.he.data_3.ul_dl == 0x0000  && wlan.fc.type == 2  // QAM  WIFI6数据帧 下行 1024 QAM 正交振幅调频
+
+radiotap.he.data_3.data_mcs == 0x000b   &&    radiotap.he.data_3.ul_dl == 0x0001  && wlan.fc.type == 2   //QAM  WIFI6数据帧 上行 1024 QAM 正交振幅调频
+
+
+wlan.ext_tag.he_mcs_map.max_he_mcs_80_rx_2_ss == 0x0002  &&  wlan.fc.type_subtype == 0x0008  //  OFDMA  路由器支持下行1024QAM 那么在beacon帧有该标识   .... .... .... 10.. = Max HE-MCS for 2 SS: Support for HE-MCS 0-11 (0x2)
+wlan.ext_tag.he_mcs_map.max_he_mcs_80_rx_1_ss == 0x0002  &&  wlan.fc.type_subtype == 0x0008  //  OFDMA 路由器支持上行1024QAM 那么在beacon帧有该标识   .... .... .... ..10 = Max HE-MCS for 1 SS: Support for HE-MCS 0-11 (0x2)
+
+
+
+wlan.ext_tag.number == 35   //  OFDMA  是否支持OFDMA ExtTag: HE Capabilities   Ext Tag Number: HE Capabilities (35)  
+
+wlan.ext_tag.number == 35   //  OFDMA 是否支持OFDMA ExtTag:  HE Operation  Ext Tag Number: HE Operation (36)
+
+
+
+wlan.ext_tag.number == 35 &&  wlan.ext_tag.number == 36   &&   wlan.fc.type_subtype == 0x0008    // OFDMA  判断路由器发出的beacon帧是否支持OFDMA
+
+
+radiotap.he.data_1.ppdu_format    // OFDMA  包含 OFDMA功能的帧   .... .... .... ..00 = PPDU Format: HE_SU (0x0) 
+
+
+ wlan.trigger.he.user_info     // OFDMA  包含  Basic Trigger 帧的userinfo 字段  User Info
+
+
+wlan.trigger.he.user_info.aid12      // OFDMA    Basic Trigger 帧的userinfo 字段 每个 user的AID12值不一样   .... .... .... .... .... .... .... 0000 0000 0010 = AID12: 0x002
+
+wlan.trigger.he.ru_allocation        //  OFDMA userinfo 对应的  资源RU分配数量  RU=时频资源单元(OFDMA) == Resource Unit   tone=子载波  ,26-tone 表示由26个子载波组成的RU 26-tone 大约2MHz
+
+wlan.trigger.he.ru_allocation == 65     //  OFDMA 标识当前数据帧分配了484-tone 484个子载波的RU  .... .... .... .... .... 1000 001. .... .... .... = RU Allocation: 65 (484 tones)  
+
+
+
+wlan.fc.type_subtype == 0x0006    // MUMIMO   轮序检测   Type/Subtype: Measurement Pilot (0x0006)
+
+
+
+wlan.fc.type_subtype == 0x0015    //  MUMIMO   NDP Announcement 通告帧  Type/Subtype: VHT/HE/EHT/RANGING NDP Announcement (0x0015)
+
+
+wlan.ndp.token.number      //  MUMIMO  Sounding帧   1011 01.. = Sounding Dialog Token: 0x2d
+
+
+wlan.fc.type_subtype == 0x0015  &&  wlan.ndp.token.number   // MUMIMO  下行 Sounding NDP Announcement 通告帧 Announcement (0x0015) 1011 01.. = Sounding Dialog Token: 0x2d
+
+
+
+wlan.he_ndp.sta_info     // MUMIMO   轮询Sta Info 信息    STA list
+ 
+ 
+
+wlan.fc.type_subtype == 0x0012      // MUMIMO   Trigger帧   Type/Subtype: Trigger (0x0012) 
+
+wlan.trigger.eht.trigger_type == 1   //  MUMIMO 触发轮询帧 Trigger Beamforming Report Poll帧  0001 = Trigger Type: Beamforming Report Poll (BRP) (1)
+
+
+wlan.fc.type_subtype == 0x000e  //  MUMIMO Action No Ack 帧数据    Type/Subtype: Action No Ack (0x000e)
+
+
+wlan.he.action == 0    //  MUMIMO Action No Ack 帧数据 中 action数据  HE Action: HE Compressed Beamforming And CQI (0)
+
+
+radiotap.he.data_1.ppdu_format == 0x0002    // MUMIMO   数据帧中包含的 MUMIMO  的 HE_MU 标识  .... .... .... ..10 = PPDU Format: HE_SU (0x2)
+
+
+
+wlan.ext_tag.bss_color_information.bss_color     //  BSS Color 存在标识     ..00 0000 = BSS Color: 0x00
+wlan.ext_tag.bss_color_information.bss_color == 0x2a    //  BSS Color 设置了本BSSID 的 颜色为  0x2a  ..10 1010 = BSS Color: 0x2a
+
+wlan.ext_tag.bss_color_information.bss_color_disabled == True   // BSS Color 关闭了 BSS Color着色功能   1... .... = BSS Color Disabled: True
+
+wlan.ext_tag.bss_color_information.bss_color_disabled == False   // BSS Color 启用了 BSS Color着色功能   0... .... = BSS Color Disabled: False
+
+
+
+
+wlan.extcap.b78 == True     // TWT 目标唤醒时间功能标识 (Beacon 和 Prope Response)  .1.. .... = TWT Responder Support: True || Extended Capabilities: 0x40 (octet 10) || Tag: Extended Capabilities (10 octets)
+
+wlan.ext_tag.he_mac_cap.twt_rsp_support == True     //  TWT 支持 TWT 的beacon 和  Prope Response  .... .1.. = TWT Responder Support: Supported
+
+
+wlan.twt.requester   //  TWT   TWT请求响应帧  This STA is a TWT Responding STA or a TWT scheduling AP 
+
+
+
 
 ```
 
