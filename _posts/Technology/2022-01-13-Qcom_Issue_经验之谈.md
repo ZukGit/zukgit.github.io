@@ -476,6 +476,32 @@ adb logcat > Log.txt
 
 
 
+### 项目SKU_radioid查看
+
+```
+
+cd AOSP && cd ./device && grep -rins "device name=" . | grep vhw
+
+cd ./device && grep -rins "device name=" . | grep vhw     // 索索所有出现的  【device name=】的xml 文件 
+ 
+gedit ./xxxxx/vhw.xml          //  打开当前所有到的 vhw.xml 文件 
+
+搜索关键字 【"radio/.range"】  就能查看当前 device 范围下的 radioid 
+
+
+示例:
+			<string-array name=【"radio/.range"】>
+				<item>LATAM</item>
+				<item>PRC</item>
+				<item>CHINA</item>
+				<item>INDIA</item>
+			</string-array>
+
+```
+
+
+
+
 ### adb命令描述测试Supl使能
 
 ```
