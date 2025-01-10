@@ -160,6 +160,17 @@ Package [com.baidu.map.location]   // 普通搜索,正则搜索搜不到
 #include <stdlib.h>
 #include <string.h>
 #include <strings.h>
+#include <unistd.h>  // 包含getcwd函数所需的头文件
+#include <limits.h>  // 包含PATH_MAX常量
+
+
+// _______   常量定义 Begin _______ 
+
+static char CUR_DIR_PATH[1024] = {0};  //  当前工程的根目录  
+
+
+
+// _______   常量定义 End _______ 
 
 
 /* property_get: returns the length of the value which will never be
@@ -177,8 +188,13 @@ int property_get(const char* key, char* value, const char* default_value){
    char curKey[256] ={0};
 
    char* identifyKey =  strcat(strcpy(curKey, key),"=");
+   char propFilePATH[256] ={0};
+   strcpy(propFilePATH, CUR_DIR_PATH);
+   strcat(propFilePATH, "/system.prop");
 
-    FILE *file = fopen("/cloudide/workspace/C/system.prop", "r");
+   printf("Prop文件路径:  propFilePATH:%s \n",propFilePATH);
+
+    FILE *file = fopen(propFilePATH, "r");
     if (file == NULL) {
         printf("This file does not exist.\n");
         return -1;
@@ -258,6 +274,7 @@ int modifyLineInFile(const char *filePath,  const char *oldLineContent, const ch
         return -1;
     }
 
+
     // Temporary file to store updated content
     FILE *tempFile = fopen("temp.txt", "w");
     if (tempFile == NULL) {
@@ -318,7 +335,10 @@ int property_set(const char *key, const char *newValue){
        rawPropLine = strcat(strcat(identifyOldKey, "="),curkeyValue); 
        printf("Modify!! rawOldLine=【%s】replaceNewLine=【%s】\n",rawPropLine,replaceNewLine); 
 
-       return  modifyLineInFile("/cloudide/workspace/C/system.prop",rawPropLine,replaceNewLine);
+       char propFilePATH[256] ={0};
+       strcpy(propFilePATH, CUR_DIR_PATH);
+       strcat(propFilePATH, "/system.prop");
+       return  modifyLineInFile(propFilePATH,rawPropLine,replaceNewLine);
  
     } else {
         // 追加末尾操作
@@ -327,7 +347,11 @@ int property_set(const char *key, const char *newValue){
        printf("No Exist! Need Write Append to End!   key=%s curkeyValue=%s Line=【%s】\n",key,identifyKey,replaceNewLine); 
      printf("replaceNewLine=%s\n",replaceNewLine); 
      char *newline = strtok(replaceNewLine, "\n");    // 去除 fgets函数 自动加入的换行符  因此它会返回去除了换行符的字符串
-      return  append_line_to_file("/cloudide/workspace/C/system.prop",newline);
+
+       char propFilePATH[256] ={0};
+       strcpy(propFilePATH, CUR_DIR_PATH);
+       strcat(propFilePATH, "/system.prop");
+      return  append_line_to_file(propFilePATH,newline);
     }
 
 
@@ -424,7 +448,7 @@ int test_property_set() {
   
      // 读取不存在的宏
        char propGetValue5[100] = {0};
-      if(property_get("test_test_deAAA", propGetValue5, "GPS") > 0){
+      if(property_get("test_moAAAdeAAA", propGetValue5, "GPS") > 0){
         printf("读取prop成功!(读取到了默认值) propGetValue5=%s\n",propGetValue5);
     } else {
         printf("读取prop失败! propGetValue5=%s\n",propGetValue5);
@@ -438,8 +462,28 @@ int test_property_set() {
 
 
 
+int get_system_info() {
+      printf("\n════════════  get_system_info() begin \n");
+    char cwd[PATH_MAX];  // 定义一个足够大的字符数组来存储路径
+
+    // 调用getcwd函数获取当前工作目录
+    if (getcwd(cwd, sizeof(cwd)) != NULL) {
+        printf("当前路径是: %s\n", cwd);
+        strcpy(CUR_DIR_PATH,cwd);
+    } else {
+        perror("当前路径获取失败! 请检查代码! getcwd() error\n ");  // 如果getcwd函数失败，则打印错误信息
+    }
+
+       printf("CUR_DIR_PATH=【%s】 \n",CUR_DIR_PATH);
+      printf("\n════════════  get_system_info() end \n");
+
+    return 0;
+}
+
+
 int main() {
  printf("\n════════════════════════════════════ main() begin ════════════════════════════════════\n");
+ get_system_info();
 test_property_get();
 test_property_set();
 
@@ -447,6 +491,8 @@ test_property_set();
  printf("\n════════════════════════════════════ main() end ════════════════════════════════════\n");
 
 }
+
+
 
 ```
 
