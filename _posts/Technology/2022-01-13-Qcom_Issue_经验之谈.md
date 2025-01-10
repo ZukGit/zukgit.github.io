@@ -212,14 +212,14 @@ int property_get(const char* key, char* value, const char* default_value){
 
     
 
-           printf("找到宏:%s  对应的行:%s \n",key,newline);
+        //   printf("找到宏:%s  对应的行:%s \n",key,newline);
 
            char *p = strstr(newline, key);
            char *q = strstr(newline, "=");
            int len = q - p ;
           // printf("len = %d\n",len);
            strncpy(matchValue,p+len+1,len);
-           printf("AA matchValue = %s\n",matchValue);
+          // printf("AA matchValue = %s\n",matchValue);
            strcpy(value,matchValue);
 		}
 	}
@@ -227,7 +227,7 @@ int property_get(const char* key, char* value, const char* default_value){
 	fclose(file);
 
     if(matchValue[0] == '\0'  ){  // 没有找到宏
-       printf("当前没有找到对应宏：%s \n",key);
+    //    printf("当前没有找到对应宏：%s \n",key);
        if(default_value == NULL){
            returnCode = -1;
            printf(" 当前没有找到对应宏:%s  && default_value = NULL --> returnCode= %d \n",key,returnCode);
@@ -243,8 +243,8 @@ int property_get(const char* key, char* value, const char* default_value){
 
 
 
-    printf("matchValue=【%s】 strlen(matchValue) = %d \n",matchValue,strlen(matchValue));
-    printf("____ property_get() Finish____\n");
+    // printf("matchValue=【%s】 strlen(matchValue) = %d \n",matchValue,strlen(matchValue));
+    // printf("____ property_get() Finish____\n");
     return strlen(matchValue); 
 }
 
@@ -325,15 +325,15 @@ int property_set(const char *key, const char *newValue){
     if(property_get(key, curkeyValue,NULL) > 0 ){
         //修改操作
 
-        printf("Modify_1!! curkeyValue=【%s】\n",curkeyValue); 
-        printf("Modify_2!! identifyKey=【%s】\n",identifyKey); 
-        printf("Modify_3!! newValue=【%s】\n",newValue); 
+       // printf("Modify_1!! curkeyValue=【%s】\n",curkeyValue); 
+       // printf("Modify_2!! identifyKey=【%s】\n",identifyKey); 
+       // printf("Modify_3!! newValue=【%s】\n",newValue); 
        replaceNewLine = strcat(strcat(identifyKey, "="),newValue);
-       printf("Exist! Need Modify from  【key=%s rawValue=%s】 【key=%s newValue=%s】\n",key,curkeyValue , key , newValue ); 
+     //  printf("Exist! Need Modify from  【key=%s rawValue=%s】 【key=%s newValue=%s】\n",key,curkeyValue , key , newValue ); 
 
        strcpy(identifyOldKey,key);
        rawPropLine = strcat(strcat(identifyOldKey, "="),curkeyValue); 
-       printf("Modify!! rawOldLine=【%s】replaceNewLine=【%s】\n",rawPropLine,replaceNewLine); 
+     //  printf("Modify!! rawOldLine=【%s】replaceNewLine=【%s】\n",rawPropLine,replaceNewLine); 
 
        char propFilePATH[256] ={0};
        strcpy(propFilePATH, CUR_DIR_PATH);
@@ -344,8 +344,8 @@ int property_set(const char *key, const char *newValue){
         // 追加末尾操作
 
        replaceNewLine = strcat(strcat(identifyKey, "="),newValue);
-       printf("No Exist! Need Write Append to End!   key=%s curkeyValue=%s Line=【%s】\n",key,identifyKey,replaceNewLine); 
-     printf("replaceNewLine=%s\n",replaceNewLine); 
+    //    printf("No Exist! Need Write Append to End!   key=%s curkeyValue=%s Line=【%s】\n",key,identifyKey,replaceNewLine); 
+    //  printf("replaceNewLine=%s\n",replaceNewLine); 
      char *newline = strtok(replaceNewLine, "\n");    // 去除 fgets函数 自动加入的换行符  因此它会返回去除了换行符的字符串
 
        char propFilePATH[256] ={0};
@@ -436,6 +436,15 @@ int test_property_set() {
     printf("result_code_3=%d\n",result_code_3);
 
 
+     // -------- get("不存在key")  set("不存在key")  get("不存在key") begin  --------
+     // 读取不存在的宏
+       char propGetValue_4pre[100] = {0};
+      if(property_get("test_moAAAdeAAA", propGetValue_4pre, "GPS") > 0){
+        printf("读取prop成功!(读取到了默认值) propGetValue_4pre=%s\n",propGetValue_4pre);
+    } else {
+        printf("读取prop失败! propGetValue_4pre=%s\n",propGetValue_4pre);
+    }
+
      // 设置宏  并读取宏  
     int result_code_4 = property_set("test_moAAAdeAAA","18888");
     printf("result_code_4=%d\n",result_code_4);
@@ -446,13 +455,14 @@ int test_property_set() {
         printf("读取prop失败! propGetValue4=%s\n",propGetValue4);
     }
   
-     // 读取不存在的宏
-       char propGetValue5[100] = {0};
-      if(property_get("test_moAAAdeAAA", propGetValue5, "GPS") > 0){
-        printf("读取prop成功!(读取到了默认值) propGetValue5=%s\n",propGetValue5);
+     // 读取之前设置了值的宏
+       char result_code_4end[100] = {0};
+      if(property_get("test_moAAAdeAAA", result_code_4end, "GPS") > 0){
+        printf("读取prop成功! result_code_4end=%s\n",result_code_4end);
     } else {
-        printf("读取prop失败! propGetValue5=%s\n",propGetValue5);
+        printf("读取prop失败! result_code_4end=%s\n",result_code_4end);
     }
+     // -------- get("不存在key")  set("不存在key")  get("不存在key") end  --------
 
 
     printf("\n════════════  test_property_set() end \n");
@@ -491,6 +501,8 @@ test_property_set();
  printf("\n════════════════════════════════════ main() end ════════════════════════════════════\n");
 
 }
+
+
 
 
 
