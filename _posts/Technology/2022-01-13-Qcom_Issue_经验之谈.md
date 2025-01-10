@@ -116,6 +116,360 @@ Package [com.baidu.map.location]   // 普通搜索,正则搜索搜不到
 ```
 
 
+### 在线Android_C运行环境(模拟)
+
+
+1.  打开网址  https://www.marscode.cn/ide/w74v81pje2vw88
+
+2. 创建C工程并在根目录创建 main.c   把 下文中的 main.c 代码 复制到文件  main.c  中 
+
+3. 在根目录创建 system.prop 文化并把  把 下文中的 system.prop  代码 复制到文件 system.prop   中 
+
+4. 开始模拟编写 Android_C 运行时代码 点击 运行  实时编译  查看结果 方便调试
+
+```
+
+
+1.  打开网址  https://www.marscode.cn/ide/w74v81pje2vw88
+
+2. 创建C工程并在根目录创建 main.c   把 下文中的 main.c 代码 复制到文件  main.c  中 
+
+3. 在根目录创建 system.prop 文化并把  把 下文中的 system.prop  代码 复制到文件 system.prop   中 
+
+4. 开始模拟编写 Android_C 运行时代码 点击 运行  实时编译  查看结果 方便调试
+
+
+```
+
+
+####  Anroid在线编译_main.c
+
+1.  打开网址  https://www.marscode.cn/ide/w74v81pje2vw88
+
+2. 创建C工程并在根目录创建 main.c   把 下文中的 main.c 代码 复制到文件  main.c  中 
+
+3. 在根目录创建 system.prop 文化并把  把 下文中的 system.prop  代码 复制到文件 system.prop   中 
+
+4. 开始模拟编写 Android_C 运行时代码 点击 运行  实时编译  查看结果 方便调试
+
+
+```
+// 当前文件命名为 main.c
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+
+
+/* property_get: returns the length of the value which will never be
+** greater than PROPERTY_VALUE_MAX - 1 and will always be zero terminated.
+** (the length does not include the terminating zero).
+**
+** If the property read fails or returns an empty value, the default
+** value is used (if nonnull).
+*/
+int property_get(const char* key, char* value, const char* default_value){
+   int SIZE =256;
+   int returnCode = 0 ;
+   char oneLine[256] = {0};
+   char matchValue[256] ={0};
+   char curKey[256] ={0};
+
+   char* identifyKey =  strcat(strcpy(curKey, key),"=");
+
+    FILE *file = fopen("/cloudide/workspace/C/system.prop", "r");
+    if (file == NULL) {
+        printf("This file does not exist.\n");
+        return -1;
+    }
+
+     int linenum = 0 ;
+        // 读取每行内容至str中
+	while(fgets(oneLine, SIZE, file))
+	 {
+       char *newline = strtok(oneLine, "\n");    // 去除 fgets函数 自动加入的换行符  因此它会返回去除了换行符的字符串
+     //   printf("line_%d: 【%s】  \n",++linenum,newline);
+        // 判断str中是否包含参数输入字符串
+		if(strstr(newline, identifyKey))  // 验证  【key=】   来确保唯一性
+		{
+
+    
+
+           printf("找到宏:%s  对应的行:%s \n",key,newline);
+
+           char *p = strstr(newline, key);
+           char *q = strstr(newline, "=");
+           int len = q - p ;
+          // printf("len = %d\n",len);
+           strncpy(matchValue,p+len+1,len);
+           printf("AA matchValue = %s\n",matchValue);
+           strcpy(value,matchValue);
+		}
+	}
+
+	fclose(file);
+
+    if(matchValue[0] == '\0'  ){  // 没有找到宏
+       printf("当前没有找到对应宏：%s \n",key);
+       if(default_value == NULL){
+           returnCode = -1;
+           printf(" 当前没有找到对应宏:%s  && default_value = NULL --> returnCode= %d \n",key,returnCode);
+   
+           return returnCode;
+       } else {
+            strcpy(value,default_value);
+           returnCode =  strlen(value); 
+           printf(" 当前没有找到对应宏:%s  && default_value =[%s] --> returnCode= %d  返回对应设置默认值的长度! \n",key,default_value,returnCode);
+            return returnCode;
+       }
+    }
+
+
+
+    printf("matchValue=【%s】 strlen(matchValue) = %d \n",matchValue,strlen(matchValue));
+    printf("____ property_get() Finish____\n");
+    return strlen(matchValue); 
+}
+
+
+int append_line_to_file(const char *filename, const char *line) {
+    FILE *file = fopen(filename, "a");  // 打开文件用于追加
+    if (file == NULL) {
+        perror("Error opening file");
+        return -1;  // 打开文件失败，返回错误代码
+    }
+ 
+ 
+
+    // 写入一个换行符后跟要追加的文本
+    fprintf(file, "%s\n", line);
+ 
+    fclose(file);  // 关闭文件
+    return 0;  // 成功
+}
+
+
+
+int modifyLineInFile(const char *filePath,  const char *oldLineContent, const char *newLineContent) {
+    FILE *file = fopen(filePath, "r");
+    if (file == NULL) {
+        perror("Error opening file");
+        return -1;
+    }
+
+    // Temporary file to store updated content
+    FILE *tempFile = fopen("temp.txt", "w");
+    if (tempFile == NULL) {
+        perror("Error opening temporary file");
+        fclose(file);
+        return -1;
+    }
+
+    char buffer[1024];
+    int currentLine = 1;
+
+    while (fgets(buffer, 1024, file) != NULL) {
+
+      char *newline = strtok(buffer, "\n");    // 去除 fgets函数 自动加入的换行符  因此它会返回去除了换行符的字符串
+     //   printf("line_%d: 【%s】  \n",++linenum,newline);
+        // 判断str中是否包含参数输入字符串
+		if(strstr(newline, oldLineContent))  // 验证  【key=】   来确保唯一性
+		{
+
+         fprintf(tempFile, "%s\n", newLineContent);
+		} else {
+          fputs(strcat(buffer,"\n"), tempFile);
+        }
+
+        currentLine++;
+    }
+
+    fclose(file);
+    fclose(tempFile);
+
+    // Replace original file with updated file
+    remove(filePath);
+    rename("temp.txt", filePath);
+    return 0;
+}
+
+
+
+// property_set: returns 0 on success, < 0 on failure
+int property_set(const char *key, const char *newValue){
+    char curkeyValue[100] = {0};
+    char identifyKey[100] = {0};
+    char identifyOldKey[100] = {0};
+     char* rawPropLine;
+    char* replaceNewLine;    //需要替换或者追加的新的内容
+     strcpy(identifyKey,key);
+
+    if(property_get(key, curkeyValue,NULL) > 0 ){
+        //修改操作
+
+        printf("Modify_1!! curkeyValue=【%s】\n",curkeyValue); 
+        printf("Modify_2!! identifyKey=【%s】\n",identifyKey); 
+        printf("Modify_3!! newValue=【%s】\n",newValue); 
+       replaceNewLine = strcat(strcat(identifyKey, "="),newValue);
+       printf("Exist! Need Modify from  【key=%s rawValue=%s】 【key=%s newValue=%s】\n",key,curkeyValue , key , newValue ); 
+
+       strcpy(identifyOldKey,key);
+       rawPropLine = strcat(strcat(identifyOldKey, "="),curkeyValue); 
+       printf("Modify!! rawOldLine=【%s】replaceNewLine=【%s】\n",rawPropLine,replaceNewLine); 
+
+       return  modifyLineInFile("/cloudide/workspace/C/system.prop",rawPropLine,replaceNewLine);
+ 
+    } else {
+        // 追加末尾操作
+
+       replaceNewLine = strcat(strcat(identifyKey, "="),newValue);
+       printf("No Exist! Need Write Append to End!   key=%s curkeyValue=%s Line=【%s】\n",key,identifyKey,replaceNewLine); 
+     printf("replaceNewLine=%s\n",replaceNewLine); 
+     char *newline = strtok(replaceNewLine, "\n");    // 去除 fgets函数 自动加入的换行符  因此它会返回去除了换行符的字符串
+      return  append_line_to_file("/cloudide/workspace/C/system.prop",newline);
+    }
+
+
+
+
+    return 0; 
+}
+
+
+
+
+
+
+int test_property_get() {
+     printf("\n════════════  test_property_get() begin\n");
+    char propValue1[100] = {0};
+    char propValue2[100] = {0};
+    char propValue3[100] = {0};
+    char propValue4[100] = {0};
+    char propValue5[100] = {0};
+    char propValue6[100] = {0};
+
+    // 1. property_get 获取存在的宏  默认值为NULL   "wifi.tethering.interface=ap0"
+    // 打印:  propValue1  length = 3   propValue1=ap0
+    printf("propValue1  length = %d\n",property_get("wifi.tethering.interface", propValue1, NULL));
+    printf("propValue1=%s\n",propValue1);
+
+    // 2. property_get 获取存在的宏  默认值为wlan0     "wifi.tethering.interface=ap0"
+    // 打印:   propValue2  length = 3    propValue2=ap0
+    printf("propValue2  length = %d\n",property_get("wifi.tethering.interface", propValue2, "wlan0"));
+    printf("propValue2=%s\n",propValue2);
+
+    // 3. property_get 获取不存在的宏  默认值为 NULL    "wifi.tethering.interfaceAA"
+    // 打印:   propValue3 length = -1   propValue3=   
+    // 所以:   if(property_get("wifi.tethering.interfaceAA", propValue3,NULL) > 0) 可用于判断是否正确读取出prop
+    printf("propValue3 length = %d\n",property_get("wifi.tethering.interfaceAA", propValue3,NULL));
+    printf("propValue3=%s\n",propValue3);
+
+    // 4. property_get 获取不存在的宏  默认值为 "wlan0"    "wifi.tethering.interfaceAA"
+    // 打印:   propValue4 length = 5   propValue4=wlan0    // 当前读取到的是默认值 返回的是默认值的长度
+    printf("propValue4 length = %d\n",property_get("wifi.tethering.interfaceAA", propValue4, "wlan0"));
+    printf("propValue4=%s\n",propValue4); 
+
+
+    // 5.判断是否正确去读取出 宏 key  "wifi.tethering.interface"
+    // 打印  Exist!  propValue5=wlan0
+    if(property_get("wifi.tethering.interface", propValue5,NULL) > 0 ){
+        printf("Exist!  propValue5=%s\n",propValue4); 
+    } else {
+        printf("No Exist!  propValue5=%s\n",propValue4); 
+    }
+
+    // 6.判断是否正确去读取出不存在的宏   "wifi.tethering.interfaceAA"
+     // 打印:    No Exist! propValue6=
+    if(property_get("wifi.tethering.interfaceAA", propValue6,NULL) > 0 ){
+        printf("Exist! propValue6=%s\n",propValue6); 
+    } else {
+        printf("No Exist! propValue6=%s\n",propValue6); 
+    }
+
+
+   printf("\n════════════ test_property_get() end\n");
+
+    return 0;
+}
+
+
+// property_set: returns 0 on success, < 0 on failure
+//  property_set: returns 0 on success, < 0 on failure
+int test_property_set() {
+    printf("\n════════════  test_property_set() begin  \n");
+
+    int result_code_1 = property_set("wifi.tethering.interface","p2pXXXX10");
+    printf("result_code_1=%d\n",result_code_1);
+
+
+    int result_code_2 = property_set("wifi.interface","testwifi");
+    printf("result_code_2=%d\n",result_code_2);
+
+
+    int result_code_3 = property_set("vendor.rild.libargs","just one word");
+    printf("result_code_3=%d\n",result_code_3);
+
+
+     // 设置宏  并读取宏  
+    int result_code_4 = property_set("test_moAAAdeAAA","18888");
+    printf("result_code_4=%d\n",result_code_4);
+    char propGetValue4[100] = {0};
+    if(property_get("test_moAAAdeAAA", propGetValue4, NULL) > 0){
+        printf("读取prop成功! propGetValue4=%s\n",propGetValue4);
+    } else {
+        printf("读取prop失败! propGetValue4=%s\n",propGetValue4);
+    }
+  
+     // 读取不存在的宏
+       char propGetValue5[100] = {0};
+      if(property_get("test_test_deAAA", propGetValue5, "GPS") > 0){
+        printf("读取prop成功!(读取到了默认值) propGetValue5=%s\n",propGetValue5);
+    } else {
+        printf("读取prop失败! propGetValue5=%s\n",propGetValue5);
+    }
+
+
+    printf("\n════════════  test_property_set() end \n");
+
+}
+
+
+
+
+int main() {
+ printf("\n════════════════════════════════════ main() begin ════════════════════════════════════\n");
+test_property_get();
+test_property_set();
+
+// 在这里 模拟 C 语言( Android )运行编译代码测试环境 zukgit C 在线编译 现在运行
+ printf("\n════════════════════════════════════ main() end ════════════════════════════════════\n");
+
+}
+
+```
+
+#### Anroid在线编译_system.prop 
+
+1.  打开网址  https://www.marscode.cn/ide/w74v81pje2vw88
+
+2. 创建C工程并在根目录创建 main.c   把 下文中的 main.c 代码 复制到文件  main.c  中 
+
+3. 在根目录创建 system.prop 文化并把  把 下文中的 system.prop  代码 复制到文件 system.prop   中 
+
+4. 开始模拟编写 Android_C 运行时代码 点击 运行  实时编译  查看结果 方便调试
+
+```
+## 当前文件命名为 system.prop   不能包含空行
+Build.BRAND=MTK
+aaudio.mmap_exclusive_policy=2
+aaudio.mmap_policy=2
+audio.deep_buffer.media=true
+audio.offload.disable=false
+wifi.direct.interface=p2p0
+```
+
 
 
 
