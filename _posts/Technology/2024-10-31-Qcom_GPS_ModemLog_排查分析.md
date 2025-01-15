@@ -65,6 +65,148 @@ CTRL + Shift + N  (上一个匹配match_item)
 
 
 
+#### 自定义Log_Item过滤配置文件(*.dmc)及使用
+
+```
+
+1.
+File ==> Manage Configuration (DMC) (Ctrl+ M) 菜单 【点击】     //   打开  Manage Configuration (DMC) 窗口
+Ctrl+M     // 打开  Manage Configuration (DMC) 窗口
+
+
+
+2.
+在 DMC 窗口下方 Packets选项页,可选择当前需要制作的需要过滤Fliter的 Item 的集合
+每个 Item 由 【Types】【Item_identify】两部分构成
+【Types】【Item_identify】: 
+例如:
+【Event Reports】    【[01437] EVENT_IMS_SIP_REQUEST_SEND】______ 标识了唯一一个 item 
+【Log Packets (OTA)】【[0x156E] IMS SIP Message】
+【Event Reports】    【[01437] EVENT_IMS_SIP_REQUEST_SEND】
+
+
+3.
+在选中所有需要过滤的item的集合后点击下方按钮 [Save as DMC] 后即可保存当前选中的 DMC(fliter)配置文件
+当前存在自定义的 用于过滤 紧急电话定位的  zukgit_emergencycall_postion.dmc 
+
+
+[自定义 .dmc文件使用方法]
+4.加载最原始的jira上的modem_Log 
+
+
+
+5.使用 Ctrl+O 或者 菜单 File==> Load Configuration 菜单打开 Load QXDM Professional Configuration File 菜单
+   选中自定义的  .dmc文件 如  zukgit_emergencycall_postion.dmc  后将打开一个 空白的 Fliter View 列表
+
+
+6. 在Fliter-View 中 右键菜单  Refresh View 按钮开始执行自定义 dmc 过滤操作
+   之后开始在Fliter-View窗口出现进度条 开始过滤需要显示的 Item 
+
+
+
+7.保存过滤item成新的 .hdf 文件 使得下次打开以及过滤操作效率几何倍提高
+  ctrl+a 选中所有过滤好的item 邮件选中 Copy All Item to File 保存当前过滤之后的modem Log 
+  
+
+8. 在过滤之后的modem Log 中 Ctrl+A 全选 邮件Match 再次过滤自己需要关注的关键字选项例如:
+
+EVENT_IMS_SIP|CGPS Report Server Rx|CGPS Report Server Tx|User Triggered|IMS_SIP_INVITE|CALL_TYPE_EMERGENCY
+
+
+```
+
+
+1.Manage Configuration (DMC) 窗口
+
+![](/public/zimage/qcom_tool/qxdm_dmc.jpg)
+
+
+5. Load QXDM Professional Configuration File 菜单窗口
+
+
+![](/public/zimage/qcom_tool/qxdm_load_dmc.jpg)
+
+
+
+6. Refresh View 按钮开始执行自定义 dmc 过滤操作
+![](/public/zimage/qcom_tool/qxdm_refresh_dmc.jpg)
+
+
+
+8. 在过滤fliter_item之后的modem文件match关键字
+![](/public/zimage/qcom_tool/qxdm_fliter_match.jpg)
+
+
+### 紧急电话定位.dmc
+
+#### zukgit_emergencycall_postion.dmc 
+
+
+[zukgit_emergencycall_postion.dmc(点击下载)](/public/zimage/qcom_tool/qxdm_dmc/zukgit_emergencycall_postion.dmc)
+
+
+```
+用于过滤 紧急电话定位的 .dmc文件
+
+
+```
+
+#### zukgit_emergencycall_postion匹配Match关键字
+
+```
+//注意最后是在Matchs输入框输入是没有空格的
+
+EVENT_IMS_SIP|CGPS Report Server Rx|CGPS Report Server Tx|User Triggered|IMS_SIP_INVITE|CALL_TYPE_EMERGENCY
+
+
+```
+
+
+
+#### zukgit_emergencycall_postion.txt
+```
+
+-------------------------------------------
+Event Reports
+-------------------------------------------
+[01437] EVENT_IMS_SIP_REQUEST_SEND
+[01436] EVENT_IMS_SIP_RESPONSE_SEND
+[01435] EVENT_IMS_SIP_REQUEST_RECV
+[01434] EVENT_IMS_SIP_RESPONSE_RECV
+[01433] EVENT_IMS_SIP_SESSION_FAILURE
+[01432] EVENT_IMS_SIP_SESSION_CANCEL
+[01424] EVENT_IMS_SIP_REGISTRATION_START
+[01425] EVENT_IMS_SIP_REGISTER_END
+[01426] EVENT_IMS_SIP_DEREGISTER_START
+[01427] EVENT_IMS_SIP_DEREGISTER_END
+[01428] EVENT_IMS_SIP_SESSION_START
+[01429] EVENT_IMS_SIP_SESSION_RINGING
+[01430] EVENT_IMS_SIP_SESSION_ESTABLISHED
+[01431] EVENT_IMS_SIP_SESSION_TERMINATED
+
+
+-------------------------------------------
+Log Packets
+-------------------------------------------
+[0x1544] QMI_MCS_QCSI_PKT
+[0x1387] CGPS Report Server Rx
+[0x1386] CGPS Report Server Tx
+
+
+-------------------------------------------
+Log Packets (OTA)
+-------------------------------------------
+[0x156E] IMS SIP Message
+
+
+
+
+```
+
+
+#### 紧急电话关键item分析
+
+
 
 
 
