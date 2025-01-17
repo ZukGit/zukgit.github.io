@@ -159,7 +159,117 @@ EVENT_IMS_SIP|CGPS Report Server Rx|CGPS Report Server Tx|User Triggered|IMS_SIP
 EVENT_IMS_SIP|CGPS Report Server Rx|CGPS Report Server Tx|User Triggered|IMS_SIP_INVITE|CALL_TYPE_EMERGENCY
 
 
+EVENT_IMS_SIP|CGPS Report Server Rx|CGPS Report Server Tx|User Triggered|IMS_SIP_INVITE|CALL_TYPE_EMERGENCY|calling_number =|positionReportTimeout|LOC_SESS_STATUS_GENERAL_FAILURE|IMS SIP Message|Reject MO request|eQMI_LOC_RECURRENCE_SINGLE|eQMI_LOC_SESS_STATUS_IN_PROGRESS
+
+
+
+
 ```
+
+
+
+#### Ctrl+F精确查找
+
+```
+Ctrl + F 
+Ctrl + N   // 下一个精确查找结果
+Ctrl + Shift + N  // 上一个精确查找结果
+
+Alt + B    //  对当前Item 进行 Bookmark Item(s)
+Alt + U    // 跳到上一个 bookmark
+Alt + D    // 跳到下一个 bookmark
+
+calling_number =|positionReportTimeout|LOC_SESS_STATUS_GENERAL_FAILURE|IMS SIP Message|Reject MO request|eQMI_LOC_RECURRENCE_SINGLE|eQMI_LOC_SESS_STATUS_IN_PROGRESS
+
+【calling_number =】    查找当前拨打的电话   
+【positionReportTimeout】   请求开始Loc定位 移动网络端请求位置超时时间点  IMS requested location from GPS engine   
+【LOC_SESS_STATUS_GENERAL_FAILURE】  定位失败Log打印 qmiLocEventPositionReport  中 定位失败
+【IMS SIP Message】 当前IMS SIP Message Item集合 , 会话初始化协议交换的内容 可能缺失 某个数据项 
+【Reject MO request】 Android MO(Mobile Originated,主叫) Reject MO request  ,  GPS is rejecting MO request from IMS
+【eQMI_LOC_RECURRENCE_SINGLE】   IMS sends SINGLE GPS request to GPS in modem 发送Single定位给到GPS 
+【eQMI_LOC_SESS_STATUS_IN_PROGRESS】 发送 qmiLocEventPositionReport 地址报告 经纬度信息给到 IMS 
+
+
+
+```
+
+
+```
+【calling_number =】    查找当前拨打的电话   
+
+16:52:55.313733	[0x1544]	QMI_MCS_QCSI_PKT
+         voice_dial_call {
+            voice_dial_call_reqTlvs[0] {
+               Type = 0x01
+               Length = 3
+               calling_number {
+                  calling_number = 911
+               }
+            }
+            voice_dial_call_reqTlvs[1] {
+               Type = 0x10
+               Length = 1
+               call_type {
+                  call_type = CALL_TYPE_EMERGENCY   【 拨打911 的紧急电话 】
+               }
+            }
+
+```
+
+
+```
+
+【positionReportTimeout】   移动网络端请求位置超时时间点  IMS requested location from GPS engine   
+// ModemLog中网络请求位置 
+//IMS requested location from GPS engine in modem
+
+2024 Dec  6  20:17:07.432  [86]  0x1544  QMI_MCS_QCSI_PKT 
+packetVersion = 2
+MsgType = Request
+Counter = 121
+ServiceId = 16
+MajorRev = 2
+MinorRev = 172
+ConHandle = 0xE1E85170
+MsgId = 0x00000022
+QmiLength = 32
+Service_LOC {
+   ServiceLOCV2 {
+      qmiLocStart {
+         qmiLocStartReqTlvs[0] {
+            Type = 0x01
+            Length = 1
+            sessionId {
+               sessionId = 0
+            }
+         }
+
+        qmiLocStartReqTlvs[4] {
+            Type = 0x17
+            Length = 4
+            positionReportTimeout {
+               positionReportTimeout = 20000    【设置请求定位超时时间】
+            }
+
+
+```
+
+
+
+```
+【Reject MO request】
+
+Message Packets
+[00050/02] GPS SM/High
+
+GPS 拒绝了 MO Mobile Originated 发起call的定位请求
+20:21:48.944179    GPS SM/High    [   tm_pdapi_iface.c   526] Phone in E911 state in UMTS. Reject MO request
+
+
+
+```
+
+
 
 
 
@@ -200,6 +310,12 @@ Log Packets (OTA)
 
 
 
+-------------------------------------------
+Message Packets
+-------------------------------------------
+[00050/04] GPS SM/Fatal
+[00050/03] GPS SM/Error
+[00050/02] GPS SM/High
 
 ```
 

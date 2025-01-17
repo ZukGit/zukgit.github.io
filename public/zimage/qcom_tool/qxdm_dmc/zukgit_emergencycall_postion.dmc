@@ -13,7 +13,7 @@
     <SUB>Filtered View</SUB>
     <View>
      <ISVConfig>
-      <Items>4,5,8</Items>
+      <Items>4,5,8,6</Items>
       <DIAGRequests></DIAGRequests>
       <DIAGResponses></DIAGResponses>
       <SubsystemRequests></SubsystemRequests>
@@ -24,7 +24,7 @@
       <EventIDs>01437,01436,01435,01434,01433,01432,01424,01425,01426,01427,01428,01429,01430,01431</EventIDs>
       <LogCodes>0x1544,0x1387,0x1386</LogCodes>
       <OTATypes>0x156E</OTATypes>
-      <MessageLevels></MessageLevels>
+      <MessageLevels>00050/04,00050/03,00050/02</MessageLevels>
       <StringTypes></StringTypes>
       <QTraces></QTraces>
       <QSHMetrics></QSHMetrics>
