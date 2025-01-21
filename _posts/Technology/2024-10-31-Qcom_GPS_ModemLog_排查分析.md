@@ -190,6 +190,8 @@ calling_number =|positionReportTimeout|LOC_SESS_STATUS_GENERAL_FAILURE|IMS SIP M
 【eQMI_LOC_SESS_STATUS_IN_PROGRESS】 发送 qmiLocEventPositionReport 地址报告 经纬度信息给到 IMS 
 
 
+MO:    MO(Mobile Originated,主叫) 打电话的工程 [GPS is rejecting MO request from IMS]
+ECBM: (Emergency callback mode)  紧急回调模式  [GPS rejects the request as device is in ECBM mode]
 
 ```
 

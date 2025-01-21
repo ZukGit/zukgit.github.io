@@ -1562,6 +1562,42 @@ Setting > System > Advanced > Developer options >Enable WiFi Verbose Logging  [t
 ```
 
 
+### 通过命令设置GPS_Mode
+```
+adb root && adb shell setprop persist.vendor.radio.gps_test_mode 4 && adb reboot 
+ 
+0  GPS_GLONASS
+1  GPS_BEIDOU
+2  GPS_GLONASS_BEIDOU
+3  GPS
+4  BEIDOU
+5  GLONASS
+6  GPS_GLONASS_BEIDOU_GALILEO
+7  GPS_GALILEO
+8  GPS_GLONASS_GALILEO
+9  GALILEO
+10  GPS_GLONASS_BEIDOU_GALILEO_NAVIC
+11  BEIDOU_GLONASS_GALILEO_NAVIC
+```
+
+
+### 通过工模设置 GPS_Mode
+```
+*#*#3646633#*#*
+ 
+进入MTK工模
+ 
+然后Location - MNL Config Editor
+ 
+选择GnssMode，Edit
+ 
+Config选择Enabled，然后Setting改成4（Beidou Only模式），OK
+
+这步完上面还有一个Set要点一下，然后重启手机
+```
+
+
+
 ### 无线adb
 
 ```
