@@ -162,7 +162,7 @@ Package [com.baidu.map.location]   // 普通搜索,正则搜索搜不到
 #include <strings.h>
 #include <unistd.h>  // 包含getcwd函数所需的头文件
 #include <limits.h>  // 包含PATH_MAX常量
-
+#include <time.h>
 
 // _______   常量定义 Begin _______ 
 
@@ -171,6 +171,31 @@ static char CUR_DIR_PATH[1024] = {0};  //  当前工程的根目录
 
 
 // _______   常量定义 End _______ 
+
+// 获取当前时间戳  20250122_172323
+char* get_current_time_str_with_timezone() {
+    time_t rawtime;
+    struct tm *timeinfo;
+    static char buffer[80];
+
+    // 获取当前的UTC时间
+    time_t now = time(NULL);
+    struct tm *utc_tm = gmtime(&now);
+ 
+    // 手动计算北京时间的时差（8小时）
+    int timezone = 8 * 60 * 60; // 8小时时差转换为秒
+
+    // 调整UTC时间以反映本地时间
+    utc_tm->tm_hour += timezone / (60 * 60); // 小时
+    utc_tm->tm_min += (timezone % (60 * 60)) / 60; // 分钟
+    utc_tm->tm_sec += timezone % 60; // 秒
+
+    // 格式化时间字符串，包括时差
+    strftime(buffer, sizeof(buffer), "%Y%m%d_%H%M%S", utc_tm);
+
+    return buffer;
+}
+
 
 
 /* property_get: returns the length of the value which will never be
@@ -446,7 +471,7 @@ int test_property_set() {
     }
 
      // 设置宏  并读取宏  
-    int result_code_4 = property_set("test_moAAAdeAAA","18888");
+    int result_code_4 = property_set("test_moAAAdeAAA",get_current_time_str_with_timezone());
     printf("result_code_4=%d\n",result_code_4);
     char propGetValue4[100] = {0};
     if(property_get("test_moAAAdeAAA", propGetValue4, NULL) > 0){
@@ -501,6 +526,8 @@ test_property_set();
  printf("\n════════════════════════════════════ main() end ════════════════════════════════════\n");
 
 }
+
+
 
 
 
