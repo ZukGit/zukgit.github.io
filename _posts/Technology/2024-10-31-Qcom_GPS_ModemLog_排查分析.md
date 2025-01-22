@@ -159,7 +159,7 @@ EVENT_IMS_SIP|CGPS Report Server Rx|CGPS Report Server Tx|User Triggered|IMS_SIP
 EVENT_IMS_SIP|CGPS Report Server Rx|CGPS Report Server Tx|User Triggered|IMS_SIP_INVITE|CALL_TYPE_EMERGENCY
 
 
-EVENT_IMS_SIP|CGPS Report Server Rx|CGPS Report Server Tx|User Triggered|IMS_SIP_INVITE|CALL_TYPE_EMERGENCY|calling_number =|positionReportTimeout|LOC_SESS_STATUS_GENERAL_FAILURE|IMS SIP Message|Reject MO request|eQMI_LOC_RECURRENCE_SINGLE|eQMI_LOC_SESS_STATUS_IN_PROGRESS
+EVENT_IMS_SIP|CGPS Report Server Rx|CGPS Report Server Tx|User Triggered|IMS_SIP_INVITE|CALL_TYPE_EMERGENCY|calling_number =|positionReportTimeout|LOC_SESS_STATUS_GENERAL_FAILURE|IMS SIP Message|Reject MO request|eQMI_LOC_RECURRENCE_SINGLE|eQMI_LOC_SESS_STATUS_IN_PROGRESS|eQMI_LOC_SESS_STATUS_SUCCESS
 
 
 
@@ -179,7 +179,7 @@ Alt + B    //  对当前Item 进行 Bookmark Item(s)
 Alt + U    // 跳到上一个 bookmark
 Alt + D    // 跳到下一个 bookmark
 
-calling_number =|positionReportTimeout|LOC_SESS_STATUS_GENERAL_FAILURE|IMS SIP Message|Reject MO request|eQMI_LOC_RECURRENCE_SINGLE|eQMI_LOC_SESS_STATUS_IN_PROGRESS
+calling_number =|positionReportTimeout|LOC_SESS_STATUS_GENERAL_FAILURE|IMS SIP Message|Reject MO request|eQMI_LOC_RECURRENCE_SINGLE|eQMI_LOC_SESS_STATUS_IN_PROGRESS|eQMI_LOC_SESS_STATUS_SUCCESS
 
 【calling_number =】    查找当前拨打的电话   
 【positionReportTimeout】   请求开始Loc定位 移动网络端请求位置超时时间点  IMS requested location from GPS engine   
@@ -187,7 +187,8 @@ calling_number =|positionReportTimeout|LOC_SESS_STATUS_GENERAL_FAILURE|IMS SIP M
 【IMS SIP Message】 当前IMS SIP Message Item集合 , 会话初始化协议交换的内容 可能缺失 某个数据项 
 【Reject MO request】 Android MO(Mobile Originated,主叫) Reject MO request  ,  GPS is rejecting MO request from IMS
 【eQMI_LOC_RECURRENCE_SINGLE】   IMS sends SINGLE GPS request to GPS in modem 发送Single定位给到GPS 
-【eQMI_LOC_SESS_STATUS_IN_PROGRESS】 发送 qmiLocEventPositionReport 地址报告 经纬度信息给到 IMS 
+【eQMI_LOC_SESS_STATUS_IN_PROGRESS】 发送 qmiLocEventPositionReport 地址报告 经纬度信息给到 IMS 定位还未结束
+【eQMI_LOC_SESS_STATUS_SUCCESS】 发送 qmiLocEventPositionReport 地址报告   IMS 定位结束定位数据最终结果
 
 
 MO:    MO(Mobile Originated,主叫) 打电话的工程 [GPS is rejecting MO request from IMS]
