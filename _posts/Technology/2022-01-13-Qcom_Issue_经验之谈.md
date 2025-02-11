@@ -34,7 +34,9 @@ ActivityTaskManager: START u0
 
 ```
 Package [com.whatsapp]      // bugreport 中搜索该名称
-Package [com.baidu.map.location]   // 普通搜索,正则搜索搜不到
+Package [com.baidu.map.location]   // 普通搜索, 百度地图 正则搜索搜不到
+Package [com.autonavi.minimap]    // 普通搜索  高德地图
+
 ```
 
 
