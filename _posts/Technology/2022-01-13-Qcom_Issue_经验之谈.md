@@ -1908,6 +1908,25 @@ adb push ./txpowerctrl.cfg   /vendor/firmware/
 
 ```
 
+### MTK抓取WIFI ICS硬件Log 
+
+```
+
+
+MTKlog：
+[system]  MTK-logger APP-> enable “mobile Log”
+[Wi-Fi]   MTK-logger APP-> enable “Conn-sys Log” 
+[Wi-Fi]   MTK-logger APP-> enable “Netlog Log”
+[Wi-Fi]   MTK-logger APP log lever->  Set "Driver" as “more” Level
+[Wi-Fi]   MTK-logger APP log lever->  Set "Firmware" as “more” Level
+[Wi-Fi]   MTK-logger APP log lever->  Set "ICSFW LOG Level" as MAC_ICS       【ICS Log】
+
+
+
+```
+
+
+
 
 ###  Qcom抓取SniffLog
 
