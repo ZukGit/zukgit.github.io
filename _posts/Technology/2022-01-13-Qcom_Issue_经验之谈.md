@@ -29,6 +29,43 @@ ActivityTaskManager: START u0
 ```
 
 
+### 查看MTK产品的目标ALPS分支
+
+```
+
+  adb shell "getprop | grep alps | grep vendor"
+
+
+[ro.vendor.mediatek.version.branch]: [alps-mp-u0.mp1.tc2sp3]           // 当前的branch分支是 mp1.tc2sp3
+[ro.vendor.mediatek.version.release]: [alps-mp-u0.mp1.tc2sp3-V2.111]   //  当前release的版本是V2.111
+
+
+```
+
+### 查看MTK产品WIFI的固件和Chip信息
+
+```
+
+ adb shell "getprop | grep nep | grep wlan"
+
+[vendor.wlan.firmware.version]: [t-neptune-sp-soc7_0-2409-tc2sp-RAYAS_SOC7_0_E1_ASIC_MT6637-20241129154852]
+
+
+```
+
+```
+adb shell getprop | grep chip
+[persist.vendor.connsys.chipid]: [0x6878]
+[persist.vendor.connsys.fm_chipid]: [connac2x]
+[vendor.connsys.adie.chipid]: [0x6637]
+[vendor.connsys.bt.adie.chipid]: [0x6637]
+[vendor.connsys.fm.adie.chipid]: [0x6637]
+[vendor.connsys.gps.adie.chipid]: [0x6637]
+[vendor.connsys.wifi.adie.chipid]: [0x6637]
+
+```
+
+
 
 ### 查看指定应用的应用权限信息
 
@@ -3797,3 +3834,24 @@ NVITEM ID,DESCRIPTION,FULL NAME,CATEGORY
 66040,TPC POWET TABLE,/nv/item_files/wlan/tpc_power_table,WLAN
 
 ```
+
+
+
+
+### 赛门铁克误杀文件处理
+
+```
+Symantec Endpoint Protection(赛门铁克杀毒软件) 如何添加白名单避免被误删、误杀？
+
+一、添加 文件夹 到 例外Exceptions(白名单) ，避免被扫描
+
+https://www.cnblogs.com/onelikeone/p/13035491.html
+
+
+```
+
+<img src="/public/zimage/qocm_issue/saimen/saimen_1.gif"/>
+<img src="/public/zimage/qocm_issue/saimen/saimen_1.jpg"/>
+<img src="/public/zimage/qocm_issue/saimen/saimen_2.jpg"/>
+<img src="/public/zimage/qocm_issue/saimen/saimen_3.jpg"/>
+<img src="/public/zimage/qocm_issue/saimen/saimen_4.jpg"/>
