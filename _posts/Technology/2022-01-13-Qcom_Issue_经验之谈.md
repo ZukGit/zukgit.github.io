@@ -66,6 +66,129 @@ adb shell getprop | grep chip
 ```
 
 
+### 查看高通产品WIFI的固件和Chip信息
+
+```
+
+
+//  【 cmd 发送命令给到 adb shell 执行, 执行效果是 不需要进入到 adb shell里面去】
+adb root && adb remount && adb shell "while true; do iwpriv wlan0 driver stat; sleep 1; done;"    【 cmd 不进入adb shell里面 去执行 adb shell的命令】
+
+adb root && adb remount && adb shell " iwpriv wlan0 version"
+
+
+
+
+wlan0     version:Host SW:2.0.9.23B, FW:3.0.2.0.32767.2, HW:WCN6750_V2, Board ver: 8 Ref design id: 0, Customer id: 0, 
+Project id: 0, Board Data Rev: 21, REG DB: 0:0, BDF REG DB: 0:0
+
+
+version【版本】:Host SW:2.0.9.23B
+FW【固件】:3.0.2.0.32767.2
+HW【硬件】:WCN6750_V2
+
+
+
+```
+
+
+```
+
+
+adb root && adb remount && adb shell "cat /d/icnss/stats"
+
+
+
+
+        ind_register_req: 1
+       ind_register_resp: 1
+        ind_register_err: 0
+                 cap_req: 1
+                cap_resp: 1
+                 cap_err: 0
+      pin_connect_result: 1
+                 cfg_req: 2
+                cfg_resp: 2
+             cfg_req_err: 0
+                mode_req: 4
+               mode_resp: 4
+            mode_req_err: 0
+                 ini_req: 2
+                ini_resp: 2
+             ini_req_err: 0
+   recovery.pdr_fw_crash: 0
+ recovery.pdr_host_error: 0
+  recovery.root_pd_crash: 0
+recovery.root_pd_shutdown: 0
+
+<------------------ PM stats ------------------->
+              pm_suspend: 0
+          pm_suspend_err: 0
+               pm_resume: 0
+           pm_resume_err: 0
+        pm_suspend_noirq: 0
+    pm_suspend_noirq_err: 0
+         pm_resume_noirq: 0
+     pm_resume_noirq_err: 0
+           pm_stay_awake: 813
+                pm_relax: 813
+
+<------------------ IRQ stats ------------------->
+CE_ID  IRQ  Request     Free   Enable  Disable
+   0:    0        0        0        0        0
+   1:    0        0        0        0        0
+   2:    0        0        0        0        0
+   3:    0        0        0        0        0
+   4:    0        0        0        0        0
+   5:    0        0        0        0        0
+   6:    0        0        0        0        0
+   7:    0        0        0        0        0
+   8:    0        0        0        0        0
+   9:    0        0        0        0        0
+  10:    0        0        0        0        0
+  11:    0        0        0        0        0
+
+<---------------- FW Capability ----------------->
+Chip ID: 0x1
+Chip family: 0xb
+Board ID: 0xff
+SOC Info: 0x40140120
+Firmware Version: 0x3020ffff
+Firmware Build Timestamp: 2025-03-01 10:01
+Firmware Build ID: QC_IMAGE_VERSION_STRING=WLAN.MSL.3.0.2-00128-QCAMSLSWPLZ-5.98084.2.101227.2   【 固件详细信息 】
+RD card chain cap: 2
+PHY HE channel width cap: 2
+PHY QAM cap: 2
+
+<----------------- Events stats ------------------->
+                  Events           Posted        Processed
+           SERVER_ARRIVE                1                1
+             SERVER_EXIT                0                0
+                FW_READY                1                1
+         REGISTER_DRIVER                1                1
+       UNREGISTER_DRIVER                0                0
+         PD_SERVICE_DOWN                0                0
+      FW_EARLY_CRASH_IND                0                0
+           IDLE_SHUTDOWN                1                1
+            IDLE_RESTART                1                1
+            FW_INIT_DONE                1                1
+      QDSS_TRACE_REQ_MEM                1                1
+         QDSS_TRACE_SAVE                0                0
+         QDSS_TRACE_FREE                0                0
+          M3_DUMP_UPLOAD                0                0
+        IMS_WFC_CALL_IND                0                0
+        WLFW_TWC_CFG_IND                0                0
+     QDSS_TRACE_REQ_DATA                0                0
+    SUBSYS_RESTART_LEVEL                2                2
+
+Serial Number: 0x0
+State: 0x49048f(FW CONN | POWER ON | FW READY | DRIVER PROBED | SSR REGISTERED | WLAN FW EXISTS | MODE ON DONE | IMS_CONNECTED | DMS_CONNECTED)
+
+```
+
+
+
+
 
 ### 查看指定应用的应用权限信息
 
