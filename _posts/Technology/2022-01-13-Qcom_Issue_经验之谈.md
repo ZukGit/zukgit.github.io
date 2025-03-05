@@ -2263,6 +2263,724 @@ vendor/qcom/nonhlos/Netrani.XXX/common/build/Ver_Info.txt
 ```
 
 
+
+### Qcom产品symbols文件
+
+```
+
+
+[3_1]AOSP_Vendor/release/mmi_kernel_platform_debug_files.tar.gz    【360MB】
+[3_2]AOSP_Vendor/release/nonhlos_symbols.tar.gz                    【70MB】
+[3_3]AOSP_Vendor/release/symbols.tar.gz                            【2.5GB】
+
+
+```
+
+
+
+
+
+
+####  Qcom产品symbols文件_mmi_kernel_platform_debug_files.tar.gz
+
+```
+
+
+Dir[ 4_1    ]    AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules
+Dir[ 4_2    ]    AOSP_Vendor/release/mmi_kernel_platform_debug_files/qcom-wifi
+Dir[ 4_3    ]    AOSP_Vendor/release/mmi_kernel_platform_debug_files/vmlinux
+Dir[ 4_4    ]    AOSP_Vendor/release/mmi_kernel_platform_debug_files
+
+
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/qcom-wifi/qca_cld3_qca6750.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/vmlinux/vmlinux
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/msm_drm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/camera.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/ipam.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/msm_kgsl.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/cfg80211.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/msm_video.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/sched-walt.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/rmnet_core.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/kheaders.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/clk-qcom.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/goodix_brl_mmi.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/rmnet_shs.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/aw882xx_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/icnss2.ko          【 symbols的一个关键so】
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/ufs-qcom.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/coresight.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/bluetooth.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/gsim.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/mhi.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/arm_smmu.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_dma_heaps.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/rmnet_offload.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qseecom_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/coresight-tmc.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/rmnet_wlan.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/frpc-adsprpc.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/pci-msm-drv.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/dwc3-msm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/drm_display_helper.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_iommu_util.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/sps_drv.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/gunyah_loader.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/nxp-nci.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/wcd938x_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/lpass_cdc_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/usb_f_gsi.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/rmnet_perf.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/wcd937x_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcedev-mod_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/smcinvoke_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/msm-mmrm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/radio-i2c-rtc6226-qca.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/touchscreen_mmi.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/minidump.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qrtr.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/mem_buf_dev.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom-scm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom-hv-haptics.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_tsens.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/mbhc_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/coresight-cti.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/wsa881x_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/goodix_fod_mmi.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/msm_geni_serial.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom-dcvs.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/wcd_core_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_lpm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/machine_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/rmnet_mem.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/gh_rm_drv.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_glink.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/mmi_info.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/cqhci.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qti_glink_charger.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/lpass_cdc_rx_macro_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/slim-qcom-ngd-ctrl.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/tipc.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/msm_gpi.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcrypto-msm_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/slimbus.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/sdhci-msm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qce50_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/wsa883x_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/wcd9xxx_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/bt_fm_slim.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_rpmh.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/rmnet_aps.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/i2c-msm-geni.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/coresight-tpdm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/swr_ctrl_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/btpower.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/sx937x_multi.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/spi-msm-geni.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/lpass_cdc_wsa2_macro_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/lpass_cdc_wsa_macro_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/sg.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/lpass_cdc_va_macro_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_iommu_debug.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/mem_buf.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/leds-qpnp-flash-v2.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/rmnet_ctl.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/rproc_qcom_common.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qti_battery_charger.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/con_dfpar.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/lpass_cdc_tx_macro_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/usb_f_qdss.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/mmrm_test_module.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_q6v5_pas.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qpnp-lcdb-regulator.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/rmnet_perf_tether.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/stm_core.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qmi_helpers.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/mmi_charger.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qpnp-power-on.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/utags.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom-spmi-wled.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/hdcp_qseecom_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/si_core_module.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qnoc-parrot.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qnoc-ravelin.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_ipc_logging.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/snd-usb-audio-qmi.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/bwmon.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/swr_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/usb_f_cdev.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/gcc-sm4450.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/bam_dma.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/swr_dmic_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qrtr-mhi.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/rbs_fod_mmi.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/dcc_v2.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/msm_sysstats.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/cdsprm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/gdsc-regulator.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/gcc-parrot.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/debug-regulator.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/phy-msm-snps-hs.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/smmu_proxy_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/memlat.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/coresight-replicator.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/glink_pkt.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/coresight-csr.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/pinctrl-msm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom-pmu-lib.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/swr_haptics_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/coresight-funnel.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/socinfo.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_pm8008-regulator.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom-cpufreq-hw.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/coresight-stm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/pinctrl-parrot.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/rpmh-regulator.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/stm_nfc_i2c.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/f_fs_ipc_log.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/ufshcd-crypto-qti.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/phy-msm-ssusb-qmp.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/spmi-pmic-arb.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/cnss_utils.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/camcc-parrot.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/secure_buffer.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/camcc-sm4450.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/pinctrl-ravelin.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/coresight-tmc-sec.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qti_qmi_sensor_v2.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/dispcc-parrot.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/msm_performance.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/rmnet_sch.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/hall_pen.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/phy-qcom-ufs.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/usb_f_ccid.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/user_sysfs_private.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/pwm-qti-lpg.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_wdt_core.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/coresight-tpda.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/cpucp_log.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/leds-aw2016.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/hdmi_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom-i2c-pmic.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/pinctrl-spmi-gpio.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/coresight-tgu.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/dmesg_dumper.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/dio8015.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/gpucc-sm4450.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/dispcc-sm4450.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom-amoled-regulator.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/tz_log_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom-spmi-adc5.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/coresight-qmi.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/phy-generic.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/thermal_pause.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/drm_dp_aux_bus.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/gic_intr_routing.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/pmic-glink-debug.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/icc-bcm-voter.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/wlan_firmware_service.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/eud.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_smd.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_stats.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/pinctrl_lpi_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/coresight-remote-etm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/mhi_dev_uci.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/coresight-dummy.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/fsa4480-i2c.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/clk-rpmh.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/bcl_pmic5.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/ucsi_qti_glink.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/gpucc-parrot.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/audpkt_ion_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/msm_memshare.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/nvmem_qfprom.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_sysmon.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/memory_dump_v2.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/rtc-pm8xxx.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/audio_pkt_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/msm_qmp.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/debugcc-parrot.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/videocc-parrot.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qti_pmic_glink.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qti-ocp-notifier.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/phy-qcom-ufs-qmp-v4-waipio.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/sync_fence.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qti-fixed-regulator.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qrtr-gunyah.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/phy-qcom-ufs-qrbtc-sdm845.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/pinctrl-spmi-mpp.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/bm_adsp_ulog.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/rdbg.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_va_minidump.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/debugcc-sm4450.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_ice.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/sdpm_clk.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/proxy-consumer.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/stub-regulator.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/gpr_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/altmode-glink.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/gh_panic_notifier.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qsee_ipc_irq_bridge.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/smp2p.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qti_qmi_cdev.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/smp2p_sleepstate.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qti_battery_debug.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/icc-debug.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_aoss.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/cnss_nl.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom-spmi-adc-tm5.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/q6_notifier_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/xhci-sideband.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/lvstest.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/sys_pm_vx.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/stub_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qti-regmap-debugfs.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/sysmon_subsystem_stats.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/smem.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/adsp_loader_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/mmi_sys_temp.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/msm_ext_display.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_q6v5.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/spf_core_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/mhi_dev_dtr.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/msm_dma_iommu_mapping.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/icc-rpmh.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom-pdc.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/governor_msm_adreno_tz.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/mmi_annotate.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/mem_object.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/wcd938x_slave_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/gh_rm_booster.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/gh_tlmm_vm_mem_access.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/sensors_class.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_cpuss_sleep_stats.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qti_cpufreq_cdev.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/leds-qpnp-vibrator-ldo.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qrng_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/pm8941-pwrkey.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/leds-qti-tri-led.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom-spmi-temp-alarm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qpnp_adaptive_charge.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/pmic-pon-log.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/bcl_soc.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/hvc_gunyah.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/mem_buf_msgq.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/charger-ulog-glink.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom-ipcc.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/thermal_config.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_glink_smem.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/tmecom-intf.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_ramdump.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/cpu_hotplug.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_cpucp.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom-spmi-pmic.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qti-glink-adc.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/audio_prm_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom-dload-mode.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qrtr-smd.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/nfc.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/snd_event_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/spmi-pmic-arb-debug.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/msm_sharedmem.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/policy_engine.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/msm_show_resume_irq.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/mac802154.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_cpu_vendor_hooks.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qti_devfreq_cdev.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/ieee802154.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/debug_symbol.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/mmi_relay.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/cmd-db.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/iommu-logger.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_hwspinlock.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/mmi_stow.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/ehset.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/phy-qcom-emu.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/dcvs_fp.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/cnss_prealloc.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/governor_gpubw_mon.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/clk-dummy.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/mdt_loader.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/gh_virt_wdt.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/wcd937x_slave_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/nvmem_qcom-spmi-sdam.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/ddr_cdev.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/stm_p_ost.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_soc_wdt.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qti_userspace_cdev.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/reboot-mode.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/gh_ctrl.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qfprom-sys.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom-pon.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/rq_stats.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom-reboot-reason.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qti_thermal_vendor_hooks.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/boot_stats.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/hung_task_enh.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/cpu_phys_log_map.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/stm_p_basic.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/stm_ftrace.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/stm_console.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/watchdogtest.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/panel_event_notifier.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_pil_info.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/hci_uart.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_logbuf_boot_log.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/r8152.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/rfcomm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/pdr_interface.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/gh_arm_drv.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom-vadc-common.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/clk_test.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/gh_msgq.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/gh_dbl.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/9pnet.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/ftdi_sio.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/gh_irq_lend.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qseecom_proxy.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/gh_mem_notifier.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/q6_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qcom_logbuf_vendor_hooks.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/ipanetm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/qnoc-qos.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/heap_mem_ext_v01.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/q6_pdr_dlkm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/asix.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/macsec.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/l2tp_core.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/usbserial.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/usbnet.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/regmap-kunit.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/gzvm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/kunit.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/can-dev.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/cdc-acm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/ppp_generic.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/hidp.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/cdc_ncm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/8021q.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/kunit-test.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/ax88179_178a.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/hid-uclogic-test.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/usbmon.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/virtio_console.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/ptp.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/iio-test-format.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/6lowpan.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/clk-gate_test.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/rfkill.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/btqca.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/zram.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/l2tp_ppp.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/virtio_blk.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/ieee802154_socket.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/soc-topology-test.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/zsmalloc.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/wwan.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/can-bcm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/ieee802154_6lowpan.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/can.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/aqc111.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/pps_core.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/virtio_pci.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/btbcm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/can-raw.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/slcan.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/can-gw.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/virtio_balloon.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/cdc_ether.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/rtl8150.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/vmw_vsock_virtio_transport.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/9pnet_fd.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/btsdio.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/cctrng.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/dev_addr_lists_test.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/pptp.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/virtio_pci_modern_dev.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/kunit-example-test.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/input_test.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/ppp_mppe.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/ppp_deflate.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/mii.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/bsd_comp.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/cdc_eem.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/nhc_udp.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/slhc.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/vcpu_stall_detector.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/pppox.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/vcan.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/soc-utils-test.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/fat_test.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/ptp_kvm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/r8153_ecm.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/open-dice.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/ext4-inode-test.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/time_test.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/lib_test.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/diag.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/regmap-raw-ram.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/regmap-ram.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/nhc_mobility.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/nhc_fragment.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/nhc_routing.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/nhc_hop.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/nhc_ipv6.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/nhc_dest.ko
+AOSP_Vendor/release/mmi_kernel_platform_debug_files/dist-modules/libarc4.ko
+
+
+```
+
+
+
+####  Qcom产品symbols文件_nonhlos_symbols.tar.gz
+
+
+```
+
+
+Dir[ 2_1    ]nonhlos_symbols/DEBUG
+Dir[ 2_2    ]nonhlos_symbols
+
+AOSP_Vendor/release/nonhlos_symbols/orig_WPSS_PROC_IMG_QCALAMSLNETRANIQ_WLAN_PD.elf
+AOSP_Vendor/release/nonhlos_symbols/DEBUG/AUDIO_netrani.adsp.prodQ.elf
+AOSP_Vendor/release/nonhlos_symbols/DEBUG/SENSOR_netrani.adsp.prodQ.elf
+AOSP_Vendor/release/nonhlos_symbols/DEBUG/ROOT_netrani.adsp.prodQ.elf
+AOSP_Vendor/release/nonhlos_symbols/DEBUG/XBLRamDump.dll
+AOSP_Vendor/release/nonhlos_symbols/DEBUG/qsee.elf
+AOSP_Vendor/release/nonhlos_symbols/DEBUG/uefi.elf
+AOSP_Vendor/release/nonhlos_symbols/DEBUG/CHARGER_netrani.adsp.prodQ.elf
+AOSP_Vendor/release/nonhlos_symbols/DEBUG/DevPrgD.dll
+AOSP_Vendor/release/nonhlos_symbols/DEBUG/UKERNEL_netrani.adsp.prodQ.elf
+AOSP_Vendor/release/nonhlos_symbols/DEBUG/AOP_AAAAANAZO.elf
+AOSP_Vendor/release/nonhlos_symbols/DEBUG/hypvm.elf
+AOSP_Vendor/release/nonhlos_symbols/DEBUG/hypvmperformance.elf
+AOSP_Vendor/release/nonhlos_symbols/DEBUG/mon.elf
+AOSP_Vendor/release/nonhlos_symbols/DEBUG/AOP_AAAAANAZO_devcfg.elf
+AOSP_Vendor/release/nonhlos_symbols/about.html         【 about.html 固件版本信息 】
+AOSP_Vendor/release/nonhlos_symbols/Ver_Info.txt
+
+
+
+```
+
+
+
+####  Qcom产品symbols文件_symbols.tar.gz
+
+
+```
+
+symbols.tar.gz  手机本身路径下的文件路径
+
+
+AllSize_[ 8.8GB ] [ 9058.0MB ]
+目录文件总数:[   126   ]
+实体文件总数:[  2646   ]
+文件类型总数:[    54   ]
+
+
+文件类型:.0               匹配文件个数:1              类型文件大小:    0.8MB      .0
+文件类型:.0-service       匹配文件个数:2              类型文件大小:    1.9MB      .0-service
+文件类型:.1-goodixservice  匹配文件个数:1              类型文件大小:    2.2MB      .1-goodixservice
+文件类型:.aidl-service    匹配文件个数:1              类型文件大小:    0.5MB      .aidl-service
+文件类型:.alarm-service   匹配文件个数:1              类型文件大小:    0.2MB      .alarm-service
+文件类型:.allocator-service  匹配文件个数:1              类型文件大小:    0.7MB      .allocator-service
+文件类型:.bluetooth@aidl-service-qti  匹配文件个数:1              类型文件大小:    0.3MB      .bluetooth@aidl-service-qti
+文件类型:.c2-default-service-dax  匹配文件个数:1              类型文件大小:    0.2MB      .c2-default-service-dax
+文件类型:.capabilityconfigstore-service  匹配文件个数:1              类型文件大小:    0.2MB      .capabilityconfigstore-service
+文件类型:.clearkey        匹配文件个数:1              类型文件大小:    3.4MB      .clearkey
+文件类型:.composer-service  匹配文件个数:1              类型文件大小:    8.6MB      .composer-service
+文件类型:.debugutils-service  匹配文件个数:1              类型文件大小:    0.5MB      .debugutils-service
+文件类型:.demura-service  匹配文件个数:1              类型文件大小:    0.3MB      .demura-service
+文件类型:.erofs           匹配文件个数:6              类型文件大小:    2.3MB      .erofs
+文件类型:.example         匹配文件个数:1              类型文件大小:    1.1MB      .example
+文件类型:.example_recovery  匹配文件个数:1              类型文件大小:    0.3MB      .example_recovery
+文件类型:.exfat           匹配文件个数:2              类型文件大小:    0.3MB      .exfat
+文件类型:.f2fs            匹配文件个数:2              类型文件大小:    1.9MB      .f2fs
+文件类型:.face-isv        匹配文件个数:1              类型文件大小:    2.7MB      .face-isv
+文件类型:.fdr-service     匹配文件个数:1              类型文件大小:    0.2MB      .fdr-service
+文件类型:.fingerprint-service-rbs  匹配文件个数:1              类型文件大小:    1.7MB      .fingerprint-service-rbs
+文件类型:.gnss-aidl-service-qti  匹配文件个数:1              类型文件大小:    0.3MB      .gnss-aidl-service-qti
+文件类型:.health-service  匹配文件个数:1              类型文件大小:    0.2MB      .health-service
+文件类型:.mc              匹配文件个数:1              类型文件大小:    9.9MB      .mc
+文件类型:.memhal-service  匹配文件个数:1              类型文件大小:    0.2MB      .memhal-service
+文件类型:.memtrack-service  匹配文件个数:1              类型文件大小:    0.3MB      .memtrack-service
+文件类型:.multihal        匹配文件个数:1              类型文件大小:    1.7MB      .multihal
+文件类型:.nfc-service-st  匹配文件个数:1              类型文件大小:    0.4MB      .nfc-service-st
+文件类型:.oat             匹配文件个数:27             类型文件大小:   38.1MB      .oat
+文件类型:.panel-service   匹配文件个数:1              类型文件大小:    0.3MB      .panel-service
+文件类型:.perf2-hal-service  匹配文件个数:1              类型文件大小:    1.0MB      .perf2-hal-service
+文件类型:.power-service   匹配文件个数:1              类型文件大小:    0.7MB      .power-service
+文件类型:.provider-service_64  匹配文件个数:1              类型文件大小:    0.3MB      .provider-service_64
+文件类型:.qspa-service    匹配文件个数:1              类型文件大小:    1.1MB      .qspa-service
+文件类型:.qti             匹配文件个数:6              类型文件大小:    8.0MB      .qti
+文件类型:.qti_recovery    匹配文件个数:1              类型文件大小:    1.1MB      .qti_recovery
+文件类型:.recovery        匹配文件个数:1              类型文件大小:    0.3MB      .recovery
+文件类型:.secureprocessor  匹配文件个数:1              类型文件大小:    0.6MB      .secureprocessor
+文件类型:.sensorext-service  匹配文件个数:1              类型文件大小:    1.6MB      .sensorext-service
+文件类型:.sensorscalibrate-service  匹配文件个数:1              类型文件大小:    0.2MB      .sensorscalibrate-service
+文件类型:.service         匹配文件个数:3              类型文件大小:    0.8MB      .service
+文件类型:.servicetrackeraidl-service  匹配文件个数:1              类型文件大小:    0.2MB      .servicetrackeraidl-service
+文件类型:.sh              匹配文件个数:1              类型文件大小:    0.0MB      .sh
+文件类型:.so              匹配文件个数:2130           类型文件大小: 7070.6MB      .so
+文件类型:.soter-provision  匹配文件个数:1              类型文件大小:    0.2MB      .soter-provision
+文件类型:.storage-service  匹配文件个数:1              类型文件大小:    1.3MB      .storage-service
+文件类型:.stylus-service  匹配文件个数:1              类型文件大小:    0.2MB      .stylus-service
+文件类型:.suspend-service  匹配文件个数:1              类型文件大小:    3.3MB      .suspend-service
+文件类型:.syshealthmon-service  匹配文件个数:1              类型文件大小:    0.3MB      .syshealthmon-service
+文件类型:.touch-service   匹配文件个数:1              类型文件大小:    0.4MB      .touch-service
+文件类型:.txt             匹配文件个数:1              类型文件大小:    0.0MB      .txt
+文件类型:.wifi-service    匹配文件个数:1              类型文件大小:   11.1MB      .wifi-service
+文件类型:.wlc-service     匹配文件个数:1              类型文件大小:    0.2MB      .wlc-service
+文件类型:unknow           匹配文件个数:423            类型文件大小: 1873.1MB      unknow
+
+AllSize_[ 8.8GB ] [ 9058.0MB ]
+目录文件总数:[   126   ]
+实体文件总数:[  2646   ]
+文件类型总数:[    54   ]
+
+
+
+Dir[ 126_1    ] symbols\system\lib64
+Dir[ 126_2    ] symbols\vendor\lib64
+Dir[ 126_3    ] symbols\system\bin
+Dir[ 126_4    ] symbols\vendor\lib64\camera\components
+Dir[ 126_5    ] symbols\vendor\lib64\hw
+Dir[ 126_6    ] symbols\vendor\bin
+Dir[ 126_7    ] symbols\apex\com.android.ondevicepersonalization\lib64
+Dir[ 126_8    ] symbols\apex\com.android.media.swcodec\lib64
+Dir[ 126_9    ] symbols\apex\com.android.art\lib64
+Dir[ 126_10   ] symbols\apex\com.android.btservices\lib64
+Dir[ 126_11   ] symbols\recovery\root\system\bin
+Dir[ 126_12   ] symbols\vendor\lib64\soundfx
+Dir[ 126_13   ] symbols\recovery\root\system\lib64
+Dir[ 126_14   ] symbols\apex\com.android.extservices\priv-app\ExtServices-sminus@VVB35V\lib\arm64-v8a
+Dir[ 126_15   ] symbols\apex\com.android.neuralnetworks\lib64
+Dir[ 126_16   ] symbols\vendor\bin\hw
+Dir[ 126_17   ] symbols\apex\com.android.tethering\lib64
+Dir[ 126_18   ] symbols\apex\com.android.adservices\lib64
+Dir[ 126_19   ] symbols\apex\com.android.extservices\lib64
+Dir[ 126_20   ] symbols\apex\com.android.mediaprovider\lib64
+Dir[ 126_21   ] symbols\apex\com.android.art\bin
+Dir[ 126_22   ] symbols\apex\com.android.resolv\lib64
+Dir[ 126_23   ] symbols\apex\com.android.appsearch\lib64
+Dir[ 126_24   ] symbols\apex\com.android.uwb\lib64
+Dir[ 126_25   ] symbols\ramdisk
+Dir[ 126_26   ] symbols\apex\com.android.runtime\bin
+Dir[ 126_27   ] symbols\data\nativetest64\VtsHalAudioCoreTargetTest
+Dir[ 126_28   ] symbols\apex\com.android.os.statsd\bin
+Dir[ 126_29   ] symbols\system\framework\arm64
+Dir[ 126_30   ] symbols\data\nativetest64\VtsHalEnvironmentalReverbTargetTest
+Dir[ 126_31   ] symbols\data\nativetest64\VtsHalAudioEffectTargetTest
+Dir[ 126_32   ] symbols\data\nativetest64\VtsHalVirtualizerTargetTest
+Dir[ 126_33   ] symbols\data\nativetest64\VtsHalDownmixTargetTest
+Dir[ 126_34   ] symbols\data\nativetest64\VtsHalVolumeTargetTest
+Dir[ 126_35   ] symbols\data\nativetest64\VtsHalPresetReverbTargetTest
+Dir[ 126_36   ] symbols\data\nativetest64\VtsHalHapticGeneratorTargetTest
+Dir[ 126_37   ] symbols\apex\com.android.i18n\lib64
+Dir[ 126_38   ] symbols\data\nativetest64\VtsHalNSTargetTest
+Dir[ 126_39   ] symbols\data\nativetest64\VtsHalEqualizerTargetTest
+Dir[ 126_40   ] symbols\data\nativetest64\VtsHalAECTargetTest
+Dir[ 126_41   ] symbols\data\nativetest64\VtsHalVisualizerTargetTest
+Dir[ 126_42   ] symbols\data\nativetest64\VtsHalLoudnessEnhancerTargetTest
+Dir[ 126_43   ] symbols\data\nativetest64\VtsHalAGC2TargetTest
+Dir[ 126_44   ] symbols\data\nativetest64\VtsHalAGC1TargetTest
+Dir[ 126_45   ] symbols\apex\com.android.media\lib64\extractors
+Dir[ 126_46   ] symbols\data\nativetest64\VtsHalAudioEffectFactoryTargetTest
+Dir[ 126_47   ] symbols\apex\com.android.adbd\lib64
+Dir[ 126_48   ] symbols\apex\com.android.mediaprovider\priv-app\MediaProvider@VVB35V\lib\arm64-v8a
+Dir[ 126_49   ] symbols\system\bin\bootstrap
+Dir[ 126_50   ] symbols\apex\com.android.tethering\bin
+Dir[ 126_51   ] symbols\apex\com.android.adbd\bin
+Dir[ 126_52   ] symbols\apex\com.android.nfcservices\lib64
+Dir[ 126_53   ] symbols\apex\com.android.media\lib64
+Dir[ 126_54   ] symbols\ramdisk\system\bin
+Dir[ 126_55   ] symbols\apex\com.android.conscrypt\lib64
+Dir[ 126_56   ] symbols\apex\art_boot_images\javalib\arm64
+Dir[ 126_57   ] symbols\system\lib64\bootstrap
+Dir[ 126_58   ] symbols\apex\com.motorola.modules.attiqi\lib64
+Dir[ 126_59   ] symbols\apex\com.android.runtime\lib64\bionic
+Dir[ 126_60   ] symbols\system\lib64\bootstrap\hwasan
+Dir[ 126_61   ] symbols\apex\com.android.sdkext\bin
+Dir[ 126_62   ] symbols\apex\com.android.runtime\lib64
+Dir[ 126_63   ] symbols\apex\com.android.runtime\lib64\bionic\hwasan
+Dir[ 126_64   ] symbols\system\xbin
+Dir[ 126_65   ] symbols\system\bin\hw
+Dir[ 126_66   ] symbols\apex\com.android.os.statsd\lib64
+Dir[ 126_67   ] symbols\recovery\root\system\bin\hw
+Dir[ 126_68   ] symbols\apex\com.android.tethering\priv-app\TetheringNext@VVB35V\lib\arm64-v8a
+Dir[ 126_69   ] symbols\vendor\bin\qmi-framework-tests
+Dir[ 126_70   ] symbols\apex\com.android.hardware.cas\bin\hw
+Dir[ 126_71   ] symbols\vendor\lib64\mediacas
+Dir[ 126_72   ] symbols\vendor\lib64\camera
+Dir[ 126_73   ] symbols\vendor\lib64\mediadrm
+Dir[ 126_74   ] symbols\system\lib64\drm
+Dir[ 126_75   ] symbols\apex\com.android.virt\lib64
+Dir[ 126_76   ] symbols\data\nativetest64\modetest
+Dir[ 126_77   ] symbols\apex\com.android.media\bin
+Dir[ 126_78   ] symbols\apex\com.android.media.swcodec\bin
+Dir[ 126_79   ] symbols\apex\com.android.tethering\bin\for-system
+Dir[ 126_80   ] symbols\apex\com.android.conscrypt\bin
+Dir[ 126_81   ] symbols
+Dir[ 126_82   ] symbols\system
+Dir[ 126_83   ] symbols\vendor
+Dir[ 126_84   ] symbols\apex
+Dir[ 126_85   ] symbols\data
+Dir[ 126_86   ] symbols\data\nativetest64
+Dir[ 126_87   ] symbols\apex\com.android.ondevicepersonalization
+Dir[ 126_88   ] symbols\apex\com.android.art
+Dir[ 126_89   ] symbols\recovery
+Dir[ 126_90   ] symbols\recovery\root
+Dir[ 126_91   ] symbols\apex\com.android.media.swcodec
+Dir[ 126_92   ] symbols\recovery\root\system
+Dir[ 126_93   ] symbols\apex\com.android.btservices
+Dir[ 126_94   ] symbols\apex\com.android.extservices
+Dir[ 126_95   ] symbols\apex\com.android.extservices\priv-app\ExtServices-sminus@VVB35V
+Dir[ 126_96   ] symbols\apex\com.android.extservices\priv-app\ExtServices-sminus@VVB35V\lib
+Dir[ 126_97   ] symbols\apex\com.android.extservices\priv-app
+Dir[ 126_98   ] symbols\apex\com.android.neuralnetworks
+Dir[ 126_99   ] symbols\apex\com.android.tethering
+Dir[ 126_100  ] symbols\apex\com.android.mediaprovider
+Dir[ 126_101  ] symbols\apex\com.android.adservices
+Dir[ 126_102  ] symbols\apex\com.android.runtime
+Dir[ 126_103  ] symbols\apex\com.android.resolv
+Dir[ 126_104  ] symbols\apex\com.android.appsearch
+Dir[ 126_105  ] symbols\apex\com.android.media
+Dir[ 126_106  ] symbols\apex\com.android.uwb
+Dir[ 126_107  ] symbols\apex\com.android.adbd
+Dir[ 126_108  ] symbols\apex\com.android.os.statsd
+Dir[ 126_109  ] symbols\system\framework
+Dir[ 126_110  ] symbols\apex\com.android.i18n
+Dir[ 126_111  ] symbols\apex\com.android.mediaprovider\priv-app
+Dir[ 126_112  ] symbols\apex\com.android.mediaprovider\priv-app\MediaProvider@VVB35V
+Dir[ 126_113  ] symbols\apex\com.android.mediaprovider\priv-app\MediaProvider@VVB35V\lib
+Dir[ 126_114  ] symbols\apex\com.android.nfcservices
+Dir[ 126_115  ] symbols\ramdisk\system
+Dir[ 126_116  ] symbols\apex\com.android.conscrypt
+Dir[ 126_117  ] symbols\apex\art_boot_images\javalib
+Dir[ 126_118  ] symbols\apex\art_boot_images
+Dir[ 126_119  ] symbols\apex\com.motorola.modules.attiqi
+Dir[ 126_120  ] symbols\apex\com.android.sdkext
+Dir[ 126_121  ] symbols\apex\com.android.hardware.cas\bin
+Dir[ 126_122  ] symbols\apex\com.android.tethering\priv-app
+Dir[ 126_123  ] symbols\apex\com.android.hardware.cas
+Dir[ 126_124  ] symbols\apex\com.android.tethering\priv-app\TetheringNext@VVB35V\lib
+Dir[ 126_125  ] symbols\apex\com.android.tethering\priv-app\TetheringNext@VVB35V
+Dir[ 126_126  ] symbols\apex\com.android.virt
+
+
+```
+
+
+
+
+
+
+
+
+
+
 ### 查看安卓Msi和Vendor版本
 
 ```
