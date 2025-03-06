@@ -1805,6 +1805,28 @@ adb shell
 ```
 
 
+### Qcom触发并导出ramdump
+
+```
+
+// 触发 Ramdump
+adb root && adb remount && adb shell " iwpriv wlan0 setUnitTestCmd 19 1 4 "    
+
+
+adb reboot fastboot 
+
+// 在 fastboot 模式下  导出 ramdump文件 
+fastboot oem ramdump pull all         
+
+
+
+
+```
+
+
+
+
+
 ### Qcom查看SAR打印Log 
 
 
@@ -2278,6 +2300,43 @@ vendor/qcom/nonhlos/Netrani.XXX/common/build/Ver_Info.txt
 
 
 
+```
+
+
+adb pull  /vendor/firmware_mnt/image/qca6755    // 导出当前版本的固件文件
+
+
+
+// 新导入其他Fireware目录下splitbins下的wpss文件和   Data.msc +  wpss* 文件  
+// 之后查看 adb root && adb remount && adb shell "cat /d/icnss/stats"  固件版本是否变化 
+adb  push ./     /vendor/firmware_mnt/image/qca6755/              
+
+
+
+
+
+/vendor/firmware_mnt/image/qca6755 # ls -l
+total 8784
+-rw-rw-rw- 1 23152 system 1160789 2025-03-04 09:59 Data.msc
+-rw-rw-rw- 1 23152 system    1813 2025-03-04 09:59 qdss_trace_config.cfg
+-rw-rw-rw- 1 23152 system   24278 2025-03-04 09:59 regdb.bin
+-rw-rw-rw- 1 23152 system     468 2025-03-04 09:59 wpss.b00
+-rw-rw-rw- 1 23152 system    6440 2025-03-04 09:59 wpss.b01
+-rw-rw-rw- 1 23152 system  461561 2025-03-04 09:59 wpss.b02
+-rw-rw-rw- 1 23152 system    1104 2025-03-04 09:59 wpss.b03
+-rw-rw-rw- 1 23152 system     256 2025-03-04 09:59 wpss.b04
+-rw-rw-rw- 1 23152 system    4096 2025-03-04 09:59 wpss.b05
+-rw-rw-rw- 1 23152 system 6057934 2025-03-04 09:59 wpss.b06
+-rw-rw-rw- 1 23152 system  118588 2025-03-04 09:59 wpss.b07
+-rw-rw-rw- 1 23152 system  275644 2025-03-04 09:59 wpss.b08
+-rw-rw-rw- 1 23152 system  344560 2025-03-04 09:59 wpss.b09
+-rw-rw-rw- 1 23152 system  909694 2025-03-04 09:59 wpss.b10
+-rw-rw-rw- 1 23152 system    4376 2025-03-04 09:59 wpss.b12
+-rw-rw-rw- 1 23152 system    4844 2025-03-04 09:59 wpss.mdt
+-rw-rw-rw- 1 23152 system     517 2025-03-04 09:59 wpss.qdb
+
+
+```
 
 
 
