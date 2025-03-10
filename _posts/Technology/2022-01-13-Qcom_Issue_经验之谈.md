@@ -155,7 +155,9 @@ Board ID: 0xff
 SOC Info: 0x40140120
 Firmware Version: 0x3020ffff
 Firmware Build Timestamp: 2025-03-01 10:01
-Firmware Build ID: QC_IMAGE_VERSION_STRING=WLAN.MSL.3.0.2-00128-QCAMSLSWPLZ-5.98084.2.101227.2   【 固件详细信息 】
+
+【WLAN.MSL.3.0.2固件平台()  HL/MSL/HMT/GNG】  在  Vendor_Side/vendor/qcom/nonhlos/WLAN.MSL.3.0.2  存在这个MSL平台固件目录
+Firmware Build ID: QC_IMAGE_VERSION_STRING=WLAN.MSL.3.0.2-00128-QCAMSLSWPLZ-5.98084.2.101227.2   【 固件详细信息 】 
 RD card chain cap: 2
 PHY HE channel width cap: 2
 PHY QAM cap: 2
