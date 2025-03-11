@@ -29,6 +29,41 @@ ActivityTaskManager: START u0
 ```
 
 
+
+
+### 查看Qcom产品是否支持GPS_L5信号
+
+```
+
+打开NVBrowser 查看 NV74255  gnss_multiband_configuration
+
+
+// 不支持 L5 的 读取值出来为0  如下
+INPUT,VALUE,NAME,SIZE,TYPE
+0,0,gnss_multiband_configuration,32,Uint32
+
+
+
+// 支持L5 的 读取出来的值非0 如下
+
+39,39,gnss_multiband_configuration,32,Uint32
+
+
+```
+
+
+
+### 查看MTK产品是否支持GPS_L5信号
+
+```
+
+adb shell getprop | grep l5
+[vendor.debug.gps.support.l5]: [1]         // 1__支持    2___不支持
+
+
+```
+
+
 ### 查看MTK产品的目标ALPS分支
 
 ```
@@ -1756,6 +1791,8 @@ Setting > System > Advanced > Developer options >Enable WiFi Verbose Logging  [t
 ### 通过命令设置GPS_Mode
 ```
 adb root && adb shell setprop persist.vendor.radio.gps_test_mode 4 && adb reboot 
+
+adb logcat | grep GNSSOPMode      //  查看当前GPS模式的打印
  
 0  GPS_GLONASS
 1  GPS_BEIDOU
@@ -1769,6 +1806,7 @@ adb root && adb shell setprop persist.vendor.radio.gps_test_mode 4 && adb reboot
 9  GALILEO
 10  GPS_GLONASS_BEIDOU_GALILEO_NAVIC
 11  BEIDOU_GLONASS_GALILEO_NAVIC
+
 ```
 
 
