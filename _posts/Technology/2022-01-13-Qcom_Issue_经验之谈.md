@@ -29,6 +29,22 @@ ActivityTaskManager: START u0
 ```
 
 
+### 查看产品是否支持DBS双频并发
+
+```
+
+
+adb shell dumpsys wifi    | grep  "STA + AP"
+STA + AP Concurrency Supported: false              【不支持DBS】
+
+
+adb shell dumpsys wifi    | grep  "STA + AP"
+STA + AP Concurrency Supported: true               【支持DBS】
+
+
+```
+
+
 
 
 ### 查看Qcom产品是否支持GPS_L5信号
