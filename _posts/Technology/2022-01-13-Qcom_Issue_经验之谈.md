@@ -250,6 +250,12 @@ Package [com.whatsapp]      // bugreport 中搜索该名称
 Package [com.baidu.map.location]   // 普通搜索, 百度地图 正则搜索搜不到
 Package [com.autonavi.minimap]    // 普通搜索  高德地图
 
+
+      runtime permissions:
+        android.permission.ACCESS_FINE_LOCATION: granted=false,  【未授权定位权限】flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|524288]
+        android.permission.ACCESS_BACKGROUND_LOCATION: granted=false【未授权后台获得位置权限】, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|RESTRICTION_INSTALLER_EXEMPT]
+
+
 ```
 
 
