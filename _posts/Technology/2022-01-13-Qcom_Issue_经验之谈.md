@@ -2187,6 +2187,76 @@ MTKlog：
 ```
 
 
+### MTK抓取GPS_nmea_log
+
+```
+
+
+MTKlog：
+
+adb  pull /data/debuglogger/                         【 MTK_Log 路径】
+adb  pull /data/debuglogger/connsyslog/gpshost       【nmea log 路径】
+
+
+adb shell " cd /data/debuglogger/connsyslog/gpshost ; ls -l"
+
+
+
+adb shell " cd /data/debuglogger/connsyslog/gpshost ; ls -l"
+total 7
+drwxrwx--- 2 shell log 3452 2025-03-16 06:28 CSLog_2025_0316_062709       【 nmea log 文件路径 】
+-rwxrwx--- 1 shell log  793 2025-03-16 06:27 file_tree.txt
+
+
+
+
+```
+
+```
+
+
+1. 拨号盘输入  *#*#3646633#*#*    打开ENgineerMode
+ 
+2.切换到 Log and Debugging 点击 DebugLoggerUI  
+ 
+3. 在 DebugLoggerUI 停止当前Log录制 , 清除当前已经存在的Log
+ 
+4. 点击 DebugLoggerUI 右上边按钮进入设置界面  MobileLog ModemLog NetworkLog ConsysLog 都打开
+   Log Level 选中最大
+   
+5. 重新启动 Log录制 (DebugLoggerUI主界面的开关按钮)
+ 
+6. 进行复测操作
+ 
+7.回到DebugLoggerUI  停止录制 并 导出当前界面显示的文件路径的Log 并提供该Log
+  类似于 [  adb  pull   /data/debuglogger/ ]
+  
+
+
+Step 1:  ##3646633##    Engineer Mode will be open
+
+Step 2: Log and Debugging  -> DebugLoggerUI -> Settings ->  ConnsysLog (Enable)  -> GPS Log(Host Log) Enable 
+
+Step 3: stop previous recording and delete previous log 
+
+Step 4: restart recoarding to collect MTK Log . 
+
+
+
+
+1. input *#*#3646633#*#* in dial panel to start MTK Engineer Mode
+2. enter Engineer Mode - Location - Location Based Service
+3. in LocationEM2, lab should be able to select MSA or MSB, 
+   select LPP or RRLP and also configure other parameters ( e.g, SUPL Host, SUPL Port, SUPL Version, ... )
+
+```
+
+
+<img src="/public/zimage/qocm_issue/gps_nmea.jpg"/>
+
+
+
+
 
 
 ###  Qcom抓取SniffLog
