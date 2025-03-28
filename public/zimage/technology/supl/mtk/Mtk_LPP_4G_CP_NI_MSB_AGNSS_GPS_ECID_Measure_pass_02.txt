@@ -1,0 +1,983 @@
+关键字【 LPP__ 】
+
+875802, 1155624, 127770613, 17:32:55:798 2025/03/13, 17:32:56:285383 2025/03/13, MOD_LPP, MOD_LPP_BASELINE_SENSITIVE_TRACE_INFO_USIROTA_UH, [NW->MS] LPP__REQUEST_CAPABILITIES [0] (DL-SN:0)
+Peer Message
+    global_peer_msg_id = PROTOCOL_SECTION__LTE_LPP_DL (enum 1101)
+    raw data = Buffer
+        0000 - 000F f0 00 00 00 2e 70 04 06   00
+    Message Content
+        LTE Positioning Protocol (LPP)
+            LPP-Message
+                transactionID
+                    initiator: locationServer (0)
+                    transactionNumber: 0
+                .... ...0 endTransaction: False
+                sequenceNumber: 0
+                acknowledgement
+                    .0.. .... ackRequested: False
+                lpp-MessageBody: c1 (0)
+                    c1: requestCapabilities (0)
+                        requestCapabilities
+                            criticalExtensions: c1 (0)
+                                c1: requestCapabilities-r9 (0)
+                                    requestCapabilities-r9
+                                        a-gnss-RequestCapabilities
+                                            .1.. .... gnss-SupportListReq: True
+                                            ..1. .... assistanceDataSupportListReq: True
+                                            ...1 .... locationVelocityTypesReq: True
+                                        otdoa-RequestCapabilities
+                                        ecid-RequestCapabilities
+                                        sensor-RequestCapabilities-r13
+
+TRACE_NAME, LPP_RECEIVE_PEER_MSG_WITH_PARAMS_USIROTA
+875931, 1155635, 127770624, 17:32:55:798 2025/03/13, 17:32:56:286087 2025/03/13, MOD_LPP, MOD_LPP_BASELINE_SENSITIVE_TRACE_INFO_USIROTA_UH, [MS->NW] LPP__PROVIDE_CAPABILITIES [0] (UL-SN:0)
+Peer Message
+    global_peer_msg_id = PROTOCOL_SECTION__LTE_LPP_UL (enum 1100)
+    raw data = Buffer
+        0000 - 000F f0 01 00 42 0e 78 00 17   c8 00 81 c3 80 00 27 a6
+        0010 - 001F 80 50 30 0b f8 0e b1 58   20 70 10 00 10 07 38 64
+        0020 - 002F 1e c0 50 1f 00 c4 a7 00   00 05 5a 00 10 83 10 61
+        0030 - 003F cb 30 d4 11 49 36 19 6d   c7 65 9a 7a 29 bf ff c0
+        0040 - 004F c1 80 c1 80 40 2b 82 80   30 00
+    Message Content
+        LTE Positioning Protocol (LPP)
+            LPP-Message
+                transactionID
+                    initiator: locationServer (0)
+                    transactionNumber: 0
+                .... ...1 endTransaction: True
+                sequenceNumber: 0
+                acknowledgement
+                    .1.. .... ackRequested: True
+                lpp-MessageBody: c1 (0)
+                    c1: provideCapabilities (1)
+                        provideCapabilities
+                            criticalExtensions: c1 (0)
+                                c1: provideCapabilities-r9 (0)
+                                    provideCapabilities-r9
+                                        a-gnss-ProvideCapabilities
+                                            gnss-SupportList: 1 item
+                                                Item 0
+                                                    GNSS-SupportElement
+                                                        gnss-ID
+                                                            gnss-id: gps (0)
+                                                        agnss-Modes
+                                                            posModes: e0 [bit length 3, 5 LSB pad bits, 111. .... decimal value 7]
+                                                                1... .... = standalone: True
+                                                                .1.. .... = ue-based: True
+                                                                ..1. .... = ue-assisted: True
+                                                        gnss-Signals
+                                                            gnss-SignalIDs: 90 [bit length 8, 1001 0000 decimal value 144]
+                                                            gnss-SignalIDs-Ext-r15: 0e00 [bit length 16, 0000 1110  0000 0000 decimal value 3584]
+                                                        .0.. .... adr-Support: False
+                                                        ..1. .... velocityMeasurementSupport: True
+                                            assistanceDataSupportList
+                                                gnss-CommonAssistanceDataSupport
+                                                    gnss-ReferenceTimeSupport
+                                                        gnss-SystemTime
+                                                            gnss-ids: 80 [bit length 7, 1 LSB pad bits, 1000 000. decimal value 64]
+                                                                1... .... = gps: True
+                                                                .0.. .... = sbas: False
+                                                                ..0. .... = qzss: False
+                                                                ...0 .... = galileo: False
+                                                                .... 0... = glonass: False
+                                                                .... .0.. = bds: False
+                                                                .... ..0. = navic-v1610: False
+                                                        fta-Support
+                                                            accessTypes: 80 [bit length 3, 5 LSB pad bits, 100. .... decimal value 4]
+                                                                1... .... = eutra: True
+                                                                .0.. .... = utra: False
+                                                                ..0. .... = gsm: False
+                                                                ...0 .... = nb-iot: False
+                                                                .... 0... = nr-v1510: False
+                                                    gnss-ReferenceLocationSupport
+                                                    gnss-IonosphericModelSupport
+                                                        ionoModel: 80 [bit length 2, 6 LSB pad bits, 10.. .... decimal value 2]
+                                                            1... .... = klobuchar: True
+                                                            .0.. .... = neQuick: False
+                                                            ..0. .... = klobuchar2-r16: False
+                                                    gnss-EarthOrientationParametersSupport
+                                                gnss-GenericAssistanceDataSupport: 1 item
+                                                    Item 0
+                                                        GNSS-GenericAssistDataSupportElement
+                                                            gnss-ID
+                                                                gnss-id: gps (0)
+                                                            gnss-TimeModelsSupport
+                                                            gnss-NavigationModelSupport
+                                                                clockModel: 60 [bit length 6, 2 LSB pad bits, 0110 00.. decimal value 24]
+                                                                    0... .... = model-1: False
+                                                                    .1.. .... = model-2: True
+                                                                    ..1. .... = model-3: True
+                                                                    ...0 .... = model-4: False
+                                                                    .... 0... = model-5: False
+                                                                    .... .0.. = model-6: False
+                                                                    .... ..0. = model-7-r16: False
+                                                                    .... ...0 = model-8-r16: False
+                                                                orbitModel: 60 [bit length 6, 2 LSB pad bits, 0110 00.. decimal value 24]
+                                                                    0... .... = model-1: False
+                                                                    .1.. .... = model-2: True
+                                                                    ..1. .... = model-3: True
+                                                                    ...0 .... = model-4: False
+                                                                    .... 0... = model-5: False
+                                                                    .... .0.. = model-6: False
+                                                                    .... ..0. = model-7-r16: False
+                                                                    .... ...0 = model-8-r16: False
+                                                            gnss-RealTimeIntegritySupport
+                                                            gnss-DataBitAssistanceSupport
+                                                            gnss-AcquisitionAssistanceSupport
+                                                                confidenceSupport-r10: true (0)
+                                                                dopplerUncertaintyExtSupport-r10: true (0)
+                                                            gnss-AlmanacSupport
+                                                                almanacModel: 70 [bit length 7, 1 LSB pad bits, 0111 000. decimal value 56]
+                                                                    0... .... = model-1: False
+                                                                    .1.. .... = model-2: True
+                                                                    ..1. .... = model-3: True
+                                                                    ...1 .... = model-4: True
+                                                                    .... 0... = model-5: False
+                                                                    .... .0.. = model-6: False
+                                                                    .... ..0. = model-7: False
+                                                            gnss-UTC-ModelSupport
+                                                                utc-Model: 80 [bit length 5, 3 LSB pad bits, 1000 0... decimal value 16]
+                                                                    1... .... = model-1: True
+                                                                    .0.. .... = model-2: False
+                                                                    ..0. .... = model-3: False
+                                                                    ...0 .... = model-4: False
+                                                                    .... 0... = model-5: False
+                                                            gnss-AuxiliaryInformationSupport
+                                            locationCoordinateTypes
+                                                .... 1... ellipsoidPoint: True
+                                                .... .1.. ellipsoidPointWithUncertaintyCircle: True
+                                                .... ..1. ellipsoidPointWithUncertaintyEllipse: True
+                                                .... ...0 polygon: False
+                                                1... .... ellipsoidPointWithAltitude: True
+                                                .1.. .... ellipsoidPointWithAltitudeAndUncertaintyEllipsoid: True
+                                                ..0. .... ellipsoidArc: False
+                                                .... ..1. ha-EllipsoidPointWithScalableUncertaintyEllipse-r16: True
+                                                .... ...1 ha-EllipsoidPointWithAltitudeAndScalableUncertaintyEllipsoid-r16: True
+                                            velocityTypes
+                                                .... .0.. horizontalVelocity: False
+                                                .... ..0. horizontalWithVerticalVelocity: False
+                                                .... ...0 horizontalVelocityWithUncertainty: False
+                                                1... .... horizontalWithVerticalVelocityAndUncertainty: True
+                                        otdoa-ProvideCapabilities
+                                            otdoa-Mode: 80 [bit length 1, 7 LSB pad bits, 1... .... decimal value 1]
+                                                1... .... = ue-assisted: True
+                                                .0.. .... = ue-assisted-NB-r14: False
+                                                ..0. .... = ue-assisted-NB-TDD-r15: False
+                                            supportedBandListEUTRA: 27 items
+                                                Item 0
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 1
+                                                Item 1
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 2
+                                                Item 2
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 3
+                                                Item 3
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 4
+                                                Item 4
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 5
+                                                Item 5
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 7
+                                                Item 6
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 8
+                                                Item 7
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 12
+                                                Item 8
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 13
+                                                Item 9
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 14
+                                                Item 10
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 17
+                                                Item 11
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 18
+                                                Item 12
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 19
+                                                Item 13
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 20
+                                                Item 14
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 25
+                                                Item 15
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 26
+                                                Item 16
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 28
+                                                Item 17
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 29
+                                                Item 18
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 30
+                                                Item 19
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 38
+                                                Item 20
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 39
+                                                Item 21
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 40
+                                                Item 22
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 41
+                                                Item 23
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 42
+                                                Item 24
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 48
+                                                Item 25
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 64
+                                                Item 26
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 64
+                                            supportedBandListEUTRA-v9a0: 2 items
+                                                Item 0
+                                                    SupportedBandEUTRA-v9a0
+                                                        bandEUTRA-v9a0: 66
+                                                Item 1
+                                                    SupportedBandEUTRA-v9a0
+                                                        bandEUTRA-v9a0: 71
+                                            interFreqRSTDmeasurement-r10: supported (0)
+                                        ecid-ProvideCapabilities
+                                            ecid-MeasSupported: e0 [bit length 3, 5 LSB pad bits, 111. .... decimal value 7]
+                                                1... .... = rsrpSup: True
+                                                .1.. .... = rsrqSup: True
+                                                ..1. .... = ueRxTxSup: True
+                                                ...0 .... = nrsrpSup-r14: False
+                                                .... 0... = nrsrqSup-r14: False
+                                            ueRxTxSupTDD-r13: true (0)
+
+TRACE_NAME, LPP_SEND_PEER_MSG_WITH_PARAMS_USIROTA
+878350, 1156516, 127771505, 17:32:55:798 2025/03/13, 17:32:56:342471 2025/03/13, MOD_LPP, MOD_LPP_BASELINE_SENSITIVE_TRACE_INFO_USIROTA_UH, [NW->MS] LPP__ACKNOWLEDGE (ACK UL-SN:0)
+Peer Message
+    global_peer_msg_id = PROTOCOL_SECTION__LTE_LPP_DL (enum 1101)
+    raw data = Buffer
+        0000 - 000F 24 00
+    Message Content
+        LTE Positioning Protocol (LPP)
+            LPP-Message
+                .... 0... endTransaction: False
+                acknowledgement
+                    .... ..0. ackRequested: False
+                    ackIndicator: 0
+
+TRACE_NAME, LPP_RECEIVE_PEER_MSG_ACK_USIROTA
+879876, 1157159, 127772148, 17:32:55:798 2025/03/13, 17:32:56:383623 2025/03/13, MOD_LPP, MOD_LPP_BASELINE_SENSITIVE_TRACE_INFO_USIROTA_UH, [NW->MS] LPP__REQUEST_LOCATION_INFORMATION [1] (DL-SN:1)
+Peer Message
+    global_peer_msg_id = PROTOCOL_SECTION__LTE_LPP_DL (enum 1101)
+    raw data = Buffer
+        0000 - 000F f0 02 01 08 12 08 2e 61   0e 03 0c 60 5c
+    Message Content
+        LTE Positioning Protocol (LPP)
+            LPP-Message
+                transactionID
+                    initiator: locationServer (0)
+                    transactionNumber: 1
+                .... ...0 endTransaction: False
+                sequenceNumber: 1
+                acknowledgement
+                    .0.. .... ackRequested: False
+                lpp-MessageBody: c1 (0)
+                    c1: requestLocationInformation (4)
+                        requestLocationInformation
+                            criticalExtensions: c1 (0)
+                                c1: requestLocationInformation-r9 (0)
+                                    requestLocationInformation-r9
+                                        commonIEsRequestLocationInformation
+                                            locationInformationType: locationMeasurementsRequired (1)
+                                            qos
+                                                horizontalAccuracy
+                                                    accuracy: 960.172338m (48)
+                                                    confidence: 67%
+                                                .... ..1. verticalCoordinateRequest: True
+                                                verticalAccuracy
+                                                    accuracy: 1.000000m (1)
+                                                    confidence: 67%
+                                                responseTime
+                                                    time: 25s
+                                                .... ..0. velocityRequest: False
+                                        ecid-RequestLocationInformation
+                                            requestedMeasurements: e0 [bit length 3, 5 LSB pad bits, 111. .... decimal value 7]
+                                                1... .... = rsrpReq: True
+                                                .1.. .... = rsrqReq: True
+                                                ..1. .... = ueRxTxReq: True
+                                                ...0 .... = nrsrpReq-r14: False
+                                                .... 0... = nrsrqReq-r14: False
+
+TRACE_NAME, LPP_RECEIVE_PEER_MSG_WITH_PARAMS_USIROTA
+881136, 1157761, 127772750, 17:32:55:998 2025/03/13, 17:32:56:422151 2025/03/13, MOD_LPP, MOD_LPP_BASELINE_SENSITIVE_TRACE_INFO_USIROTA_UH, [MS->NW] LPP__PROVIDE_LOCATION_INFORMATION [1] (UL-SN:1)
+Peer Message
+    global_peer_msg_id = PROTOCOL_SECTION__LTE_LPP_UL (enum 1100)
+    raw data = Buffer
+        0000 - 000F f0 03 01 4a 02 4f e0 d1   98 44 41 3d 7c 61 7f ff
+        0010 - 001F e1 2b 43 81 00 14 03 80   af 00 1c c9 0f ff f6 23
+        0020 - 002F 82 80 70 15 e0 03 25 27   04 d6 16 36 4c 4f 11 c0
+        0030 - 003F 83 2f c4 f1 1c 08
+    Message Content
+        LTE Positioning Protocol (LPP)
+            LPP-Message
+                transactionID
+                    initiator: locationServer (0)
+                    transactionNumber: 1
+                .... ...1 endTransaction: True
+                sequenceNumber: 1
+                acknowledgement
+                    .1.. .... ackRequested: True
+                lpp-MessageBody: c1 (0)
+                    c1: provideLocationInformation (5)
+                        provideLocationInformation
+                            criticalExtensions: c1 (0)
+                                c1: provideLocationInformation-r9 (0)
+                                    provideLocationInformation-r9
+                                        ecid-ProvideLocationInformation
+                                            ecid-SignalMeasurementInformation
+                                                primaryCellMeasuredResults
+                                                    physCellId: 13
+                                                    cellGlobalId
+                                                        plmn-Identity
+                                                            mcc: 3 items
+                                                                Item 0
+                                                                    mcc item: 3
+                                                                Item 1
+                                                                    mcc item: 3
+                                                                Item 2
+                                                                    mcc item: 0
+                                                            mnc: 3 items
+                                                                Item 0
+                                                                    mnc item: 1
+                                                                Item 1
+                                                                    mnc item: 1
+                                                                Item 2
+                                                                    mnc item: 0
+                                                        cellIdentity: eutra (0)
+                                                            eutra: 9ebe30b0 [bit length 28, 4 LSB pad bits, 1001 1110  1011 1110  0011 0000  1011 .... decimal value 166454027]
+                                                    arfcnEUTRA: 65535
+                                                    systemFrameNumber: 0940 [bit length 10, 6 LSB pad bits, 0000 1001  01.. .... decimal value 37]
+                                                    rsrp-Result: -89dBm <= RSRP < -88dBm (52)
+                                                    rsrq-Result: -13.0dB <= RSRQ < -12.5dB (14)
+                                                    ue-RxTxTimeDiff: 128Ts <= T < 130Ts (64)
+                                                    arfcnEUTRA-v9a0: 66936
+                                                measuredResultsList: 4 items
+                                                    Item 0
+                                                        MeasuredResultsElement
+                                                            physCellId: 144
+                                                            arfcnEUTRA: 65535
+                                                            rsrp-Result: -92dBm <= RSRP < -91dBm (49)
+                                                            rsrq-Result: -16.5dB <= RSRQ < -16.0dB (7)
+                                                            arfcnEUTRA-v9a0: 66936
+                                                    Item 1
+                                                        MeasuredResultsElement
+                                                            physCellId: 148
+                                                            arfcnEUTRA: 39955
+                                                            rsrp-Result: -97dBm <= RSRP < -96dBm (44)
+                                                            rsrq-Result: -14.5dB <= RSRQ < -14.0dB (11)
+                                                    Item 2
+                                                        MeasuredResultsElement
+                                                            physCellId: 403
+                                                            arfcnEUTRA: 5060
+                                                            rsrp-Result: -85dBm <= RSRP < -84dBm (56)
+                                                            rsrq-Result: -18.0dB <= RSRQ < -17.5dB (4)
+                                                    Item 3
+                                                        MeasuredResultsElement
+                                                            physCellId: 191
+                                                            arfcnEUTRA: 5060
+                                                            rsrp-Result: -85dBm <= RSRP < -84dBm (56)
+                                                            rsrq-Result: -18.0dB <= RSRQ < -17.5dB (4)
+
+TRACE_NAME, LPP_SEND_PEER_MSG_WITH_PARAMS_USIROTA
+883124, 1158721, 127773710, 17:32:55:998 2025/03/13, 17:32:56:483591 2025/03/13, MOD_LPP, MOD_LPP_BASELINE_SENSITIVE_TRACE_INFO_USIROTA_UH, [NW->MS] LPP__ACKNOWLEDGE (ACK UL-SN:1)
+Peer Message
+    global_peer_msg_id = PROTOCOL_SECTION__LTE_LPP_DL (enum 1101)
+    raw data = Buffer
+        0000 - 000F 24 02
+    Message Content
+        LTE Positioning Protocol (LPP)
+            LPP-Message
+                .... 0... endTransaction: False
+                acknowledgement
+                    .... ..0. ackRequested: False
+                    ackIndicator: 1
+
+TRACE_NAME, LPP_RECEIVE_PEER_MSG_ACK_USIROTA
+885031, 1159394, 127774383, 17:32:55:998 2025/03/13, 17:32:56:526663 2025/03/13, MOD_LPP, MOD_LPP_BASELINE_SENSITIVE_TRACE_INFO_USIROTA_UH, [NW->MS] LPP__PROVIDE_ASSISTANCE_DATA [2] (DL-SN:2)
+Peer Message
+    global_peer_msg_id = PROTOCOL_SECTION__LTE_LPP_DL (enum 1101)
+    raw data = Buffer
+        0000 - 000F f0 05 02 06 08 c8 0a 08   0e f2 f1 a0 9c a2 40 9a
+        0010 - 001F c1 30 4d 60 80 26 b0 14   13 58 2a 09 ac 0a 04 d6
+        0020 - 002F 04 02 6b 02 c1 35 80 80   9a c0 d0 4d 60 18 26 b0
+        0030 - 003F 00 a0 00 40 01 40 15 25   11 ac cf d6 60 49 b5 80
+        0040 - 004F c0 20 12 73 7a bc 48 24   86 c7 38 0c 02 01 20 d7
+        0050 - 005F 6d c7 b6 38 51 70 00 c0   20 10 ae 31 5c 64 63 0c
+        0060 - 006F 00 ec 0c 02 01 2a 82 2f   45 ea 30 60 2e 80 c0 20
+        0070 - 007F 11 51 1b 44 8d 22 87 84   dc 0c 02 01 10 f8 0a c2
+        0080 - 008F 76 18 4d c9 c0 c0 20 11   76 c0 b4 4d 20 87 74 7c
+        0090 - 009F 0c 02 01 09 91 ef 40 fe   00 68 07 80 c0 20 11 a5
+        00A0 - 00AF 99 4c e2 61 05 dc 74 0c   02 01 06 c0 eb ce c5 e8
+        00B0 - 00BF 49 62 c0 c0 20 00
+    Message Content
+        LTE Positioning Protocol (LPP)
+            LPP-Message
+                transactionID
+                    initiator: locationServer (0)
+                    transactionNumber: 2
+                .... ...1 endTransaction: True
+                sequenceNumber: 2
+                acknowledgement
+                    .0.. .... ackRequested: False
+                lpp-MessageBody: c1 (0)
+                    c1: provideAssistanceData (3)
+                        provideAssistanceData
+                            criticalExtensions: c1 (0)
+                                c1: provideAssistanceData-r9 (0)
+                                    provideAssistanceData-r9
+                                        a-gnss-ProvideAssistanceData
+                                            gnss-CommonAssistData
+                                                gnss-ReferenceTime
+                                                    gnss-SystemTime
+                                                        gnss-TimeID
+                                                            gnss-id: gps (0)
+                                                        gnss-DayNumber: 16503
+                                                        gnss-TimeOfDay: 77594
+                                                        gnss-TimeOfDayFrac-msec: 39
+                                                        gps-TOW-Assist: 11 items
+                                                            Item 0
+                                                                GPS-TOW-AssistElement
+                                                                    satelliteID: 19
+                                                                    tlmWord: 309
+                                                                    antiSpoof: 1
+                                                                    alert: 0
+                                                                    tlmRsvdBits: 0
+                                                            Item 1
+                                                                GPS-TOW-AssistElement
+                                                                    satelliteID: 20
+                                                                    tlmWord: 309
+                                                                    antiSpoof: 1
+                                                                    alert: 0
+                                                                    tlmRsvdBits: 0
+                                                            Item 2
+                                                                GPS-TOW-AssistElement
+                                                                    satelliteID: 17
+                                                                    tlmWord: 309
+                                                                    antiSpoof: 1
+                                                                    alert: 0
+                                                                    tlmRsvdBits: 0
+                                                            Item 3
+                                                                GPS-TOW-AssistElement
+                                                                    satelliteID: 6
+                                                                    tlmWord: 309
+                                                                    antiSpoof: 1
+                                                                    alert: 0
+                                                                    tlmRsvdBits: 0
+                                                            Item 4
+                                                                GPS-TOW-AssistElement
+                                                                    satelliteID: 22
+                                                                    tlmWord: 309
+                                                                    antiSpoof: 1
+                                                                    alert: 0
+                                                                    tlmRsvdBits: 0
+                                                            Item 5
+                                                                GPS-TOW-AssistElement
+                                                                    satelliteID: 11
+                                                                    tlmWord: 309
+                                                                    antiSpoof: 1
+                                                                    alert: 0
+                                                                    tlmRsvdBits: 0
+                                                            Item 6
+                                                                GPS-TOW-AssistElement
+                                                                    satelliteID: 9
+                                                                    tlmWord: 309
+                                                                    antiSpoof: 1
+                                                                    alert: 0
+                                                                    tlmRsvdBits: 0
+                                                            Item 7
+                                                                GPS-TOW-AssistElement
+                                                                    satelliteID: 12
+                                                                    tlmWord: 309
+                                                                    antiSpoof: 1
+                                                                    alert: 0
+                                                                    tlmRsvdBits: 0
+                                                            Item 8
+                                                                GPS-TOW-AssistElement
+                                                                    satelliteID: 5
+                                                                    tlmWord: 309
+                                                                    antiSpoof: 1
+                                                                    alert: 0
+                                                                    tlmRsvdBits: 0
+                                                            Item 9
+                                                                GPS-TOW-AssistElement
+                                                                    satelliteID: 14
+                                                                    tlmWord: 309
+                                                                    antiSpoof: 1
+                                                                    alert: 0
+                                                                    tlmRsvdBits: 0
+                                                            Item 10
+                                                                GPS-TOW-AssistElement
+                                                                    satelliteID: 4
+                                                                    tlmWord: 309
+                                                                    antiSpoof: 1
+                                                                    alert: 0
+                                                                    tlmRsvdBits: 0
+                                            gnss-GenericAssistData: 1 item
+                                                Item 0
+                                                    GNSS-GenericAssistDataElement
+                                                        gnss-ID
+                                                            gnss-id: gps (0)
+                                                        gnss-RealTimeIntegrity
+                                                            gnss-BadSignalList: 2 items
+                                                                Item 0
+                                                                    BadSignalElement
+                                                                        badSVID
+                                                                            satellite-id: 0
+                                                                Item 1
+                                                                    BadSignalElement
+                                                                        badSVID
+                                                                            satellite-id: 20
+                                                        gnss-AcquisitionAssistance
+                                                            gnss-SignalID
+                                                                gnss-SignalID: 0
+                                                            gnss-AcquisitionAssistList: 11 items
+                                                                Item 0
+                                                                    GNSS-AcquisitionAssistElement
+                                                                        svID
+                                                                            satellite-id: 18
+                                                                        doppler0: 70.500000m/s (141)
+                                                                        doppler1: -0.080952m/s2 (25)
+                                                                        dopplerUncertainty: 2.5m/s (4)
+                                                                        codePhase: 0.989258ms (1013)
+                                                                        intCodePhase: 76ms
+                                                                        codePhaseSearchWindow: 0.002ms (1)
+                                                                        azimuth: 54.140625 degrees (77)
+                                                                        elevation: 60.468750 degrees (86)
+                                                                        ...0 .... codePhase1023: False
+                                                                Item 1
+                                                                    GNSS-AcquisitionAssistElement
+                                                                        svID
+                                                                            satellite-id: 19
+                                                                        doppler0: 222.500000m/s (445)
+                                                                        doppler1: -0.090476m/s2 (23)
+                                                                        dopplerUncertainty: 2.5m/s (4)
+                                                                        codePhase: 0.28125ms (288)
+                                                                        intCodePhase: 73ms
+                                                                        codePhaseSearchWindow: 0.002ms (1)
+                                                                        azimuth: 249.609375 degrees (355)
+                                                                        elevation: 54.843750 degrees (78)
+                                                                        .... ...0 codePhase1023: False
+                                                                Item 2
+                                                                    GNSS-AcquisitionAssistElement
+                                                                        svID
+                                                                            satellite-id: 16
+                                                                        doppler0: -162.500000m/s (-325)
+                                                                        doppler1: -0.071429m/s2 (27)
+                                                                        dopplerUncertainty: 2.5m/s (4)
+                                                                        codePhase: 0.481445ms (493)
+                                                                        intCodePhase: 71ms
+                                                                        codePhaseSearchWindow: 0.002ms (1)
+                                                                        azimuth: 97.734375 degrees (139)
+                                                                        elevation: 45.000000 degrees (64)
+                                                                        ...0 .... codePhase1023: False
+                                                                Item 3
+                                                                    GNSS-AcquisitionAssistElement
+                                                                        svID
+                                                                            satellite-id: 5
+                                                                        doppler0: -116.000000m/s (-232)
+                                                                        doppler1: 0.004762m/s2 (43)
+                                                                        dopplerUncertainty: 2.5m/s (4)
+                                                                        codePhase: 0.391602ms (401)
+                                                                        intCodePhase: 70ms
+                                                                        codePhaseSearchWindow: 0.008ms (3)
+                                                                        azimuth: 0.000000 degrees (0)
+                                                                        elevation: 41.484375 degrees (59)
+                                                                        .... ...0 codePhase1023: False
+                                                                Item 4
+                                                                    GNSS-AcquisitionAssistElement
+                                                                        svID
+                                                                            satellite-id: 21
+                                                                        doppler0: -503.500000m/s (-1007)
+                                                                        doppler1: -0.057143m/s2 (30)
+                                                                        dopplerUncertainty: 2.5m/s (4)
+                                                                        codePhase: 0.369141ms (378)
+                                                                        intCodePhase: 70ms
+                                                                        codePhaseSearchWindow: 0.002ms (1)
+                                                                        azimuth: 180.703125 degrees (257)
+                                                                        elevation: 40.781250 degrees (58)
+                                                                        ...0 .... codePhase1023: False
+                                                                Item 5
+                                                                    GNSS-AcquisitionAssistElement
+                                                                        svID
+                                                                            satellite-id: 10
+                                                                        doppler0: 70.500000m/s (141)
+                                                                        doppler1: -0.009524m/s2 (40)
+                                                                        dopplerUncertainty: 2.5m/s (4)
+                                                                        codePhase: 0.550781ms (564)
+                                                                        intCodePhase: 69ms
+                                                                        codePhaseSearchWindow: 0.002ms (1)
+                                                                        azimuth: 316.406250 degrees (450)
+                                                                        elevation: 38.671875 degrees (55)
+                                                                        .... ...0 codePhase1023: False
+                                                                Item 6
+                                                                    GNSS-AcquisitionAssistElement
+                                                                        svID
+                                                                            satellite-id: 8
+                                                                        doppler0: -32.000000m/s (-64)
+                                                                        doppler1: -0.100000m/s2 (21)
+                                                                        dopplerUncertainty: 2.5m/s (4)
+                                                                        codePhase: 0.15332ms (157)
+                                                                        intCodePhase: 67ms
+                                                                        codePhaseSearchWindow: 0.002ms (1)
+                                                                        azimuth: 77.343750 degrees (110)
+                                                                        elevation: 27.421875 degrees (39)
+                                                                        ...0 .... codePhase1023: False
+                                                                Item 7
+                                                                    GNSS-AcquisitionAssistElement
+                                                                        svID
+                                                                            satellite-id: 11
+                                                                        doppler0: 432.000000m/s (864)
+                                                                        doppler1: -0.095238m/s2 (22)
+                                                                        dopplerUncertainty: 2.5m/s (4)
+                                                                        codePhase: 0.300781ms (308)
+                                                                        intCodePhase: 65ms
+                                                                        codePhaseSearchWindow: 0.002ms (1)
+                                                                        azimuth: 310.781250 degrees (442)
+                                                                        elevation: 21.796875 degrees (31)
+                                                                        .... ...0 codePhase1023: False
+                                                                Item 8
+                                                                    GNSS-AcquisitionAssistElement
+                                                                        svID
+                                                                            satellite-id: 4
+                                                                        doppler0: 583.500000m/s (1167)
+                                                                        doppler1: -0.057143m/s2 (30)
+                                                                        dopplerUncertainty: 2.5m/s (4)
+                                                                        codePhase: 0.0615234ms (63)
+                                                                        intCodePhase: 64ms
+                                                                        codePhaseSearchWindow: 0.002ms (1)
+                                                                        azimuth: 225.000000 degrees (320)
+                                                                        elevation: 21.093750 degrees (30)
+                                                                        ...0 .... codePhase1023: False
+                                                                Item 9
+                                                                    GNSS-AcquisitionAssistElement
+                                                                        svID
+                                                                            satellite-id: 13
+                                                                        doppler0: -666.000000m/s (-1332)
+                                                                        doppler1: -0.004762m/s2 (41)
+                                                                        dopplerUncertainty: 2.5m/s (4)
+                                                                        codePhase: 0.883789ms (905)
+                                                                        intCodePhase: 66ms
+                                                                        codePhaseSearchWindow: 0.002ms (1)
+                                                                        azimuth: 167.343750 degrees (238)
+                                                                        elevation: 20.390625 degrees (29)
+                                                                        .... ...0 codePhase1023: False
+                                                                Item 10
+                                                                    GNSS-AcquisitionAssistElement
+                                                                        svID
+                                                                            satellite-id: 3
+                                                                        doppler0: -252.500000m/s (-505)
+                                                                        doppler1: -0.090476m/s2 (23)
+                                                                        dopplerUncertainty: 2.5m/s (4)
+                                                                        codePhase: 0.922852ms (945)
+                                                                        intCodePhase: 61ms
+                                                                        codePhaseSearchWindow: 0.002ms (1)
+                                                                        azimuth: 52.734375 degrees (75)
+                                                                        elevation: 7.734375 degrees (11)
+                                                                        ...0 .... codePhase1023: False
+
+TRACE_NAME, LPP_RECEIVE_PEER_MSG_WITH_PARAMS_USIROTA
+886079, 1159634, 127774623, 17:32:55:998 2025/03/13, 17:32:56:542023 2025/03/13, MOD_LPP, MOD_LPP_BASELINE_SENSITIVE_TRACE_INFO_USIROTA_UH, [NW->MS] LPP__REQUEST_LOCATION_INFORMATION [3] (DL-SN:3)
+Peer Message
+    global_peer_msg_id = PROTOCOL_SECTION__LTE_LPP_DL (enum 1101)
+    raw data = Buffer
+        0000 - 000F f0 06 03 08 1a 08 6e 61   0e 03 0c 60 02 25 c0
+    Message Content
+        LTE Positioning Protocol (LPP)
+            LPP-Message
+                transactionID
+                    initiator: locationServer (0)
+                    transactionNumber: 3
+                .... ...0 endTransaction: False
+                sequenceNumber: 3
+                acknowledgement
+                    .0.. .... ackRequested: False
+                lpp-MessageBody: c1 (0)
+                    c1: requestLocationInformation (4)
+                        requestLocationInformation
+                            criticalExtensions: c1 (0)
+                                c1: requestLocationInformation-r9 (0)
+                                    requestLocationInformation-r9
+                                        commonIEsRequestLocationInformation
+                                            locationInformationType: locationMeasurementsPreferred (3)
+                                            qos
+                                                horizontalAccuracy
+                                                    accuracy: 960.172338m (48)
+                                                    confidence: 67%
+                                                .... ..1. verticalCoordinateRequest: True
+                                                verticalAccuracy
+                                                    accuracy: 1.000000m (1)
+                                                    confidence: 67%
+                                                responseTime
+                                                    time: 25s
+                                                .... ..0. velocityRequest: False
+                                        a-gnss-RequestLocationInformation
+                                            gnss-PositioningInstructions
+                                                gnss-Methods
+                                                    gnss-ids: 80 [bit length 1, 7 LSB pad bits, 1... .... decimal value 1]
+                                                        1... .... = gps: True
+                                                        .0.. .... = sbas: False
+                                                        ..0. .... = qzss: False
+                                                        ...0 .... = galileo: False
+                                                        .... 0... = glonass: False
+                                                        .... .0.. = bds: False
+                                                        .... ..0. = navic-v1610: False
+                                                .... ...0 fineTimeAssistanceMeasReq: False
+                                                0... .... adrMeasReq: False
+                                                .0.. .... multiFreqMeasReq: False
+                                                ..1. .... assistanceAvailability: True
+                                        ecid-RequestLocationInformation
+                                            requestedMeasurements: e0 [bit length 3, 5 LSB pad bits, 111. .... decimal value 7]
+                                                1... .... = rsrpReq: True
+                                                .1.. .... = rsrqReq: True
+                                                ..1. .... = ueRxTxReq: True
+                                                ...0 .... = nrsrpReq-r14: False
+                                                .... 0... = nrsrqReq-r14: False
+
+TRACE_NAME, LPP_RECEIVE_PEER_MSG_WITH_PARAMS_USIROTA
+1073724, 1137781, 127866697, 17:33:02:001 2025/03/13, 17:33:02:434759 2025/03/13, MOD_LPP, MOD_LPP_BASELINE_SENSITIVE_TRACE_INFO_USIROTA_UH, [MS->NW] LPP__PROVIDE_LOCATION_INFORMATION [3] (UL-SN:2)
+Peer Message
+    global_peer_msg_id = PROTOCOL_SECTION__LTE_LPP_UL (enum 1100)
+    raw data = Buffer
+        0000 - 000F f0 07 02 4a 0a 43 3d 09   0e dc b3 80 00 04 00 10
+        0010 - 001F e2 73 81 1b a9 c0 1a 93   dd 70 48 40 19 ac a0 10
+        0020 - 002F db 8d b8 43 20 27 b6 e0   0b 9e c1 1c 56 70 30 a8
+        0030 - 003F e0 03 49 9f ee 0a 68 19   45 c4 03 57 44 47 10 64
+        0040 - 004F 0f 8d fc 01 63 71 bb 89   32 0f d2 17 80 c6 14 65
+        0050 - 005F c0 d5 07 6f e0 c0 6a cb   36 e1 ac 83 97 a9 e0 2c
+        0060 - 006F 3d 3f 4f e0 d1 98 44 41   3d 7c 61 7f ff e1 ab 43
+        0070 - 007F 81 00 14 03 80 af 00 24   c9 0f ff f6 23 82 80 70
+        0080 - 008F 15 e0 03 25 27 04 d6 16   30 36 70 4d 59 03 56 67
+        0090 - 009F 04 d4 8c 32 fc 4f 11 c0   80
+    Message Content
+        LTE Positioning Protocol (LPP)
+            LPP-Message
+                transactionID
+                    initiator: locationServer (0)
+                    transactionNumber: 3
+                .... ...1 endTransaction: True
+                sequenceNumber: 2
+                acknowledgement
+                    .1.. .... ackRequested: True
+                lpp-MessageBody: c1 (0)
+                    c1: provideLocationInformation (5)
+                        provideLocationInformation
+                            criticalExtensions: c1 (0)
+                                c1: provideLocationInformation-r9 (0)
+                                    provideLocationInformation-r9
+                                        a-gnss-ProvideLocationInformation
+                                            gnss-SignalMeasurementInformation
+                                                measurementReferenceTime
+                                                    gnss-TOD-msec: 2000007ms
+                                                    gnss-TOD-frac: 441.250000us (1765)
+                                                    gnss-TOD-unc: 13725.639507us (78)
+                                                    gnss-TimeID
+                                                        gnss-id: gps (0)
+                                                gnss-MeasurementList: 1 item
+                                                    Item 0
+                                                        GNSS-MeasurementForOneGNSS
+                                                            gnss-ID
+                                                                gnss-id: gps (0)
+                                                            gnss-SgnMeasList: 1 item
+                                                                Item 0
+                                                                    GNSS-SgnMeasElement
+                                                                        gnss-SignalID
+                                                                            gnss-SignalID: 0
+                                                                        gnss-CodePhaseAmbiguity: 0ms
+                                                                        gnss-SatMeasList: 9 items
+                                                                            Item 0
+                                                                                GNSS-SatMeasElement
+                                                                                    svID
+                                                                                        satellite-id: 19
+                                                                                    cNo: 39 dB-Hz
+                                                                                    mpathDet: notMeasured (0)
+                                                                                    carrierQualityInd: Data direct, carrier phase not continuous (0)
+                                                                                    codePhase: 0.277015ms (580942)
+                                                                                    integerCodePhase: 0ms
+                                                                                    codePhaseRMSError: 4.000000 <= P < 4.000000 (26)
+                                                                                    doppler: 203.4m/s (5085)
+                                                                            Item 1
+                                                                                GNSS-SatMeasElement
+                                                                                    svID
+                                                                                        satellite-id: 4
+                                                                                    cNo: 33 dB-Hz
+                                                                                    mpathDet: notMeasured (0)
+                                                                                    carrierQualityInd: Data direct, carrier phase not continuous (0)
+                                                                                    codePhase: 0.0501451ms (105162)
+                                                                                    integerCodePhase: 0ms
+                                                                                    codePhaseRMSError: 8.000000 <= P < 8.000000 (33)
+                                                                                    doppler: 564.28m/s (14107)
+                                                                            Item 2
+                                                                                GNSS-SatMeasElement
+                                                                                    svID
+                                                                                        satellite-id: 8
+                                                                                    cNo: 25 dB-Hz
+                                                                                    mpathDet: notMeasured (0)
+                                                                                    carrierQualityInd: Data direct, carrier phase not continuous (0)
+                                                                                    codePhase: 0.155134ms (325340)
+                                                                                    integerCodePhase: 0ms
+                                                                                    codePhaseRMSError: 16.000000 <= P < 16.000000 (46)
+                                                                                    doppler: -51.04m/s (-1276)
+                                                                            Item 3
+                                                                                GNSS-SatMeasElement
+                                                                                    svID
+                                                                                        satellite-id: 21
+                                                                                    cNo: 39 dB-Hz
+                                                                                    mpathDet: notMeasured (0)
+                                                                                    carrierQualityInd: Data direct, carrier phase not continuous (0)
+                                                                                    codePhase: 0.380154ms (797240)
+                                                                                    integerCodePhase: 0ms
+                                                                                    codePhaseRMSError: 4.000000 <= P < 4.000000 (26)
+                                                                                    doppler: -522.28m/s (-13057)
+                                                                            Item 4
+                                                                                GNSS-SatMeasElement
+                                                                                    svID
+                                                                                        satellite-id: 5
+                                                                                    cNo: 13 dB-Hz
+                                                                                    mpathDet: notMeasured (0)
+                                                                                    carrierQualityInd: Data direct, carrier phase not continuous (0)
+                                                                                    codePhase: 0.394883ms (828130)
+                                                                                    integerCodePhase: 0ms
+                                                                                    codePhaseRMSError: 32.000000 <= P < 32.000000 (53)
+                                                                                    doppler: -120.16m/s (-3004)
+                                                                            Item 5
+                                                                                GNSS-SatMeasElement
+                                                                                    svID
+                                                                                        satellite-id: 16
+                                                                                    cNo: 25 dB-Hz
+                                                                                    mpathDet: notMeasured (0)
+                                                                                    carrierQualityInd: Data direct, carrier phase not continuous (0)
+                                                                                    codePhase: 0.486082ms (1019388)
+                                                                                    integerCodePhase: 0ms
+                                                                                    codePhaseRMSError: 16.000000 <= P < 16.000000 (44)
+                                                                                    doppler: -182.12m/s (-4553)
+                                                                            Item 6
+                                                                                GNSS-SatMeasElement
+                                                                                    svID
+                                                                                        satellite-id: 18
+                                                                                    cNo: 25 dB-Hz
+                                                                                    mpathDet: notMeasured (0)
+                                                                                    carrierQualityInd: Data direct, carrier phase not continuous (0)
+                                                                                    codePhase: 0.988792ms (2073647)
+                                                                                    integerCodePhase: 0ms
+                                                                                    codePhaseRMSError: 32.000000 <= P < 32.000000 (49)
+                                                                                    doppler: 52.2m/s (1305)
+                                                                            Item 7
+                                                                                GNSS-SatMeasElement
+                                                                                    svID
+                                                                                        satellite-id: 3
+                                                                                    cNo: 21 dB-Hz
+                                                                                    mpathDet: notMeasured (0)
+                                                                                    carrierQualityInd: Data direct, carrier phase not continuous (0)
+                                                                                    codePhase: 0.929628ms (1949571)
+                                                                                    integerCodePhase: 0ms
+                                                                                    codePhaseRMSError: 32.000000 <= P < 32.000000 (53)
+                                                                                    doppler: -270.28m/s (-6757)
+                                                                            Item 8
+                                                                                GNSS-SatMeasElement
+                                                                                    svID
+                                                                                        satellite-id: 13
+                                                                                    cNo: 25 dB-Hz
+                                                                                    mpathDet: notMeasured (0)
+                                                                                    carrierQualityInd: Data direct, carrier phase not continuous (0)
+                                                                                    codePhase: 0.898109ms (1883471)
+                                                                                    integerCodePhase: 0ms
+                                                                                    codePhaseRMSError: 16.000000 <= P < 16.000000 (44)
+                                                                                    doppler: -683.56m/s (-17089)
+                                        ecid-ProvideLocationInformation
+                                            ecid-SignalMeasurementInformation
+                                                primaryCellMeasuredResults
+                                                    physCellId: 13
+                                                    cellGlobalId
+                                                        plmn-Identity
+                                                            mcc: 3 items
+                                                                Item 0
+                                                                    mcc item: 3
+                                                                Item 1
+                                                                    mcc item: 3
+                                                                Item 2
+                                                                    mcc item: 0
+                                                            mnc: 3 items
+                                                                Item 0
+                                                                    mnc item: 1
+                                                                Item 1
+                                                                    mnc item: 1
+                                                                Item 2
+                                                                    mnc item: 0
+                                                        cellIdentity: eutra (0)
+                                                            eutra: 9ebe30b0 [bit length 28, 4 LSB pad bits, 1001 1110  1011 1110  0011 0000  1011 .... decimal value 166454027]
+                                                    arfcnEUTRA: 65535
+                                                    systemFrameNumber: 0d40 [bit length 10, 6 LSB pad bits, 0000 1101  01.. .... decimal value 53]
+                                                    rsrp-Result: -89dBm <= RSRP < -88dBm (52)
+                                                    rsrq-Result: -13.0dB <= RSRQ < -12.5dB (14)
+                                                    ue-RxTxTimeDiff: 128Ts <= T < 130Ts (64)
+                                                    arfcnEUTRA-v9a0: 66936
+                                                measuredResultsList: 5 items
+                                                    Item 0
+                                                        MeasuredResultsElement
+                                                            physCellId: 144
+                                                            arfcnEUTRA: 65535
+                                                            rsrp-Result: -92dBm <= RSRP < -91dBm (49)
+                                                            rsrq-Result: -16.5dB <= RSRQ < -16.0dB (7)
+                                                            arfcnEUTRA-v9a0: 66936
+                                                    Item 1
+                                                        MeasuredResultsElement
+                                                            physCellId: 148
+                                                            arfcnEUTRA: 39955
+                                                            rsrp-Result: -97dBm <= RSRP < -96dBm (44)
+                                                            rsrq-Result: -14.5dB <= RSRQ < -14.0dB (11)
+                                                    Item 2
+                                                        MeasuredResultsElement
+                                                            physCellId: 13
+                                                            arfcnEUTRA: 39955
+                                                            rsrp-Result: -98dBm <= RSRP < -97dBm (43)
+                                                            rsrq-Result: -16.0dB <= RSRQ < -15.5dB (8)
+                                                    Item 3
+                                                        MeasuredResultsElement
+                                                            physCellId: 345
+                                                            arfcnEUTRA: 39955
+                                                            rsrp-Result: -100dBm <= RSRP < -99dBm (41)
+                                                            rsrq-Result: -17.0dB <= RSRQ < -16.5dB (6)
+                                                    Item 4
+                                                        MeasuredResultsElement
+                                                            physCellId: 191
+                                                            arfcnEUTRA: 5060
+                                                            rsrp-Result: -85dBm <= RSRP < -84dBm (56)
+                                                            rsrq-Result: -18.0dB <= RSRQ < -17.5dB (4)
+
+TRACE_NAME, LPP_SEND_PEER_MSG_WITH_PARAMS_USIROTA
+1076446, 1138867, 127867783, 17:33:02:001 2025/03/13, 17:33:02:504263 2025/03/13, MOD_LPP, MOD_LPP_BASELINE_SENSITIVE_TRACE_INFO_USIROTA_UH, [NW->MS] LPP__ACKNOWLEDGE (ACK UL-SN:2)
+Peer Message
+    global_peer_msg_id = PROTOCOL_SECTION__LTE_LPP_DL (enum 1101)
+    raw data = Buffer
+        0000 - 000F 24 04
+    Message Content
+        LTE Positioning Protocol (LPP)
+            LPP-Message
+                .... 0... endTransaction: False
+                acknowledgement
+                    .... ..0. ackRequested: False
+                    ackIndicator: 2
+
+TRACE_NAME, LPP_RECEIVE_PEER_MSG_ACK_USIROTA
