@@ -1,0 +1,1002 @@
+关键字 【transactionNumber:|initiator:】【LPP__】 
+ 【TransactionNumber -- Initiator 】必须唯一 , 在一次事物id下应该是一致的，否则可能出现流程错误的问题 
+
+
+721427, 755442, 53149832, 11:41:26:258 2025/03/13, 11:41:26:380416 2025/03/13, MOD_LPP, MOD_LPP_BASELINE_SENSITIVE_TRACE_INFO_USIROTA_UH, [NW->MS] LPP__REQUEST_CAPABILITIES [0] (DL-SN:0)
+Peer Message
+    global_peer_msg_id = PROTOCOL_SECTION__LTE_LPP_DL (enum 1101)
+    raw data = Buffer
+        0000 - 000F f0 00 00 40 2e 70 04 07   c0
+    Message Content
+        LTE Positioning Protocol (LPP)
+            LPP-Message
+                transactionID
+                    initiator: locationServer (0)
+                    transactionNumber: 0
+                .... ...0 endTransaction: False
+                sequenceNumber: 0
+                acknowledgement
+                    .1.. .... ackRequested: True
+                lpp-MessageBody: c1 (0)
+                    c1: requestCapabilities (0)
+                        requestCapabilities
+                            criticalExtensions: c1 (0)
+                                c1: requestCapabilities-r9 (0)
+                                    requestCapabilities-r9
+                                        a-gnss-RequestCapabilities
+                                            .1.. .... gnss-SupportListReq: True
+                                            ..1. .... assistanceDataSupportListReq: True
+                                            ...1 .... locationVelocityTypesReq: True
+                                        otdoa-RequestCapabilities
+                                        ecid-RequestCapabilities
+                                        sensor-RequestCapabilities-r13
+                                        tbs-RequestCapabilities-r13
+                                        wlan-RequestCapabilities-r13
+                                        bt-RequestCapabilities-r13
+
+TRACE_NAME, LPP_RECEIVE_PEER_MSG_WITH_PARAMS_USIROTA
+721678, 755456, 53149846, 11:41:26:258 2025/03/13, 11:41:26:381312 2025/03/13, MOD_LPP, MOD_LPP_BASELINE_SENSITIVE_TRACE_INFO_USIROTA_UH, [MS->NW] LPP__PROVIDE_CAPABILITIES [0] (UL-SN:0)
+Peer Message
+    global_peer_msg_id = PROTOCOL_SECTION__LTE_LPP_UL (enum 1100)
+    raw data = Buffer
+        0000 - 000F f0 01 00 c0 02 0e 78 00   17 c8 00 81 c3 80 00 27
+        0010 - 001F a6 80 50 30 0b f8 0e b1   58 20 70 10 00 10 07 38
+        0020 - 002F 64 1e c0 50 1f 00 c4 a7   00 00 03 d2 00 10 83 10
+        0030 - 003F 61 cb 31 04 d8 65 b9 67   a2 9f c0 80 80 80 40 2b
+        0040 - 004F 82 80 30 00
+    Message Content
+        LTE Positioning Protocol (LPP)
+            LPP-Message
+                transactionID
+                    initiator: locationServer (0)
+                    transactionNumber: 0
+                .... ...1 endTransaction: True
+                sequenceNumber: 0
+                acknowledgement
+                    .1.. .... ackRequested: True
+                    ackIndicator: 0
+                lpp-MessageBody: c1 (0)
+                    c1: provideCapabilities (1)
+                        provideCapabilities
+                            criticalExtensions: c1 (0)
+                                c1: provideCapabilities-r9 (0)
+                                    provideCapabilities-r9
+                                        a-gnss-ProvideCapabilities
+                                            gnss-SupportList: 1 item
+                                                Item 0
+                                                    GNSS-SupportElement
+                                                        gnss-ID
+                                                            gnss-id: gps (0)
+                                                        agnss-Modes
+                                                            posModes: e0 [bit length 3, 5 LSB pad bits, 111. .... decimal value 7]
+                                                                1... .... = standalone: True
+                                                                .1.. .... = ue-based: True
+                                                                ..1. .... = ue-assisted: True
+                                                        gnss-Signals
+                                                            gnss-SignalIDs: 90 [bit length 8, 1001 0000 decimal value 144]
+                                                            gnss-SignalIDs-Ext-r15: 0e00 [bit length 16, 0000 1110  0000 0000 decimal value 3584]
+                                                        .0.. .... adr-Support: False
+                                                        ..1. .... velocityMeasurementSupport: True
+                                            assistanceDataSupportList
+                                                gnss-CommonAssistanceDataSupport
+                                                    gnss-ReferenceTimeSupport
+                                                        gnss-SystemTime
+                                                            gnss-ids: 80 [bit length 7, 1 LSB pad bits, 1000 000. decimal value 64]
+                                                                1... .... = gps: True
+                                                                .0.. .... = sbas: False
+                                                                ..0. .... = qzss: False
+                                                                ...0 .... = galileo: False
+                                                                .... 0... = glonass: False
+                                                                .... .0.. = bds: False
+                                                                .... ..0. = navic-v1610: False
+                                                        fta-Support
+                                                            accessTypes: 80 [bit length 3, 5 LSB pad bits, 100. .... decimal value 4]
+                                                                1... .... = eutra: True
+                                                                .0.. .... = utra: False
+                                                                ..0. .... = gsm: False
+                                                                ...0 .... = nb-iot: False
+                                                                .... 0... = nr-v1510: False
+                                                    gnss-ReferenceLocationSupport
+                                                    gnss-IonosphericModelSupport
+                                                        ionoModel: 80 [bit length 2, 6 LSB pad bits, 10.. .... decimal value 2]
+                                                            1... .... = klobuchar: True
+                                                            .0.. .... = neQuick: False
+                                                            ..0. .... = klobuchar2-r16: False
+                                                    gnss-EarthOrientationParametersSupport
+                                                gnss-GenericAssistanceDataSupport: 1 item
+                                                    Item 0
+                                                        GNSS-GenericAssistDataSupportElement
+                                                            gnss-ID
+                                                                gnss-id: gps (0)
+                                                            gnss-TimeModelsSupport
+                                                            gnss-NavigationModelSupport
+                                                                clockModel: 60 [bit length 6, 2 LSB pad bits, 0110 00.. decimal value 24]
+                                                                    0... .... = model-1: False
+                                                                    .1.. .... = model-2: True
+                                                                    ..1. .... = model-3: True
+                                                                    ...0 .... = model-4: False
+                                                                    .... 0... = model-5: False
+                                                                    .... .0.. = model-6: False
+                                                                    .... ..0. = model-7-r16: False
+                                                                    .... ...0 = model-8-r16: False
+                                                                orbitModel: 60 [bit length 6, 2 LSB pad bits, 0110 00.. decimal value 24]
+                                                                    0... .... = model-1: False
+                                                                    .1.. .... = model-2: True
+                                                                    ..1. .... = model-3: True
+                                                                    ...0 .... = model-4: False
+                                                                    .... 0... = model-5: False
+                                                                    .... .0.. = model-6: False
+                                                                    .... ..0. = model-7-r16: False
+                                                                    .... ...0 = model-8-r16: False
+                                                            gnss-RealTimeIntegritySupport
+                                                            gnss-DataBitAssistanceSupport
+                                                            gnss-AcquisitionAssistanceSupport
+                                                                confidenceSupport-r10: true (0)
+                                                                dopplerUncertaintyExtSupport-r10: true (0)
+                                                            gnss-AlmanacSupport
+                                                                almanacModel: 70 [bit length 7, 1 LSB pad bits, 0111 000. decimal value 56]
+                                                                    0... .... = model-1: False
+                                                                    .1.. .... = model-2: True
+                                                                    ..1. .... = model-3: True
+                                                                    ...1 .... = model-4: True
+                                                                    .... 0... = model-5: False
+                                                                    .... .0.. = model-6: False
+                                                                    .... ..0. = model-7: False
+                                                            gnss-UTC-ModelSupport
+                                                                utc-Model: 80 [bit length 5, 3 LSB pad bits, 1000 0... decimal value 16]
+                                                                    1... .... = model-1: True
+                                                                    .0.. .... = model-2: False
+                                                                    ..0. .... = model-3: False
+                                                                    ...0 .... = model-4: False
+                                                                    .... 0... = model-5: False
+                                                            gnss-AuxiliaryInformationSupport
+                                            locationCoordinateTypes
+                                                .... 1... ellipsoidPoint: True
+                                                .... .1.. ellipsoidPointWithUncertaintyCircle: True
+                                                .... ..1. ellipsoidPointWithUncertaintyEllipse: True
+                                                .... ...0 polygon: False
+                                                1... .... ellipsoidPointWithAltitude: True
+                                                .1.. .... ellipsoidPointWithAltitudeAndUncertaintyEllipsoid: True
+                                                ..0. .... ellipsoidArc: False
+                                                .... ..1. ha-EllipsoidPointWithScalableUncertaintyEllipse-r16: True
+                                                .... ...1 ha-EllipsoidPointWithAltitudeAndScalableUncertaintyEllipsoid-r16: True
+                                            velocityTypes
+                                                .... .0.. horizontalVelocity: False
+                                                .... ..0. horizontalWithVerticalVelocity: False
+                                                .... ...0 horizontalVelocityWithUncertainty: False
+                                                1... .... horizontalWithVerticalVelocityAndUncertainty: True
+                                        otdoa-ProvideCapabilities
+                                            otdoa-Mode: 80 [bit length 1, 7 LSB pad bits, 1... .... decimal value 1]
+                                                1... .... = ue-assisted: True
+                                                .0.. .... = ue-assisted-NB-r14: False
+                                                ..0. .... = ue-assisted-NB-TDD-r15: False
+                                            supportedBandListEUTRA: 19 items
+                                                Item 0
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 1
+                                                Item 1
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 2
+                                                Item 2
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 3
+                                                Item 3
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 4
+                                                Item 4
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 5
+                                                Item 5
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 7
+                                                Item 6
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 8
+                                                Item 7
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 12
+                                                Item 8
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 13
+                                                Item 9
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 17
+                                                Item 10
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 20
+                                                Item 11
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 25
+                                                Item 12
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 26
+                                                Item 13
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 28
+                                                Item 14
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 38
+                                                Item 15
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 40
+                                                Item 16
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 41
+                                                Item 17
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 42
+                                                Item 18
+                                                    SupportedBandEUTRA
+                                                        bandEUTRA: 64
+                                            supportedBandListEUTRA-v9a0: 1 item
+                                                Item 0
+                                                    SupportedBandEUTRA-v9a0
+                                                        bandEUTRA-v9a0: 66
+                                            interFreqRSTDmeasurement-r10: supported (0)
+                                        ecid-ProvideCapabilities
+                                            ecid-MeasSupported: e0 [bit length 3, 5 LSB pad bits, 111. .... decimal value 7]
+                                                1... .... = rsrpSup: True
+                                                .1.. .... = rsrqSup: True
+                                                ..1. .... = ueRxTxSup: True
+                                                ...0 .... = nrsrpSup-r14: False
+                                                .... 0... = nrsrqSup-r14: False
+                                            ueRxTxSupTDD-r13: true (0)
+
+TRACE_NAME, LPP_SEND_PEER_MSG_WITH_PARAMS_USIROTA
+724076, 756574, 53150964, 11:41:26:458 2025/03/13, 11:41:26:452864 2025/03/13, MOD_LPP, MOD_LPP_BASELINE_SENSITIVE_TRACE_INFO_USIROTA_UH, [NW->MS] LPP__REQUEST_LOCATION_INFORMATION [1] (DL-SN:1)
+Peer Message
+    global_peer_msg_id = PROTOCOL_SECTION__LTE_LPP_DL (enum 1101)
+    raw data = Buffer
+        0000 - 000F f0 02 01 c0 08 18 08 0e   18 f2 18 f0 74 02 20
+    Message Content
+        LTE Positioning Protocol (LPP)
+            LPP-Message
+                transactionID
+                    initiator: locationServer (0)
+                    transactionNumber: 1
+                .... ...0 endTransaction: False
+                sequenceNumber: 1
+                acknowledgement
+                    .1.. .... ackRequested: True
+                    ackIndicator: 0
+                lpp-MessageBody: c1 (0)
+                    c1: requestLocationInformation (4)
+                        requestLocationInformation
+                            criticalExtensions: c1 (0)
+                                c1: requestLocationInformation-r9 (0)
+                                    requestLocationInformation-r9
+                                        commonIEsRequestLocationInformation
+                                            locationInformationType: locationEstimateRequired (0)
+                                            qos
+                                                horizontalAccuracy
+                                                    accuracy: 21.384284m (12)
+                                                    confidence: 60%
+                                                .... ..1. verticalCoordinateRequest: True
+                                                verticalAccuracy
+                                                    accuracy: 21.384284m (12)
+                                                    confidence: 60%
+                                                responseTime
+                                                    time: 30s
+                                                .... ..0. velocityRequest: False
+                                        a-gnss-RequestLocationInformation
+                                            gnss-PositioningInstructions
+                                                gnss-Methods
+                                                    gnss-ids: 80 [bit length 1, 7 LSB pad bits, 1... .... decimal value 1]
+                                                        1... .... = gps: True
+                                                        .0.. .... = sbas: False
+                                                        ..0. .... = qzss: False
+                                                        ...0 .... = galileo: False
+                                                        .... 0... = glonass: False
+                                                        .... .0.. = bds: False
+                                                        .... ..0. = navic-v1610: False
+                                                .... ...0 fineTimeAssistanceMeasReq: False
+                                                0... .... adrMeasReq: False
+                                                .0.. .... multiFreqMeasReq: False
+                                                ..1. .... assistanceAvailability: True
+
+TRACE_NAME, LPP_RECEIVE_PEER_MSG_WITH_PARAMS_USIROTA
+724183, 756582, 53150972, 11:41:26:458 2025/03/13, 11:41:26:453376 2025/03/13, MOD_LPP, MOD_LPP_BASELINE_SENSITIVE_TRACE_INFO_UH, [MS->NW] LPP__ACKNOWLEDGE (ACK DL-SN:1)
+Peer Message
+    global_peer_msg_id = PROTOCOL_SECTION__LTE_LPP_UL (enum 1100)
+    raw data = Buffer
+        0000 - 000F 24 02
+    Message Content
+        LTE Positioning Protocol (LPP)
+            LPP-Message
+                .... 0... endTransaction: False
+                acknowledgement
+                    .... ..0. ackRequested: False
+                    ackIndicator: 1
+
+TRACE_NAME, LPP_SEND_PEER_MSG_ACK
+726892, 756996, 53151386, 11:41:26:458 2025/03/13, 11:41:26:479872 2025/03/13, MOD_LPP, MOD_LPP_BASELINE_SENSITIVE_TRACE_INFO_USIROTA_UH, [MS->NW] LPP__REQUEST_ASSISTANCE_DATA [2] (UL-SN:1)
+Peer Message
+    global_peer_msg_id = PROTOCOL_SECTION__LTE_LPP_UL (enum 1100)
+    raw data = Buffer
+        0000 - 000F f2 04 01 44 18 b9 94 40   40 5c f9 99 ad 00 50 02
+        0010 - 001F c8 03 04 31 47 5f ff ff   ff fc 00 00 00 00 94 4a
+        0020 - 002F 92
+    Message Content
+        LTE Positioning Protocol (LPP)
+            LPP-Message
+                transactionID
+                    initiator: targetDevice (1)
+                    transactionNumber: 2
+                .... ...0 endTransaction: False
+                sequenceNumber: 1
+                acknowledgement
+                    .1.. .... ackRequested: True
+                lpp-MessageBody: c1 (0)
+                    c1: requestAssistanceData (2)
+                        requestAssistanceData
+                            criticalExtensions: c1 (0)
+                                c1: requestAssistanceData-r9 (0)
+                                    requestAssistanceData-r9
+                                        commonIEsRequestAssistanceData
+                                            primaryCellID
+                                                mcc: 3 items
+                                                    Item 0
+                                                        mcc item: 7
+                                                    Item 1
+                                                        mcc item: 3
+                                                    Item 2
+                                                        mcc item: 2
+                                                mnc: 3 items
+                                                    Item 0
+                                                        mnc item: 1
+                                                    Item 1
+                                                        mnc item: 0
+                                                    Item 2
+                                                        mnc item: 1
+                                                cellidentity: 0173e660 [bit length 28, 4 LSB pad bits, 0000 0001  0111 0011  1110 0110  0110 .... decimal value 1523302]
+                                        a-gnss-RequestAssistanceData
+                                            gnss-CommonAssistDataReq
+                                                gnss-ReferenceTimeReq
+                                                    gnss-TimeReqPrefList: 1 item
+                                                        Item 0
+                                                            GNSS-ID
+                                                                gnss-id: gps (0)
+                                                    .1.. .... gps-TOW-assistReq: True
+                                                gnss-IonosphericModelReq
+                                                    klobucharModelReq: 00 [bit length 2, 6 LSB pad bits, 00.. .... decimal value 0]
+                                                gnss-EarthOrientationParametersReq
+                                            gnss-GenericAssistDataReq: 1 item
+                                                Item 0
+                                                    GNSS-GenericAssistDataReqElement
+                                                        gnss-ID
+                                                            gnss-id: gps (0)
+                                                        gnss-TimeModelsReq: 4 items
+                                                            Item 0
+                                                                GNSS-TimeModelElementReq
+                                                                    gnss-TO-IDsReq: 1
+                                                                    .... .1.. deltaTreq: True
+                                                            Item 1
+                                                                GNSS-TimeModelElementReq
+                                                                    gnss-TO-IDsReq: 2
+                                                                    ...1 .... deltaTreq: True
+                                                            Item 2
+                                                                GNSS-TimeModelElementReq
+                                                                    gnss-TO-IDsReq: 3
+                                                                    .1.. .... deltaTreq: True
+                                                            Item 3
+                                                                GNSS-TimeModelElementReq
+                                                                    gnss-TO-IDsReq: 4
+                                                                    .... ...1 deltaTreq: True
+                                                        gnss-NavigationModelReq: reqNavList (1)
+                                                            reqNavList
+                                                                svReqList: ffffffff00000000 [bit length 64, 1111 1111  1111 1111  1111 1111  1111 1111  0000 0000  0000 0000  0000 0000  0000 0000 decimal value 18446744069414584320]
+                                                                clockModelID-PrefList: 2 items
+                                                                    Item 0
+                                                                        clockModelID-PrefList item: 2
+                                                                    Item 1
+                                                                        clockModelID-PrefList item: 3
+                                                                orbitModelID-PrefList: 2 items
+                                                                    Item 0
+                                                                        orbitModelID-PrefList item: 2
+                                                                    Item 1
+                                                                        orbitModelID-PrefList item: 3
+                                                                1... .... addNavparamReq: True
+                                                        gnss-RealTimeIntegrityReq
+                                                        gnss-AlmanacReq
+                                                            modelID: 2
+
+TRACE_NAME, LPP_SEND_PEER_MSG_WITH_PARAMS_USIROTA
+728457, 757823, 53152213, 11:41:26:458 2025/03/13, 11:41:26:532800 2025/03/13, MOD_LPP, MOD_LPP_BASELINE_SENSITIVE_TRACE_INFO_USIROTA_UH, [NW->MS] LPP__ACKNOWLEDGE (ACK UL-SN:1)
+Peer Message
+    global_peer_msg_id = PROTOCOL_SECTION__LTE_LPP_DL (enum 1101)
+    raw data = Buffer
+        0000 - 000F 24 02
+    Message Content
+        LTE Positioning Protocol (LPP)
+            LPP-Message
+                .... 0... endTransaction: False
+                acknowledgement
+                    .... ..0. ackRequested: False
+                    ackIndicator: 1
+
+TRACE_NAME, LPP_RECEIVE_PEER_MSG_ACK_USIROTA
+731266, 759703, 53154093, 11:41:26:659 2025/03/13, 11:41:26:653120 2025/03/13, MOD_LPP, MOD_LPP_BASELINE_SENSITIVE_TRACE_INFO_USIROTA_UH, [NW->MS] LPP__PROVIDE_ASSISTANCE_DATA [2] (DL-SN:65535)
+Peer Message
+    global_peer_msg_id = PROTOCOL_SECTION__LTE_LPP_DL (enum 1101)
+    raw data = Buffer
+        0000 - 000F 90 05 18 23 38 08 20 3b   b8 f3 49 0c 09 ac 01 04
+        0010 - 001F d6 08 02 6b 07 41 35 81   00 9a c0 20 4d 60 18 26
+        0020 - 002F b0 48 13 58 0e 09 ac 0d   04 d6 00 d8 e4 49 6a b3
+        0030 - 003F 40 00 0e 1c 00 00 88 84   fc 0b f4 06 0c 03 e4 10
+        0040 - 004F 06 20 05 03 00 10 31 32   19 40 3f fa be f1 b0 d2
+        0050 - 005F 20 19 0c a0 00 00 00 2c   6e 9a f8 6e 9c df e9 4b
+        0060 - 006F c2 78 fb 60 61 70 a1 0d   f7 5a a6 bf 4e 62 81 06
+        0070 - 007F f4 f3 7d f6 80 9e 99 08   92 c6 7f d6 7e 8e 00 00
+        0080 - 008F 03 e2 64 32 80 80 b0 96   84 41 b0 40 32 19 40 00
+        0090 - 009F 00 00 57 97 5b 30 34 41   3f d4 ea 80 19 f0 cf bd
+        00A0 - 00AF 65 42 1b ce 8b 4e 3b 13   62 08 7a 42 9b 04 e2 ff
+        00B0 - 00BF f1 32 db 23 7b 00 21 04   d0 02 00 03 84 c8 65 01
+        00C0 - 00CF 00 a8 c6 22 42 d0 80 64   32 80 00 00 00 ac d1 ea
+        00D0 - 00DF 1b fe 53 7f ad 17 08 49   59 7b 70 36 84 1c 1d 92
+        00E0 - 00EF 9d 80 90 ff f6 31 23 a9   ff 3e 01 2e 6a 32 41 de
+        00F0 - 00FF 02 2e 01 90 40 00 2a 09   90 ca 01 fd 62 c7 94 46
+        0100 - 010F 81 00 c8 65 00 00 00 01   67 d1 bb 78 62 d2 ff 4f
+        0110 - 011F ce 0d 6d 2f 44 cc fd 08   69 06 c5 3a 49 ec e6 c6
+        0120 - 012F 60 44 9b c0 2b fe dc 5c   25 0e a4 02 f3 cb 10 e8
+        0130 - 013F 00 3c 13 21 94 04 02 83   33 28 b1 02 01 90 ca 00
+        0140 - 014F 00 00 02 d0 69 90 aa a9   f9 fe 98 e0 0f 5d 38 46
+        0150 - 015F 12 1a 10 dd 16 ba 62 4b   93 08 0e 00 cb 87 d5 b8
+        0160 - 016F 04 f9 84 09 1e 28 02 57   df a0 80 00 38 26 43 28
+        0170 - 017F 08 06 fc e5 80 60 44 03   21 94 00 00 00 05 99 6f
+        0180 - 018F a1 8e bb 43 fd 2c 88 0c   5c c6 53 8a d4 21 bf 71
+        0190 - 019F 14 e4 b9 06 0a aa 40 c7   2e dd cf fe b1 11 94 b7
+        01A0 - 01AF 0f fe ef 09 a0 40 01 04   4c 86 50 10 05 1b 10 91
+        01B0 - 01BF c1 88 06 43 28 00 00 00   0a d3 25 a8 c1 9f b7 fa
+        01C0 - 01CF 7b 90 2f dc e1 a8 de a8   43 1e 41 aa 11 77 35 ca
+        01D0 - 01DF ff 97 96 e2 73 20 11 a2   e6 28 f6 9f fc e2 21 c0
+        01E0 - 01EF c0 16 b0 99 0c a0 20 0b   b1 b0 19 76 10 0c 86 50
+        01F0 - 01FF 00 00 00 16 3c d9 ea c5   a3 2f f4 b7 20 35 22 a1
+        0200 - 020F 6d cf d0 86 99 6b 53 b3   32 ac 2b ea f9 1c 3b 22
+        0210 - 021F bf f9 c4 df 52 6d bf fc   bb cd 89 00 06 41 32 19
+        0220 - 022F 40 40 12 67 d4 f6 be 20   19 0c a0 00 00 00 2c f0
+        0230 - 023F ca 84 15 0b 5f e9 95 81   4f 9c 2d 1a ca a1 0c eb
+        0240 - 024F 3b a7 41 63 4c da 98 b7   19 78 59 7f d8 8d d0 9f
+        0250 - 025F eb 7f 62 79 7b 07 00 09   a2 64 32 80 80 31 c0 de
+        0260 - 026F 46 28 42 32 19 40 00 00   00 5c cc 6d c0 e2 5b 3f
+        0270 - 027F d1 cc 02 b3 a9 21 b7 03   42 1c 1e 5b 4d 47 d7 0f
+        0280 - 028F a9 81 55 fa f1 6c ff eb   15 51 45 b4 ff 0a f3 42
+        0290 - 029F 1a 00 4c 84 c8 65 01 00   71 a0 e0 7b 78 80 64 32
+        02A0 - 02AF 80 00 00 00 b8 fb 49 c6   be 1a 7f a3 60 02 c9 66
+        02B0 - 02BF 52 97 ce 84 36 b2 96 99   d3 d9 c2 b2 04 65 2a 1e
+        02C0 - 02CF d1 ff c2 2f 1e 82 52 00   6a 1a 54 00 50 9f ff df
+        02D0 - 02DF f7 02 48 02 40 06 b1 2f   24
+    Message Content
+        LTE Positioning Protocol (LPP)
+            LPP-Message
+                transactionID
+                    initiator: locationServer (0)
+                    transactionNumber: 2
+                .... ...1 endTransaction: True
+                lpp-MessageBody: c1 (0)
+                    c1: provideAssistanceData (3)
+                        provideAssistanceData
+                            criticalExtensions: c1 (0)
+                                c1: provideAssistanceData-r9 (0)
+                                    provideAssistanceData-r9
+                                        a-gnss-ProvideAssistanceData
+                                            gnss-CommonAssistData
+                                                gnss-ReferenceTime
+                                                    gnss-SystemTime
+                                                        gnss-TimeID
+                                                            gnss-id: gps (0)
+                                                        gnss-DayNumber: 16503
+                                                        gnss-TimeOfDay: 58317
+                                                        gps-TOW-Assist: 10 items
+                                                            Item 0
+                                                                GPS-TOW-AssistElement
+                                                                    satelliteID: 7
+                                                                    tlmWord: 309
+                                                                    antiSpoof: 1
+                                                                    alert: 0
+                                                                    tlmRsvdBits: 0
+                                                            Item 1
+                                                                GPS-TOW-AssistElement
+                                                                    satelliteID: 2
+                                                                    tlmWord: 309
+                                                                    antiSpoof: 1
+                                                                    alert: 0
+                                                                    tlmRsvdBits: 0
+                                                            Item 2
+                                                                GPS-TOW-AssistElement
+                                                                    satelliteID: 17
+                                                                    tlmWord: 309
+                                                                    antiSpoof: 1
+                                                                    alert: 0
+                                                                    tlmRsvdBits: 0
+                                                            Item 3
+                                                                GPS-TOW-AssistElement
+                                                                    satelliteID: 30
+                                                                    tlmWord: 309
+                                                                    antiSpoof: 1
+                                                                    alert: 0
+                                                                    tlmRsvdBits: 0
+                                                            Item 4
+                                                                GPS-TOW-AssistElement
+                                                                    satelliteID: 9
+                                                                    tlmWord: 309
+                                                                    antiSpoof: 1
+                                                                    alert: 0
+                                                                    tlmRsvdBits: 0
+                                                            Item 5
+                                                                GPS-TOW-AssistElement
+                                                                    satelliteID: 3
+                                                                    tlmWord: 309
+                                                                    antiSpoof: 1
+                                                                    alert: 0
+                                                                    tlmRsvdBits: 0
+                                                            Item 6
+                                                                GPS-TOW-AssistElement
+                                                                    satelliteID: 4
+                                                                    tlmWord: 309
+                                                                    antiSpoof: 1
+                                                                    alert: 0
+                                                                    tlmRsvdBits: 0
+                                                            Item 7
+                                                                GPS-TOW-AssistElement
+                                                                    satelliteID: 19
+                                                                    tlmWord: 309
+                                                                    antiSpoof: 1
+                                                                    alert: 0
+                                                                    tlmRsvdBits: 0
+                                                            Item 8
+                                                                GPS-TOW-AssistElement
+                                                                    satelliteID: 8
+                                                                    tlmWord: 309
+                                                                    antiSpoof: 1
+                                                                    alert: 0
+                                                                    tlmRsvdBits: 0
+                                                            Item 9
+                                                                GPS-TOW-AssistElement
+                                                                    satelliteID: 14
+                                                                    tlmWord: 309
+                                                                    antiSpoof: 1
+                                                                    alert: 0
+                                                                    tlmRsvdBits: 0
+                                                gnss-ReferenceLocation
+                                                    threeDlocation
+                                                        latitudeSign: north (0)
+                                                        degreesLatitude: 4.765685 degrees (444194)
+                                                        degreesLongitude: -74.061027 degrees (-3451494)
+                                                        altitudeDirection: height (0)
+                                                        altitude: 0m
+                                                        uncertaintySemiMajor: 2.069651km (56)
+                                                        uncertaintySemiMinor: 2.069651km (56)
+                                                        orientationMajorAxis: 0 degrees (0)
+                                                        uncertaintyAltitude: 0.000000m (0)
+                                                        confidence: 68%
+                                                gnss-IonosphericModel
+                                                    klobucharModel
+                                                        dataID: Parameters are applicable worldwide (0)
+                                                        alfa0: 2.8871e-08s (31)
+                                                        alfa1: 7.45058e-09s/semi-circle (1)
+                                                        alfa2: -1.19209e-07s/semi-circle (-2)
+                                                        alfa3: 0s/semi-circle (0)
+                                                        beta0: 133120s (65)
+                                                        beta1: 0s/semi-circle (0)
+                                                        beta2: -262144s/semi-circle (-4)
+                                                        beta3: 131072s/semi-circle (2)
+                                            gnss-GenericAssistData: 1 item
+                                                Item 0
+                                                    GNSS-GenericAssistDataElement
+                                                        gnss-ID
+                                                            gnss-id: gps (0)
+                                                        gnss-NavigationModel
+                                                            nonBroadcastIndFlag: 0
+                                                            gnss-SatelliteList: 11 items
+                                                                Item 0
+                                                                    GNSS-NavModelSatelliteElement
+                                                                        svID
+                                                                            satellite-id: 6
+                                                                        svHealth: 00 [bit length 8, 0000 0000 decimal value 0]
+                                                                        iod: 2060 [bit length 11, 5 LSB pad bits, 0010 0000  011. .... decimal value 259]
+                                                                        gnss-ClockModel: nav-ClockModel (1)
+                                                                            nav-ClockModel
+                                                                                navToc: 410400s (25650)
+                                                                                navaf2: 0s/s2 (0)
+                                                                                navaf1: -1.25056e-12s/s (-11)
+                                                                                navaf0: -1.61119e-05s/s (-34600)
+                                                                                navTgd: -1.07102e-08s/s (-23)
+                                                                        gnss-OrbitModel: nav-KeplerianSet (1)
+                                                                            nav-KeplerianSet
+                                                                                navURA: 0
+                                                                                navFitFlag: 0
+                                                                                navToe: 410400s (25650)
+                                                                                navOmega: 0 semi-circles (0)
+                                                                                navDeltaN: 1.44723e-09 semi-circles/s (12730)
+                                                                                navM0: -0.157174 semi-circles (-337528205)
+                                                                                navOmegaADot: -2.64311e-09 semi-circles/s (-23249)
+                                                                                navE: 0.0193171 (165932417)
+                                                                                navIDot: 4.18368e-11 semi-circles/s (368)
+                                                                                navAPowerHalf: 5153.75m1/2 (2702047066)
+                                                                                navI0: 0.302713 semi-circles (650071650)
+                                                                                navOmegaA0: 0.00802481 semi-circles (17233139)
+                                                                                navCrs: -16.3125m (-522)
+                                                                                navCis: 2.94298e-07rad (158)
+                                                                                navCus: 1.19358e-05rad (6408)
+                                                                                navCrc: 150.188m (4806)
+                                                                                navCic: -7.82311e-08rad (-42)
+                                                                                navCuc: -6.89179e-07rad (-370)
+                                                                Item 1
+                                                                    GNSS-NavModelSatelliteElement
+                                                                        svID
+                                                                            satellite-id: 0
+                                                                        svHealth: 00 [bit length 8, 0000 0000 decimal value 0]
+                                                                        iod: 03e0 [bit length 11, 5 LSB pad bits, 0000 0011  111. .... decimal value 31]
+                                                                        gnss-ClockModel: nav-ClockModel (1)
+                                                                            nav-ClockModel
+                                                                                navToc: 410400s (25650)
+                                                                                navaf2: 0s/s2 (0)
+                                                                                navaf1: 2.00089e-11s/s (176)
+                                                                                navaf0: 0.000171788s/s (368912)
+                                                                                navTgd: -9.31323e-09s/s (-20)
+                                                                        gnss-OrbitModel: nav-KeplerianSet (1)
+                                                                            nav-KeplerianSet
+                                                                                navURA: 0
+                                                                                navFitFlag: 0
+                                                                                navToe: 410400s (25650)
+                                                                                navOmega: 0 semi-circles (0)
+                                                                                navDeltaN: 1.37311e-09 semi-circles/s (12078)
+                                                                                navM0: 0.424817 semi-circles (912287874)
+                                                                                navOmegaADot: -2.50782e-09 semi-circles/s (-22059)
+                                                                                navE: 0.000395823 (3400095)
+                                                                                navIDot: -3.79714e-11 semi-circles/s (-334)
+                                                                                navAPowerHalf: 5153.74m1/2 (2702042949)
+                                                                                navI0: 0.305589 semi-circles (656247217)
+                                                                                navOmegaA0: -0.966884 semi-circles (-2076368563)
+                                                                                navCrs: 19.5312m (625)
+                                                                                navCis: -1.49012e-08rad (-8)
+                                                                                navCus: 1.2124e-05rad (6509)
+                                                                                navCrc: 141.906m (4541)
+                                                                                navCic: 2.98023e-08rad (16)
+                                                                                navCuc: 1.14739e-06rad (616)
+                                                                Item 2
+                                                                    GNSS-NavModelSatelliteElement
+                                                                        svID
+                                                                            satellite-id: 1
+                                                                        svHealth: 00 [bit length 8, 0000 0000 decimal value 0]
+                                                                        iod: 01c0 [bit length 11, 5 LSB pad bits, 0000 0001  110. .... decimal value 14]
+                                                                        gnss-ClockModel: nav-ClockModel (1)
+                                                                            nav-ClockModel
+                                                                                navToc: 410400s (25650)
+                                                                                navaf2: 0s/s2 (0)
+                                                                                navaf1: 9.54969e-12s/s (84)
+                                                                                navaf0: -0.000220742s/s (-474040)
+                                                                                navTgd: -1.76951e-08s/s (-38)
+                                                                        gnss-OrbitModel: nav-KeplerianSet (1)
+                                                                            nav-KeplerianSet
+                                                                                navURA: 0
+                                                                                navFitFlag: 0
+                                                                                navToe: 410400s (25650)
+                                                                                navOmega: 0 semi-circles (0)
+                                                                                navDeltaN: 1.30433e-09 semi-circles/s (11473)
+                                                                                navM0: 0.828979 semi-circles (1780219475)
+                                                                                navOmegaADot: -2.413e-09 semi-circles/s (-21225)
+                                                                                navE: 0.0161846 (139024763)
+                                                                                navIDot: -1.14937e-10 semi-circles/s (-1011)
+                                                                                navAPowerHalf: 5152.88m1/2 (2701592420)
+                                                                                navI0: 0.307622 semi-circles (660612159)
+                                                                                navOmegaA0: 0.980844 semi-circles (2106345706)
+                                                                                navCrs: -1.53125m (-49)
+                                                                                navCis: 1.39698e-07rad (75)
+                                                                                navCus: 1.26585e-05rad (6796)
+                                                                                navCrc: 131.719m (4215)
+                                                                                navCic: 2.58908e-07rad (139)
+                                                                                navCuc: 1.86265e-07rad (100)
+                                                                Item 3
+                                                                    GNSS-NavModelSatelliteElement
+                                                                        svID
+                                                                            satellite-id: 16
+                                                                        svHealth: 00 [bit length 8, 0000 0000 decimal value 0]
+                                                                        iod: 0a80 [bit length 11, 5 LSB pad bits, 0000 1010  100. .... decimal value 84]
+                                                                        gnss-ClockModel: nav-ClockModel (1)
+                                                                            nav-ClockModel
+                                                                                navToc: 410400s (25650)
+                                                                                navaf2: 0s/s2 (0)
+                                                                                navaf1: -1.90994e-11s/s (-168)
+                                                                                navaf0: 0.000380667s/s (817476)
+                                                                                navTgd: -1.11759e-08s/s (-24)
+                                                                        gnss-OrbitModel: nav-KeplerianSet (1)
+                                                                            nav-KeplerianSet
+                                                                                navURA: 0
+                                                                                navFitFlag: 0
+                                                                                navToe: 410400s (25650)
+                                                                                navOmega: 0 semi-circles (0)
+                                                                                navDeltaN: 1.51067e-09 semi-circles/s (13288)
+                                                                                navM0: 0.732306 semi-circles (1572614505)
+                                                                                navOmegaADot: -2.56398e-09 semi-circles/s (-22553)
+                                                                                navE: 0.0131118 (112629666)
+                                                                                navIDot: -1.85651e-10 semi-circles/s (-1633)
+                                                                                navAPowerHalf: 5153.64m1/2 (2701992152)
+                                                                                navI0: 0.306923 semi-circles (659111324)
+                                                                                navOmegaA0: 0.693727 semi-circles (1489766547)
+                                                                                navCrs: -63.8438m (-2043)
+                                                                                navCis: -6.89179e-08rad (-37)
+                                                                                navCus: 5.49108e-06rad (2948)
+                                                                                navCrc: 270.625m (8660)
+                                                                                navCic: 1.75089e-07rad (94)
+                                                                                navCuc: -3.15532e-06rad (-1694)
+                                                                Item 4
+                                                                    GNSS-NavModelSatelliteElement
+                                                                        svID
+                                                                            satellite-id: 29
+                                                                        svHealth: 00 [bit length 8, 0000 0000 decimal value 0]
+                                                                        iod: 0780 [bit length 11, 5 LSB pad bits, 0000 0111  100. .... decimal value 60]
+                                                                        gnss-ClockModel: nav-ClockModel (1)
+                                                                            nav-ClockModel
+                                                                                navToc: 410400s (25650)
+                                                                                navaf2: 0s/s2 (0)
+                                                                                navaf1: 9.09495e-12s/s (80)
+                                                                                navaf0: -0.000195352s/s (-419515)
+                                                                                navTgd: 3.72529e-09s/s (8)
+                                                                        gnss-OrbitModel: nav-KeplerianSet (1)
+                                                                            nav-KeplerianSet
+                                                                                navURA: 0
+                                                                                navFitFlag: 0
+                                                                                navToe: 410400s (25650)
+                                                                                navOmega: 0 semi-circles (0)
+                                                                                navDeltaN: 1.51636e-09 semi-circles/s (13338)
+                                                                                navM0: -0.217448 semi-circles (-466965890)
+                                                                                navOmegaADot: -2.61298e-09 semi-circles/s (-22984)
+                                                                                navE: 0.00750202 (64441873)
+                                                                                navIDot: 3.28555e-11 semi-circles/s (289)
+                                                                                navAPowerHalf: 5153.73m1/2 (2702037355)
+                                                                                navI0: 0.297996 semi-circles (639940912)
+                                                                                navOmegaA0: 0.00683745 semi-circles (14683320)
+                                                                                navCrs: -21.1562m (-677)
+                                                                                navCis: 1.47149e-07rad (79)
+                                                                                navCus: 1.15633e-05rad (6208)
+                                                                                navCrc: 143.062m (4578)
+                                                                                navCic: 6.89179e-08rad (37)
+                                                                                navCuc: -9.6485e-07rad (-518)
+                                                                Item 5
+                                                                    GNSS-NavModelSatelliteElement
+                                                                        svID
+                                                                            satellite-id: 8
+                                                                        svHealth: 00 [bit length 8, 0000 0000 decimal value 0]
+                                                                        iod: 0380 [bit length 11, 5 LSB pad bits, 0000 0011  100. .... decimal value 28]
+                                                                        gnss-ClockModel: nav-ClockModel (1)
+                                                                            nav-ClockModel
+                                                                                navToc: 410400s (25650)
+                                                                                navaf2: 0s/s2 (0)
+                                                                                navaf1: 1.26192e-11s/s (111)
+                                                                                navaf0: 0.000597716s/s (1283585)
+                                                                                navTgd: 4.65661e-10s/s (1)
+                                                                        gnss-OrbitModel: nav-KeplerianSet (1)
+                                                                            nav-KeplerianSet
+                                                                                navURA: 0
+                                                                                navFitFlag: 0
+                                                                                navToe: 410400s (25650)
+                                                                                navOmega: 0 semi-circles (0)
+                                                                                navDeltaN: 1.48941e-09 semi-circles/s (13101)
+                                                                                navM0: 0.907771 semi-circles (1949423464)
+                                                                                navOmegaADot: -2.63196e-09 semi-circles/s (-23151)
+                                                                                navE: 0.00301816 (25925834)
+                                                                                navIDot: -1.06638e-10 semi-circles/s (-938)
+                                                                                navAPowerHalf: 5153.75m1/2 (2702048136)
+                                                                                navI0: 0.305841 semi-circles (656787504)
+                                                                                navOmegaA0: -0.333434 semi-circles (-716044743)
+                                                                                navCrs: -72.5625m (-2322)
+                                                                                navCis: -2.04891e-08rad (-11)
+                                                                                navCus: 4.07547e-06rad (2188)
+                                                                                navCrc: 301.75m (9656)
+                                                                                navCic: -1.67638e-08rad (-9)
+                                                                                navCuc: -3.67127e-06rad (-1971)
+                                                                Item 6
+                                                                    GNSS-NavModelSatelliteElement
+                                                                        svID
+                                                                            satellite-id: 2
+                                                                        svHealth: 00 [bit length 8, 0000 0000 decimal value 0]
+                                                                        iod: 0820 [bit length 11, 5 LSB pad bits, 0000 1000  001. .... decimal value 65]
+                                                                        gnss-ClockModel: nav-ClockModel (1)
+                                                                            nav-ClockModel
+                                                                                navToc: 410400s (25650)
+                                                                                navaf2: 0s/s2 (0)
+                                                                                navaf1: 4.54747e-12s/s (40)
+                                                                                navaf0: 0.000675337s/s (1450275)
+                                                                                navTgd: 1.39698e-09s/s (3)
+                                                                        gnss-OrbitModel: nav-KeplerianSet (1)
+                                                                            nav-KeplerianSet
+                                                                                navURA: 0
+                                                                                navFitFlag: 0
+                                                                                navToe: 410400s (25650)
+                                                                                navOmega: 0 semi-circles (0)
+                                                                                navDeltaN: 1.31536e-09 semi-circles/s (11570)
+                                                                                navM0: -0.292599 semi-circles (-628352517)
+                                                                                navOmegaADot: -2.56921e-09 semi-circles/s (-22599)
+                                                                                navE: 0.00584263 (50187802)
+                                                                                navIDot: 1.01181e-10 semi-circles/s (890)
+                                                                                navAPowerHalf: 5153.56m1/2 (2701949190)
+                                                                                navI0: 0.314632 semi-circles (675667159)
+                                                                                navOmegaA0: -0.6563 semi-circles (-1409393061)
+                                                                                navCrs: 78.375m (2508)
+                                                                                navCis: 1.30385e-07rad (70)
+                                                                                navCus: 5.52833e-06rad (2968)
+                                                                                navCrc: 286.812m (9178)
+                                                                                navCic: -2.42144e-08rad (-13)
+                                                                                navCuc: 4.06615e-06rad (2183)
+                                                                Item 7
+                                                                    GNSS-NavModelSatelliteElement
+                                                                        svID
+                                                                            satellite-id: 3
+                                                                        svHealth: 00 [bit length 8, 0000 0000 decimal value 0]
+                                                                        iod: 5ac0 [bit length 11, 5 LSB pad bits, 0101 1010  110. .... decimal value 726]
+                                                                        gnss-ClockModel: nav-ClockModel (1)
+                                                                            nav-ClockModel
+                                                                                navToc: 410400s (25650)
+                                                                                navaf2: 0s/s2 (0)
+                                                                                navaf1: 5.22959e-12s/s (46)
+                                                                                navaf0: 0.000539791s/s (1159193)
+                                                                                navTgd: -4.65661e-09s/s (-10)
+                                                                        gnss-OrbitModel: nav-KeplerianSet (1)
+                                                                            nav-KeplerianSet
+                                                                                navURA: 0
+                                                                                navFitFlag: 0
+                                                                                navToe: 410400s (25650)
+                                                                                navOmega: 0 semi-circles (0)
+                                                                                navDeltaN: 1.45224e-09 semi-circles/s (12774)
+                                                                                navM0: 0.619817 semi-circles (1331047705)
+                                                                                navOmegaADot: -2.62742e-09 semi-circles/s (-23111)
+                                                                                navE: 0.00324312 (27858187)
+                                                                                navIDot: -1.27443e-10 semi-circles/s (-1121)
+                                                                                navAPowerHalf: 5153.65m1/2 (2701996758)
+                                                                                navI0: 0.307812 semi-circles (661022040)
+                                                                                navOmegaA0: -0.313783 semi-circles (-673844680)
+                                                                                navCrs: -77.8438m (-2491)
+                                                                                navCis: -2.42144e-08rad (-13)
+                                                                                navCus: 4.64544e-06rad (2494)
+                                                                                navCrc: 294.844m (9435)
+                                                                                navCic: -1.30385e-08rad (-7)
+                                                                                navCuc: -4.00282e-06rad (-2149)
+                                                                Item 8
+                                                                    GNSS-NavModelSatelliteElement
+                                                                        svID
+                                                                            satellite-id: 18
+                                                                        svHealth: 00 [bit length 8, 0000 0000 decimal value 0]
+                                                                        iod: 0c80 [bit length 11, 5 LSB pad bits, 0000 1100  100. .... decimal value 100]
+                                                                        gnss-ClockModel: nav-ClockModel (1)
+                                                                            nav-ClockModel
+                                                                                navToc: 410400s (25650)
+                                                                                navaf2: 0s/s2 (0)
+                                                                                navaf1: 4.09273e-12s/s (36)
+                                                                                navaf0: 0.000607786s/s (1305211)
+                                                                                navTgd: -1.53668e-08s/s (-33)
+                                                                        gnss-OrbitModel: nav-KeplerianSet (1)
+                                                                            nav-KeplerianSet
+                                                                                navURA: 0
+                                                                                navFitFlag: 0
+                                                                                navToe: 410400s (25650)
+                                                                                navOmega: 0 semi-circles (0)
+                                                                                navDeltaN: 1.50646e-09 semi-circles/s (13251)
+                                                                                navM0: -0.671377 semi-circles (-1441770451)
+                                                                                navOmegaADot: -2.60957e-09 semi-circles/s (-22954)
+                                                                                navE: 0.010242 (87978164)
+                                                                                navIDot: -1.51658e-10 semi-circles/s (-1334)
+                                                                                navAPowerHalf: 5153.61m1/2 (2701978427)
+                                                                                navI0: 0.306683 semi-circles (658596684)
+                                                                                navOmegaA0: 0.707785 semi-circles (1519957785)
+                                                                                navCrs: -61.2188m (-1959)
+                                                                                navCis: -7.45058e-08rad (-40)
+                                                                                navCus: 6.58631e-06rad (3536)
+                                                                                navCrc: 255.344m (8171)
+                                                                                navCic: -2.94298e-07rad (-158)
+                                                                                navCuc: -3.10875e-06rad (-1669)
+                                                                Item 9
+                                                                    GNSS-NavModelSatelliteElement
+                                                                        svID
+                                                                            satellite-id: 7
+                                                                        svHealth: 00 [bit length 8, 0000 0000 decimal value 0]
+                                                                        iod: 09a0 [bit length 11, 5 LSB pad bits, 0000 1001  101. .... decimal value 77]
+                                                                        gnss-ClockModel: nav-ClockModel (1)
+                                                                            nav-ClockModel
+                                                                                navToc: 410400s (25650)
+                                                                                navaf2: 0s/s2 (0)
+                                                                                navaf1: 5.57066e-12s/s (49)
+                                                                                navaf0: 0.000494905s/s (1062801)
+                                                                                navTgd: 4.65661e-09s/s (10)
+                                                                        gnss-OrbitModel: nav-KeplerianSet (1)
+                                                                            nav-KeplerianSet
+                                                                                navURA: 2
+                                                                                navFitFlag: 0
+                                                                                navToe: 410400s (25650)
+                                                                                navOmega: 0 semi-circles (0)
+                                                                                navDeltaN: 1.6762e-09 semi-circles/s (14744)
+                                                                                navM0: 0.714898 semi-circles (1535231158)
+                                                                                navOmegaADot: -2.68938e-09 semi-circles/s (-23656)
+                                                                                navE: 0.0105539 (90657347)
+                                                                                navIDot: -1.30854e-10 semi-circles/s (-1151)
+                                                                                navAPowerHalf: 5153.76m1/2 (2702053165)
+                                                                                navI0: 0.301877 semi-circles (648276871)
+                                                                                navOmegaA0: 0.66213 semi-circles (1421912829)
+                                                                                navCrs: -58.3125m (-1866)
+                                                                                navCis: -2.04891e-08rad (-11)
+                                                                                navCus: 5.0813e-06rad (2728)
+                                                                                navCrc: 278.812m (8922)
+                                                                                navCic: -2.29105e-07rad (-123)
+                                                                                navCuc: -3.03797e-06rad (-1631)
+                                                                Item 10
+                                                                    GNSS-NavModelSatelliteElement
+                                                                        svID
+                                                                            satellite-id: 13
+                                                                        svHealth: 00 [bit length 8, 0000 0000 decimal value 0]
+                                                                        iod: 2640 [bit length 11, 5 LSB pad bits, 0010 0110  010. .... decimal value 306]
+                                                                        gnss-ClockModel: nav-ClockModel (1)
+                                                                            nav-ClockModel
+                                                                                navToc: 410400s (25650)
+                                                                                navaf2: 0s/s2 (0)
+                                                                                navaf1: 6.36646e-12s/s (56)
+                                                                                navaf0: 0.000613696s/s (1317903)
+                                                                                navTgd: -7.91624e-09s/s (-17)
+                                                                        gnss-OrbitModel: nav-KeplerianSet (1)
+                                                                            nav-KeplerianSet
+                                                                                navURA: 0
+                                                                                navFitFlag: 0
+                                                                                navToe: 410400s (25650)
+                                                                                navOmega: 0 semi-circles (0)
+                                                                                navDeltaN: 1.65835e-09 semi-circles/s (14587)
+                                                                                navM0: -0.423622 semi-circles (-909722086)
+                                                                                navOmegaADot: -2.69574e-09 semi-circles/s (-23712)
+                                                                                navE: 0.00544281 (46753362)
+                                                                                navIDot: 1.73145e-10 semi-circles/s (1523)
+                                                                                navAPowerHalf: 5153.71m1/2 (2702027941)
+                                                                                navI0: 0.300444 semi-circles (645199472)
+                                                                                navOmegaA0: 0.34769 semi-circles (746658122)
+                                                                                navCrs: 61.625m (1972)
+                                                                                navCis: -2.98023e-08rad (-16)
+                                                                                navCus: 5.61588e-06rad (3015)
+                                                                                navCrc: 260.625m (8340)
+                                                                                navCic: 4.84288e-08rad (26)
+                                                                                navCuc: 3.13856e-06rad (1685)
+                                                        gnss-RealTimeIntegrity
+                                                            gnss-BadSignalList: 1 item
+                                                                Item 0
+                                                                    BadSignalElement
+                                                                        badSVID
+                                                                            satellite-id: 20
+                                                        gnss-UTC-Model: utcModel2 (1)
+                                                            utcModel2
+                                                                utcA0: -2.91038e-11s (-1)
+                                                                utcA1: -2.22045e-15s/s (-5)
+                                                                utcA2: 0s/s2 (0)
+                                                                utcDeltaTls: 18s
+                                                                utcTot: 2304s (144)
+                                                                utcWNot: 53 weeks
+                                                                utcWNlsf: 137 weeks
+                                                                utcDN: 7 days
+                                                                utcDeltaTlsf: 18s
+
+TRACE_NAME, LPP_RECEIVE_PEER_MSG_WITH_PARAMS_USIROTA
+1023990, 789313, 53393944, 11:41:41:869 2025/03/13, 11:41:42:003584 2025/03/13, MOD_LPP, MOD_LPP_BASELINE_SENSITIVE_TRACE_INFO_USIROTA_UH, [MS->NW] LPP__PROVIDE_LOCATION_INFORMATION [1] (UL-SN:2)
+Peer Message
+    global_peer_msg_id = PROTOCOL_SECTION__LTE_LPP_UL (enum 1100)
+    raw data = Buffer
+        0000 - 000F f0 03 02 4a 18 12 14 00
+    Message Content
+        LTE Positioning Protocol (LPP)
+            LPP-Message
+                transactionID
+                    initiator: locationServer (0)
+                    transactionNumber: 1
+                .... ...1 endTransaction: True
+                sequenceNumber: 2
+                acknowledgement
+                    .1.. .... ackRequested: True
+                lpp-MessageBody: c1 (0)
+                    c1: provideLocationInformation (5)
+                        provideLocationInformation
+                            criticalExtensions: c1 (0)
+                                c1: provideLocationInformation-r9 (0)
+                                    provideLocationInformation-r9
+                                        commonIEsProvideLocationInformation
+                                            locationError
+                                                locationfailurecause: positionMethodFailure (2)
+                                        a-gnss-ProvideLocationInformation
+                                            gnss-Error: targetDeviceErrorCauses (1)
+                                                targetDeviceErrorCauses
+                                                    cause: undefined (0)
+
+TRACE_NAME, LPP_SEND_PEER_MSG_WITH_PARAMS_USIROTA
