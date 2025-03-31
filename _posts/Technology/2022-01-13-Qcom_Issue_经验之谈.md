@@ -1999,7 +1999,7 @@ adb logcat | grep "SARCTRL : targetFilepath"
 
 
 : /system/etc/motorola/mdmctbk/rowe_ctbk_cfg.xml
-Stream-m.txt:16202:07-25 18:10:32.238  2364  2364 D SARCTRL : targetFilepath: /system/etc/motorola/mdmctbk/rowe_ctbk_cfg.xml
+Stream-m.txt:16202:07-25 18:10:32.238  2364  2364 D SARCTRL : targetFilepath: /system/etc/xxxx/mdmctbk/rowe_ctbk_cfg.xml
 
 ```
 
@@ -2271,6 +2271,106 @@ Mode[G] Channels:   Mode[A] Channels:
 1_14: "6GBAND4"                      
 1_15: 频段索引标识(1=2412 MHz)
 1_16  频段范围(1-13)(2412-)
+
+```
+
+
+
+
+#### MTK_PwrMode6GSupport功耗配置解析
+
+```
+vlp.cfg 文件解析
+
+PwrMode6GSupport='J','P'-0,1,1*0,1,1*0,1,1*0,1,1  -->    (;)i=1      (*)j=4    (,)k=3
+PwrMode6GSupport='J','P'-1,2,3*4,5,6*7,8,9*10,11,12  --> (;)i=1      (*)j=4    (,)k=3
+
+依次切割 ;-*, 
+
+
+1. ;作为 i 循环 
+
+2.
+切割-的第一部分区分国家码 aucCountryCode
+切割-的第二部分区继续进行*的切割
+
+3.
+*作为 j 循环 
+,作为每个k循环(0..j)的赋值值 k 是通过动态切割,的数量获取
+
+i=1 
+j=4
+k=2 --> (j==0 i==0) 
+k=3 --> (j==1 i==0)  (j==2 i==0) (j==3 i==0)
+
+
+      ;(i)      *(j)                    ,(k)                        (k_value)
+array[i].rSubBand[j].fgPwrMode6GSupport[sub_sub_count] = x_atoi(num_token);
+array[0]..aucCountryCode[0] = 'J'
+array[0]..aucCountryCode[1] = 'P'
+array[0].rSubBand[0].fgPwrMode6GSupport[0] = 1
+array[0].rSubBand[0].fgPwrMode6GSupport[1] = 2
+array[0].rSubBand[0].fgPwrMode6GSupport[2] = 3
+array[0].rSubBand[1].fgPwrMode6GSupport[0] = 4
+array[0].rSubBand[1].fgPwrMode6GSupport[1] = 5
+array[0].rSubBand[1].fgPwrMode6GSupport[2] = 6
+array[0].rSubBand[2].fgPwrMode6GSupport[0] = 7
+array[0].rSubBand[2].fgPwrMode6GSupport[1] = 8
+array[0].rSubBand[2].fgPwrMode6GSupport[2] = 9
+array[0].rSubBand[3].fgPwrMode6GSupport[0] = 10
+array[0].rSubBand[3].fgPwrMode6GSupport[1] = 11
+array[0].rSubBand[3].fgPwrMode6GSupport[2] = 12
+
+```
+
+
+
+
+
+
+#### MTK_VLP_LPI功耗配置
+
+```
+VLP ===  Very Low Power   === WIFI 的一个工作模式 , VLP设备适用于室内环境，但其功率更低，通常不超过25mW
+LPI ===  Low Power Indoor === WIFI 的一个工作模式 , 其功率较低，通常不超过200毫瓦 200mw
+vlp.cfg 文件解析
+
+VLP='J','P'-63,63,63,63,63,14,14,14,14-0
+LPI='J','P'-63,63,63,63,63,32,32,32,32-0
+
+'J','P'-63,63,63,63,63,32,32,32,32-0
+'J','P'-10,11,12,13,14,15,16,17,18-0
+
+;作为 i 循环 
+-作为 j 循环
+,作为第k次
+i=1
+j=3
+k=2(j=0)  k=9(j=1) k=1(j=3)
+
+
+k=2(j=0 i=0) 
+array[i].aucCountryCode[0] 
+array[i].aucCountryCode[1] 
+
+
+     i=0                    k.length=9(j=1 i=0)            k_value
+array[i].aucPwrLimitSubBand[k] = xxx_atoi(num_token);
+array[i].ucPwrUnit = xxx_atoi(subparts[2]);  // -分隔的索引下标为3的那个值0
+
+
+array[0].aucCountryCode[0] = "J"
+array[0].aucCountryCode[1] = "P"
+array[0].aucPwrLimitSubBand[0] = 10;
+array[0].aucPwrLimitSubBand[1] = 11;
+array[0].aucPwrLimitSubBand[2] = 12;
+array[0].aucPwrLimitSubBand[3] = 13;
+array[0].aucPwrLimitSubBand[4] = 14;
+array[0].aucPwrLimitSubBand[5] = 15;
+array[0].aucPwrLimitSubBand[6] = 16;
+array[0].aucPwrLimitSubBand[7] = 17;
+array[0].aucPwrLimitSubBand[8] = 18;
+array[0].ucPwrUnit =  0
 
 ```
 
@@ -3214,7 +3314,7 @@ Dir[ 126_54   ] symbols\ramdisk\system\bin
 Dir[ 126_55   ] symbols\apex\com.android.conscrypt\lib64
 Dir[ 126_56   ] symbols\apex\art_boot_images\javalib\arm64
 Dir[ 126_57   ] symbols\system\lib64\bootstrap
-Dir[ 126_58   ] symbols\apex\com.motorola.modules.attiqi\lib64
+Dir[ 126_58   ] symbols\apex\com.xxx.modules.attiqi\lib64
 Dir[ 126_59   ] symbols\apex\com.android.runtime\lib64\bionic
 Dir[ 126_60   ] symbols\system\lib64\bootstrap\hwasan
 Dir[ 126_61   ] symbols\apex\com.android.sdkext\bin
@@ -3275,7 +3375,7 @@ Dir[ 126_115  ] symbols\ramdisk\system
 Dir[ 126_116  ] symbols\apex\com.android.conscrypt
 Dir[ 126_117  ] symbols\apex\art_boot_images\javalib
 Dir[ 126_118  ] symbols\apex\art_boot_images
-Dir[ 126_119  ] symbols\apex\com.motorola.modules.attiqi
+Dir[ 126_119  ] symbols\apex\com.xxxx.modules.attiqi
 Dir[ 126_120  ] symbols\apex\com.android.sdkext
 Dir[ 126_121  ] symbols\apex\com.android.hardware.cas\bin
 Dir[ 126_122  ] symbols\apex\com.android.tethering\priv-app
