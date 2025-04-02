@@ -1198,9 +1198,9 @@ adb reboot
 # Prefer frameworks/base/core/res/res/values/config.xml and
 # frameworks/base/core/res/res/values-mcc*-mnc*/config.xml
 
-################################
-##### AGPS server settings #####
-################################
+#————————————————————————————————————————
+# AGPS server settings #
+#————————————————————————————————————————
 # FOR SUPL SUPPORT, set the following
 # SUPL_HOST=supl.google.com or IP
 # SUPL_PORT=7275
@@ -1223,18 +1223,18 @@ adb reboot
 #0 - Use regular SUPL PDN for Emergency SUPL
 #USE_EMERGENCY_PDN_FOR_EMERGENCY_SUPL=0
 
-####################################
+#————————————————————————————————————————
 #  LTE Positioning Profile Settings
-####################################
+#————————————————————————————————————————
 # 0: Enable RRLP on LTE(Default)
 # 1: Enable LPP_User_Plane on LTE
 # 2: Enable LPP_Control_Plane
 # 3: Enable both LPP_User_Plane and LPP_Control_Plane
 #LPP_PROFILE = 2                  【同时使能 LPP_CP  LPP_UP  , LPP_PROFILE = 8 】
 
-##################################################
+#————————————————————————————————————————
 # Select Positioning Protocol on A-GLONASS system
-##################################################
+#————————————————————————————————————————
 # 0x1: RRC CPlane
 # 0x2: RRLP UPlane
 # 0x4: LLP Uplane
@@ -1247,9 +1247,9 @@ adb reboot
 # default - non is locked for backward compatibility
 #GPS_LOCK = 0
 
-################################
-##### PSDS download settings #####
-################################
+#————————————————————————————————————————
+# PSDS download settings #
+#————————————————————————————————————————
 # For wear devices only.
 # Enable periodic PSDS download once a day.
 # true: Enable periodic PSDS download
@@ -1886,7 +1886,271 @@ fastboot oem ramdump pull all
 ```
 
 
+### Qcom_WLAN_Log 
 
+
+#### Qcom_配置FW_WLAN详细Log开关
+
+```
+
+// 查询当前 WCNSS_qcom_cfg.ini  路径
+adb shell " find /vendor/etc/wifi -name 'WCNSS_qcom_cfg.ini'  " 
+/vendor/etc/wifi/WCNSS_qcom_cfg.ini
+
+
+adb root
+adb remount
+adb pull /vendor/etc/wifi/WCNSS_qcom_cfg.ini   
+
+
+// add   gindoor_channel_support=1 in end of WCNSS_qcom_cfg.ini
+gEnablefwlog=1       #启用固件日志(要删除)
+gEnablefwlogging=1   #启用详细记录(要删除)
+
+adb  root && adb remount  adb push ./WCNSS_qcom_cfg.ini  /vendor/etc/wifi/ 
+adb reboot
+adb pull /vendor/etc/wifi/WCNSS_qcom_cfg.ini 
+
+往 WCNSS_qcom_cfg.ini  添加Log开关
+gEnablefwlog=1       # 启用固件日志
+gEnablefwlogging=1   # 启用详细记录
+
+
+```
+
+```
+
+adb root
+adb remount
+
+
+// 查询当前 WCNSS_qcom_cfg.ini  路径
+adb shell " find /vendor/etc/wifi -name 'WCNSS_qcom_cfg.ini'  " 
+/vendor/etc/wifi/qca6750/WCNSS_qcom_cfg.ini
+
+
+adb pull  /vendor/etc/wifi/qca6750/WCNSS_qcom_cfg.ini   
+ 
+ 
+// add  value in end of WCNSS_qcom_cfg.ini  在一个value 后面追加 下面的配置 打开 WLAN 详细Log 
+gEnablefwlog=1       # 启用固件日志
+gEnablefwlogging=1   # 启用详细记录
+
+
+adb  root && adb remount && adb push ./WCNSS_qcom_cfg.ini  /vendor/etc/wifi/qca6750/
+adb reboot
+
+```
+
+
+#### Qcom_导出cnss_fw_logs文件
+
+```
+
+adb root && adb remount && adb pull /data/vendor/bug2go/
+
+adb root && adb remount && adb pull /data/vendor/aplogd
+
+adb root && adb remount && /data/vendor/wifi/wlan_logs/
+
+
+adb root && adb remount &&  adb shell  "rm -fr /data/vendor/aplogd/*"
+adb root && adb remount &&  adb shell  "rm -fr /data/vendor/bug2go/*"
+
+【FW WLAN_Log  cnss_fw_logs_*.txt】
+adb root && adb remount &&  adb shell  "rm -fr /data/vendor/wifi/wlan_logs/*"
+
+
+检查 cnss_diag 是否运行
+
+adb root && adb shell "ps -A | grep cnss_dia"
+system        2419     1    2377348   7984 do_sys_poll         0 S cnss_diag
+
+cnss_diag -q -f & // 后台运行
+adb shell "cnss_diag -q -f & "
+ 
+
+
+
+/data/vendor/wifi/wlan_logs 路径文件内容
+/data/vendor/wifi/wlan_logs/host_driver_logs_current.txt
+/data/vendor/wifi/wlan_logs/cnss_fw_logs_current.txt
+/data/vendor/wifi/wlan_logs/txrx_pktlog_current.dat
+/data/vendor/wifi/wlan_logs/cnss_fw_logs_000.txt
+/data/vendor/wifi/wlan_logs/cnss_fw_logs_001.txt
+/data/vendor/wifi/wlan_logs/cnss_fw_logs_002.txt
+/data/vendor/wifi/wlan_logs/cnss_fw_logs_003.txt
+/data/vendor/wifi/wlan_logs/cnss_fw_logs_004.txt
+
+```
+
+
+
+#### Qcom_WCNSS_qcom_cfg.ini 
+
+
+
+
+```
+
+
+
+# This file allows user to override the factory
+# defaults for the WLAN Driver
+
+gDot11Mode=0
+InfraUapsdVoSrvIntv=0
+InfraUapsdViSrvIntv=0
+InfraUapsdBeSrvIntv=0
+InfraUapsdBkSrvIntv=0
+gAddTSWhenACMIsOff=1
+gEnableApOBSSProt=1
+RTSThreshold=1048576
+g11dSupportEnabled=0
+=============================
+#gEnableDFSMasterCap=1
+gNeighborScanTimerPeriod=200
+gNeighborLookupThreshold=76
+FastRoamEnabled=1
+RoamRssiDiff=5
+gChannelBondingMode5GHz=1
+gAllowDFSChannelRoam=1
+gSetTxChainmask1x1=1
+gSetRxChainmask1x1=1
+gWlanMccToSccSwitchMode = 3
+gEnableTXSTBC=1
+gEnableTxBFeeSAP=1
+gEnableTxBFin20MHz=1
+gEnableTxSUBeamformer=1
+gRrmEnable=1
+gVhtAmpduLenExponent=7
+gVhtMpduLen=2
+====================================
+#isP2pDeviceAddrAdministrated=0
+gEnableVhtFor24GHzBand=1
+gEnableLpassSupport=1
+gCountryCodePriority=1
+gEnableMuBformee=1
+gTDLSExternalControl=1
+gEnableTDLSOffChannel=1
+gThermalMitigationEnable=0
+gChannelBondingMode24GHz=1
+
+===============  Datapath feature set Begin ===============
+gVhtRxMCS=2
+gVhtTxMCS=2
+gEnable2x2=1
+gVhtRxMCS2x2=2
+gVhtTxMCS2x2=2
+dp_tx_ring_size=3072
+rx_mode=20
+gEnableFastPath=1
+TSOEnable=1
+======================
+#GROEnable=1
+ght_mpdu_density=5
+gEnableFlowSteering=1
+maxMSDUsPerRxInd=8
+=======================================
+#gEnableNUDTracking=1
+dp_rx_fisa_enable=1
+dp_rx_flow_search_table_size=128
+rpsRxQueueCpuMapList=07
+legacy_mode_csum_disable=0
+
+===================  Datapath feature set End ===================
+
+adaptive_dwell_mode_enabled=1
+hostscan_adaptive_dwell_mode=1
+enable_rtt_mac_randomization=1
+gEnableSNRMonitoring=1
+gWmiCreditCount=1
+AutoChannelSelectWeight=0x00fafafa
+bcast_twt=1
+gRuntimePM=2
+gRuntimePMDelay=500
+oem_6g_support_disable=0
+
+gEnableSWLM=1
+g_enable_pci_gen=1
+ssdp=0
+gRArateLimitInterval=600
+gEnableSifsBurst=1
+gIbssTxSpEndInactivityTime=10
+RX_THREAD_UL_CPU_AFFINITY_MASK=0xc0
+dp_rx_buff_prealloc_pool=1
+dp_rx_refill_buff_pool=1
+dp_rx_fst_in_cmem=1
+
+gBpfFilterEnable=1
+gActiveUcBpfMode=2
+gActiveMcBcBpfMode=1
+
+===================== Configuration Begin =====================
+
+#Enable user triggered SSR
+gEnableForceTargetAssert=1
+
+# 1 - Enable the host silent recovery
+# 0 - Disable the host silent recovery
+gEnableSelfRecovery=1
+
+# turning QC BLM parameters
+avoid_list_expiry_time=5
+black_list_expiry_time=1
+bad_bssid_counter_thresh=10
+
+# Enable SRD channel
+etsi13_srd_chan_in_master_mode=7
+
+#Disable Data Rssi threshold trigger
+roam_data_rssi_threshold_triggers=0
+
+#Enable GRO feature forcibly
+GROEnable=3
+
+#Enable to derive the P2P MAC address from the primary MAC address
+isP2pDeviceAddrAdministrated=1
+
+#Disable the DFS master capability.
+gEnableDFSMasterCap=0
+
+#Disable sbs
+enable_sbs=0
+
+#Don't disconnected when NUD failure
+#0: Driver will not track the NUD failures, and ignore the same.
+#1: Driver will track the NUD failures and if honoured will disconnect from
+#   the connected BSSID.
+#2: Driver will track the NUD failures and if honoured will roam away from
+#   the connected BSSID to a new BSSID to retain the data connectivity.
+#3: Driver will try to roam to a new AP but if roam fails, disconnect. Related: None
+gEnableNUDTracking=2
+
+#disallow DUT create softap on indoor channel although STA on indoor
+# All 5G channale is indoor channel when country code is JP
+# we find it will create 5G AP when country code is JP via special steps
+sta_sap_scc_on_indoor_chan=0
+
+#wlm_latency_flags_ultralow - WLM flags setting for ultralow level
+#bit 0: Avoid scan request from HLOS if setting
+wlm_latency_flags_ultralow=0xc82
+
+
+gEnablefwlog=1    
+gEnablefwlogging=1   
+
+=====================  Configuration End =====================
+
+END
+
+# Note: Configuration parser would not read anything past the END marker
+
+
+
+
+
+```
 
 
 ### Qcom查看SAR打印Log 
@@ -2551,7 +2815,7 @@ ______________________________________________________________________
 1.在 项目的 AOSP/vendor/qcom/nonhlos  目录会生成高通的 Non-HLOS  在改目录编译完成时会产出 Ver_Info.txt 
 文件  该 Ver_Info.txt  标注了 高通项目的 Build_ID  , 该文件是由 nonhlos 目录中的X子目录中的 build.py生成
 
-## 
+--------------
 cd ./vendor/qcom/nonhlos  && zfilesearch_D6.sh  Ver_Info    
 
 ================      Begin================
@@ -5111,3 +5375,87 @@ https://www.cnblogs.com/onelikeone/p/13035491.html
 <img src="/public/zimage/qocm_issue/saimen/saimen_2.jpg"/>
 <img src="/public/zimage/qocm_issue/saimen/saimen_3.jpg"/>
 <img src="/public/zimage/qocm_issue/saimen/saimen_4.jpg"/>
+
+
+
+
+
+
+### Location.java定位数据分析
+```
+
+/frameworks/base/core/java/android/location/Location.java
+/frameworks/base/location/java/android/location/LocationManager.java 
+
+
+GnssLocationProvider: reportLocation Location
+[gps【A】 31.226788【B】,121.479635【C】 hAcc=3.1 et=+5d13h27m50s951ms alt=55.800000000000004 vAcc=40.5 vel=0.026765555 sAcc=0.8 bear=23.48 bAcc=179.9]   
+ 
+【A】: provider 可选值(gps network) 
+【B】 纬度:
+【C】 经度:
+【 hAcc】 水平精度
+【 et  】 开机持续时间
+【 alt 】 海拔高度
+【 vAcc】 海拔精度
+【 vel 】 速度/每秒
+【 sAcc 】速度精度/每秒
+【 bear 】方位
+【 bAcc 】方位精度
+
+
+
+// 使用 GPS 提供方，时间间隔和距离均设为 0 , 即 实时获取到系统的位置信息 仅在位置变化时触发 
+// 将 minTime 和 minDistance 设为 0 时，系统会尽可能频繁地推送位置更新
+locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 
+    0,  // minTime 单位 毫秒
+    0,  // minDistance  单位 米
+    locationListener
+);
+
+
+
+
+Used-in-fix constellation types: GPS GLONASS QZSS BEIDOU GALILEO
+【 0="UNKNOWN"  
+【 1="GPS"=GPS-美国全球定位系统 = 全球定位系统(Global Positioning System，GPS)
+【 2="SBAS"= SBAS（Satellite-Based Augmentation System），即星基增强系统 =美国WAAS(Wide Area Augmentation System)
+【 3="GLONASS"=格洛纳斯-俄罗斯实现的国家导航系统 
+【 4="QZSS"=准天顶卫星系统 Quasi-Zenith Satellite System；缩写：QZSS = 日本发展的国家定位系统 
+【 5="BEIDOU"=中国北斗卫星导航系统（英文名称：BeiDou Navigation Satellite System，简称BDS）
+【 6="GALILEO"= 欧盟实现的 伽利略卫星导航系统（Galileo satellite navigation system）
+【 7="IRNSS" = 印度区域导航卫星系统（英语：Indian Regional Navigation Satellite System (IRNSS)、NAVIC）
+
+```
+
+
+
+### MTK_agpsd版本号查看
+
+```
+
+
+// 查看当前 mtk_agpsd 文件 大小 时间
+adb shell "cd /vendor/bin/ ;  ls -l | grep mtk_agpsd"
+-rwxr-xr-x 1 root shell  2749328 2009-01-01 08:00 mtk_agpsd
+
+// 导入新的 mtk_agpsd  文件 
+adb root && adb remount &&  adb push  ./mtk_agpsd  /vendor/bin/mtk_agpsd 
+ 
+
+
+adb reboot
+
+adb logcat | grep "mtk_agpsd is"
+
+04-02 18:54:34.851  1549  1549 E agps    : [agps] ERR: [MAIN] mtk_agpsd is running ver=4.492.0, submarine_mode=-1
+
+
+
+工模 》 location base service 》 FLOW 页面会显示 agps ver
+
+AGPS Ver=[4.492.0]
+
+```
+
+
