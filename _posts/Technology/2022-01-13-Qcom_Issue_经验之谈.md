@@ -65,7 +65,31 @@ INPUT,VALUE,NAME,SIZE,TYPE
 39,39,gnss_multiband_configuration,32,Uint32
 
 
+
 ```
+
+#### Qcom_搜索北斗卫星NV配置
+
+
+```
+
+插入PRC SIM 卡 或者 配置  NV 74572 为0  进行搜索 北斗卫星信号
+
+74572,Gnss Nav Data Nmea Ctrl,/nv/item_files/gps/cgps/me/gnss_nav_data_nmea_control,GPS
+
+打开NVBrowser 查看 NV74572  gnss_nv_efs_me_gnss_nav_data_nmea_ctrl
+
+NVITEM ID,DESCRIPTION,FULL NAME,CATEGORY
+74572,Gnss Nav Data Nmea Ctrl,/nv/item_files/gps/cgps/me/gnss_nav_data_nmea_control,GPS
+
+
+INPUT,VALUE,NAME,SIZE,TYPE
+0,0,gnss_nv_efs_me_gnss_nav_data_nmea_ctrl,32,Uint32  【 NV74572 配置为0 可以搜索到北斗】
+
+
+
+```
+
 
 
 
