@@ -1910,6 +1910,36 @@ fastboot oem ramdump pull all
 ```
 
 
+
+
+### Qcom查看WIFI漫游Log 
+
+```
+
+[ROAM_TRIGGER]  触发漫游
+[ROAM_RESULT]   漫游结果
+
+0 == C_AP:  Candidate AP          当前选择的漫游目标WIFI
+1 == P_AP:  Current connected AP  当前正在连接的WIFI
+2 == R_AP:  Reassoscia AP         尝试重关联的WIFI 
+
+04-04 13:57:43.426  wlan: [2389:I:WMA] [19:57:45.138000] [ROAM_TRIGGER]: VDEV[0] Reason: "LOW RSSI"  Cur_Rssi threshold:75 Current AP RSSI: 71
+04-04 13:57:43.426  wlan: [2389:I:WMA] [19:57:45.138000] [ROAM_SCAN]: VDEV[0] Scan_type: PARTIAL next_rssi_threshold: 75 dBm {2437 2462 5745 }
+04-04 13:57:43.426  wlan: [2389:I:WMA] ============================================================================================================================
+04-04 13:57:43.426  wlan: [2389:I:WMA]      AP BSSID           TSTAMP       CH   TY  ETP  RSSI/SCR CU%/SCR TOT_SCR  BL_RSN BL_SRC    BL_TSTAMP       BL_TIMEOUT(ms)
+04-04 13:57:43.426  wlan: [2389:I:WMA] ============================================================================================================================
+04-04 13:57:43.426  wlan: [2389:I:WMA] d8:6c:63:e1:54:d6 [19:57:45.138000] 5745 P_AP    0  71/0     0/0        0       0       0   [00:00:00.000000]         0
+04-04 13:57:43.426  wlan: [2389:I:WMA] d8:6c:63:e1:55:11 [19:57:45.402000] 2462 C_AP    0  43/0     0/0        0       0       0   [00:00:00.000000]         0
+04-04 13:57:43.426  wlan: [2389:I:WMA] d8:6c:63:e1:55:0d [19:57:45.618000] 5745 R_AP    0  44/0     0/0        0       0       0   [00:00:00.000000]         0
+04-04 13:57:43.426  wlan: [2389:I:WMA] [19:57:45.933000] [ROAM_RESULT]: VDEV[0] SUCCESS
+
+
+```
+
+
+
+
+
 ### Qcom_WLAN_Log 
 
 
@@ -2142,7 +2172,7 @@ gEnableDFSMasterCap=0
 #Disable sbs
 enable_sbs=0
 
-#Don't disconnected when NUD failure
+#Don't disconnected when NUD failure   NUD failed （Neighbor Unreachability Detection, NUD） 网络协议中的邻居不可达检测事件处理策略
 #0: Driver will not track the NUD failures, and ignore the same.
 #1: Driver will track the NUD failures and if honoured will disconnect from
 #   the connected BSSID.
