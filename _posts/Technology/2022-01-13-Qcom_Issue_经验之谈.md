@@ -1912,6 +1912,35 @@ fastboot oem ramdump pull all
 
 
 
+###  Qcom_Symbols 文件
+
+```
+Vendor端 release 目录中包含 所有的 Symbols 文件 的三个文件
+
+1. 排查当前最新 fastboot  和  Symbol 编译生成时间上是否一致
+
+cd ./release  ;  ls -lt |  grep fastboot | head -1 ;  ls -l | grep -e "mmi_kernel_platform"   -e "symbols.tar"    -e "nonhlos_symbols" 
+
+-rw-rw-r-- 1 xxxx xxxx  7429246677  4月  8 18:02 fastboot_skyline_userdebug_15_XXXX.xxxx.250408-test-keys_global_US.tar.gz
+-rwxrwxr-x 1 xxxx xxxx   380494576  4月  8 18:03 mmi_kernel_platform_debug_files.tar.gz
+-rw-rw-r-- 1 xxxx xxxx    75071684  4月  8 18:03 nonhlos_symbols.tar.gz
+-rw-rw-r-- 1 xxxx xxxx  2805411586  4月  8 18:03 symbols.tar.gz
+
+
+2. 导出当前  Symbols 文件 的三个文件 
+Vendor端/release/mmi_kernel_platform_debug_files.tar.gz
+Vendor端/release/nonhlos_symbols.tar.gz
+Vendor端/release/symbols.tar.gz
+
+
+
+
+```
+
+
+
+
+
 ### Qcom查看WIFI漫游Log 
 
 ```
