@@ -20,6 +20,85 @@ typora-copy-images-to: ..\..\..\public\zimage
 
 ## B
 
+### adb shell cmd bluetooth_manager
+
+```
+
+adb shell cmd location  bluetooth_manager -h 
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+Bluetooth Manager Commands:
+  help or -h
+    Print this help text.
+  enable
+    Enable Bluetooth on this device.
+  enableBle
+    Call enableBle to activate ble only mode on this device.
+  disable
+    Disable Bluetooth on this device.
+  disableBle
+    revoke the call to enableBle. No-op if enableBle wasn't call before
+  wait-for-state:<STATE>
+    Wait until the adapter state is <STATE>. <STATE> can be one of STATE_OFF | STATE_ON
+    Note: This command can timeout and failed
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+
+
+```
+
+
+####  adb shell cmd bluetooth_manager enable  打开蓝牙
+```
+
+adb shell cmd bluetooth_manager enable
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+BluetoothShellCommand: Exec enable
+enable: Success
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+```
+
+
+####  adb shell cmd bluetooth_manager  disable 关闭蓝牙
+```
+
+adb shell cmd bluetooth_manager enable
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+BluetoothShellCommand: Exec disable
+disable: Success
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+```
+
+
+####  adb shell cmd bluetooth_manager  enableBle  打开BLE低功耗蓝牙
+```
+
+adb shell cmd bluetooth_manager  enableBle 
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+uetoothShellCommand: Exec enableBle
+enableBle: Success
+
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+```
+
+
+
+####  adb shell cmd bluetooth_manager  disableBle  关闭BLE低功耗蓝牙
+```
+
+ adb shell cmd bluetooth_manager  disableBle 
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+BluetoothShellCommand: Exec disableBle
+disableBle: Success
+
+
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+```
+
+
 
 ## C
 
@@ -50,11 +129,175 @@ typora-copy-images-to: ..\..\..\public\zimage
 
 ## L
 
+### Location(GPS)
+
+```
+
+ adb shell cmd location  -h 
+ 
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+Location service commands:
+  help or -h
+    Print this help text.
+  is-location-enabled [--user <USER_ID>]
+    Gets the master location switch enabled state. If no user is specified,
+    the current user is assumed.
+  set-location-enabled true|false [--user <USER_ID>]
+    Sets the master location switch enabled state. If no user is specified,
+    the current user is assumed.
+  providers
+    The providers command is followed by a subcommand, as listed below:
+
+    add-test-provider <PROVIDER> [--requiresNetwork] [--requiresSatellite]
+      [--requiresCell] [--hasMonetaryCost] [--supportsAltitude]
+      [--supportsSpeed] [--supportsBearing]
+      [--powerRequirement <POWER_REQUIREMENT>]
+      [--extraAttributionTags <TAG>,<TAG>,...]
+      Add the given test provider. Requires MOCK_LOCATION permissions which
+      can be enabled by running "adb shell appops set <uid>
+      android:mock_location allow". There are optional flags that can be
+      used to configure the provider properties and additional arguments. If
+      no flags are included, then default values will be used.
+    remove-test-provider <PROVIDER>
+      Remove the given test provider.
+    set-test-provider-enabled <PROVIDER> true|false
+      Sets the given test provider enabled state.
+    set-test-provider-location <PROVIDER> --location <LATITUDE>,<LONGITUDE>
+      [--accuracy <ACCURACY>] [--time <TIME>]
+      Set location for given test provider. Accuracy and time are optional.
+    send-extra-command <PROVIDER> <COMMAND>
+      Sends the given extra command to the given provider.
+
+      Common commands that may be supported by the gps provider, depending on
+      hardware and software configurations:
+        delete_aiding_data - requests deletion of any predictive aiding data
+        force_time_injection - requests NTP time injection
+        force_psds_injection - requests predictive aiding data injection
+        request_power_stats - requests GNSS power stats update
+
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+
+
+
+```
+
+
+
+
+####  adb shell cmd location is-location-enabled 查看GPS开关是否打开
+```
+
+adb shell cmd location is-location-enabled 
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+false
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+
+
+adb shell cmd location  set-location-enabled  true && adb shell cmd location is-location-enabled 
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+true
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+
+
+```
+
+
+####  adb shell cmd location set-location-enabled true 打开GPS开关
+```
+
+adb shell cmd location set-location-enabled true|false
+
+adb shell cmd location set-location-enabled true
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+```
+
+
+#### location providers send-extra-command gps force_time_injection 更新GPS时间
+```
+// 更新GPS时间
+adb shell cmd location providers send-extra-command gps force_time_injection
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+```
+
+
+#### location providers send-extra-command gps delete_aiding_data  删除GPS辅助数据
+```
+// 删除GPS辅助 数据
+adb shell cmd location providers send-extra-command gps force_time_injection
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+```
+
+
+
+#### location providers send-extra-command gps force_psds_injection  注入GPS辅助数据
+
+```
+// 注入GPS辅助数据
+adb shell cmd location providers send-extra-command gps force_time_injection
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+
+```
+
+
+
+
+#### location providers send-extra-command gps request_power_stats  请求卫星状态
+
+```
+// 请求卫星状态
+adb shell cmd location providers send-extra-command gps request_power_stats
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+
+```
+
+
 
 ## M
 
 
+
+
+
+
 ## N
+
+
+### adb shell cmd nfc 
+
+```
+
+ adb shell cmd nfc
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+NFC (Near-field communication) commands:
+  help or -h
+    Print this help text.
+  status
+    Gets status of UWB stack
+  enable-nfc
+    Toggle NFC on
+  disable-nfc [persist]
+    Toggle NFC off (optionally make it persistent)
+  set-observe-mode enable|disable
+    Enable or disable observe mode.
+  set-reader-mode enable-polling|disable-polling
+    Enable or reader mode polling
+  set-controller-always-on enable|disable
+    Enable or disable controller always on
+  set-discovery-tech poll-mask|listen-mask
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+
+```
 
 
 ## O
@@ -492,47 +735,79 @@ Equivalent to receiving the TelephonyManager.ACTION_EMERGENCY_CALL_STATE_CHANGED
 #### adb shell cmd wifi start-softap 打开热点
 ```
 
--f 参数 AndroidT 开始有效 
-start-softap <ssid> (open|wpa2|wpa3|wpa3_transition|owe|owe_transition) <passphrase> [-b 2|5|6|any|bridged|bridged_2_5|bridged_2_6|bridged_5_6] [-x] [-f <int> [<int>]]
-start-softap <ssid> (open|wpa2|wpa3|wpa3_transition|owe|owe_transition) <passphrase> [-b 2|5|6|any|bridged|bridged_2_5|bridged_2_6|bridged_5_6] [-x] [-f <int> [<int>]]
 
+  start-softap <ssid> (open|wpa2|wpa3|wpa3_transition|owe|owe_transition) <passphrase> [-b 2|5|6|any|bridged|bridged_2_5|bridged_2_6|bridged_5_6] [-x] [-w 20|40|80|160|320] [-f <int> [<int>]]
+  start-softap <ssid>【1.热点名称】 (open|wpa2|wpa3|wpa3_transition|owe|owe_transition)【2.认证方式】 <passphrase>【3.密码】 [-b【4. band频段】 2|5|6|any|bridged|bridged_2_5|bridged_2_6|bridged_5_6] [-x]【5.指定SSID为十六进制int值而非text】 [-w【6.bandwidth 信道带宽】 20|40|80|160|320] [-f【7.指定channel frequency信道频率下_可多选DBS 必须最后输入】 <int> [<int>]]
+        
 
 
 adb shell cmd wifi start-softap   321 wpa2 87654321 -b 5    ## 【 打开一个 ssid=321 的 wpa2密码87654321的 5G频段的热点】
  
 
+
+-b 参数列表  【band频段】  【2|5|6|any|bridged|bridged_2_5|bridged_2_6|bridged_5_6】
+        - Use '2' to select 2.4GHz band as the preferred band
+        - Use '5' to select 5GHz band as the preferred band
+        - Use '6' to select 6GHz band as the preferred band
+        - Use 'any' to indicate no band preference
+        - Use 'bridged' to indicate bridged AP which enables APs on both 2.4G + 5G
+        - Use 'bridged_2_5' to indicate bridged AP which enables APs on both 2.4G + 5G
+        - Use 'bridged_2_6' to indicate bridged AP which enables APs on both 2.4G + 6G
+        - Use 'bridged_5_6' to indicate bridged AP which enables APs on both 5G + 6G
+	
 adb shell cmd wifi start-softap   321 open -b 2      ## 【 打开一个 ssid=321 的 open的 2G频段的热点】
 
 adb shell cmd wifi start-softap   321 open -b 5      ## 【 打开一个 ssid=321 的 open的 5G频段的热点】
 
 adb shell cmd wifi start-softap   321 open -b 6      ## 【 打开一个 ssid=321 的 open的 6G频段的热点】
 
+
 adb shell cmd wifi start-softap   Wifi_2412 open -b 2  -f 2412 ## 【 打开一个 ssid= Wifi_2412 的 open的指定频段 2412 频段的热点】
 
 
 adb shell cmd wifi start-softap   Wifi_5200 open -b 5  -f 5200  ## 【 打开一个 ssid=Wifi_5180 的 open的指定频段 5180 频段的热点】
+adb shell cmd wifi start-softap   Wifi_5180 open -b 5  -f 5180   ## 【 打开一个 ssid=Wifi_5180 的 open的指定频段 5180 频段 的热点】
+
+-w 参数列表   【bandwidth 信道带宽】  【20|40|80|160|320】
+case 0:  apMaxBandWidth = SoftApInfo.CHANNEL_WIDTH_AUTO;  break;
+case 20: apMaxBandWidth = SoftApInfo.CHANNEL_WIDTH_20MHZ; break;
+case 40: apMaxBandWidth = SoftApInfo.CHANNEL_WIDTH_40MHZ; break;
+case 80: apMaxBandWidth = SoftApInfo.CHANNEL_WIDTH_80MHZ; break;
+case 160:apMaxBandWidth = SoftApInfo.CHANNEL_WIDTH_160MHZ;break;
+case 320:apMaxBandWidth = SoftApInfo.CHANNEL_WIDTH_320MHZ;break;
+
+adb shell cmd wifi start-softap   Wifi_5180 open -b 5  -f 5180 -w 0      ## 【 打开一个 ssid=Wifi_5180 的 open的指定频段 5180  频段 WIDTH_AUTO自动带宽 的热点】
+adb shell cmd wifi start-softap   Wifi_5180 open -b 5  -f 5180 -w 20     ## 【 打开一个 ssid=Wifi_5180 的 open的指定频段 5180  频段 WIDTH_20MHZ   带宽 的热点】
+adb shell cmd wifi start-softap   Wifi_5180 open -b 5  -f 5180 -w 40     ## 【 打开一个 ssid=Wifi_5180 的 open的指定频段 5180  频段 WIDTH_40MHZ   带宽 的热点】
+adb shell cmd wifi start-softap   Wifi_5180 open -b 5  -f 5180 -w 80     ## 【 打开一个 ssid=Wifi_5180 的 open的指定频段 5180  频段 WIDTH_80MHZ   带宽 的热点】
+adb shell cmd wifi start-softap   Wifi_5180 open -b 5  -f 5180 -w 160    ## 【 打开一个 ssid=Wifi_5180 的 open的指定频段 5180  频段 WIDTH_160MHZ  带宽 的热点】
+adb shell cmd wifi start-softap   Wifi_5180 open -b 5  -f 5180 -w 320    ## 【 打开一个 ssid=Wifi_5180 的 open的指定频段 5180  频段 WIDTH_320MHZ  带宽 的热点】
 
 
-adb shell cmd wifi start-softap   Wifi_5180 open -b 5  -f 5180   ## 【 打开一个 ssid=Wifi_5180 的 open的指定频段 5180 频段 widthbath=auto的热点】
 
-
-adb shell cmd wifi start-softap   Wifi_5180 open -b 5  -f 5180 -w    ## 【 打开一个 ssid=Wifi_5180 的 open的指定频段 5180 频段的热点】
 
 
 
 
 ```
 
-#### 设置查看热点频段
+#### adb shell cmd wifi force-softap-channel 设置热点频段
 ```
 
 adb root && adb shell cmd wifi force-softap-channel enabled 5745
 
+
+force-softap-channel enabled <int> | disabled [-w <maxBandwidth>]
+    1.<int>   当前的频率channel
+    2.-w 0|20|40|80|160|320 - select the maximum channel bandwidth (MHz)
+        Note: If the bandwidth option is not provided or set to 0, framework will set the maximum bandwidth to auto, allowing HAL to select the bandwidth
+
+adb root && adb shell cmd wifi force-softap-channel enabled 5745 -w 80
 ╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤ 
-channel: 149 band: 2
+channel: 149 band: 2 maximum channel bandwidth: 80
 2G freq: [2412, 2417, 2422, 2427, 2432, 2437, 2442, 2447, 2452, 2457, 2462, 2467, 2472]
-5G freq: [5180, 5200, 5220, 5240, 5745, 5765, 5785, 5805, 5825]
-5G DFS: [5260, 5280, 5300, 5320]
+5G freq: [5745, 5765, 5785, 5805, 5825]
+5G DFS: [5180, 5200, 5220, 5240, 5260, 5280, 5300, 5320]
 6G freq: []
 60G freq: []
 ╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
@@ -543,11 +818,441 @@ channel: 149 band: 2
 
 
 
-### Wifi 
+####  adb shell cmd wifi get-allowed-channel 获取可用频率
+
+```
+ adb shell cmd wifi get-allowed-channel [-b 1|6|7|8|15|16|31]
+ 
+     -b - set the band in which channels are allowed
+       '1'  - band 2.4 GHz
+       '6'  - band 5 GHz with DFS channels
+       '7'  - band 2.4 and 5 GHz with DFS channels
+       '8'  - band 6 GHz
+       '15' - band 2.4, 5, and 6 GHz with DFS channels
+       '16' - band 60 GHz
+       '31' - band 2.4, 5, 6 and 60 GHz with DFS channels
+ 
+
+ adb shell cmd wifi get-allowed-channel 
+ 
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤ 
+Allowed ch in STA mode:
+2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467 2472 5180 5200 5220 5240 5260 5280 5300 5320 5745 5765 5785 5805 5825
+Allowed ch in SAP mode:
+2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467 2472 5745 5765 5785 5805 5825
+Allowed ch in WiFi-Direct GC mode:
+2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467 2472 5180 5200 5220 5240 5260 5280 5300 5320 5745 5765 5785 5805 5825
+Allowed ch in WiFi-Direct GO mode:
+2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467 2472 5745 5765 5785 5805 5825
+Allowed ch in WiFi-Aware mode:
+2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467 2472 5745 5765 5785 5805 5825
+Allowed ch in TDLS mode:
+2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467 2472 5180 5200 5220 5240 5260 5280 5300 5320 5745 5765 5785 5805 5825
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+
+ adb shell cmd wifi get-allowed-channel  -b 1
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+Allowed ch in STA mode:
+2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467 2472
+Allowed ch in SAP mode:
+2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467 2472
+Allowed ch in WiFi-Direct GC mode:
+2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467 2472
+Allowed ch in WiFi-Direct GO mode:
+2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467 2472
+Allowed ch in WiFi-Aware mode:
+2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467 2472
+Allowed ch in TDLS mode:
+2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467 2472
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+```
+
+
+####  adb shell cmd wifi get-country-code 获取当前国家码
+```
+ adb shell cmd wifi get-country-code
+Wifi Country Code = CN
+
+```
+
+
+
+
+
+####  adb shell cmd wifi force-country-code enabled JP 更新国家码
+```
+
+adb shell cmd wifi force-country-code enabled JP 
+ 
+
+adb shell cmd wifi get-country-code
+Wifi Country Code = JP 
+
+
+```
+
+
+####  adb shell cmd wifi set-scan-always-available disabled 关闭wifi扫描 
+```
+Wifi Scaning 开关 ,wifi off 情况下 仍然支持扫描的feature开关
+对应 Settings >  Location > Location Services > Wi-Fi Scanning [on|off]
+
+adb shell cmd wifi set-scan-always-available enabled
+adb shell cmd wifi set-scan-always-available disabled
+
+
+
+```
+
+
+####  adb shell cmd wifi set-wifi-enabled enabled 打开WIFI模块
+```
+adb shell cmd wifi set-wifi-enabled enabled|disabled
+
+adb shell cmd wifi set-wifi-enabled enabled 
+adb shell cmd wifi set-wifi-enabled disabled 
+
+// 打开Wifi  触发扫描   打印扫描结果
+
+adb shell cmd wifi set-wifi-enabled enabled  && adb shell cmd wifi  start-scan && adb shell cmd wifi    list-scan-results
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+
+    BSSID              Frequency      RSSI           Age(sec)     SSID                                 Flags
+  6c:cd:d6:f0:fd:cb       2457    -61(0:-62/1:-67)     3.300    NETGEAR11                         [WPA2-PSK-CCMP][RSN-PSK-CCMP][ESS][WPS]
+  c2:a7:31:c6:fe:fd       6115    -65(0:-66/1:-71)     0.710    TP-Link_FF00_6G                   [RSN-SAE-CCMP][ESS][MFPR][MFPC]
+  ba:a7:31:c6:fe:fc       5240    -50(0:-53/1:-53)     2.619    TP-Link_FF00                      [WPA2-PSK-CCMP][RSN-PSK-CCMP][ESS][WPS]
+  aa:bb:aa:cc:ss:65       5300    -52(0:-61/1:-53)     2.348    xxx-internet                      [ESS]
+  cd:aa:ss:dd:54:81       2437    -66(0:-72/1:-67)     3.622    xxx-enterwifi                     [WPA2-EAP/SHA1-CCMP][RSN-EAP/SHA1-CCMP][ESS]
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+
+```
+
+
+####  adb shell cmd wifi status 查看当前wifi状态
+```
+
+adb shell cmd wifi status  打印WIFI模块状态-未连接网络
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+Wifi is enabled
+Wifi scanning is only available when wifi is enabled
+==== ClientModeManager instance: ConcreteClientModeManager{id=408299759 iface=wlan0 role=ROLE_CLIENT_PRIMARY} ====
+Wifi is not connected  当前没有连接网络
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+
+```
+
+```
+
+adb shell cmd wifi status  打印WIFI模块状态-已连接网络
+
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+Wifi is enabled
+Wifi scanning is only available when wifi is enabled
+==== ClientModeManager instance: ConcreteClientModeManager{id=408299759 iface=wlan0 role=ROLE_CLIENT_PRIMARY} ====
+Wifi is connected to "CMCC_2.4G"
+WifiInfo: SSID: "CMCC_2.4G", BSSID: 16:d8:64:f4:d5:19, MAC: 9a:01:93:78:be:46, IP: /192.168.1.106, Security type: 2, Supplicant state: COMPLETED, Wi-Fi standard: 11ax, RSSI: -26, Link speed: 516Mbps, Tx Link speed: 516Mbps, Max Supported Tx Link speed: 573Mbps, Rx Link speed: 458Mbps, Max Supported Rx Link speed: 573Mbps, Frequency: 2437MHz, Net ID: 0, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none>"CMCC_2.4G"wpa2-pskMLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>
+successfulTxPackets: 1083
+successfulTxPacketsPerSecond: 6.42797061153898
+retriedTxPackets: 436
+retriedTxPacketsPerSecond: 4.1902650236307615
+lostTxPackets: 0
+lostTxPacketsPerSecond: 0.0
+successfulRxPackets: 5604
+successfulRxPacketsPerSecond: 0.03681659457804908
+NetworkCapabilities: [ Transports: WIFI Capabilities: NOT_METERED&INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VPN&NOT_ROAMING&FOREGROUND&NOT_CONGESTED&NOT_SUSPENDED&PARTIAL_CONNECTIVITY&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED LinkUpBandwidth>=12000Kbps LinkDnBandwidth>=29790Kbps TransportInfo: <SSID: <unknown ssid>, BSSID: 02:00:00:00:00:00, MAC: 02:00:00:00:00:00, IP: /192.168.1.106, Security type: 2, Supplicant state: COMPLETED, Wi-Fi standard: 11ax, RSSI: -27, Link speed: 413Mbps, Tx Link speed: 413Mbps, Max Supported Tx Link speed: 573Mbps, Rx Link speed: 516Mbps, Max Supported Rx Link speed: 573Mbps, Frequency: 2437MHz, Net ID: -1, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none><none>MLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>> SignalStrength: -27 AdminUids: [1000] SSID: "CMCC_2.4G" UnderlyingNetworks: Null]
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+
+```
+
+
+####  adb shell cmd wifi is-verbose-logging  查看wifi详情开关是否打开
+```
+
+ adb shell cmd wifi is-verbose-logging
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+enabled
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+```
+
+####  adb shell cmd wifi   set-verbose-logging enabled  打开wifi详情开关
+```
+
+adb shell cmd wifi set-verbose-logging enabled|disabled
+
+adb shell cmd wifi set-verbose-logging enabled
+adb shell cmd wifi set-verbose-logging disabled
+
+adb shell cmd wifi set-verbose-logging enabled
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+```
+
+
+####  adb shell cmd wifi list-suggestions 打开当前收到的连接网络建议
+ 
+```
+
+ adb shell cmd wifi list-suggestions 
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+No suggestions on this device
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+```
+
+
+####  adb shell cmd wifi   get-coex-cell-channels
+
+```
+
+adb shell cmd wifi   get-coex-cell-channels
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+Cell channels: []
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+```
+
+
+
+
+####  adb shell cmd wifi  set-one-shot-screen-on-delay-ms 1000 设置亮屏扫描延迟时间
+
+```
+
+// 每次亮屏 都会触发扫描事件
+// 设置亮屏扫描延迟时间
+adb shell cmd wifi  set-one-shot-screen-on-delay-ms 1000 
+
+    set-one-shot-screen-on-delay-ms <delayMs>
+         set the delay for the next screen-on connectivity scan in milliseconds.
+
+adb shell cmd wifi  set-one-shot-screen-on-delay-ms 1000 
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+```
+
+
+
+####  adb shell cmd wifi set-ipreach-disconnect disabled 开关CMD_IP_REACHABILITY_LOST事件触发断连
+```
+adb shell cmd wifi  set-ipreach-disconnect enabled      // CMD_IP_REACHABILITY_LOST事件发生保持连接
+adb shell cmd wifi  set-ipreach-disconnect disabled     // CMD_IP_REACHABILITY_LOST事件发生不断开连接
+
+adb shell cmd wifi  set-ipreach-disconnect enabled|disabled
+    Sets whether CMD_IP_REACHABILITY_LOST events should trigger disconnects.
+
+
+adb shell cmd wifi  set-ipreach-disconnect disabled
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+```
+
+####  adb shell cmd wifi   get-ipreach-disconnect
+
+```
+
+  adb shell cmd wifi   get-ipreach-disconnect       // 查看 开关CMD_IP_REACHABILITY_LOST事件触发断连设置的值
+
+  adb shell cmd wifi get-ipreach-disconnect
+    Gets setting of CMD_IP_REACHABILITY_LOST events triggering disconnects.
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+IPREACH_DISCONNECT state is false        // 当前feature是关闭的
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+
+
+
+adb shell cmd wifi  set-ipreach-disconnect enabled  &&  adb shell cmd wifi get-ipreach-disconnect
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+IPREACH_DISCONNECT state is true      // 当前feature是打开的
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+
+```
+
+
+
+####  adb shell cmd wifi  get-overlay-config-values 查看WIFI的配置文件
+```
+
+adb shell cmd wifi  get-overlay-config-values
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+Dump of WifiResourceCache
+WifiResourceCache - resource value Begin ----
+Resource Name: config_wifiDisableFirmwareRoamingInIdleMode, value: false
+Resource Name: config_wifiFrameworkSoftApShutDownIdleInstanceInBridgedModeTimeoutMillisecond, value: 300000
+Resource Name: config_wifi6ghzSupport, value: false
+Resource Name: config_wifiSoftapPassphraseAsciiEncodableCheck, value: false
+Resource Name: config_wifiSoftapHeSuBeamformeeSupported, value: true
+Resource Name: config_wifiSaeUpgradeOffloadEnabled, value: false
+Resource Name: config_wifiSaeUpgradeEnabled, value: true
+Resource Name: config_wifi60ghzSupport, value: false
+Resource Name: config_wifiFrameworkSoftApDisableBridgedModeShutdownIdleInstanceWhenCharging, value: false
+Resource Name: config_wifiWepDeprecated, value: false
+Resource Name: config_wifiInterfaceAddedSelfRecoveryEnabled, value: false
+Resource Name: config_wifiLowConnectedScoreThresholdToTriggerScanForMbb, value: 55
+Resource Name: config_wifiPollRssiLongIntervalMilliseconds, value: 6000
+Resource Name: config_wifiWpaPersonalDeprecated, value: false
+Resource Name: config_wifiFlushAnqpCacheOnWifiToggleOffEvent, value: true
+Resource Name: config_wifiSoftap24ghzSupported, value: true
+Resource Name: config_wifiSaeH2eSupported, value: true
+Resource Name: config_wifiSoftapOweTransitionSupported, value: false
+Resource Name: config_wifiSoftapIeee80211axSupported, value: true
+Resource Name: config_wifi_p2p_mac_randomization_supported, value: true
+Resource Name: config_wifiSoftap2gChannelList, value: 1-11
+Resource Name: config_wifiAdjustPollRssiIntervalEnabled, value: false
+Resource Name: config_wifiAfcServerUrlsForCountry, value: []
+Resource Name: config_wifiConfigurationWifiRunnerThresholdInMs, value: 100
+Resource Name: config_wifiSoftapAutoAppendLowerBandsToBandConfigurationEnabled, value: true
+Resource Name: config_wifi_softap_ieee80211ac_supported, value: true
+Resource Name: config_wifiDriverWorldModeCountryCode, value: 00
+Resource Name: config_wifiSoftap5gChannelList, value: 36-161
+Resource Name: config_wifiWepAllowedControlSupported, value: true
+Resource Name: config_wifiAllowInsecureEnterpriseConfigurationsForSettingsAndSUW, value: true
+Resource Name: config_wifi_turn_off_during_emergency_call, value: false
+Resource Name: config_wifiSoftapHeSuBeamformerSupported, value: true
+Resource Name: config_wifi_softap_acs_supported, value: true
+Resource Name: config_wifiEapFailureConfig, value: [1915, 16385, 0, 3, 1]
+Resource Name: config_wifiSoftap5ghzSupported, value: true
+Resource Name: config_wifiClientModeImplNumLogRecs, value: 100
+Resource Name: config_wifiSoftapMacAddressCustomizationSupported, value: true
+Resource Name: config_wifi_revert_country_code_on_cellular_loss, value: true
+Resource Name: config_wifi_connected_mac_randomization_supported, value: true
+Resource Name: config_wifi_softap_sae_supported, value: true
+Resource Name: config_wifiStaWithBridgedSoftApConcurrencySupported, value: false
+Resource Name: config_wifiFrameworkSoftApShutDownTimeoutMilliseconds, value: 600000
+Resource Name: config_wifiAfcSupported, value: false
+Resource Name: config_wifiPollRssiIntervalMilliseconds, value: 3000
+Resource Name: config_wifiHardwareSoftapMaxClientCount, value: 10
+Resource Name: config_wifiSaveFactoryMacToWifiConfigStore, value: true
+Resource Name: config_wifi_ap_mac_randomization_supported, value: true
+Resource Name: config_wifi24ghzSupport, value: true
+Resource Name: config_wifiBridgedSoftApSupported, value: false
+Resource Name: config_wifiForceDisableMacRandomizationSsidPrefixList, value: []
+Resource Name: config_wifiOweUpgradeEnabled, value: true
+Resource Name: config_wifiSoftapAcsIncludeDfs, value: false
+Resource Name: config_wifiSoftapHeMuBeamformerSupported, value: false
+Resource Name: config_wifiVerboseLoggingAlwaysOnLevel, value: 0
+Resource Name: config_wifiSofapClientForceDisconnectSupported, value: true
+Resource Name: config_wifiSoftapIeee80211beSupported, value: false
+Resource Name: config_wifi5ghzSupport, value: true
+Resource Name: config_wifiDriverSupportedNl80211RegChangedEvent, value: false
+Resource Name: config_wifiSoftapHeTwtSupported, value: false
+Resource Name: config_wifiStaDynamicCountryCodeUpdateSupported, value: false
+Resource Name: config_wifiScanHiddenNetworksScanOnlyMode, value: false
+Resource Name: config_wifiSoftapOweSupported, value: false
+Resource Name: config_wifiD2dAllowedControlSupportedWhenInfraStaDisabled, value: false
+WifiResourceCache - resource value End ----
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+```
+
+
+####  adb shell cmd wifi  force-overlay-config-value xxx 更改配置文件的值
+```
+
+adb shell cmd wifi  force-overlay-config-value bool|integer|string|integer-array|string-array <overlayName> enabled|disabled <configValue>
+
+
+force-overlay-config-value bool|integer|string|integer-array|string-array <overlayName> enabled|disabled <configValue>
+    Force overlay to a specified value.
+    bool|integer|string|integer-array|string-array - specified the type of the overlay
+    <overlayName> - name of the overlay whose value is overridden.
+    enabled|disabled: enable the override or disable it and revert to using the built-in value.
+    <configValue> - override value of the overlay.Must match the overlay type
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+```
+
+
+####  adb shell cmd wifi get-softap-supported-features 获取热点支持的Feature
+
+```
+
+adb shell cmd wifi get-softap-supported-features
+
+
+adb shell cmd wifi get-softap-supported-features
+    Gets softap supported features. Will print 'wifi_softap_acs_supported'
+    and/or 'wifi_softap_wpa3_sae_supported',
+    and/or 'wifi_softap_bridged_ap_supported',
+    and/or 'wifi_softap_bridged_ap_with_sta_supported',
+    each on a separate line
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+wifi_softap_acs_supported
+wifi_softap_wpa3_sae_supported
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+```
+
+
+
+####  adb shell cmd wifi  send-link-probe 触发一个link probe
+```
+
+ adb shell cmd wifi  send-link-probe     //   Manually triggers a link probe.
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+Link probe succeeded after 31 ms
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+```
+
+####  adb shell cmd wifi get-wifi-watchdog
+```
+
+  set-wifi-watchdog enabled|disabled
+    Sets whether wifi watchdog should trigger recovery
+  get-wifi-watchdog
+    Gets setting of wifi watchdog trigger recovery.
+
+adb shell cmd wifi set-wifi-watchdog enabled
+adb shell cmd wifi set-wifi-watchdog disabled
+adb shell cmd wifi get-wifi-watchdog
+
+adb shell cmd wifi set-wifi-watchdog enabled && adb shell cmd wifi get-wifi-watchdog
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+wifi watchdog state is true
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+
+
+
+adb shell cmd wifi set-wifi-watchdog disabled && adb shell cmd wifi get-wifi-watchdog
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+wifi watchdog state is false
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+
+```
+
+
+
+####  adb shell cmd wifi 
+```
+
+ adb shell cmd wifi 
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+```
+
+####  adb shell cmd wifi 
+```
+
+ adb shell cmd wifi 
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧╧
+```
 
 
 
 ## X
+
+
 
 
 ## Y
