@@ -2517,6 +2517,37 @@ adb push ./txpowerctrl.cfg   /vendor/firmware/
 ```
 
 
+### MTK&Qcom 检查txpowerctrl文件
+ 
+```
+// 请反馈如下命令的输出值
+adb shell "getprop | grep -e ro.boot.radio -e ro.vendor.hw.device ;cd /vendor/firmware/ ; ls -ld $PWD/*  | grep txpowerctrl ; cd /system/etc/motorola/mdmctbk ; ls -ld $PWD/*    | grep ctbk_cfg ; cd /vendor/etc/motorola/mdmctbk ;  ls -ld $PWD/* "  
+
+
+// 输出命令打印如下:
+[ro.boot.radio]: [NA]
+[ro.vendor.hw.device]: [aito]
+-rw-r--r-- 1 root root    3200 2009-01-01 08:00 /vendor/firmware/txpowerctrl.cfg
+-rw-r--r-- 1 root root   14163 2009-01-01 08:00 /vendor/firmware/txpowerctrl_DOCOMO.cfg
+-rw-r--r-- 1 root root   14163 2009-01-01 08:00 /vendor/firmware/txpowerctrl_JP.cfg
+-rw-r--r-- 1 root root   14163 2009-01-01 08:00 /vendor/firmware/txpowerctrl_ROW.cfg
+-rw-r--r-- 1 root root   14163 2009-01-01 08:00 /vendor/firmware/txpowerctrl_na.cfg
+-rw-r--r-- 1 root root 17194 2009-01-01 08:00 /system/etc/skyline/mdmctbk/ctbk_cfg.xml
+-rw-r--r-- 1 root root 17194 2009-01-01 08:00 /system/etc/skyline/mdmctbk/docomo_ctbk_cfg.xml
+-rw-r--r-- 1 root root 17194 2009-01-01 08:00 /system/etc/skyline/mdmctbk/jp_ctbk_cfg.xml
+-rw-r--r-- 1 root root 17278 2009-01-01 08:00 /system/etc/skyline/mdmctbk/na_ctbk_cfg.xml
+-rw-r--r-- 1 root root 17194 2009-01-01 08:00 /system/etc/skyline/mdmctbk/row_ctbk_cfg.xml
+-rw-rw-rw- 1 root root 17194 2025-04-17 18:32 /vendor/etc/skyline/mdmctbk/ctbk_cfg.xml
+-rw-rw-rw- 1 root root 17194 2025-04-17 18:32 /vendor/etc/skyline/mdmctbk/docomo_ctbk_cfg.xml
+-rw-rw-rw- 1 root root 17194 2025-04-17 18:32 /vendor/etc/skyline/mdmctbk/jp_ctbk_cfg.xml
+-rw-rw-rw- 1 root root 17278 2025-04-17 18:32 /vendor/etc/skyline/mdmctbk/na_ctbk_cfg.xml
+-rw-rw-rw- 1 root root 17194 2025-04-17 18:32 /vendor/etc/skyline/mdmctbk/row_ctbk_cfg.xml
+
+
+
+```
+
+
 
 ### MTK_txpowerctrl.cfg文件解析(场景值)
 
