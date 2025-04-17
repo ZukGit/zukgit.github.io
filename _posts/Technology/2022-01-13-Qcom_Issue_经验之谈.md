@@ -2521,12 +2521,14 @@ adb push ./txpowerctrl.cfg   /vendor/firmware/
  
 ```
 // 请反馈如下命令的输出值
-adb shell "getprop | grep -e ro.boot.radio -e ro.vendor.hw.device ;cd /vendor/firmware/ ; ls -ld $PWD/*  | grep txpowerctrl ; cd /system/etc/motorola/mdmctbk ; ls -ld $PWD/*    | grep ctbk_cfg ; cd /vendor/etc/motorola/mdmctbk ;  ls -ld $PWD/* "  
+adb shell "getprop | grep -e ro.vendor.hw.device -e ro.boot.radio   -e ro.vendor.hw.radio -e ro.carrier ;cd /vendor/firmware/ ; ls -ld $PWD/*  | grep txpowerctrl ; cd /system/etc/motorola/mdmctbk ; ls -ld $PWD/*    | grep ctbk_cfg ; cd /vendor/etc/motorola/mdmctbk ;  ls -ld $PWD/* "  
 
 
-// 输出命令打印如下:
-[ro.boot.radio]: [NA]
-[ro.vendor.hw.device]: [aito]
+
+[ro.boot.radio]: [NA]                
+[ro.carrier]: [unknown]
+[ro.vendor.hw.device]: [aito]                 // txpowerctrl_【ro.boot.radio】.cfg   -->  txpowerctrl_NA.cfg
+[ro.vendor.hw.radio]: [NA]                    // 【ro.carrier】_【ro.vendor.hw.radio】_ctbk_cfg.xml   -->  na_ctbk_cfg.xml
 -rw-r--r-- 1 root root    3200 2009-01-01 08:00 /vendor/firmware/txpowerctrl.cfg
 -rw-r--r-- 1 root root   14163 2009-01-01 08:00 /vendor/firmware/txpowerctrl_DOCOMO.cfg
 -rw-r--r-- 1 root root   14163 2009-01-01 08:00 /vendor/firmware/txpowerctrl_JP.cfg
@@ -2542,8 +2544,6 @@ adb shell "getprop | grep -e ro.boot.radio -e ro.vendor.hw.device ;cd /vendor/fi
 -rw-rw-rw- 1 root root 17194 2025-04-17 18:32 /vendor/etc/skyline/mdmctbk/jp_ctbk_cfg.xml
 -rw-rw-rw- 1 root root 17278 2025-04-17 18:32 /vendor/etc/skyline/mdmctbk/na_ctbk_cfg.xml
 -rw-rw-rw- 1 root root 17194 2025-04-17 18:32 /vendor/etc/skyline/mdmctbk/row_ctbk_cfg.xml
-
-
 
 ```
 
