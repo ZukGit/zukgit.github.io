@@ -1836,6 +1836,9 @@ Setting > System > Advanced > Developer options >Enable WiFi Verbose Logging  [t
 
 ### Qcom_GPS模式配置查看_NV70326_GnssConfig
 
+
+<img src="/public/zimage/qocm_issue/nv70326.jpg"/>
+
 ```
 
 Qcom通过QXDM_NVBrowser查看GPS_Mode
