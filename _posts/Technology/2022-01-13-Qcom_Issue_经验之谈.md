@@ -1884,7 +1884,6 @@ NV70326 =
 索引:B11 Galileo 
 
 
-
 0x807 
 索引:B0  GPS
 索引:B1  GLONASS
