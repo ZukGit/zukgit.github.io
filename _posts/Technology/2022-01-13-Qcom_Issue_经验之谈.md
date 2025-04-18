@@ -2517,16 +2517,33 @@ adb push ./txpowerctrl.cfg   /vendor/firmware/
 ```
 
 
-### MTK&Qcom 检查txpowerctrl文件
+### MTK 检查txpowerctrl文件
  
+ 
+```
+// 请反馈如重启进入Settings页面下命令的输出值  MTK产品 输出内容
+
+adb root && adb remount  && adb shell "find /sys/module  -iname '*sar_*'" && adb shell setprop persist.radio.ctbk_log 5  && adb shell setprop persist.vendor.radio.ctbk_log 5   &&  adb shell setprop log.tag.QCSDK D  && adb shell "getprop | grep -e ro.vendor.hw.device -e ro.boot.radio   -e ro.vendor.hw.radio -e ro.carrier ;cd /vendor/firmware/ ; ls -ld $PWD/*  | grep txpowerctrl ; cd /system/etc/motorola/mdmctbk ; ls -ld $PWD/*    | grep ctbk_cfg ; cd /vendor/etc/motorola/mdmctbk ;  ls -ld $PWD/* ;  reboot   " && adb wait-for-device &&  adb shell " logcat | grep -e GNSSOPMode -e ctbk_cfg -e txpowerctrl -e sar_mhs -e sar_sta "
+
+
+```
+
 ```
 
 // txpowerctrl.cfg  如果不包含所有场景 那么 radioid 对应的SKU 就得配置很多文件
-// 请反馈如下命令的输出值
-adb shell "getprop | grep -e ro.vendor.hw.device -e ro.boot.radio   -e ro.vendor.hw.radio -e ro.carrier ;cd /vendor/firmware/ ; ls -ld $PWD/*  | grep txpowerctrl ; cd /system/etc/motorola/mdmctbk ; ls -ld $PWD/*    | grep ctbk_cfg ; cd /vendor/etc/motorola/mdmctbk ;  ls -ld $PWD/* "  
+// 请反馈如重启进入Settings页面下命令的输出值
+adb root && adb remount  && adb shell "find /sys/module  -iname '*sar_*'" && adb shell setprop persist.radio.ctbk_log 5  && adb shell setprop persist.vendor.radio.ctbk_log 5   &&  adb shell setprop log.tag.QCSDK D  && adb shell "getprop | grep -e ro.vendor.hw.device -e ro.boot.radio   -e ro.vendor.hw.radio -e ro.carrier ;cd /vendor/firmware/ ; ls -ld $PWD/*  | grep txpowerctrl ; cd /system/etc/motorola/mdmctbk ; ls -ld $PWD/*    | grep ctbk_cfg ; cd /vendor/etc/motorola/mdmctbk ;  ls -ld $PWD/* ;  reboot   " && adb wait-for-device &&  adb shell " logcat | grep -e GNSSOPMode -e ctbk_cfg -e txpowerctrl -e sar_mhs -e sar_sta "
 
 
 
+Verity is already disabled
+Remounted /system as RW
+Remounted /system_ext as RW
+Remounted /vendor as RW
+Remounted /product as RW
+Remounted /vendor_dlkm as RW
+Remounted /system_dlkm as RW
+Remount succeeded
 [ro.boot.radio]: [NA]                
 [ro.carrier]: [unknown]
 [ro.vendor.hw.device]: [aito]                 //  txpowerctrl_【ro.boot.radio】.cfg   -->  txpowerctrl_NA.cfg
@@ -2541,13 +2558,78 @@ adb shell "getprop | grep -e ro.vendor.hw.device -e ro.boot.radio   -e ro.vendor
 -rw-r--r-- 1 root root 17194 2009-01-01 08:00 /system/etc/skyline/mdmctbk/jp_ctbk_cfg.xml
 -rw-r--r-- 1 root root 17278 2009-01-01 08:00 /system/etc/skyline/mdmctbk/na_ctbk_cfg.xml
 -rw-r--r-- 1 root root 17194 2009-01-01 08:00 /system/etc/skyline/mdmctbk/row_ctbk_cfg.xml
--rw-rw-rw- 1 root root 17194 2025-04-17 18:32 /vendor/etc/skyline/mdmctbk/ctbk_cfg.xml
--rw-rw-rw- 1 root root 17194 2025-04-17 18:32 /vendor/etc/skyline/mdmctbk/docomo_ctbk_cfg.xml
--rw-rw-rw- 1 root root 17194 2025-04-17 18:32 /vendor/etc/skyline/mdmctbk/jp_ctbk_cfg.xml
--rw-rw-rw- 1 root root 17278 2025-04-17 18:32 /vendor/etc/skyline/mdmctbk/na_ctbk_cfg.xml
--rw-rw-rw- 1 root root 17194 2025-04-17 18:32 /vendor/etc/skyline/mdmctbk/row_ctbk_cfg.xml
+/system/bin/sh: cd: /vendor/etc/skyline/mdmctbk: No such file or directory
+-rw-r--r-- 1 root root 17194 2009-01-01 08:00 /system/etc/skyline/mdmctbk/ctbk_cfg.xml
+-rw-r--r-- 1 root root 17194 2009-01-01 08:00 /system/etc/skyline/mdmctbk/docomo_ctbk_cfg.xml
+-rw-r--r-- 1 root root 17194 2009-01-01 08:00 /system/etc/skyline/mdmctbk/jp_ctbk_cfg.xml
+-rw-r--r-- 1 root root 17278 2009-01-01 08:00 /system/etc/skyline/mdmctbk/na_ctbk_cfg.xml
+-rw-r--r-- 1 root root 17194 2009-01-01 08:00 /system/etc/skyline/mdmctbk/row_ctbk_cfg.xml
+04-18 12:45:11.435  1496  1496 D gps_controlller: get_chip_gnss_op_mode: get_chip_gnss_op_mode] GNSSOPMode: 0xa
+04-18 12:45:11.435  1496  1496 D gps_controlller: get_chip_gnss_op_mode: get_chip_gnss_op_mode]: mnld GNSSOPMode: 0xa  ro.vendor.hw.device aito ro.product.is_prc true ro.carrier unknown ro.vendor.hw.radio:NA  persist.vendor.radio.gps_test_mode:
+04-18 12:45:14.315     0     0 I [T400733] sub_wifi_thrd: [name:wlan_drv_gen4m_6878&][wlan][733]get_moto_config_file_name:(RLM ERROR) [MOTO]Use moto config file name: txpowerctrl_na.cfg
+04-18 12:45:14.316   733   733 I sub_wifi_thrd: [name:wlan_drv_gen4m_6878&][wlan][733]kalRequestFirmware:(INIT INFO) kalRequestFirmware(): txpowerctrl_na.cfg OK
+04-18 12:45:19.906     0     0 I [T600735] mtk_wland_threa: [name:wlan_drv_gen4m_6878&][wlan][735]get_moto_config_file_name:(RLM ERROR) [MOTO]Use moto config file name: txpowerctrl_na.cfg
+04-18 12:45:19.907     0     0 I [T600735] mtk_wland_threa: [name:wlan_drv_gen4m_6878&][wlan][735]kalRequestFirmware:(INIT INFO) kalRequestFirmware(): txpowerctrl_na.cfg OK
+04-18 12:45:31.900  2695  2695 D SARCTRL : targetFilepath: /system/etc/skyline/mdmctbk/na_ctbk_cfg.xml
 
 ```
+ <img src="/public/zimage/qocm_issue/mtk_txpower_config_tip.jpg"/>
+
+
+
+
+### Qcom_产品打印视图
+
+```
+adb root && adb remount  && adb shell "find /sys/module  -iname '*sar_*'" && adb shell setprop persist.radio.ctbk_log 5  && adb shell setprop persist.vendor.radio.ctbk_log 5   &&  adb shell setprop log.tag.QCSDK D  && adb shell "getprop | grep -e ro.vendor.hw.device -e ro.boot.radio   -e ro.vendor.hw.radio -e ro.carrier ;cd /vendor/firmware/ ; ls -ld $PWD/*  | grep txpowerctrl ; cd /system/etc/motorola/mdmctbk ; ls -ld $PWD/*    | grep ctbk_cfg ; cd /vendor/etc/motorola/mdmctbk ;  ls -ld $PWD/* ;  reboot   " && adb wait-for-device &&  adb shell " logcat | grep -e GNSSOPMode -e ctbk_cfg -e txpowerctrl -e sar_mhs -e sar_sta "
+
+
+```
+
+
+```
+// 请反馈如重启进入Settings页面下命令的输出值  Qcom产品 输出内容
+restarting adbd as root
+Verity is already disabled
+Remounted /system as RW
+Remounted /system_ext as RW
+Remounted /product as RW
+Remounted /vendor as RW
+Remounted /vendor_dlkm as RW
+Remounted /system_dlkm as RW
+Remounted /vendor/firmware_mnt as RW
+Remounted /vendor/dsp as RW
+Remounted /vendor/bt_firmware as RW
+Remounted /vendor/fsg as RW
+Remount succeeded
+/sys/module/qca_cld3_qca6750/parameters/sar_sta
+/sys/module/qca_cld3_qca6750/parameters/sar_mhs
+[ro.boot.radio]: [NA]
+[ro.carrier]: [unknown]
+[ro.vendor.hw.device]: [xxxx]
+[ro.vendor.hw.radio]: [NA]
+/system/bin/sh: cd: /system/etc/skyline/mdmctbk: No such file or directory
+-rw-r--r-- 1 root root 12528 2009-01-01 08:00 /vendor/etc/skyline/mdmctbk/ctbk_cfg.xml
+
+04-17 18:28:54.341  2401  2614 I MDMCTBK : [0] - MdmCutbackConfigOpenXmlFile:/vendor/etc/skyline/mdmctbk/unknown_na_ctbk_cfg.xml not found, ignore carrier!
+04-17 18:28:54.341  2401  2614 E MDMCTBK : [0] - MdmCutbackConfigOpenXmlFile:Error: unable to parse file /vendor/etc/skyline/mdmctbk/na_ctbk_cfg.xml
+04-17 18:28:54.341  2401  2614 E MDMCTBK : [0] - MdmCutbackConfigOpenXmlFile:try default cfg file /vendor/etc/skyline/mdmctbk/ctbk_cfg.xml
+04-17 18:28:54.343  2401  2614 I MDMCTBK : [0] - MdmCutbackConfigOpenXmlFile:success to parse default xml file /vendor/etc/skyline/mdmctbk/ctbk_cfg.xml
+04-17 18:28:54.344  2401  2614 D MDMCTBK : [0] - addObserver:MdmCutbackFileObserver::addObserver(): path:/sys/module/qca_cld3_qca6750/parameters/sar_sta
+04-17 18:28:54.344  2401  2614 D MDMCTBK : [0] - fwpathStateChanged:fwpathStateChanged, path:/sys/module/qca_cld3_qca6750/parameters/sar_sta mask:7
+04-17 18:28:54.344  2401  2614 I MDMCTBK : [0] - process_netlink_event_wifi_netd:NetlinkHandler, path:/sys/module/qca_cld3_qca6750/parameters/sar_sta, wifi_file_content is
+04-17 18:28:55.345  2401  2614 D MDMCTBK : [0] - addObserver:MdmCutbackFileObserver::addObserver(): path:/sys/module/qca_cld3_qca6750/parameters/sar_mhs
+04-17 18:28:55.345  2401  2614 D MDMCTBK : [0] - fwpathStateChanged:fwpathStateChanged, path:/sys/module/qca_cld3_qca6750/parameters/sar_mhs mask:7
+04-17 18:28:55.345  2401  2614 I MDMCTBK : [0] - process_netlink_event_wifi_netd:NetlinkHandler, path:/sys/module/qca_cld3_qca6750/parameters/sar_mhs, wifi_file_content is
+04-17 18:28:57.819  2401  3061 I MDMCTBK : [0] - MdmCutbackConfigOpenXmlFile:/vendor/etc/skyline/mdmctbk/unknown_na_ctbk_cfg.xml not found, ignore carrier!
+04-17 18:28:57.819  2401  3061 E MDMCTBK : [0] - MdmCutbackConfigOpenXmlFile:Error: unable to parse file /vendor/etc/skyline/mdmctbk/na_ctbk_cfg.xml
+04-17 18:28:57.819  2401  3061 E MDMCTBK : [0] - MdmCutbackConfigOpenXmlFile:try default cfg file /vendor/etc/skyline/mdmctbk/ctbk_cfg.xml
+04-17 18:28:57.820  2401  3061 I MDMCTBK : [0] - MdmCutbackConfigOpenXmlFile:success to parse default xml file /vendor/etc/skyline/mdmctbk/ctbk_cfg.xml
+04-17 18:28:59.430  2401  2648 I MDMCTBK : [0] - onEvent:NetlinkHandler, add sar_sta file observer
+
+```
+
+<img src="/public/zimage/qocm_issue/qcom_txpower_config_tip.jpg"/>
 
 
 
