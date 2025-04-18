@@ -1834,29 +1834,129 @@ Setting > System > Advanced > Developer options >Enable WiFi Verbose Logging  [t
 ```
 
 
-### 通过命令设置GPS_Mode
+### Qcom_GPS模式配置查看_NV70326_GnssConfig
+
+```
+
+Qcom通过QXDM_NVBrowser查看GPS_Mode
+
+QXDM > NV Browser > NV70326 
+ 
+Bit位 描述                                                         当前默认值
+B0    Reserved,GPS set it to 1                                     1
+B1    Controls GLONASS                                             1
+B2    Controls BeiDou  outside of the United States                1
+B3    Controls Galileo outside of the United States                0
+B4    Controls BeiDou  worldwide                                   0
+B5    Controls Galileo worldwide[2]                                0
+B6    Controls QZSS worldwide                                      0
+B7    Reserved, set to 0                                           0
+B8    Controls QZSS outside of the United States                   0
+B9    Controls QZSS L1S (SLAS) in Japan L1S serviceable area       0
+B10   Reserved, set to 0                                           0
+B11   Controls Galileo                                             1
+B12   Controls NavIC outside of the United States                  0
+B13   Controls NavIC worldwide                                     0
+B14   Controls GLONASS G1 qualified                                0
+B15   Controls GLONASS G1 force-enabled                            0
+Other bits Reserved, set to 0
+
+GPS     美国    全球定位系统(Global Positioning System，GPS)      
+GLONASS 俄罗斯  格洛纳斯-俄罗斯实现的国家导航系统    
+Beidou  中国    北斗      
+Galileo 欧洲    伽利略
+QZSS    日本    准天顶卫星系统 Quasi-Zenith Satellite System
+NAVIC(IRNSS)    印度 NAVIC(Navigation with Indian Constellation)  IRNSS(印度区域导航卫星系统(Indian Regional Navigation Satellite System (IRNSS)NAVIC)
+
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤ Qcom GNSS NV70326 GnssConfig 取值列表 ╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+
+NV70326 = 
+0x803 - GPS/GLO/GAL enabled, BDS force enabled, QZSS/NavIC disabled; 
+0x807 - GPS/GLO/GAL enabled, BDS qualified enabled, QZSS/NavIC disabled; 
+0x907 - GPS/GLO/GAL enabled, BDS/QZSS qualified enabled*, NavIC disabled (default)
+0x1905 -GPS/GAL enabled, BDS/QZSS/NavIC qualified enabled*(0001 1001 0000 0101)
+0x1907 -GPS/GLO/GAL enabled, BDS/QZSS/NavIC qualified enabled*
+
+0x803 
+索引:B0  GPS
+索引:B1  GLONASS
+索引:B11 Galileo 
+
+
+
+0x807 
+索引:B0  GPS
+索引:B1  GLONASS
+索引:B2  Beidou  ( outside of US )
+索引:B11 Galileo 
+
+
+
+
+0x907
+索引:B0  GPS
+索引:B1  GLONASS
+索引:B2  Beidou ( outside of US )
+索引:B8  QZSS   ( outside of US ) 
+索引:B11 Galileo 
+
+
+0x1905
+索引:B0  GPS
+索引:B2  Beidou ( outside of US )
+索引:B8  QZSS   ( outside of US ) 
+索引:B11 Galileo 
+索引:B12 NavIC  ( outside of US )
+
+
+
+0x1907
+索引:B0  GPS
+索引:B1  GLONASS
+索引:B2  Beidou ( outside of US )
+索引:B8  QZSS   ( outside of US ) 
+索引:B11 Galileo 
+索引:B12 NavIC  ( outside of US )
+
+
+
+```
+
+
+### MTK通过命令设置GPS_Mode
 ```
 adb root && adb shell setprop persist.vendor.radio.gps_test_mode 4 && adb reboot 
 
 adb logcat | grep GNSSOPMode      //  查看当前GPS模式的打印
  
-0  GPS_GLONASS
-1  GPS_BEIDOU
-2  GPS_GLONASS_BEIDOU
-3  GPS
-4  BEIDOU
-5  GLONASS
-6  GPS_GLONASS_BEIDOU_GALILEO
-7  GPS_GALILEO
-8  GPS_GLONASS_GALILEO
-9  GALILEO
-10  GPS_GLONASS_BEIDOU_GALILEO_NAVIC
-11  BEIDOU_GLONASS_GALILEO_NAVIC
+0        GPS_GLONASS
+1        GPS_BEIDOU
+2        GPS_GLONASS_BEIDOU
+3        GPS
+4        BEIDOU
+5        GLONASS
+6        GPS_GLONASS_BEIDOU_GALILEO
+7        GPS_GALILEO
+8        GPS_GLONASS_GALILEO
+9        GALILEO
+10(0xa)  GPS_GLONASS_BEIDOU_GALILEO_NAVIC
+11(0xb)  BEIDOU_GLONASS_GALILEO_NAVIC
+
+ //  MTK 查看当前GPS模式的打印
+adb logcat | grep GNSSOPMode    
+
+//  MTK 重启查看打印
+adb reboot && adb wait-for-device &&  adb logcat | grep GNSSOPMode  
+
+//输出打印
+:2609:04-16 18:31:10.354  1491  1491 D gps_controlller: get_chip_gnss_op_mode: get_chip_gnss_op_mode]: 
+mnld GNSSOPMode: 0xa 【GNSSOPMode】  ro.vendor.hw.device xxxx  ro.product.is_prc  ro.carrier XXXX  ro.vendor.hw.radio:XXXX  persist.vendor.radio.gps_test_mode:
 
 ```
 
 
-### 通过工模设置 GPS_Mode
+### MTK通过工模设置 GPS_Mode
 ```
 *#*#3646633#*#*
  
