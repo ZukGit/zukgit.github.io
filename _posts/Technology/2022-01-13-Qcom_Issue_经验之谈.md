@@ -2377,6 +2377,84 @@ END
 ```
 
 
+
+
+### Qcom_ctbk_cfg.xml_与mk文件表格数量判断
+
+#### Qcom_SarTable数量
+State22个表
+```
+State22 个表 SarTable  从 <Default index="0" >  -->   <State1  index="1" >  -->  <State22  index="22" >
+
+SAR_WIFI_DBS_SUPPORT
+SAR_CAP_ABSENT_PWR_MINIMUM
+SAR_WIFI_DBS_STANDALONE_DEFAULT
+SAR_WIFI_USB_SUPPORT
+
+```
+
+State21个表
+```
+State21 个表 SarTable  从 <Default index="0" >  -->   <State1  index="1" >  -->  <State21  index="21" >
+
+SAR_WIFI_DBS_SUPPORT
+SAR_WIFI_DBS_STANDALONE_DEFAULT
+SAR_WIFI_USB_SUPPORT
+
+
+```
+
+State20个表
+```
+State20 个表 SarTable  从 <Default index="0" >  -->   <State1  index="1" >  -->  <State20  index="20" >
+
+SAR_WIFI_DBS_SUPPORT
+SAR_WIFI_DBS_STANDALONE_DEFAULT
+SAR_WIFI_USB_SUPPORT
+
+
+```
+
+
+```
+State10 个表 SarTable  从 <Default index="0" >  -->   <State1  index="1" >  -->  <State10  index="10" >
+
+ 没有定义 SAR_WIFI_DBS_SUPPORT 
+
+
+```
+
+
+#### Qcom_SarTable_Version版本
+
+```
+【默认支持DBS版本:】
+SAR_VERSION=23
+SAR_VERSION=33
+SAR_VERSION=35
+SAR_VERSION=110
+
+
+【默认不支持DBS版本:】 可手动添加宏 SAR_WIFI_DBS_SUPPORT 达到支持目的
+SAR_VERSION=20
+SAR_VERSION=22
+SAR_VERSION=32
+SAR_VERSION=34
+
+
+【默认支持BT版本:】 在不支持的版本可手动添加宏 MOT_SAR_BLUETOOTH 达到支持目的
+SAR_VERSION=34
+SAR_VERSION=35
+
+
+
+
+```
+
+
+
+
+
 ### Qcom查看SAR打印Log 
 
 
@@ -3241,6 +3319,20 @@ vendor/qcom/nonhlos/Netrani.XXX/common/build/Ver_Info.txt
  ro.build.version.qcom   : XXXX.XXX.1.0.R1.11.00.00.816.199
  version-baseband        : M6450N_DE21_34.290.01.57R 
  
+```
+
+
+
+### Qcom_更新Firmware固件提交的文件
+
+```
+/nonhlos/WLAN.MSL.3.0.2/wlan_proc/【Git目录】
+/nonhlos/WLAN.MSL.3.0.2/wlan_proc/build/manifest.xml
+/nonhlos/WLAN.MSL.3.0.2/wlan_proc/build/ms/Data.msc
+/nonhlos/WLAN.MSL.3.0.2/wlan_proc/build/ms/bin/QCALAMSLNETRANI/wpss.mbn
+/nonhlos/WLAN.MSL.3.0.2/wlan_proc/build/ms/bin/QCALAMSLNETRANI/wpss.qdb
+/nonhlos/WLAN.MSL.3.0.2/wlan_proc/build/ms/orig_WPSS_PROC_IMG_QCALAMSLNETRANIQ_WLAN_PD.elf
+
 ```
 
 
