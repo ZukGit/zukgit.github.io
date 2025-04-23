@@ -2453,6 +2453,51 @@ SAR_VERSION=35
 
 
 
+#### Qcom_Sar_宏说明
+
+```
+
+<fcc_wifi_tx_pwr_mimo>  <fcc_country_mcc_list> 
+SAR_WIFI_FCC_SEPERATE_SUPPORT    在 ctbk_cfg.xml 子中 存在 tag <fcc_wifi_tx_pwr_mimo>  和  <fcc_country_mcc_list>
+
+
+存在 tag <fcc_wifi_tx_pwr_mimo> 
+SAR_WIFI_MIMO_6G_BDF_SUPPORT
+
+
+// 存在   <wifi_tx0_sensor_config_5ghz>  和   <wifi_tx0_sensor_config_2ghz>
+SAR_WIFI_TX0_SUPPORT
+
+
+// 存在 <bt_tx_pwr>  和  <bt_tx_pwr_wifi_off>
+SAR_BLUETOOTH
+
+// 决定了 sar_sta 和 sar_mhs路径  
+// adb shell "find /sys/module  -iname '*sar_*'"
+// "/sys/module/qca6490/parameters/sar_sta"    "/sys/module/qca6490/parameters/sar_mhs"
+SAR_WIFI_WCN6750
+
+
+// 决定了  热点socket的控制socket节点  "/data/vendor/wifi/hostapd/ctrl/wlan0"   "/data/vendor/wifi/hostapd/ctrl/wlan1"   "/data/vendor/wifi/hostapd/ctrl/wlan2" 
+SAR_WIFI_NO_DBS_SOCKET
+
+
+
+
+
+
+决定了table的数量 看下面的sartable分析
+SAR_WIFI_DBS_SUPPORT
+SAR_CAP_ABSENT_PWR_MINIMUM
+SAR_WIFI_DBS_STANDALONE_DEFAULT
+SAR_WIFI_USB_SUPPORT
+
+```
+
+
+
+
+
 
 
 ### Qcom查看SAR打印Log 
