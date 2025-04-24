@@ -1873,6 +1873,175 @@ Bit位示意图
 <img src="/public/zimage/qocm_issue/nv74255_2.jpg"/>
 
 
+
+
+
+
+
+
+
+
+### Qcom_AGPS模式UP_CP_MSA_MSB_2G_3G支持配置_NV1920
+
+```
+
+1920,AAGPS Positioning Modes Supported,aagps_positioning_modes_supported,AAGPS
+
+NV1920 需要支持的AGPS模式 
+
+默认值为:   65407 (0xFF7F)  
+Units – Bit map
+Type – UINT32
+Range – 0 to 65535
+
+
+Bit0    0  Standalone
+Bit1    1  UP MS-based
+Bit2    2  UP MS-assisted
+Bit3    3  CP MS-based    (2G)
+Bit4    4  CP MS-assisted (2G)
+Bit5    5  CP UE-based    (3G)
+Bit6    6  CP UE-assisted (3G)
+Bit7    7  UP network measurement report (2G)
+Bit8    8  UP MS-based    (4G)
+Bit9    9  UP MS-assisted (4G)
+Bit10   10 CP MS-based    (4G)
+Bit11   11 CP MS-assisted (4G)
+Bit16   16 Enabling of autonomous fallback for SUPL-MSB
+Bit17   17 A-GLONASS UP MS-based for    3G
+Bit18   18 A-GLONASS UP MS-assisted for 3G
+Bit19   19 A-GLONASS CP MS-based for    3G
+Bit20   20 A-GLONASS CP MS-assisted for 3G
+Bit21   21 A-GLONASS UP MS-based for    4G
+Bit22   22 A-GLONASS UP MS-assisted for 4G
+Bit23   23 A-GLONASS CP MS-based for    4G
+Bit24   24 A-GLONASS CP MS-assisted for 4G
+
+LPP(4G)_CP 控制Bit位:  Bit10 Bit11  Bit23 Bit24
+LPP(4G)_UP 控制Bit位:  Bit8  Bit9   Bit21 Bit22
+RRC_3G_CP  控制Bit位:  Bit5  Bit6   Bit19 Bit20
+RRC_3G_UP  控制Bit位:               Bit17 Bit18
+RRLP(2G)_CP控制Bit位:  Bit3  Bit4
+Messure检测控制Bit位:        Bit7    UP network measurement report (2G)
+
+ 
+ 
+默认值:  65407  0xFF7F
+
+#######=============解析  65407   flag=0xff7f   Begin ===========####
+当前解析能力标记位Long(       16进制):0xff7f
+当前解析能力标记位Long( 有符号10进制):65407                 (无符号10进制):65407
+当前解析能力标记位Long( 未补位 2进制):1111111101111111
+当前解析能力标记位Long( 补位   2进制):0000000000000000000000000000000000000000000000001111111101111111
+=============解析能力如下===========
+索引:all  bit位:0000000000000000000000000000000000000000000000001111111101111111
+索引:000  bit位:0000000000000000000000000000000000000000000000000000000000000001  16进制:0x0000000000000001  10进制:1
+索引:001  bit位:0000000000000000000000000000000000000000000000000000000000000010  16进制:0x0000000000000002  10进制:2
+索引:002  bit位:0000000000000000000000000000000000000000000000000000000000000100  16进制:0x0000000000000004  10进制:4
+索引:003  bit位:0000000000000000000000000000000000000000000000000000000000001000  16进制:0x0000000000000008  10进制:8
+索引:004  bit位:0000000000000000000000000000000000000000000000000000000000010000  16进制:0x0000000000000010  10进制:16
+索引:005  bit位:0000000000000000000000000000000000000000000000000000000000100000  16进制:0x0000000000000020  10进制:32
+索引:006  bit位:0000000000000000000000000000000000000000000000000000000001000000  16进制:0x0000000000000040  10进制:64
+索引:008  bit位:0000000000000000000000000000000000000000000000000000000100000000  16进制:0x0000000000000100  10进制:256
+索引:009  bit位:0000000000000000000000000000000000000000000000000000001000000000  16进制:0x0000000000000200  10进制:512
+索引:010  bit位:0000000000000000000000000000000000000000000000000000010000000000  16进制:0x0000000000000400  10进制:1024
+索引:011  bit位:0000000000000000000000000000000000000000000000000000100000000000  16进制:0x0000000000000800  10进制:2048
+索引:012  bit位:0000000000000000000000000000000000000000000000000001000000000000  16进制:0x0000000000001000  10进制:4096
+索引:013  bit位:0000000000000000000000000000000000000000000000000010000000000000  16进制:0x0000000000002000  10进制:8192
+索引:014  bit位:0000000000000000000000000000000000000000000000000100000000000000  16进制:0x0000000000004000  10进制:16384
+索引:015  bit位:0000000000000000000000000000000000000000000000001000000000000000  16进制:0x0000000000008000  10进制:32768
+=============解析能力结束===========
+#######=============解析   flag=0xff7f   End   ===========####
+
+65407 0xFF7F:
+索引:000   Bit 00 Standalone
+索引:001   Bit 01 UP MS-based
+索引:002   Bit 02 UP MS-assisted
+索引:003   Bit 03 CP MS-based    (2G)
+索引:004   Bit 04 CP MS-assisted (2G)
+索引:005   Bit 05 CP UE-based    (3G)
+索引:006   Bit 06 CP UE-assisted (3G)
+索引:008   Bit 08 UP MS-based    (4G)
+索引:009   Bit 09 UP MS-assisted (4G)
+索引:010   Bit 10 CP MS-based    (4G)
+索引:011   Bit 11 CP MS-assisted (4G)
+索引:012 
+索引:013 
+索引:014 
+
+```
+
+<img src="/public/zimage/qocm_issue/gps_nv1920.jpg"/>
+
+
+### Qcom_LPP4G网络下CP_UP控制项_NV67725
+
+``
+67225,Use LPP when on LTE,/nv/item_files/gps/cgps/sm/gnss_lpp_enable,GPS
+
+NV67225
+索引:000   Bit 00  【(Enable LPP(4G)_UP】   Enable LTE User    Plane LPP
+索引:001   Bit 01  【(Enable LPP(4G)_CP】   Enable LTE Control Plane LPP
+索引:002   Bit 02  【(Enable NR_SA(5G)_UP】 Enable 5G NR_SA User    Plane LPP
+索引:003   Bit 03  【(Enable NR_SA(5G)_CP】 Enable 5G NR_SA Control Plane LPP
+索引:004   Bit 04   保留
+索引:005   Bit 05   保留
+
+
+
+// 当前从 NVbrowser 读取到值15  当前NV67725默认值是2 
+INPUT,VALUE,NAME,SIZE,TYPE
+15,15,gnss_lpp_enable,8,Uint8
+
+15的位解析
+#######=============解析 flag=15  flag=0xf    Begin ===========####
+索引:all  bit位:0000000000000000000000000000000000000000000000000000000000001111
+索引:000  bit位:0000000000000000000000000000000000000000000000000000000000000001  16进制:0x0000000000000001  10进制:1
+索引:001  bit位:0000000000000000000000000000000000000000000000000000000000000010  16进制:0x0000000000000002  10进制:2
+索引:002  bit位:0000000000000000000000000000000000000000000000000000000000000100  16进制:0x0000000000000004  10进制:4
+索引:003  bit位:0000000000000000000000000000000000000000000000000000000000001000  16进制:0x0000000000000008  10进制:8
+=============解析能力结束===========
+
+2的位解析
+#######=============解析   flag=2  flag=0x2   Begin ===========####
+索引:001  bit位:0000000000000000000000000000000000000000000000000000000000000010  16进制:0x0000000000000002  10进制:2
+=============解析能力结束===========
+
+
+```
+
+<img src="/public/zimage/qocm_issue/gps_nv67225.jpg"/>
+
+
+
+### Qcom_LPPe4G_UP控制项_NV73863
+
+```
+
+INPUT,VALUE,NAME,SIZE,TYPE
+0x1 | LPPE_DBH_ENABLE | LPPE_WLAN_ENABLE | 0x10,0x1 | LPPE_DBH_ENABLE | LPPE_WLAN_ENABLE | 0x10,gnss_lppe_up_config,32,Bitmask
+
+
+
+0=NILR(NI) === NetWork Initiate LocationRequest  ===  2G CP Test Scenario (NI)
+1=MTLR(NI) === Mobile Terminated LocationRequest  ===  2G CP Test Scenario – MTLR, request additional assist data
+2=MOLR(SI) === Mobile Originated Location Request ===  2G CP Test Scenario – MOLR-Location Estimate
+
+UBP === uncompensated barometric pressure  === 无补偿气压技术 ===  用于Z轴定位
+
+DBH ===  Device-Based Hybrid ===  混合3D高精度 定位 
+
+Civic Address  ===   市民地址 === "urn:ietf:params:xml:ns:pidf:geopriv10:civicAddr:ext" per IETF RFC 6848 [15]
+
+```
+
+<img src="/public/zimage/qocm_issue/gps_nv73863.jpg"/>
+
+
+
+
+
+
 ### Qcom_GPS模式配置查看_NV70326_GnssConfig
 
 
@@ -5905,6 +6074,66 @@ Used-in-fix constellation types: GPS GLONASS QZSS BEIDOU GALILEO
 ```
 
 
+
+### MTK_agps_profiles_conf2.xml 说明
+
+```
+
+agps_profiles_conf2.xml路径：
+ agps_profiles_conf2.xml的device路径：/vendor/etc/gnss/agps_profiles_conf2.xml
+ codebase路径：/device/mediatek/vendor/common/agps/agps_profiles_conf2.xml
+
+ 
+SUPL证书转换方法：
+(Android Q ~  with Split Build) 
+转换工具在：   alps/device/mediatek/vendor/common/agps/certutil/gen_hash_name/host/linux-x86   
+
+
+1_do_translate_in_linux.sh
+Input: ./CERT/
+No white space in the file name
+Output A: ./0_pem_md5/
+Use this in Android
+
+转好放在：      alps/device/mediatek/vendor/common/agps/certutil/files/cacerts_supl_lab 
+Path in Device:   /vendor/etc/security/cacerts_supl/lab
+
+
+
+```
+
+#### MTLR
+```
+
+
+agps_profiles_conf2.xml 上面的参数主要是设置UP的以及UP给modem的设置
+(0=NILR 1=MTLR 2=MOLR 3=QUERY 4=MLR)是属于CP来的位置请求，它代表不同的主体来拿位置。 
+
+gps_open_ind  type=0 (0=NILR 1=MTLR 2=MOLR 3=QUERY 4=MLR)
+
+0=NILR(NI) === NetWork Initiate LocationRequest  ===  2G CP Test Scenario (NI)
+1=MTLR(NI) === Mobile Terminated LocationRequest  ===  2G CP Test Scenario – MTLR, request additional assist data
+2=MOLR(SI) === Mobile Originated Location Request ===  2G CP Test Scenario – MOLR-Location Estimate
+
+
+
+```
+
+
+
+#### MTK_agps_profiles_conf2.xml需求列表
+```
+
+
+
+1需求：SUPL_START消息中不添加QoP信息
+ 1是支持，需要修改agps_profiles_conf2.xml中 qop_hacc="0"，
+
+6需求: 为Docomo禁用MT-LR。
+  修改 agps_profiles_conf2.xml中 reject_non911_nilr_enable ="true"
+  MTLR(NI) === Mobile Terminated LocationRequest
+  NILR(NI) === NetWork Initiate LocationRequest
+```
 
 ### MTK_agpsd版本号查看
 
