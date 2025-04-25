@@ -2422,6 +2422,241 @@ or any subsequent SUPL_POS from the SLP.
 ```
 
 
+
+
+
+#### Qcom_Xtra_辅助数据服务功能控制_NV4627
+
+```
+
+ID    – 04627
+Type  – Boolean
+Range – TRUE/FALSE
+Units – NA
+Default value – TRUE (enabled)
+
+
+Descripton
+This NV item enables/disables the GNSS assistance service feature 【 enables/disables  Qcom GPS Xtra Feature 】.
+
+INPUT,VALUE,NAME,SIZE,TYPE   // 当前默认位true  打开
+True,True,gps1_xtra_enabled,8,Bool
+
+
+```
+
+
+#### Qcom_Xtra_辅助数据服务下载次数控制_NV4629
+
+```
+ID – 04629
+Type – UINT8
+Range – 0 to 10 Units – NA
+Default value – 3
+
+
+INPUT,VALUE,NAME,SIZE,TYPE   // 即一天下载 xtra的数量限制  为3  , 可以 改成 1000试一试 下次
+3,3,gps1_xtra_num_download_attempts,8,Uint8
+
+Descripton
+This NV item specifies the number of unsuccessful file download attempts before aborting requests.
+
+
+How to confgure
+The manufacturer chooses this value.
+When MPSS detects that XTRA has expired, it generates the on-demand XTRA request. If the
+requirement is not met from the APSS client, then MPSS will retry to download XTRA data after 10
+minutes—the default value of NV4630.
+If MPSS is running but APSS is in low power state, retrying to download XTRA data may lead to APSS wakeup. 
+Though APSS wakeup is acceptable, OEM can disable this retry of download by setting NV
+4629 to 0. In such case, the next download will be allowed only after 12 hours.
+
+
+
+
+```
+
+
+#### Qcom_Xtra_辅助数据服务下载时间间隔控制_NV4630
+
+```
+
+ID – 04630  ----- GNSS assistance service tme between atempts 
+Type – UINT8 Range:
+      1 to 120
+      2 to 120 for devices with Location software v22 and later.
+Units – Minutes
+Default value – 10
+
+
+Descripton
+This NV item specifies the number of minutes between unsuccessful file download requests 
+sent to the GNSS assistance service client.
+
+
+INPUT,VALUE,NAME,SIZE,TYPE   // 下载xtra数据失败 之后重试的时间间隔
+10,10,gps1_xtra_time_between_attempts,8,Uint8
+
+
+
+```
+
+
+#### Qcom_Xtra_辅助数据服务下载url配置_NV4632
+
+```
+
+ID    – 04632  ----- GNSS assistance service primary server URL
+Type  – 128 char string
+Range – NULL-terminated ASCII
+Units – NA
+Default value – See the following description
+
+
+Descripton:  QCOm xtra 辅助数据下载定位数据的主url:
+This NV item specifies the URL of the primary GNSS assistance service server. The latest server URLs:
+
+
+v1.0【GPS】 only predictions     (v1.0 devices) – 
+https://path1.xtracloud.net/xtra.bin
+
+v2.0 【GPS+GLO】  predictions     (v2.0 devices) – 
+https://path1.xtracloud.net/xtra2.bin
+
+v3.0【GPS+GLO+BDS】  predictions  (v3.0 devices) – 
+https://path1.xtracloud.net/xtra3grc.bin 
+
+v3.1【GPS+GLO+BDS+GAL+QZSS】  predictions (v3.1 devices and higher) –
+https://path1.xtracloud.net/xtra3grcej.bin
+ 
+在url中 g-GPS r-GLO c-DBS e-GAL j-QZSS  i-Navic
+
+
+
+Most common GNSS assistance service v3.x files:       可选的xtta辅助数据信息url下载地址
+https://path1.xtracloud.net/xtra3gr.bin      (GPS + GLO)
+https://path1.xtracloud.net/xtra3grc.bin     (GPS + GLO + BDS) – common for MPSS.JO modems
+https://path1.xtracloud.net/xtra3grcj.bin    (GPS + GLO + BDS + QZSS)
+https://path1.xtracloud.net/xtra3grcej.bin   (GPS + GLO + BDS + GAL + QZSS)
+https://path1.xtracloud.net/xtra3Mgrcej.bin  (GPS + GLO + BDS + GAL + QZSS, Multiband enabled)
+https://path1.xtracloud.net/xtra3Mgrbeji.bin (GPS + GLO + BDS + GAL + QZSS + NavIC, common for MPSS.HI modems,dynamically URL selection, no configuration required)
+
+
+
+
+INPUT,VALUE,NAME,SIZE,TYPE   // 当前值是 https://xtrapath1.izatcloud.net/xtra3grcej.bin
+https://xtrapath1.izatcloud.net/xtra3grcej.bin, 【INPUT】
+https://xtrapath1.izatcloud.net/xtra3grcej.bin,【VALUE】
+gps1_xtra_primary_server_url,【NAME】       
+368,【SIZE】
+Char8[] 【TYPE】
+
+
+If OEM configures the device with different constellation combination in NV#70326, change the filename accordingly.
+
+如果OEM在 nv#70326 GPS_Mode 中配置了不同星座组合的设备，请相应地更改文件名 使得对应的xtra url 能及时得到辅助数据的支持
+
+
+
+ID – 04633  --- GNSS assistance service secondary server URL 
+同 NV4632 是一个第二xtra候选的url ,（当第一个url NV4632 不工作时 使用该辅助url）
+Type – 128 char string
+Range – NULL-terminated ASCII
+Units – NA
+Default value – See the following description:
+
+
+INPUT,VALUE,NAME,SIZE,TYPE  // 当前值
+https://xtrapath1.izatcloud.net/xtra3grcej.bin,
+https://xtrapath1.izatcloud.net/xtra3grcej.bin,
+gps1_xtra_primary_server_url,368,Char8[]
+
+
+
+ID – 04634  --- GNSS assistance service tertary server URL 
+Type – 128 char string
+Range – NULL-terminated ASCII
+Units – NA
+Default value – See the following description
+
+同 NV4632 是一个第三个xtra候选的url ,（当第一个url NV4632 不工作时 使用该辅助url）
+
+INPUT,VALUE,NAME,SIZE,TYPE  // 当前值
+https://xtrapath3.izatcloud.net/xtra3grcej.bin,
+https://xtrapath3.izatcloud.net/xtra3grcej.bin,
+gps1_xtra_tertiary_server_url,  368,   Char8[]
+
+
+```
+
+
+#### Qcom_Xtra_辅助数据服务使能NTP时间注入_NV4927
+
+```
+ID – 04927  --- GNSS assistance service tmeinjecton enable/disable
+Type – UINT8
+Range – 0 or 1
+Units – Enumeration
+Default value – 1 (enabled)
+
+
+0 – Disables time injection feature 
+1 – Enables time injection feature
+
+
+启用此功能后，定位子系统可以向GNsS辅助服务客户端发送请求，从internet/网络上的服务器检索SNTP时间信息，
+并通过适当的API注入。这可以提高定位的速度和精度。
+如果系统还没有时间感，则在定位会话期间向客户端发送时间请求。
+这通常在异步网络上更常见，因为同步网络上的时间很充裕。
+
+
+INPUT,VALUE,NAME,SIZE,TYPE
+1,1,gps1_xtra_time_info_enabled,8,Uint8
+
+```
+
+
+#### Qcom_Xtra_时间timeNTP时间注入url_NV4930
+
+```
+
+ID   – 04930  ------- GNSS assistance service primary NTP server URL
+Type – 128 char string
+Range – NULL-terminated ASCII
+Units – NA
+Default value – time.xtracloud.net (or set by licensee)
+
+
+INPUT,VALUE,NAME,SIZE,TYPE  // 当前默认值  time.xtracloud.net
+time.xtracloud.net,time.xtracloud.net,gps1_xtra_primary_sntp_server_url,144,Char8[]
+
+```
+
+
+
+#### Qcom_Xtra_辅助数据有效时间控制_NV65604
+
+
+```
+
+ID   – 65604   ---- GNSS assistance service data preferred maximum valid age
+Type – UINT16
+Range – 24 to 168
+Units – Hours
+Default value – 168 or 72 (hours)
+
+
+描述NV项指定GNSS辅助服务数据的首选最大有效时间。
+最新手机平台默认为3天，其他平台为7天。
+如果在会话开始时，XTRA文件的年龄大于首选的有效年龄，则从Modem请求刷新XTRA文件。
+如果需要更频繁地刷新XTRA文件，则oem可以指定较小的值， 如48小时或24小时。
+
+
+```
+
+
+
+
 ### MTK通过命令设置GPS_Mode
 ```
 adb root && adb shell setprop persist.vendor.radio.gps_test_mode 4 && adb reboot 
