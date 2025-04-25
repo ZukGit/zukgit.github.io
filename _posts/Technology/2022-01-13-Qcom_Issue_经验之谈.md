@@ -2656,6 +2656,20 @@ Default value – 168 or 72 (hours)
 
 
 
+### Qcom_Enable_Navic的NV配置项
+```
+
+Enable Navic
+
+NV70255   0x2FF
+NV70326   0x1907
+NV4632    https://path1.xtracloud.net/xtra3Mgrbeji.bin
+NV4633    https://path2.xtracloud.net/xtra3Mgrbeji.bin
+NV4634    https://path3.xtracloud.net/xtra3Mgrbeji.bin
+
+
+```
+
 
 ### MTK通过命令设置GPS_Mode
 ```
