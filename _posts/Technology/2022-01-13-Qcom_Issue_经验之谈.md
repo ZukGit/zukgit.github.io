@@ -1976,7 +1976,7 @@ Messure检测控制Bit位:        Bit7    UP network measurement report (2G)
 
 ### Qcom_LPP4G网络下CP_UP控制项_NV67725
 
-``
+```
 67225,Use LPP when on LTE,/nv/item_files/gps/cgps/sm/gnss_lpp_enable,GPS
 
 NV67225
@@ -2038,6 +2038,8 @@ Civic Address  ===   市民地址 === "urn:ietf:params:xml:ns:pidf:geopriv10:civ
 <img src="/public/zimage/qocm_issue/gps_nv73863.jpg"/>
 
 
+
+### Qcom_LPPe4G_CP控制项_NV73863
 
 
 
@@ -2128,6 +2130,292 @@ NV70326 =
 索引:B8  QZSS   ( outside of US ) 
 索引:B11 Galileo 
 索引:B12 NavIC  ( outside of US )
+
+
+
+```
+
+
+
+
+
+
+### Qcom_LPPe4G_CP控制项_NV73888
+
+```
+默认值:0  当前值535
+INPUT,VALUE,NAME,SIZE,TYPE
+535,535,gnss_lppe_cp_config,32,Uint32
+
+
+B0    Enable/disable LPPe for CP  
+B1    Enable/disable DBH for CP           
+B2    Enable/disable WLAN measurements for CP         
+B3    Enable/disable SRN BTLE for CP              
+B4    Enable/disable UBP for CP                        
+B9    Enable/disable LPPe in non-E911 CP NILR sessions              
+B10   Enable/disable civic address for CP                                 
+Other Reserved
+
+
+#######=============解析  int=535  hex=0x217   Begin ===========####
+索引:000  bit位:0000000000000000000000000000000000000000000000000000000000000001  16进制:0x0000000000000001  10进制:1
+索引:001  bit位:0000000000000000000000000000000000000000000000000000000000000010  16进制:0x0000000000000002  10进制:2
+索引:002  bit位:0000000000000000000000000000000000000000000000000000000000000100  16进制:0x0000000000000004  10进制:4
+索引:004  bit位:0000000000000000000000000000000000000000000000000000000000010000  16进制:0x0000000000000010  10进制:16
+索引:009  bit位:0000000000000000000000000000000000000000000000000000001000000000  16进制:0x0000000000000200  10进制:512
+ 
+ 
+候选值: 535
+索引:000   Enable LPPe for CP  
+索引:001   Enable DBH for CP     
+索引:002   Enable WLAN measurements for CP      
+索引:004   Enable UBP for CP          
+索引:009   Enable LPPe in non-E911 CP NILR sessions   
+
+
+```
+
+<img src="/public/zimage/qocm_issue/nv73888.jpg"/>
+
+
+
+
+
+### Qcom_AGPS_定位模式支持控制项_NV74334
+
+```
+ GNSS NV A-GPS positioning modes supported ext
+
+默认值:0    当前值:255
+INPUT,  VALUE,   NAME,                                 SIZE,    TYPE
+  255,    255,   aagps_positioning_modes_supported_ext,  64,  Uint64
+
+
+Bit0   Enable/disable AGNSS NR CP LPP GPS MS-BASED
+Bit1   Enable/disable AGNSS NR CP LPP GPS MS-ASSISTED
+Bit2   Enable/disable AGNSS NR CP LPP GLO MS-BASED
+Bit3   Enable/disable AGNSS NR CP LPP GLO MS-ASSISTEDD
+Bit4   Enable/disable AGNSS NR UP LPP GPS MS-BASED
+Bit5   Enable/disable AGNSS NR UP LPP GPS MS-ASSISTED
+Bit6   Enable/disable AGNSS NR UP LPP GLO MS-BASED
+Bit7   Enable/disable AGNSS NR UP LPP GLO MS-ASSISTED
+Bit8   Enable/disable AGNSS NR RRLP UP GPS MS-BASED
+Bit9   Enable/disable AGNSS NR RRLP UP GPS MS-ASSISTED
+Bit10  Enable/disable AGNSS NR RRLP UP GLO MS-BASED
+Bit11  Enable/disable AGNSS NR RRLP UP GLO MS-ASSISTED
+Bit12  Enable/disable AGNSS NR RRLP UP BDS MS-BASED
+Bit13  Enable/disable AGNSS NR RRLP UP BDS MS-ASSISTED
+Bit14  Enable/disable AGNSS NR LPP UP BDS MS-BASED
+Bit20  Enable/disable AGNSS NR LPP CP ECID
+Other  bits Reserved
+
+
+
+int=255  hex=0xff   
+索引:000   Enable AGNSS NR CP LPP GPS MS-BASED
+索引:001   Enable AGNSS NR CP LPP GPS MS-ASSISTED
+索引:002   Enable AGNSS NR CP LPP GLO MS-BASED
+索引:003   Enable AGNSS NR CP LPP GLO MS-ASSISTEDD
+索引:004   Enable AGNSS NR UP LPP GPS MS-BASED
+索引:005   Enable AGNSS NR UP LPP GPS MS-ASSISTED
+索引:006   Enable AGNSS NR UP LPP GLO MS-BASED
+索引:007   Enable AGNSS NR UP LPP GLO MS-ASSISTED
+
+
+
+
+```
+
+
+<img src="/public/zimage/qocm_issue/nv74334.jpg"/>
+
+
+### Qcom_SUPL版本控制_NV6792
+
+```
+
+ID – 6792
+Type – UINT32
+Range – NA
+Units – NA
+Default value – 0x00010000
+
+
+当权值:   131076 ==  0x20004
+INPUT,VALUE,NAME,SIZE,TYPE
+131076,131076,gnss_SUPL_Version,32,Uint32
+
+
+Descripton
+This NV item determines the SUPL version used in an SI session, 
+and the highest possible SUPL major version used in an NI session.
+Supported versions:
+
+
+0x10000 【65536】–  SUPL 1.0 (default)
+0x20000 【131072】– SUPL 2.0 (with LTE supported)
+0x20002 【131074】– SUPL 2.0.2 (with LPPe supported)
+0x20004 【131076】– SUPL 2.0.4 (with LPPe and 5G NR supported)
+
+
+// 这个NV值会在 config.xml 或者 gps.conf 中 被覆盖 
+This NV item can be written by SUPL_VER from HLOS (carrier config.xml or gps.conf) 
+QMI LOC during the bootup or SIM change.
+
+
+```
+
+
+<img src="/public/zimage/qocm_issue/nv6792.jpg"/>
+
+
+
+
+### Qcom_SUPL_TLS1.1_TLS1.0_选择_NV3758
+```
+Descripton
+This NV item determines whether to use transport security for SUPL sessions.How to confgure
+
+ID – 3758
+Type – UINT8
+Range – NA
+Units – Bit map
+Default value – 【1】
+
+
+Bit 0 – To enable/disable transport security
+        0 – Disables security
+		1 – Enables security (default)
+Bit 1 – To select the TLS version when SUPL 2.0 is selected for call flow.
+        0 – TLS 1.1 (default)1 – TLS 1.0
+        1 – TLS 1.0
+Bit 2 – To select the SHA version when SUPL2.0 is selected for call flow.
+        0 – SHA-256 (default)
+		1 – SHA-1
+
+```
+
+
+### Qcom_SUPL_UP使能_NV65811
+```
+
+ID – 65811
+Type – UINT8
+Range – NA
+Units – Bitmap
+Default value – 0 (0x0)
+
+Bit 0 – To enable SUPL as user plane protocol on 1X.
+         0 – Disables SUPL on 1X (default)
+         1 – Enables SUPL on 1X
+
+```
+
+
+### Qcom_SUPL_TLS1.2_使能_NV74121
+
+```
+
+优先检查 NV74121_TLS1.2 , 没有配置 NV74121 才回去检查NV3758  检查 TLS1.1_TLS1.0
+   
+ID – 74121
+Type – UINT32
+Range – 0 to 0xFFFFFFFF
+Units – N/A
+Default value – Varies across different targets
+
+
+1 ––––––  TLS 1.2 enabled  –––––– Applicable for targets with C#3880572, including all the devices with
+0 ––––––  TLS 1.2 disabled –––––– Applicable for targets without CR#3880572.
+ NV#3758 is checked only when NV#74121 is not configured. 
+
+
+Lower 16 bits are used to configure TLS support.
+
+Bit0          – TLS 1.2 enabled/disabled.
+Bit1 to Bit15 – Reserved for newer TLS versions.
+
+```
+
+
+
+### Qcom_SUPL_SI(3G)时_CP_UP的选中项_NV4707
+
+```
+MO method (UMTS only)
+ID – 04707
+Type – UINT8
+Range – 0 or 1
+Units – Enumeration Default value – 1
+
+Descripton
+This NV item specifies if the mobile-originated (MO) GPS session 
+must use the 【control plane】 session or 【user plane】 session.
+
+0 – Control plane 
+1 – User plane
+
+设备SI 发起会话请求时 使用 CP 还是 UP 
+
+
+当前值: 1  当前使用用户面
+INPUT,VALUE,NAME,SIZE,TYPE
+1,1,cgps_mo_method,8,Uint8
+
+
+```
+
+<img src="/public/zimage/qocm_issue/nv4707.jpg"/>
+
+
+#### Qcom_SUPL_UT1_UT2_UT3_会话超时_NV2787
+
+```
+UT1 ---> UE Time1  用户设备时间1   设备UE发送SUPL_START 到得到TE反馈Response的超时时间
+UT2 ---> UE Time2  用户设备时间2   设备UE发送SUPL_POS_INIT  到得到TE反馈 SUPL_POS 的超时时间
+UT3 ---> UE Time3  用户设备时间3   设备UE发送SUPL_POS  到 TE反馈 SUPL_END的超时时间
+
+PreSUPL UE timer1
+ID – 02787
+Type – UINT32
+Range – 0 to 255 Units – Seconds
+Default value – 20  // 默认值时 20秒
+INPUT,VALUE,NAME,SIZE,TYPE // 当前读取值10
+10,10,aagps_default_presupl_ue_timer1_value,32,Uint32
+
+ID – 02787 Descripton
+This NV item is used for SUPL although the name remains PreSUPL UE Timer1 for legacy reasons.
+This is the timeout from the UE sending SUPL_START to its receipt of SUPL_RESPONSE from the SLP. 
+The same value is also used for the timer used to wait for the initial datalink to be established.
+
+
+PreSUPL UE timer2
+ID – 02788
+Type – UINT32
+Range – 0 to 255 Units – Seconds
+Default value – 20            // 默认值20 
+INPUT,VALUE,NAME,SIZE,TYPE   // 当前读取值10
+10,10,aagps_default_presupl_ue_timer2_value,32,Uint32
+
+ID – 02788 Descripton
+This NV item is used for SUPL although the name remains PreSUPL UE Timer2 for legacy reasons.
+This is the timeout from the UE sending SUPL_POS_INIT to its receipt of the first SUPL_POS from the SLP.
+
+
+PreSUPL UE timer3
+ID – 02789
+Type – UINT32
+Range – 0 to 255 Units – Seconds 
+Default value – 20   // 默认值20 
+INPUT,VALUE,NAME,SIZE,TYPE  // 当前读取值10 
+10,10,aagps_default_presupl_ue_timer3_value,32,Uint32
+
+ID – 02789  Descripton: 
+This NV item is used for SUPL although the name remains PreSUPL UE Timer3 for legacy reasons.
+This is the timeout from the UE sending SUPL_POS to its receipt of SUPL_END from the SLP, 
+or any subsequent SUPL_POS from the SLP.
+
 
 
 
