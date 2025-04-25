@@ -2661,7 +2661,7 @@ Default value – 168 or 72 (hours)
 
 Enable Navic
 
-NV70255   0x2FF
+NV74255   0x27    【gnss_multiband_configuration】                       
 NV70326   0x1907
 NV4632    https://path1.xtracloud.net/xtra3Mgrbeji.bin
 NV4633    https://path2.xtracloud.net/xtra3Mgrbeji.bin
@@ -3493,7 +3493,7 @@ adb push ./txpowerctrl.cfg   /vendor/firmware/
 ```
 // 请反馈如重启进入Settings页面下命令的输出值  MTK产品 输出内容
 
-adb root && adb remount  && adb shell "find /sys/module  -iname '*sar_*'" && adb shell setprop persist.radio.ctbk_log 5  && adb shell setprop persist.vendor.radio.ctbk_log 5   &&  adb shell setprop log.tag.QCSDK D  && adb shell "getprop | grep -e ro.vendor.hw.device -e ro.boot.radio   -e ro.vendor.hw.radio -e ro.carrier ;cd /vendor/firmware/ ; ls -ld $PWD/*  | grep txpowerctrl ; cd /system/etc/motorola/mdmctbk ; ls -ld $PWD/*    | grep ctbk_cfg ; cd /vendor/etc/motorola/mdmctbk ;  ls -ld $PWD/* ;  reboot   " && adb wait-for-device &&  adb shell " logcat | grep -e GNSSOPMode -e ctbk_cfg -e txpowerctrl -e sar_mhs -e sar_sta "
+adb root && adb remount  && adb shell cmd wifi start-softap Wifi_2412 open -b 2  -f 2412 > NUL 2>&1  &&   adb shell  "cd /data/vendor/wifi/hostapd/ctrl/ ; ls -ld $PWD/* "  &&  adb shell "find /sys/module  -iname '*sar_*'"  && adb shell setprop persist.radio.ctbk_log 5  && adb shell setprop persist.vendor.radio.ctbk_log 5   &&  adb shell setprop log.tag.QCSDK D  && adb shell "getprop | grep -e ro.vendor.hw.device -e ro.boot.radio   -e ro.vendor.hw.radio -e ro.carrier ;cd /vendor/firmware/ ; ls -ld $PWD/*  | grep txpowerctrl    ; cd /system/etc/motorola/mdmctbk ; ls -ld $PWD/*    | grep ctbk_cfg ; cd /vendor/etc/motorola/mdmctbk ;  ls -ld $PWD/*    "  &&   adb root &&   adb reboot && adb wait-for-device  &&  adb shell " logcat | grep -e GNSSOPMode -e ctbk_cfg -e txpowerctrl -e sar_mhs -e sar_sta -e wifi/hostapd/ctrl  "
 
 
 ```
@@ -3502,9 +3502,7 @@ adb root && adb remount  && adb shell "find /sys/module  -iname '*sar_*'" && adb
 
 // txpowerctrl.cfg  如果不包含所有场景 那么 radioid 对应的SKU 就得配置很多文件
 // 请反馈如重启进入Settings页面下命令的输出值
-adb root && adb remount  && adb shell "find /sys/module  -iname '*sar_*'" && adb shell setprop persist.radio.ctbk_log 5  && adb shell setprop persist.vendor.radio.ctbk_log 5   &&  adb shell setprop log.tag.QCSDK D  && adb shell "getprop | grep -e ro.vendor.hw.device -e ro.boot.radio   -e ro.vendor.hw.radio -e ro.carrier ;cd /vendor/firmware/ ; ls -ld $PWD/*  | grep txpowerctrl ; cd /system/etc/motorola/mdmctbk ; ls -ld $PWD/*    | grep ctbk_cfg ; cd /vendor/etc/motorola/mdmctbk ;  ls -ld $PWD/* ;  reboot   " && adb wait-for-device &&  adb shell " logcat | grep -e GNSSOPMode -e ctbk_cfg -e txpowerctrl -e sar_mhs -e sar_sta "
-
-
+adb root && adb remount  && adb shell cmd wifi start-softap Wifi_2412 open -b 2  -f 2412 > NUL 2>&1  &&   adb shell  "cd /data/vendor/wifi/hostapd/ctrl/ ; ls -ld $PWD/* "  &&  adb shell "find /sys/module  -iname '*sar_*'"  && adb shell setprop persist.radio.ctbk_log 5  && adb shell setprop persist.vendor.radio.ctbk_log 5   &&  adb shell setprop log.tag.QCSDK D  && adb shell "getprop | grep -e ro.vendor.hw.device -e ro.boot.radio   -e ro.vendor.hw.radio -e ro.carrier ;cd /vendor/firmware/ ; ls -ld $PWD/*  | grep txpowerctrl    ; cd /system/etc/motorola/mdmctbk ; ls -ld $PWD/*    | grep ctbk_cfg ; cd /vendor/etc/motorola/mdmctbk ;  ls -ld $PWD/*    "  &&   adb root &&   adb reboot && adb wait-for-device  &&  adb shell " logcat | grep -e GNSSOPMode -e ctbk_cfg -e txpowerctrl -e sar_mhs -e sar_sta -e wifi/hostapd/ctrl  "
 
 Verity is already disabled
 Remounted /system as RW
@@ -3514,9 +3512,12 @@ Remounted /product as RW
 Remounted /vendor_dlkm as RW
 Remounted /system_dlkm as RW
 Remount succeeded
+srwxrwx--- 1 wifi wifi 0 2025-04-24 23:07 /data/vendor/wifi/hostapd/ctrl/wlan0    【热点控制的socket   SAR_WIFI_NO_DBS_SOCKET 有关 】
+/sys/module/qca_cld3_qca6750/parameters/sar_sta         【监控wifi打开的结点】
+/sys/module/qca_cld3_qca6750/parameters/sar_mhs         【监控热点打开的结点】
 [ro.boot.radio]: [NA]                
 [ro.carrier]: [unknown]
-[ro.vendor.hw.device]: [aito]                 //  txpowerctrl_【ro.boot.radio】.cfg   -->  txpowerctrl_NA.cfg
+[ro.vendor.hw.device]: [skyline]                 //  txpowerctrl_【ro.boot.radio】.cfg   -->  txpowerctrl_NA.cfg
 [ro.vendor.hw.radio]: [NA]                    // 【ro.carrier】_【ro.vendor.hw.radio】_ctbk_cfg.xml   -->  na_ctbk_cfg.xml
 -rw-r--r-- 1 root root    3200 2009-01-01 08:00 /vendor/firmware/txpowerctrl.cfg
 -rw-r--r-- 1 root root   14163 2009-01-01 08:00 /vendor/firmware/txpowerctrl_DOCOMO.cfg
@@ -3550,9 +3551,15 @@ Remount succeeded
 
 ### Qcom_产品打印视图
 
-```
-adb root && adb remount  && adb shell "find /sys/module  -iname '*sar_*'" && adb shell setprop persist.radio.ctbk_log 5  && adb shell setprop persist.vendor.radio.ctbk_log 5   &&  adb shell setprop log.tag.QCSDK D  && adb shell "getprop | grep -e ro.vendor.hw.device -e ro.boot.radio   -e ro.vendor.hw.radio -e ro.carrier ;cd /vendor/firmware/ ; ls -ld $PWD/*  | grep txpowerctrl ; cd /system/etc/motorola/mdmctbk ; ls -ld $PWD/*    | grep ctbk_cfg ; cd /vendor/etc/motorola/mdmctbk ;  ls -ld $PWD/* ;  reboot   " && adb wait-for-device &&  adb shell " logcat | grep -e GNSSOPMode -e ctbk_cfg -e txpowerctrl -e sar_mhs -e sar_sta "
 
+```
+adb root && adb remount  && adb shell cmd wifi start-softap Wifi_2412 open -b 2  -f 2412 > NUL 2>&1  &&   adb shell  "cd /data/vendor/wifi/hostapd/ctrl/ ; ls -ld $PWD/* "  &&  adb shell "find /sys/module  -iname '*sar_*'"  && adb shell setprop persist.radio.ctbk_log 5  && adb shell setprop persist.vendor.radio.ctbk_log 5   &&  adb shell setprop log.tag.QCSDK D  && adb shell "getprop | grep -e ro.vendor.hw.device -e ro.boot.radio   -e ro.vendor.hw.radio -e ro.carrier ;cd /vendor/firmware/ ; ls -ld $PWD/*  | grep txpowerctrl    ; cd /system/etc/motorola/mdmctbk ; ls -ld $PWD/*    | grep ctbk_cfg ; cd /vendor/etc/motorola/mdmctbk ;  ls -ld $PWD/*    "  &&   adb root &&   adb reboot && adb wait-for-device  &&  adb shell " logcat | grep -e GNSSOPMode -e ctbk_cfg -e txpowerctrl -e sar_mhs -e sar_sta -e wifi/hostapd/ctrl  "
+
+
+```
+
+```
+adb <command> > NUL 2>&1     【ADB静默执行】
 
 ```
 
@@ -3572,8 +3579,10 @@ Remounted /vendor/dsp as RW
 Remounted /vendor/bt_firmware as RW
 Remounted /vendor/fsg as RW
 Remount succeeded
-/sys/module/qca_cld3_qca6750/parameters/sar_sta
-/sys/module/qca_cld3_qca6750/parameters/sar_mhs
+
+srwxrwx--- 1 wifi wifi 0 2025-04-24 23:07 /data/vendor/wifi/hostapd/ctrl/wlan0    【热点控制的socket   SAR_WIFI_NO_DBS_SOCKET 有关 】
+/sys/module/qca_cld3_qca6750/parameters/sar_sta         【监控wifi打开的结点】
+/sys/module/qca_cld3_qca6750/parameters/sar_mhs         【监控热点打开的结点】
 [ro.boot.radio]: [NA]
 [ro.carrier]: [unknown]
 [ro.vendor.hw.device]: [xxxx]
