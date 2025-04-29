@@ -4075,5 +4075,21 @@ wlan.twt.requester   //  TWT   TWT请求响应帧  This STA is a TWT Responding 
 
 
 
+TLS
+0x0301   --- TLS1.0
+0x0302   --- TLS1.1
+0x0303   --- TLS1.2
+0x0304   --- TLS1.3
+tls.record.version    == 0x0301       //  TLS记录协议的版本 , 在Client_Hello中 统一为 1.0 为了避免 服务器不识别
+tls.handshake.version == 0x0303    //  TLS握手协议 真正的 TLS 协商使用的版本
+
+
+tls.handshake.type == 1   // TLS__Client_Hello 包
+tls.handshake.type == 2   // TLS__Server_Hello 包
+
+
 ```
+
+
+
 
