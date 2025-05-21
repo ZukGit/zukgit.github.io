@@ -91,6 +91,13 @@ INPUT,VALUE,NAME,SIZE,TYPE
 ```
 
 
+### 打开当前网速显示 
+```
+
+adb root && adb shell motsettings put global internet_speed_switch 1
+
+
+```
 
 
 ### 查看MTK产品是否支持GPS_L5信号
@@ -5177,6 +5184,7 @@ adb shell cmd wifi get-country-code  // 打印当前国家码
 Wifi Country Code = US    //  命令输出
 
 adb shell wpa_cli get_capability freq    // 查看当前 US的频段
+adb shell cmd wifi get-allowed-channel  // 查看当前 US的频段
 
 ```
 
