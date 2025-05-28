@@ -3887,7 +3887,7 @@ drwxrwx--- 2 shell log 3452 2025-03-16 06:28 CSLog_2025_0316_062709       【 nm
   类似于 [  adb  pull   /data/debuglogger/ ]
   
 
-
+================== 抓取 NMEA LOG  CSLog_xxx Log 步骤 ==================
 Step 1:  ##3646633##    Engineer Mode will be open
 
 Step 2: Log and Debugging  -> DebugLoggerUI -> Settings ->  ConnsysLog (Enable)  -> GPS Log(Host Log) Enable 
