@@ -1191,6 +1191,54 @@ gedit ./xxxxx/vhw.xml          //  打开当前所有到的 vhw.xml 文件
 ```
 
 
+### SUPL证书说明
+当前证书列表说明网站:
+https://support.apple.com/zh-cn/103494
+
+```
+当前证书列表说明网站:
+
+https://support.apple.com/zh-cn/103494
+
+```
+
+```
+EV 扩展验证（Extended Validation, EV）证书的颁发、管理、验证和使用规范
+EV 证书必须使用特定的策略对象标识符（OID）来标识其遵循的认证策略
+CA/Browser Forum 的标准，EV 证书的策略 OID 为 2.23.140.1.1
+协卡网络信任服务体系 EV 证书策略中定义的证书策略对象标识符为 1.2.156.112570.1.0.3
+
+```
+
+
+```
+
+证书名称 签发者 类型 密钥大小 签名算法 序列号 到期时间 EV策略
+
+1 VeriSign_Class_3_Public_Primary_Certification_Authority-G5.cer  RSA  2048位 SHA-1  18:DA:D1:9E:26:7D:E8:BB:4A:21:58:CD:CC:6B:3B:4A 20360716_23:59:59 2.16.840.1.
+
+2 DigiCert_Assured_ID_Root_CA RSA 2048位 SHA-1 0C:E7:E0:E5:17:D8:46:FE:8F:E5:60:FC:1B:F0:30:39 2031010_00:00:00 Not_EV
+
+3 DigiCert_Global_Root_G2 RSA 2048位 SHA-256 03:3A:F1:E6:A7:11:A9:A0:BB:28:64:B1:1D:09:FA:E5 20380115_12:00:00 2.16.840.1.114412.2.1
+
+4 DigiCert_Global_Root_G3  ECDSA  384位 SHA-384 05:55:56:BC:F2:5E:A4:35:35:C3:A4:0F:D5:AB:45:72 20380115_12:00:00  2.16.840.1.114412.2.1
+
+5 DigiCert_TLS_RSA4096_Root_G5 RSA 4096位 SHA-384 08:F9:B4:78:A8:FA:7E:DA:6A:33:37:89:DE:7C:CF:8A  20460114_00:00:00  Not_EV
+
+6  DigiCert_TLS_ECC_P384_Root_G5 ECDSA 384位   SHA-384   09:E0:93:65:AC:F7:D9:C8:B9:3E:1C:0B:04:2A:2E:F3 20460114_00:00:00  Not_EV
+
+
+```
+
+| 证书名称 | 签发者 | 类型 | 密钥大小 | 签名算法 | 序列号 | 到期时间 | EV策略 |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| 1 | VeriSign_Class_3_Public_Primary_Certification_Authority-G5.cer | RSA | 2048位 | SHA-1 | 18:DA:D1:9E:26:7D:E8:BB:4A:21:58:CD:CC:6B:3B:4A | 20360716_23:59:59 | 2.16.840.1. |
+| 2 | DigiCert_Assured_ID_Root_CA | RSA | 2048位 | SHA-1 | 0C:E7:E0:E5:17:D8:46:FE:8F:E5:60:FC:1B:F0:30:39 | 2031010_00:00:00 | Not_EV |
+| 3 | DigiCert_Global_Root_G2 | RSA | 2048位 | SHA-256 | 03:3A:F1:E6:A7:11:A9:A0:BB:28:64:B1:1D:09:FA:E5 | 20380115_12:00:00 | 2.16.840.1.114412.2.1 |
+| 4 | DigiCert_Global_Root_G3 | ECDSA | 384位 | SHA-384 | 05:55:56:BC:F2:5E:A4:35:35:C3:A4:0F:D5:AB:45:72 | 20380115_12:00:00 | 2.16.840.1.114412.2.1 |
+| 5 | DigiCert_TLS_RSA4096_Root_G5 | RSA | 4096位 | SHA-384 | 08:F9:B4:78:A8:FA:7E:DA:6A:33:37:89:DE:7C:CF:8A | 20460114_00:00:00 | Not_EV |
+| 6 | DigiCert_TLS_ECC_P384_Root_G5 | ECDSA | 384位 | SHA-384 | 09:E0:93:65:AC:F7:D9:C8:B9:3E:1C:0B:04:2A:2E:F3 | 20460114_00:00:00 | Not_EV |
+
 
 
 ### adb命令描述测试Supl使能
