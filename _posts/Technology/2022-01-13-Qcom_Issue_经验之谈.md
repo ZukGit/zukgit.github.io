@@ -1191,6 +1191,38 @@ gedit ./xxxxx/vhw.xml          //  打开当前所有到的 vhw.xml 文件
 ```
 
 
+### EAP_TYPE类型
+
+```
+EAP_TYPE类型 说明: 
+https://learn.microsoft.com/zh-cn/windows-server/networking/technologies/extensible-authentication-protocol/network-access?tabs=eap-tls%2Cserveruserprompt-eap-tls%2Ceap-sim
+
+```
+
+
+| EAP方法 | IANA分配的类型编号EAP_TYPE | 本机Windows支持 |
+| ---- | ---- | ---- |
+| MD5-Challenge(EAP-MD5) | 4 | ❌ |
+| 一次性密码(EAP-OTP) | 5 | ❌ |
+| 通用令牌卡(EAP-GTC) | 6 | ❌ |
+| EAP-TLS | 13 | ✅ |
+| EAP-SIM | 18 | ✅ |
+| EAP-TTLS | 21 | ✅ |
+| EAP-AKA | 23 | ✅ |
+| PEAP | 25 | ✅ |
+| EAP-MSCHAPv2 | 26 | ✅ |
+| 受保护的一次性密码(EAP-POTP) | 32 | ❌ |
+| EAP-FAST | 43 | ❌ |
+| 预共享密钥(EAP-PSK) | 47 | ❌ |
+| EAP-IKEv2 | 49 | ❌ |
+| EAP-AKA' | 50 | ✅ |
+| EAP-EKE | 53 | ❌ |
+| TEAP | 55 | ✅ |
+| EAP-NOOB | 56 | ❌ |
+
+
+
+
 ### SUPL证书说明
 当前证书列表说明网站:
 https://support.apple.com/zh-cn/103494
@@ -1199,6 +1231,8 @@ https://support.apple.com/zh-cn/103494
 当前证书列表说明网站:
 
 https://support.apple.com/zh-cn/103494
+
+https://www.digicert.com/kb/digicert-root-certificates.htm
 
 ```
 
