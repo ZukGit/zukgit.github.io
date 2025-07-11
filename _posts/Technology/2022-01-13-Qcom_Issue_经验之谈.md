@@ -153,6 +153,13 @@ adb shell getprop | grep chip
 ```
 
 
+// 【adb shell for循环命令】
+adb root && adb remount && adb shell "while true; do   echo -n 'sar_sensor_distance=_____'; getprop vendor.ril.radio.sar_sensor_distance ;  echo -n '_____'; done;"
+adb root && adb remount && adb shell "while true; do   echo -n 'context_orientation=_____'; getprop persist.sys.context_orientation ;  echo -n '_____'; done;"
+
+
+
+
 //  【 cmd 发送命令给到 adb shell 执行, 执行效果是 不需要进入到 adb shell里面去】
 adb root && adb remount && adb shell "while true; do iwpriv wlan0 driver stat; sleep 1; done;"    【 cmd 不进入adb shell里面 去执行 adb shell的命令】
 
