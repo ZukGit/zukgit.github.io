@@ -6807,3 +6807,112 @@ AGPS Ver=[4.492.0]
 ```
 
 
+### carrier_id排查
+
+```
+
+
+一: AOSP carrier_id 的列表 (标识唯一 carrier_id )
+https://android.googlesource.com/platform/packages/providers/TelephonyProvider/+/main/assets/latest_carrier_id/carrier_list.textpb
+
+二:可在 AOSP_MSI/packages/apps/CarrierConfig/res/xml/xxxx_config.xml 中去配置当前 SUPL的 mode和 地址 
+    <carrier_config mcc="470" mnc="50">
+        <string name="gps.supl_host">location2.xxs.ne.cca</string>
+        <string name="gps.supl_mode">1</string>
+    </carrier_config>
+	
+
+三:   /vendor/etc/gps_debug.conf 中   【SUPL_MODE=1 for MSB手机主定位】 【SUPL_MODE=2 for MSA平台主定位】 
+Add SUPL_MODE=0x1 or SUPL_MODE=0x2 in /vendor/etc/gps_debug.conf .
+    SUPL_MODE=0x1 For MSB 
+    SUPL_MODE=0x2 For MSA
+
+
+
+adb root
+adb disable-verity
+adb reboot
+adb root
+adb remount
+adb pull /vendor/etc/gps_debug.conf
+Make 【#SUPL_MODE=1】 To 【SUPL_MODE=1】 on local dir  
+adb push gps_debug.conf /vendor/etc/
+adb shell 
+═════════════ in adb shell ═════════════
+cd /vendor/etc/
+chmod 644 gps_debug.conf
+cat gps_debug.conf 【make sure SUPL_MODE=1 in the file 】
+═════════════ out adb shell ═════════════
+adb reboot
+
+
+```
+
+/vendor/etc/gps_debug.conf 文件内容 
+```
+
+# Sample file for use for on device debug override only
+# Prefer frameworks/base/core/res/res/values/config.xml and
+# frameworks/base/core/res/res/values-mcc*-mnc*/config.xml
+
+################################
+##### AGPS server settings #####
+################################
+# FOR SUPL SUPPORT, set the following
+# SUPL_HOST=supl.google.com or IP
+# SUPL_PORT=7275
+
+# supl version 2.0
+# SUPL_VER=0x20000
+
+#SUPL_MODE is a bit mask set in config.xml per carrier by default.
+#If it is uncommented here, this value will overwrite the value from
+#config.xml.
+#MSA=0X2
+#MSB=0X1
+#SUPL_MODE=1
+
+# Emergency SUPL, 1=enable, 0=disable
+#SUPL_ES=0
+
+#Choose PDN for Emergency SUPL
+#1 - Use emergency PDN
+#0 - Use regular SUPL PDN for Emergency SUPL
+#USE_EMERGENCY_PDN_FOR_EMERGENCY_SUPL=0
+
+####################################
+#  LTE Positioning Profile Settings
+####################################
+# 0: Enable RRLP on LTE(Default)
+# 1: Enable LPP_User_Plane on LTE
+# 2: Enable LPP_Control_Plane
+# 3: Enable both LPP_User_Plane and LPP_Control_Plane
+#LPP_PROFILE = 2
+
+##################################################
+# Select Positioning Protocol on A-GLONASS system
+##################################################
+# 0x1: RRC CPlane
+# 0x2: RRLP UPlane
+# 0x4: LLP Uplane
+#A_GLONASS_POS_PROTOCOL_SELECT = 0
+
+# Below bit mask configures how GPS functionalities
+# should be locked when user turns off GPS on Settings
+# Set bit 0x1 if MO GPS functionalities are to be locked
+# Set bit 0x2 if NI GPS functionalities are to be locked
+# default - non is locked for backward compatibility
+#GPS_LOCK = 0
+
+################################
+##### PSDS download settings #####
+################################
+# For wear devices only.
+# Enable periodic PSDS download once a day.
+# true: Enable periodic PSDS download
+# false: Disable periodic PSDS download
+#ENABLE_PSDS_PERIODIC_DOWNLOAD=false
+
+
+
+```
