@@ -2138,6 +2138,27 @@ Civic Address  ===   市民地址 === "urn:ietf:params:xml:ns:pidf:geopriv10:civ
 ### Qcom_LPPe4G_CP控制项_NV73863
 
 
+### Qcom_TTFF加速_NV74302_GNSSffaeConfig
+
+<img src="/public/zimage/qocm_issue/.jpg"/>
+
+```
+
+FFAE === （First Fix Accuracy Enhancement）=== 首次定位精度增强 TTFF
+
+INPUT,VALUE,NAME,SIZE,TYPE
+0,0,gnss_ffae_config,32,Uint32
+
+
+这个NV项是 qcom的一个优化型的一个算法 
+开启FFAE定位相关的 ， 
+具体的描述就，在信号较弱的情况会拉长定位的时间 给到用户一个比较精确地位置，
+
+
+```
+
+
+
 
 
 ### Qcom_GPS模式配置查看_NV70326_GnssConfig
@@ -2154,9 +2175,9 @@ QXDM > NV Browser > NV70326
 Bit位 描述                                                         当前默认值
 B0    Reserved,GPS set it to 1                                     1
 B1    Controls GLONASS                                             1
-B2    Controls BeiDou  outside of the United States                1
+B2    Controls BeiDou  outside of the United States                1    【美国外可用北斗】
 B3    Controls Galileo outside of the United States                0
-B4    Controls BeiDou  worldwide                                   0
+B4    Controls BeiDou  worldwide                                   0    【全球可用北斗】
 B5    Controls Galileo worldwide[2]                                0
 B6    Controls QZSS worldwide                                      0
 B7    Reserved, set to 0                                           0
@@ -2200,6 +2221,13 @@ NV70326 =
 索引:B11 Galileo 
 
 
+0x853
+索引:B0  GPS
+索引:B1  GLONASS
+索引:B4  Controls BeiDou  worldwide 
+索引:B6  Controls QZSS worldwide 
+索引:B11 Galileo 
+
 
 
 0x907
@@ -2218,6 +2246,15 @@ NV70326 =
 索引:B12 NavIC  ( outside of US )
 
 
+0x1906
+索引:B1  GLONASS
+索引:B2  Beidou ( outside of US )
+索引:B8  QZSS   ( outside of US ) 
+索引:B11 Galileo 
+索引:B12 NavIC  ( outside of US )
+
+
+
 
 0x1907
 索引:B0  GPS
@@ -2227,6 +2264,15 @@ NV70326 =
 索引:B11 Galileo 
 索引:B12 NavIC  ( outside of US )
 
+
+
+0x2853
+索引:B0  GPS
+索引:B1  GLONASS
+索引:B4  Controls BeiDou  worldwide 
+索引:B6  Controls QZSS worldwide 
+索引:B11 Galileo 
+索引:B13 Controls NavIC worldwide
 
 
 ```
