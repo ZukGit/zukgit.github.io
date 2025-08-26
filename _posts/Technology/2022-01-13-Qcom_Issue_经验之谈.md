@@ -278,6 +278,48 @@ State: 0x49048f(FW CONN | POWER ON | FW READY | DRIVER PROBED | SSR REGISTERED |
 ```
 
 
+命令: 查看手机当前WIFI固件路径命令:
+
+```
+
+adb root && adb remount && adb shell " getprop ro.vendor.hw.device > /sdcard/device.txt;  deviceid=$(cat /sdcard/device.txt) ; echo  deviceid___$deviceid;  echo  *$deviceid* > /sdcard/device.txt  ;  searchid=$(cat /sdcard/device.txt)  ; echo  searchid___$searchid ;echo /Qcom_Vendor_Side/vendor/qcom/nonhlos/WLAN.HL.3.4.3  ==================== /vendor/firmware_mnt/image/adrastea; echo /Qcom_Vendor_Side/vendor/qcom/nonhlos/WLAN.MSL.3.0.2 ==================== /vendor/firmware_mnt/image/qca6755; echo /Qcom_Vendor_Side/vendor/qcom/nonhlos/WLAN.MSL.2.0   ==================== /vendor/firmware_mnt/image/qca6750 ; echo _______ match $searchid begin _______ ; find /vendor/firmware_mnt/image -iname  $searchid ; echo _______ match regdb.bin begin _______ ; find /vendor/firmware_mnt/image -iname  regdb.bin; echo ___qcom wlan fireware info___ ; cat /d/icnss/stats | grep 'Firmware Build ID'"
+
+```
+
+```
+
+命令: 查看当前WLAN固件版本
+adb root && adb remount && adb shell "cat /d/icnss/stats" | grep "Firmware Build ID"
+【Firmware Build ID: QC_IMAGE_VERSION_STRING=WLAN.HL.3.4.3-00772-QCAHLSWMTPLZ-1】
+
+/Qcom_Vendor_Side/vendor/qcom/nonhlos/WLAN.HL.3.4.3  ==================== /vendor/firmware_mnt/image/adrastea
+/Qcom_Vendor_Side/vendor/qcom/nonhlos/WLAN.MSL.3.0.2 ==================== /vendor/firmware_mnt/image/qca6755
+/Qcom_Vendor_Side/vendor/qcom/nonhlos/WLAN.MSL.2.0   ==================== /vendor/firmware_mnt/image/qca6750
+
+
+命令: 查看手机当前WIFI固件路径命令:
+adb root && adb remount && adb shell " getprop ro.vendor.hw.device > /sdcard/device.txt;  deviceid=$(cat /sdcard/device.txt) ; echo  deviceid___$deviceid;  echo  *$deviceid* > /sdcard/device.txt  ;  searchid=$(cat /sdcard/device.txt)  ; echo  searchid___$searchid ;echo /Qcom_Vendor_Side/vendor/qcom/nonhlos/WLAN.HL.3.4.3  ==================== /vendor/firmware_mnt/image/adrastea; echo /Qcom_Vendor_Side/vendor/qcom/nonhlos/WLAN.MSL.3.0.2 ==================== /vendor/firmware_mnt/image/qca6755; echo /Qcom_Vendor_Side/vendor/qcom/nonhlos/WLAN.MSL.2.0   ==================== /vendor/firmware_mnt/image/qca6750 ; echo _______ match $searchid begin _______ ; find /vendor/firmware_mnt/image -iname  $searchid ; echo _______ match regdb.bin begin _______ ; find /vendor/firmware_mnt/image -iname  regdb.bin; echo ___qcom wlan fireware info___ ; cat /d/icnss/stats | grep 'Firmware Build ID'"
+
+
+输出: 
+deviceid___skyline
+searchid___*skyline*
+/Qcom_Vendor_Side/vendor/qcom/nonhlos/WLAN.HL.3.4.3 ==================== /vendor/firmware_mnt/image/adrastea
+/Qcom_Vendor_Side/vendor/qcom/nonhlos/WLAN.MSL.3.0.2 ==================== /vendor/firmware_mnt/image/qca6755
+/Qcom_Vendor_Side/vendor/qcom/nonhlos/WLAN.MSL.2.0 ==================== /vendor/firmware_mnt/image/qca6750
+_______ match *skyline* begin _______
+/vendor/firmware_mnt/image/adrastea/bdwlan_skyline_ipa.bin
+_______ match regdb.bin begin _______
+/vendor/firmware_mnt/image/adrastea/regdb.bin
+/vendor/firmware_mnt/image/qca6750/regdb.bin
+/vendor/firmware_mnt/image/qca6755/regdb.bin
+___ wlan fireware info___
+Firmware Build ID: QC_IMAGE_VERSION_STRING=WLAN.HL.3.4.3-00710-QCAHLSWMTPLZ-1.115827.2     【使用固件是 WLAN.HL.3.4.3  , 对应的本地路径是  /vendor/firmware_mnt/image/adrastea】
+
+
+```
+
+
 
 
 
