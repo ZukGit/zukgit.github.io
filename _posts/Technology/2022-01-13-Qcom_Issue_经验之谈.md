@@ -5368,8 +5368,10 @@ adb shell cmd wifi get-allowed-channel  // 查看当前 US的频段
 #### 指定当前手机热点的频段
 
 ```
- // 指定当前热点在 5180 这个频段打开热点
-adb shell cmd wifi force-softap-channel enabled 5180
+
+adb shell cmd wifi force-softap-channel enabled 5180     // 指定当前热点在 5180 这个频段 (不能打开热点)
+adb shell cmd wifi start-softap   321 wpa2 87654321 -b 5    ## 【 打开一个 ssid=321 的 wpa2密码87654321的 5G频段的热点】
+adb shell cmd wifi stop-softap                              //关闭热点 
 
 channel: 36 band: 2
 2G freq: [2412, 2417, 2422, 2427, 2432, 2437, 2442, 2447, 2452, 2457, 2462, 2467, 2472]
