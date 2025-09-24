@@ -5050,7 +5050,12 @@ adb shell getprop | grep api
 
 T+S 配置 MSI=T Vendor=S 配置
 
-U     API34： Android 14 (Developer Preview)
+Z     API39： Android 19
+Y     API38： Android 18
+X     API37： Android 17
+W     API36： Android 16
+V     API35： Android 15
+U     API34： Android 14 (Developer Preview)  安卓版本
 T     API33： Android 13 
 S     API32： Android 12
 S     API31： Android 12
@@ -5084,6 +5089,51 @@ J     API18： Android 4.3 Jelly Bean
       API3：  Android 1.5 Cupcake 
       API2：  Android 1.1 Petit Four 
 	  API1：  Android 1.0 SDK API level 1
+
+
+```
+
+
+
+### CPU模式
+```
+// 查看CPU核心数
+adb root && adb shell  "cd /sys/devices/system/cpu/ ; ls -ld $PWD/* | grep cpu"       
+
+drwxr-xr-x 6 root root    0 2025-09-24 14:21 /sys/devices/system/cpu/bus_dcvs
+drwxr-xr-x 2 root root    0 2025-09-24 14:21 /sys/devices/system/cpu/c1dcvs
+drwxr-xr-x 9 root root    0 1970-01-30 11:15 /sys/devices/system/cpu/cpu0
+drwxr-xr-x 8 root root    0 1970-01-30 11:15 /sys/devices/system/cpu/cpu1
+drwxr-xr-x 8 root root    0 1970-01-30 11:15 /sys/devices/system/cpu/cpu2
+drwxr-xr-x 8 root root    0 1970-01-30 11:15 /sys/devices/system/cpu/cpu3
+drwxr-xr-x 9 root root    0 1970-01-30 11:15 /sys/devices/system/cpu/cpu4
+drwxr-xr-x 8 root root    0 1970-01-30 11:15 /sys/devices/system/cpu/cpu5
+drwxr-xr-x 8 root root    0 1970-01-30 11:15 /sys/devices/system/cpu/cpu6
+drwxr-xr-x 9 root root    0 1970-01-30 11:15 /sys/devices/system/cpu/cpu7
+drwxr-xr-x 5 root root    0 1970-01-30 11:15 /sys/devices/system/cpu/cpufreq
+drwxr-xr-x 2 root root    0 2025-09-24 14:21 /sys/devices/system/cpu/cpuidle
+
+
+// 查看CPU模式列表
+adb root && adb shell  "cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors"       
+walt conservative powersave  performance  schedutil
+
+walt: Window based load tracking in the Linux scheduler  默认的高通安卓调度 日常使用的调频器
+conservative: 类似 ondemand 动态调整频率,但频率变化更慢 适用于对频率变化敏感的应用
+powersave‌:   固定 CPU 频率于最低功耗模式，适用于节能场景。 ‌
+‌performance‌: 固定 CPU 频率于最高性能模式，适用于追求极致性能的场景
+schedutil: 基于调度器的频率调节器,结合了负载均衡和调度信息,通常在新内核表现更好
+‌ondemand‌ :   根据负载动态调整频率，在高性能与节能之间平衡。
+‌userspace‌: 将频率调整权限交给用户态程序，需通过文件操作手动设置频率
+
+adb root && adb shell "echo performance /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
+adb root && adb shell "echo performance /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor"
+adb root && adb shell "echo performance /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor"
+adb root && adb shell "echo performance /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor"
+adb root && adb shell "echo performance /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor"
+adb root && adb shell "echo performance /sys/devices/system/cpu/cpu5/cpufreq/scaling_governor"
+adb root && adb shell "echo performance /sys/devices/system/cpu/cpu6/cpufreq/scaling_governor"
+adb root && adb shell "echo performance /sys/devices/system/cpu/cpu7/cpufreq/scaling_governor"
 
 
 ```
