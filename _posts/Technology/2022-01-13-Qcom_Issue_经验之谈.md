@@ -2205,7 +2205,11 @@ INPUT,VALUE,NAME,SIZE,TYPE
 
 ### Qcom_GPS模式配置查看_NV70326_GnssConfig
 
+v24---last 版本 【Qcom Location Software版本】
+<img src="/public/zimage/qocm_issue/nv70326_v24.jpg"/>
 
+
+v11---v23版本 【Qcom Location Software版本】
 <img src="/public/zimage/qocm_issue/nv70326.jpg"/>
 
 ```
@@ -2241,7 +2245,19 @@ QZSS    日本    准天顶卫星系统 Quasi-Zenith Satellite System
 NAVIC(IRNSS)    印度 NAVIC(Navigation with Indian Constellation)  IRNSS(印度区域导航卫星系统(Indian Regional Navigation Satellite System (IRNSS)NAVIC)
 
 
-╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤ Qcom GNSS NV70326 GnssConfig 取值列表 ╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤ Qcom GNSS NV70326 GnssConfig v24---last  取值列表 ╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
+
+
+NV#70326                                    【GPS】               【BDS】               【GAL】             【QZSS】              【NavIC】           【GLO(Bit 14/Bit 15)】
+0x4905 (default setting for U.S.market)      Enable                Qualified_Enable     Enable               Qualified_Enable      Disable             Qualified_Enable
+0x8851 (default setting for ROW market)      Enable                Force_Enable         Enable               Force_Enable          Disable             Force_enable
+0x5905                                       Enable                Qualified_Enable     Enable               Qualified_Enable      Qualified_Enable    Qualified_Enable
+0xA851                                       Enable                Force_enable         Enable               Force_enable          Force_enable        Force_enable
+
+
+
+╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤ Qcom GNSS NV70326 GnssConfig v11---v23 取值列表 ╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤╤
 
 NV70326 = 
 0x803 - GPS/GLO/GAL enabled, BDS force enabled, QZSS/NavIC disabled; 
@@ -2320,6 +2336,58 @@ NV70326 =
 ```
 
 
+### QCOM_GPS_MODE 确认
+
+
+
+```
+在 Qcom Location Software V21之后在 modem_proc\gps\gnss\mgp\me\cfginfo\gps_nv_default_xxx.xxx.txt 文件 标记了当前Qcom项目支持的 GPS_Mode
+```
+
+
+```
+modem_proc\gps\gnss\mgp\me\cfginfo\gps_nv_default_xxx.xxx.txt 
+modem_proc\gps\gnss\mgp\me\cfginfo\gps_nv_default_milos.maggps.prod.txt
+
+
+
+gps_nv_default_milos.maggps.prod.txt
+Configuration File for variant: milos.maggps.prod
+LocTech Version: LT.24.0      【Qcom Location Software版本】
+Configuration: Mobile
+GPS Engine Revision: GEN9 V5_HW
+Minimum GPS Week Number: 2356
+Normal Build Config
+NV 74137: Value: 0x0 >> Decimal: 0 >>  GNSS Full Power Mode Disabled
+
+NV 70326 Primary GNSS Configuration Value: 0x8851 >> Decimal: 34897 >> 0b1000100001010001
+NV 70326 Primary GNSS Configuration String:   【NV70326 标记GPS_Mode支持的列表】
+  GPS L1 Enabled
+  BDS B1I Force Enabled
+  GAL E1 Enabled
+  QZSS L1 Force Enabled
+  GLO G1 Disabled
+  BDS B1I Disabled
+  QZSS L1 Disabled
+  NAVIC Disabled
+
+NV 74255 Multiband GNSS Configuration Value: 0x27 >> Decimal: 39 >> 0b100111
+NV 74255 Multiband GNSS Configuration String:
+  GPS L5 Enabled
+  GALILEO E5A Enabled
+  BEIDOU B2A Enabled
+  QZSS L5 Enabled
+
+NV 74367 Auxiliary GNSS Configuration Value: 0x1 >> Decimal: 1 >> 0b1
+NV 74367 Auxiliary GNSS Configuration String:
+  BDS B1C Enabled
+
+NV 5596 DPO Config: Value: Value: 0x1 >> Decimal: 1 >> DPO Force Enabled
+NV 74498: Value: 0x0 >> Decimal: 0 >> Jammer Detection Enabled
+NV 74499: Value: 0x1 >> Decimal: 1 >> GNSS Low Power Mode Enabled If Charger Not Connected
+
+
+```
 
 
 
