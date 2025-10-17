@@ -7318,3 +7318,101 @@ adb reboot
 
 
 ```
+
+
+### Tombstone
+
+
+```
+
+   ndk-stack -sym <符号文件目录> <tombstone文件路径>
+
+
+```
+
+
+
+```
+Tombstone 是安卓原生 C/C++ 语言Crash 导致的错误 , 会生成 Tombstone的堆栈信息
+
+1.下载  https://developer.android.com/ndk/downloads 中的 最新版本NDK  android-ndk-r27d-windows.zip
+   其中关键的解析tomstone的命令是 android-ndk-r27d\prebuilt\windows-x86_64\bin\ndk-stack.cmd  【可加入到环境变量PATH】
+
+2. 到问题发生版本的 artifactory 找到对应发生问题的 so bin 文件  【artifactory --> vendor_side --->  productname[skyline]-target_files.zip 里面包含众多so bin文件】
+
+
+3. 执行下列命令:  将打印解析出的符号信息  即函数名  所在行数
+
+   ndk-stack -sym <符号文件目录> <tombstone文件路径>
+
+
+```
+
+
+<img src="/public/zimage/qocm_issue/ndk_stack.jpg"/>
+
+```
+D:\jira_work\62533\tombstone_18.txt 包含 tombstone信息
+
+pid: 2660, tid: 2758, name: loc-mq-thread  >>> lowi-server <<<
+uid: 1021
+tagged_addr_ctrl: 0000000000000001 (PR_TAGGED_ADDR_ENABLE)
+signal 6 (SIGABRT), code -1 (SI_QUEUE), fault addr --------
+Abort message: 'ubsan: sub-overflow by 0x00000058b85b8ae0'
+    x0  0000000000000000  x1  0000000000000ac6  x2  0000000000000006  x3  0000007e4a1f88b0
+    x4  342f2f2f2f2f2f77  x5  342f2f2f2f2f2f77  x6  342f2f2f2f2f2f77  x7  7f7f7f7f7f7f7f7f
+    x8  00000000000000f0  x9  e8c1843cf10776b4  x10 000000ff00000020  x11 0000000000000061
+    x12 0000000000000000  x13 0000000000000001  x14 0000000042f2edc3  x15 0000000050c32bb8
+    x16 0000007ed1350a80  x17 0000007ed1334440  x18 0000007e47b2c000  x19 0000000000000a64
+    x20 0000000000000ac6  x21 00000000ffffffff  x22 ffffffff00000000  x23 b400007e4a688000
+    x24 00000000fffffffc  x25 00000000000005c8  x26 b400007e4a688000  x27 0000007e4a1f89c0
+    x28 00000058b8678f78  x29 0000007e4a1f8930
+    lr  0000007ed12cf928  sp  0000007e4a1f88b0  pc  0000007ed12cf94c  pst 0000000000001000
+
+6 total frames
+backtrace:
+      #00 pc 000000000009b94c  /apex/com.android.runtime/lib64/bionic/libc.so (abort+160) (BuildId: 30ee4716880a3e210ce037e4466140b3)
+      #01 pc 0000000000050614  /vendor/bin/lowi-server (__ubsan_handle_sub_overflow_minimal_abort+100) (BuildId: b5dce2f66174066ddda7d0fbc90f0272)
+      #02 pc 000000000007cadc  /vendor/bin/lowi-server (qc_loc_fw::LOWINetlinkSocketReceiver::run()+2256) (BuildId: b5dce2f66174066ddda7d0fbc90f0272)
+      #03 pc 00000000000216d0  /vendor/lib64/libloc_base_util.so (qc_loc_fw::ThreadImpl::thread_func(void*) (.cfi)+76) (BuildId: ee6d36b7e099f35095eeb0316ebde9d0)
+      #04 pc 00000000000accc8  /apex/com.android.runtime/lib64/bionic/libc.so (__pthread_start(void*)+184) (BuildId: 30ee4716880a3e210ce037e4466140b3)
+      #05 pc 000000000009f168  /apex/com.android.runtime/lib64/bionic/libc.so (__start_thread+68) (BuildId: 30ee4716880a3e210ce037e4466140b3)
+	  
+═══════════════════════════════════════════
+
+D:\jira_work\62533 下包含   libc.so      lowi-server    libloc_base_util.so 等实体文件
+═══════════════════════════════════════════
+
+
+
+D:\jira_work\62533\android-ndk-r27d-windows\android-ndk-r27d\prebuilt\windows-x86_64\bin\ndk-stack.cmd  -sym  D:\jira_work\62533 -i D:\jira_work\62533\tombstone_18.txt
+********** Crash dump: **********
+Build fingerprint: 'motorola/mumba_gn/mumba:16/W1WAA36.48-9/794bb5-2ee0b3:user/release-keys'
+Abort message: 'ubsan: sub-overflow by 0x00000058b85b8ae0'
+WARNING: Mismatched build id for D:\jira_work\62533\libc.so
+WARNING:   Expected 30ee4716880a3e210ce037e4466140b3
+WARNING:   Found    8fdbd8878267b052c7cfbd20e055bca7
+#00 0x000000000009b94c /apex/com.android.runtime/lib64/bionic/libc.so (abort+160) (BuildId: 30ee4716880a3e210ce037e4466140b3)
+#01 0x0000000000050614 /vendor/bin/lowi-server (__ubsan_handle_sub_overflow_minimal_abort+100) (BuildId: b5dce2f66174066ddda7d0fbc90f0272)
+                                                __ubsan_handle_sub_overflow_minimal_abort
+                                                ??:0:0
+#02 0x000000000007cadc /vendor/bin/lowi-server (qc_loc_fw::LOWINetlinkSocketReceiver::run()+2256) (BuildId: b5dce2f66174066ddda7d0fbc90f0272)
+                                                ??
+                                                ??:0:0
+#03 0x00000000000216d0 /vendor/lib64/libloc_base_util.so (qc_loc_fw::ThreadImpl::thread_func(void*) (.cfi)+76) (BuildId: ee6d36b7e099f35095eeb0316ebde9d0)
+                                                          qc_loc_fw::ThreadImpl::thread_func(void*) (.cfi)
+                                                          vendor/qcom/opensource/location/utils/base_util/src/sync.cpp:884:21  【打印出的有效函数行数信息】
+WARNING: Mismatched build id for D:\jira_work\62533\libc.so
+WARNING:   Expected 30ee4716880a3e210ce037e4466140b3
+WARNING:   Found    8fdbd8878267b052c7cfbd20e055bca7
+#04 0x00000000000accc8 /apex/com.android.runtime/lib64/bionic/libc.so (__pthread_start(void*)+184) (BuildId: 30ee4716880a3e210ce037e4466140b3)
+WARNING: Mismatched build id for D:\jira_work\62533\libc.so
+WARNING:   Expected 30ee4716880a3e210ce037e4466140b3
+WARNING:   Found    8fdbd8878267b052c7cfbd20e055bca7
+#05 0x000000000009f168 /apex/com.android.runtime/lib64/bionic/libc.so (__start_thread+68) (BuildId: 30ee4716880a3e210ce037e4466140b3)
+Crash dump is completed
+
+
+
+```
+
