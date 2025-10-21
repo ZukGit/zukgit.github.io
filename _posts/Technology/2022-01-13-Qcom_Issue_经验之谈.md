@@ -7328,6 +7328,10 @@ adb reboot
    ndk-stack -sym <符号文件目录> <tombstone文件路径>
 
 
+<符号文件目录> 【	symbols.tar.gz】是对应的AOSP输出目录 out/target/xxxx/symbols/xxxx.so  bin/low-server wpa_supplicant等文件 可以从artifactory的vendor_side 的 symbols.tar.gz找到 
+
+
+
 ```
 
 
@@ -7344,6 +7348,8 @@ Tombstone 是安卓原生 C/C++ 语言Crash 导致的错误 , 会生成 Tombston
 3. 执行下列命令:  将打印解析出的符号信息  即函数名  所在行数
 
    ndk-stack -sym <符号文件目录> <tombstone文件路径>
+
+<符号文件目录> 【	symbols.tar.gz】是对应的AOSP输出目录 out/target/xxxx/symbols/xxxx.so  bin/low-server wpa_supplicant等文件 可以从artifactory的vendor_side 的 symbols.tar.gz找到 
 
 
 ```
