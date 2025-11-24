@@ -329,7 +329,8 @@ Firmware Build ID: QC_IMAGE_VERSION_STRING=WLAN.HL.3.4.3-00710-QCAHLSWMTPLZ-1.11
 Package [com.whatsapp]      // bugreport 中搜索该名称
 Package [com.baidu.map.location]   // 普通搜索, 百度地图 正则搜索搜不到
 Package [com.autonavi.minimap]    // 普通搜索  高德地图
-
+Package [com.google.android.apps.maps]
+Package [com.google.android.gms]
 
       runtime permissions:
         android.permission.ACCESS_FINE_LOCATION: granted=false,  【未授权定位权限】flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|524288]
