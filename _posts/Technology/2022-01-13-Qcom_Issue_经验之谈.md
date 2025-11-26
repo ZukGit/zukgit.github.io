@@ -332,6 +332,15 @@ Package [com.autonavi.minimap]    // 普通搜索  高德地图
 Package [com.google.android.apps.maps]
 Package [com.google.android.gms]
 
+
+// 命令行查看 对应APK的版本
+
+adb shell dumpsys package com.google.android.gms       | grep -e "  Package " -e "versionName"  -e "resourcePath"
+adb shell dumpsys package com.google.android.apps.maps | grep -e "  Package " -e "versionName"  -e "resourcePath"
+adb shell dumpsys package com.baidu.map.location       | grep -e "  Package " -e "versionName"  -e "resourcePath"
+adb shell dumpsys package com.autonavi.minimap         | grep -e "  Package " -e "versionName"  -e "resourcePath"
+
+
       runtime permissions:
         android.permission.ACCESS_FINE_LOCATION: granted=false,  【未授权定位权限】flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|524288]
         android.permission.ACCESS_BACKGROUND_LOCATION: granted=false【未授权后台获得位置权限】, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|RESTRICTION_INSTALLER_EXEMPT]
