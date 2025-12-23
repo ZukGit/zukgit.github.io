@@ -267,6 +267,55 @@ adb shell cmd location providers send-extra-command gps request_power_stats
 
 
 
+###  adb shell motsettings list global
+
+```
+
+
+adb  root &&  adb shell motsettings get global channel_id                // 查看值
+skyline
+
+adb  root &&  adb shell motsettings put global channel_id skyline        // 设置值
+
+
+
+adb shell motsettings list global    // 查看 motsettings 下的 global 表的所有内容
+adb shell settings list global      // 查看 settings 下的 global 表的所有内容
+
+```
+
+
+### adb shell dumpsys device_config
+
+```
+
+adb shell dumpsys device_config        // 查看各种系统配置  flags 谷歌flags
+
+
+adb shell dumpsys device_config   | grep location
+    
+
+location/android.location.flags.disable_stationary_throttling=true
+location/android.location.flags.enable_location_bypass=true
+location/android.location.flags.enable_ni_supl_message_injection_by_carrier_config_bugfix=true
+location/android.location.flags.fix_is_in_emergency_anr=true
+location/android.location.flags.fix_service_watcher=true
+location/android.location.flags.geoid_heights_via_altitude_hal=true
+location/android.location.flags.gnss_api_measurement_request_work_source=true
+location/android.location.flags.gnss_api_navic_l1=true
+location/android.location.flags.gnss_configuration_from_resource=true
+location/android.location.flags.location_bypass=true
+location/android.location.flags.location_validation=true
+location/android.location.flags.new_geocoder=true
+location/android.location.flags.population_density_provider=true
+location/android.location.flags.release_supl_connection_on_timeout=true
+location/android.location.flags.replace_future_elapsed_realtime_jni=true
+location/android.location.flags.subscriptions_changed_listener_thread=true
+location/android.location.flags.use_legacy_ntp_time=true
+
+
+```
+
 
 
 
