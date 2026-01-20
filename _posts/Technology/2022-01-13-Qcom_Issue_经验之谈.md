@@ -21,6 +21,14 @@ typora-copy-images-to: ..\..\public\zimage\qcom_issue
 ## 常用notepad++搜索技巧Tip
 
 
+### 导出手机所有文件(/proc和/sys/kernel除外)
+
+```
+adb root && adb shell " find / \( -path /proc -o -path /sys/kernel  \) -prune -o -type f -print   > /sdcard/1.txt  " && adb pull /sdcard/1.txt
+```
+
+
+
 
 ### 查看手机打开应用记录与时间日志
 
