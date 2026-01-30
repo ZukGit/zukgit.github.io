@@ -1519,6 +1519,14 @@ adb root && adb remount && adb shell settings put global wifi_verbose_logging_en
 ```
 
 ```
+SettingsMoto.apk导入命令
+
+adb root && adb remount && adb shell settings put global wifi_verbose_logging_enabled 1 && adb push SettingsMoto.apk /system_ext/priv-app/SettingsMoto/
+
+
+```
+
+```
 Settings.apk 全局搜索命令
 
 adb root
