@@ -3719,7 +3719,7 @@ adb logcat | grep -e "SARCTRL" -e "MDMCTBK" -e "QCSDK" -e "setBtTxPower"
 fastboot oem config cmdl androidboot.selinux=permissive         【关闭SeLinux】   
 
 2.导入apk 文件
-adb root && adb remount &&  adb push  ./MtkSarControlService.apk /system/priv-app/MtkSarControlService/ && adb reboot 
+adb root && adb disable-verity && adb remount &&  adb push  ./MtkSarControlService.apk /system/priv-app/MtkSarControlService/MtkSarControlService.apk && adb reboot 
  
 3. 进入 Bt TestMode 开关WIFI  
 查看 adb logcat |  grep EmHidlService          // 有打印 
