@@ -37,6 +37,20 @@ ActivityTaskManager: START u0
 ```
 
 
+### 无线调试
+
+```
+# 查看无线调式 是否打开
+adb  root && adb shell settings get global adb_wifi_enabled
+
+# 关闭无线调试
+adb  root && adb shell settings put global adb_wifi_enabled 0
+
+# 打开无线调试
+adb  root && adb shell settings put global adb_wifi_enabled 1
+```
+
+
 ### 查看产品是否支持DBS双频并发
 
 ```
