@@ -2259,7 +2259,7 @@ v11---v23版本 【Qcom Location Software版本】
 
 ```
 
-Qcom通过QXDM_NVBrowser查看GPS_Mode
+Qcom通过QXDM_NVBrowser查看GPS_Mode   GNSSOPMode 
 
 QXDM > NV Browser > NV70326 
  
@@ -2298,6 +2298,7 @@ NV#70326                                    【GPS】               【BDS】   
 0x4905 (default setting for U.S.market)      Enable                Qualified_Enable     Enable               Qualified_Enable      Disable             Qualified_Enable
 0x8851 (default setting for ROW market)      Enable                Force_Enable         Enable               Force_Enable          Disable             Force_enable
 0x5905                                       Enable                Qualified_Enable     Enable               Qualified_Enable      Qualified_Enable    Qualified_Enable
+0x1905                                       Enable                Qualified_Enable     Force_enable         Qualified_Enable      Qualified_Enable    Diable
 0xA851                                       Enable                Force_enable         Enable               Force_enable          Force_enable        Force_enable
 
 
@@ -2381,7 +2382,7 @@ NV70326 =
 ```
 
 
-### QCOM_GPS_MODE 确认
+### QCOM_GPS_MODE_NV70326_GNSSOPMode_确认
 
 
 
@@ -2436,8 +2437,56 @@ NV 74499: Value: 0x1 >> Decimal: 1 >> GNSS Low Power Mode Enabled If Charger Not
 
 
 
+### Qcom_E911_紧急定位使用卫星类型_NV74225 
+
+
+```
+
+/nv/item_files/gps/cgps/me/gnss_me_e911_constellation_disablement
+
+
+QXDM > NV Browser > NV74225  
+ 
+Bit位   描述                                                         当前默认值
+B0      在E911紧急定位中是否禁用 Gallieo   伽利略卫星(1-禁用)(0-使用)   0                                 
+B1      在E911紧急定位中是否禁用 Glonass 格罗纳斯卫星(1-禁用)(0-使用)   0     
+B2      在E911紧急定位中是否禁用 BeiDou  北斗导航卫星(1-禁用)(0-使用)   0
+B3      在E911紧急定位中是否禁用 QZSS  日本准天定卫星(1-禁用)(0-使用)   0
+B4      在E911紧急定位中是否禁用 Navic   印度导航卫星(1-禁用)(0-使用)   0
+
+
+
+
+----------------------------------------------------------
+0x1E   Custom Confog for NA 
+0x1E = 0001  1110  
+       7654  3210    【 B1 B2 B3 B4 都是1 禁用 , B0位=0 == Gallieo 伽利略导航打开】 
+---------------------------------------------------------- 
+	   
+	   
+----------------------------------------------------------
+0x1F (default value on Location software v24 and later)
+0x1F = 0001  1111  
+       7654  3210    【B0 B1 B2 B3 B4 都是1 全都禁用】 
+----------------------------------------------------------
+
+
+----------------------------------------------------------
+0x1D (default value on Location software prior to v24)
+0x1D = 0001  1101  
+       7654  3210    【B0  B2 B3 B4 都是1 禁用 , B1是 Glonass 可以使用】 
+----------------------------------------------------------
+	   
+```
+
+
+
+
+
+
 
 ### Qcom_LPPe4G_CP控制项_NV73888
+
 
 ```
 默认值:0  当前值535
