@@ -67,6 +67,53 @@ STA + AP Concurrency Supported: true               【支持DBS】
 ```
 
 
+### adb快捷打开应用命令
+
+```
+
+
+
+// 跳过开机向导 
+adb root && adb shell pm disable com.google.android.setupwizard
+
+
+// 回到主页面
+adb root && adb shell am start -a android.intent.action.MAIN -c android.intent.category.HOME
+
+// 设置主界面
+adb root && adb shell am start com.android.settings/com.android.settings.SubSettings 
+
+// WIFI 选择界面
+adb root && adb shell am start com.android.settings/com.android.settings.wifi.WifiPickerActivity  
+
+// Location 定位界面
+adb root && adb shell am start -a android.settings.LOCATION_SOURCE_SETTINGS
+
+
+//  打开一个 ssid= Wifi_2412 的 open的指定频段 2412 频段的热点
+adb root && adb shell cmd wifi start-softap   Wifi_2412 open -b 2  -f 2412 
+
+
+//  打开一个 ssid= Wifi_5200 的 open的指定频段 5200 频段的热点
+adb root && adb shell cmd wifi start-softap   Wifi_5200 open -b 5  -f 5200
+
+
+// 连接 CMCC_2.4G 的 网络 
+adb root && adb shell cmd wifi set-wifi-enabled enabled && adb shell cmd wifi connect-network "CMCC_2.4G" wpa2 87654321
+
+
+// 连接 CMCC_Loveon_5G 的 网络 
+adb root && adb shell cmd wifi set-wifi-enabled enabled && adb shell cmd wifi connect-network "CMCC_Loveon_5G" wpa2 87654321
+
+// 关闭 WIFI 开关
+adb root && adb shell cmd wifi set-wifi-enabled disabled # 关闭WiFi
+
+
+
+// 语言选择界面 
+adb root && adb shell am start -a android.settings.LOCALE_SETTINGS
+
+```
 
 
 ### 查看Qcom产品是否支持GPS_L5信号
