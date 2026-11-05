@@ -51,6 +51,92 @@ adb  root && adb shell settings put global adb_wifi_enabled 1
 ```
 
 
+
+### 谷歌网络定位开关
+
+```
+1.位置信息精度 是 谷歌网络定位开关  【提高位置信息精确度】，该值的 enable diable 状态依据 network_location_opt_in 开关
+2.存在  network_location_opt_in=1  assisted_gps_enabled=0 的情况，这个时候无法网络定位，开关是 diable状态 可能被用户授权取消 权限 引起   
+3. 手动打开这个配置项的话 会触发两个配置项变化 一个是  
+   network_location_opt_in    【GMS自身的网络位置开关】    
+   assisted_gps_enabled       【Settings 设置应用的AGPS开关】
+
+Settings -> Location -> Location Services -> Location Accuracy                         ## 设置 应用进入口 网络定位开关
+adb shell am start -a com.google.android.gms.location.settings.LOCATION_ACCURACY       ## 命令行 进入口 网络定位开关
+
+
+═══════════════ network_location_opt_in 操作设置 (无法在 bugreport查询到 ) ═══════════════
+________单独查询 network_location_opt_in(网络定位开关)
+adb root &&  adb shell " content query --uri content://com.google.settings/partner | grep network_location_opt_in"         
+Row: 18 name=network_location_opt_in, _id=958, value=0
+
+________打开关闭 network_location_opt_in
+adb root && adb shell content insert --uri content://com.google.settings/partner --bind name:s:network_location_opt_in --bind value:s:0
+adb root && adb shell content insert --uri content://com.google.settings/partner --bind name:s:network_location_opt_in --bind value:s:1
+
+________查询 GMS 配置 com.google.settings/partner
+adb root &&  adb shell " content query --uri content://com.google.settings/partner "                                
+Row: 0 name=data_store_version, _id=6, value=3
+Row: 1 name=use_location_for_services, _id=587, value=1
+Row: 2 name=network_location_opt_in, _id=964, value=0
+Row: 3 name=client_id, _id=965, value=android-motorola
+Row: 4 name=search_client_id, _id=966, value=ms-android-motorola-a1-terr1-rao1
+Row: 5 name=search_a2_client_id, _id=967, value=ms-android-motorola-a2-terr1-rao1
+Row: 6 name=chrome_client_id, _id=968, value=ms-android-motorola-a1-terr1-rco1
+Row: 7 name=maps_client_id, _id=969, value=gmm-android-motorola
+Row: 8 name=youtube_client_id, _id=970, value=mvapp-android-motorola
+Row: 9 name=market_client_id, _id=971, value=am-android-motorola
+Row: 10 name=voicesearch_client_id, _id=972, value=ms-as-android-motorola-a1-terr1-rao1
+Row: 11 name=playtx_client_id, _id=973, value=play-ms-android-motorola
+Row: 12 name=playax_client_id, _id=974, value=play-ad-ms-android-motorola
+Row: 13 name=wallet_client_id, _id=975, value=wallet-android-motorola
+Row: 14 name=program_client_id, _id=976, value=pg-android-motorola
+Row: 15 name=program2_client_id, _id=977, value=pg2-android-motorola-terr1-fao1s
+Row: 16 name=program3_client_id, _id=978, value=pg3-android-motorola-terr1-gno1x1230
+Row: 17 name=rsvd_a2_client_id, _id=979, value=ms-android-motorola-a2-terr1-uxo1
+Row: 18 name=rsvd_a3_client_id, _id=980, value=ms-android-motorola-a3-terr1-uxo1
+
+
+═══════════════ 查询 assisted_gps_enabled 开关 (与 网络定位功能 无关!) ═══════════════
+________单独查询 assisted_gps_enabled(AGPS开关)
+adb shell " dumpsys settings | grep assisted_gps_enabled "       
+_id:178 name:assisted_gps_enabled pkg:com.google.android.gms value:1 default:1 defaultSystemSet:true
+
+
+________查询 设置 assisted_gps_enabled(AGPS开关)
+adb shell settings get global assisted_gps_enabled
+
+adb shell settings put global assisted_gps_enabled 1
+adb shell settings put global assisted_gps_enabled 0
+
+
+  
+```
+
+#### 网络定位开关关闭提示
+
+```
+
+Question: Unable to determine your location?
+
+Answer:
+  It appears that the Google Location Accuracy feature has been disabled on your device. This often happens if the privacy consent option was accidentally unchecked during the initial phone setup (Setup
+  Wizard) or disabled in settings.
+
+  When this feature is turned off, your phone cannot use fast Wi-Fi and mobile network signals to estimate your location indoors, and can only rely on satellite GPS signals—which causes Google Maps navigation
+  to be unresponsive or stuck at the "Start" screen when you are indoors or in areas with poor GPS coverage.
+
+  How to fix it:
+  To restore fast and accurate network positioning, please follow these steps to turn the feature back on:
+   1. Go to Settings as below to open Location Accuracy button 
+   2. Settings -> Location -> Location Services -> Location Accuracy
+   3. Toggle the switch to ON ("Improve Location Accuracy").
+
+  Once enabled, Google Maps should immediately locate you and start navigation normally.
+
+```
+
+
 ### 查看产品是否支持DBS双频并发
 
 ```
