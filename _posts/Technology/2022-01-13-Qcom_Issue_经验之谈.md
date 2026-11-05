@@ -116,8 +116,13 @@ adb shell settings put global assisted_gps_enabled 0
 #### 网络定位开关关闭提示
 
 ```
+*1.* we will contact user to open network provider button . 
+*2.* this is network issue that user disallow the permission to google network provider . 
+*3.* we could open the Location Accuracy button to greant permission and enable the network provider.
+*analysis as below , we close this issue as network issue .*
 {noformat}
 Question: Unable to determine your location?
+
 
 Answer:
   It appears that the Google Location Accuracy feature has been disabled on your device. This often happens if the privacy consent option was accidentally unchecked during the initial phone setup (Setup
