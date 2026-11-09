@@ -3699,7 +3699,10 @@ adb root && adb remount && adb shell setprop persist.radio.ctbk_log 5  && adb sh
 adb root && adb disable-verity && adb reboot bootloader
 fastboot oem config cmdl androidboot.selinux=permissive 
 fastboot reboot 
-adb logcat | grep -e "SARCTRL" -e "MDMCTBK" -e "QCSDK"
+adb logcat | grep -e "SARCTRL" -e "MDMCTBK" -e "QCSDK"  -e "SAR Scenario"
+
+
+grep -rins -E "SARCTRL|MDMCTBK|setBtTxPower|SAR Scenario" .
 
 ```
 
@@ -3963,6 +3966,13 @@ u0_a127         2394  2394   964   17 2024-01-04 15:16:31 ?        00:00:00 com.
 
 #### MTK txpowerctrl 配置文件 路径
 ```
+Qcom_Vendor  ctbk_cfg.xml   Bt( 0.25 dbm )    WIFI(0.25 dbm )
+
+MTK_Msi     ctbk_cfg.xml    中一个蓝牙的单位功耗是   Bt( 1 dbm )  
+  
+MTK_Vendor  txpowerctrl.cfg 中一个WIFI数值的单位是  WIFI( 0.5 dbm  )
+
+
 adb root && adb remount 
 adb  pull  /vendor/firmware/txpowerctrl.cfg
 adb push ./txpowerctrl.cfg   /vendor/firmware/
